@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PA Coach Web App - Checklist + ForexFactory News + Trade Journal</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin:0; font-family:Tahoma,Arial,sans-serif; background:#eef2f7; color:#17202a; line-height:1.55; }
+    .app { max-width:1240px; margin:0 auto; padding:18px; }
+    .hero { background:linear-gradient(135deg,#0f172a,#334155); color:white; border-radius:24px; padding:24px; box-shadow:0 12px 30px rgba(0,0,0,.18); margin-bottom:16px; }
+    .hero h1 { margin:0 0 8px; font-size:28px; }
+    .hero p { margin:0; opacity:.92; }
+    .nav { display:flex; gap:8px; flex-wrap:wrap; margin:14px 0 18px; }
+    .nav button { border:1px solid #cbd5e1; background:white; color:#111827; border-radius:999px; padding:10px 14px; cursor:pointer; font-family:inherit; font-weight:bold; }
+    .nav button.active { background:#111827; color:white; border-color:#111827; }
+    .panel { display:none; } .panel.active { display:block; }
+    .grid { display:grid; grid-template-columns:1.1fr .9fr; gap:16px; }
+    @media (max-width:930px) { .grid { grid-template-columns:1fr; } }
+    .card { background:white; border-radius:18px; padding:18px; box-shadow:0 8px 22px rgba(15,23,42,.08); border:1px solid #e5e7eb; margin-bottom:16px; }
+    .card h2,.card h3 { margin-top:0; margin-bottom:12px; }
+    .trade-type { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0; }
+    .btn { border:0; border-radius:14px; padding:11px 13px; font-family:inherit; font-size:15px; cursor:pointer; font-weight:bold; transition:.15s; }
+    .btn-buy { background:#dcfce7; color:#166534; border:2px solid #86efac; }
+    .btn-sell { background:#fee2e2; color:#991b1b; border:2px solid #fca5a5; }
+    .btn-neutral { background:#f3f4f6; color:#111827; border:1px solid #d1d5db; }
+    .btn-primary { background:#111827; color:white; }
+    .btn-warning { background:#f59e0b; color:#111827; }
+    .btn-danger { background:#ef4444; color:white; }
+    .btn-green { background:#16a34a; color:white; }
+    .btn-blue { background:#2563eb; color:white; }
+    .btn.active { transform:scale(1.02); box-shadow:0 8px 20px rgba(0,0,0,.15); }
+    .tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+    .tab { padding:9px 12px; border-radius:999px; background:#f3f4f6; border:1px solid #e5e7eb; cursor:pointer; font-size:14px; font-family:inherit; }
+    .tab.active { background:#111827; color:white; border-color:#111827; }
+    .checklist-group { display:none; } .checklist-group.active { display:block; }
+    label.check { display:flex; align-items:flex-start; gap:10px; padding:10px 8px; border-bottom:1px solid #eef2f7; cursor:pointer; }
+    label.check:hover { background:#f9fafb; }
+    input[type="checkbox"] { margin-top:5px; transform:scale(1.15); }
+    .critical { border-left:5px solid #ef4444; background:#fff7f7; border-radius:10px; margin:6px 0; }
+    .good { border-left:5px solid #22c55e; background:#f6fff9; border-radius:10px; margin:6px 0; }
+    .pill { display:inline-block; padding:3px 8px; border-radius:999px; font-size:12px; font-weight:bold; margin-left:6px; white-space:nowrap; }
+    .pill-critical { background:#fee2e2; color:#991b1b; }
+    .pill-good { background:#dcfce7; color:#166534; }
+    .pill-high { background:#dc2626; color:white; }
+    .pill-medium { background:#f59e0b; color:#111827; }
+    .pill-low { background:#e5e7eb; color:#374151; }
+    .scorebox { border-radius:18px; padding:18px; text-align:center; margin-bottom:14px; border:2px solid #e5e7eb; background:#f9fafb; }
+    .score { font-size:54px; line-height:1; font-weight:bold; margin:6px 0; }
+    .status { font-size:21px; font-weight:bold; margin-top:8px; }
+    .status.pass { color:#166534; } .status.wait { color:#92400e; } .status.fail { color:#991b1b; } .status.neutral { color:#374151; }
+    .progress { height:14px; background:#e5e7eb; border-radius:999px; overflow:hidden; margin-top:12px; }
+    .bar { height:100%; width:0%; background:#6b7280; transition:.2s; }
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .form-grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+    @media (max-width:700px) { .form-grid,.form-grid-3 { grid-template-columns:1fr; } }
+    .field { display:flex; flex-direction:column; gap:6px; margin-bottom:10px; }
+    .field label { font-size:13px; font-weight:bold; color:#374151; }
+    input,textarea,select { width:100%; border:1px solid #d1d5db; border-radius:12px; padding:10px; font-family:Tahoma,Arial,sans-serif; font-size:15px; background:white; }
+    textarea { min-height:86px; resize:vertical; }
+    .result-line { display:flex; justify-content:space-between; gap:10px; padding:8px 0; border-bottom:1px dashed #e5e7eb; }
+    .result-line strong { text-align:right; }
+    .note { background:#fffbeb; color:#78350f; border:1px solid #fde68a; padding:12px; border-radius:14px; font-size:14px; margin-top:10px; }
+    .danger-note { background:#fef2f2; color:#7f1d1d; border:1px solid #fecaca; padding:12px; border-radius:14px; font-size:14px; margin-top:10px; }
+    .success-note { background:#f0fdf4; color:#14532d; border:1px solid #bbf7d0; padding:12px; border-radius:14px; font-size:14px; margin-top:10px; }
+    .info-note { background:#eff6ff; color:#1e3a8a; border:1px solid #bfdbfe; padding:12px; border-radius:14px; font-size:14px; margin-top:10px; }
+    .small { font-size:13px; color:#6b7280; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+    table { width:100%; border-collapse:collapse; font-size:14px; }
+    th,td { border-bottom:1px solid #e5e7eb; padding:8px; vertical-align:top; text-align:left; }
+    th { background:#f8fafc; color:#334155; position:sticky; top:0; z-index:1; }
+    .table-wrap { overflow:auto; max-height:480px; border:1px solid #e5e7eb; border-radius:14px; }
+    .journal { white-space:pre-wrap; background:#f9fafb; border:1px solid #e5e7eb; padding:12px; border-radius:14px; font-size:14px; max-height:300px; overflow:auto; }
+    .news-row-high { border-left:5px solid #dc2626; }
+    .news-row-medium { border-left:5px solid #f59e0b; }
+    .trade-buy { color:#166534; font-weight:bold; }
+    .trade-sell { color:#991b1b; font-weight:bold; }
+    .footer { text-align:center; color:#6b7280; font-size:13px; padding:18px 0; }
+    .muted-box { background:#f8fafc; border:1px solid #e2e8f0; border-radius:14px; padding:12px; }
+    .big-warning { font-size:20px; font-weight:bold; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="hero">
+      <h1>PA Coach Web App: Checklist + ข่าวแดง/ส้ม + Trade Journal</h1>
+      <p>ก่อนกดออเดอร์: เช็ก PA, เช็กข่าว ForexFactory, คำนวณ Lot, แล้วบันทึกย้อนหลังเป็น Journal</p>
+    </div>
+
+    <div class="nav">
+      <button class="active" onclick="showPanel('tradePanel', this)">Checklist ก่อนเข้า</button>
+      <button onclick="showPanel('newsPanel', this)">News Guard ข่าวแดง/ส้ม</button>
+      <button onclick="showPanel('journalPanel', this)">Trade Journal ย้อนหลัง</button>
+    </div>
+
+    <section id="tradePanel" class="panel active">
+      <div class="grid">
+        <main>
+          <div class="card">
+            <h2>1) เลือกฝั่งที่กำลังจะเทรด</h2>
+            <div class="trade-type">
+              <button id="buyBtn" class="btn btn-buy" onclick="setTradeType('BUY')">BUY</button>
+              <button id="sellBtn" class="btn btn-sell" onclick="setTradeType('SELL')">SELL</button>
+            </div>
+            <div class="small">กฎหลัก: เลือกฝั่งก่อน แล้วเช็กเงื่อนไขให้ครบ อย่าเช็กเพื่อหาเหตุผลเข้าตลาดย้อนหลัง</div>
+          </div>
+
+          <div class="card">
+            <h2>2) Checklist ก่อนเข้าออเดอร์</h2>
+            <div class="tabs">
+              <button class="tab active" onclick="showCheckTab('structure', this)">โครงสร้าง</button>
+              <button class="tab" onclick="showCheckTab('zone', this)">โซนเข้า</button>
+              <button class="tab" onclick="showCheckTab('trigger', this)">สัญญาณ</button>
+              <button class="tab" onclick="showCheckTab('risk', this)">ความเสี่ยง</button>
+              <button class="tab" onclick="showCheckTab('mind', this)">จิตใจ</button>
+            </div>
+
+            <div id="structure" class="checklist-group active">
+              <label class="check critical"><input type="checkbox" class="chk critical-chk" data-text="ดู Weekly/Daily/H4 แล้วไม่สวนเทรนด์ใหญ่แบบมั่ว ๆ"> <span>ดู Weekly / Daily / H4 แล้วไม่สวนเทรนด์ใหญ่แบบมั่ว ๆ <span class="pill pill-critical">ต้องผ่าน</span></span></label>
+              <label class="check good"><input type="checkbox" class="chk" data-text="รู้ว่า H4 ทำ Higher High / Higher Low หรือ Lower High / Lower Low"> <span>รู้ว่า H4 ตอนนี้เป็น HH/HL หรือ LH/LL <span class="pill pill-good">คะแนน</span></span></label>
+              <label class="check good"><input type="checkbox" class="chk" data-text="ราคาอยู่ฝั่งถูกต้องของ EMA 10/20 หรือมีเหตุผลชัดเจนถ้าสวน"> <span>ราคาอยู่ฝั่งถูกต้องของ EMA 10/20 หรือมีเหตุผลชัดเจนถ้าสวน</span></label>
+              <label class="check good"><input type="checkbox" class="chk" data-text="มี swing high / swing low สำคัญให้ใช้อ้างอิง"> <span>มี Swing High / Swing Low สำคัญให้ใช้อ้างอิง</span></label>
+            </div>
+
+            <div id="zone" class="checklist-group">
+              <label class="check critical"><input type="checkbox" class="chk critical-chk" data-text="เข้าใกล้แนวรับ/แนวต้านสำคัญ ไม่ใช่เข้ากลางทาง"> <span>ราคาเข้าใกล้แนวรับ/แนวต้านสำคัญ ไม่ใช่เข้ากลางทาง <span class="pill pill-critical">ต้องผ่าน</span></span></label>
+              <label class="check good"><input type="checkbox" class="chk" data-text="มีการ Pullback / Retest / Sweep liquidity ก่อนเข้า"> <span>มี Pullback / Retest / Sweep liquidity ก่อนเข้า</span></label>
+              <label class="check good"><input type="checkbox" class="chk" data-text="ไม่ได้ BUY ใต้แนวต้านใกล้ ๆ หรือ SELL เหนือแนวรับใกล้ ๆ"> <span>ไม่ได้ BUY ใต้แนวต้านใกล้ ๆ หรือ SELL เหนือแนวรับใกล้ ๆ</span></label>
+              <label class="check good"><input type="checkbox" class="chk" data-text="มีพื้นที่ไป TP อย่างน้อย 1:2"> <span>มีพื้นที่ไป TP อย่างน้อย Risk:Reward 1:2</span></label>
+            </div>
+
+            <div id="trigger" class="checklist-group">
+              <label class="check critical"><input type="checkbox" class="chk critical-chk" data-text="มีแท่งกลับตัว/Break structure ยืนยัน ไม่ใช่เดา"> <span>มีแท่งกลับตัว / Break structure ยืนยัน ไม่ใช่เดา <span class="pill pill-critical">ต้องผ่าน</span></span></label>
+              <label class="check good"><input type="checkbox" class="chk" data-text="สำหรับ BUY มี rejection จากแนวรับหรือ break swing high ย่อย"> <span>BUY: มี rejection จากแนวรับ หรือ break swing high ย่อย</span></label>
+              <label class="check good"><input type="checkbox" class="chk" data-text="สำหรับ SELL มี rejection จากแนวต้านหรือ break swing low ย่อย"> <span>SELL: มี rejection จากแนวต้าน หรือ break swing low ย่อย</span></label>
+              <label class="check good"><input type="checkbox" class="chk" data-text="แท่งสัญญาณปิดแล้ว ไม่เข้าเพราะแท่งยังวิ่ง"> <span>แท่งสัญญาณปิดแล้ว ไม่เข้าเพราะแท่งยังวิ่ง</span></label>
+            </div>
+
+            <div id="risk" class="checklist-group">
+              <label class="check critical"><input type="checkbox" class="chk critical-chk" data-text="กำหนด SL ก่อนเข้า และยอมรับจุดขาดทุนได้"> <span>กำหนด SL ก่อนเข้า และยอมรับจุดขาดทุนได้ <span class="pill pill-critical">ต้องผ่าน</span></span></label>
+              <label class="check critical"><input type="checkbox" class="chk critical-chk" data-text="ความเสี่ยงต่อไม้ไม่เกิน 0.5% - 1% ของพอร์ต"> <span>ความเสี่ยงต่อไม้ไม่เกิน 0.5% - 1% ของพอร์ต <span class="pill pill-critical">ต้องผ่าน</span></span></label>
+              <label class="check good"><input type="checkbox" class="chk" data-text="ไม่เข้าใกล้ข่าวแรง หรือยอมลด lot ถ้าจำเป็น"> <span>ไม่เข้าใกล้ข่าวแรง หรือยอมลด Lot ถ้าจำเป็น</span></label>
+              <label class="check good"><input type="checkbox" class="chk" data-text="มีแผน TP1 / TP2 / ย้าย SL เป็น BE"> <span>มีแผน TP1 / TP2 / ย้าย SL เป็น BE</span></label>
+            </div>
+
+            <div id="mind" class="checklist-group">
+              <label class="check critical"><input type="checkbox" class="chk critical-chk" data-text="ไม่ได้เข้าเพราะอยากเอาคืน หรือกลัวตกรถ"> <span>ไม่ได้เข้าเพราะอยากเอาคืน / กลัวตกรถ / ท้อแล้วอยากวัดดวง <span class="pill pill-critical">ต้องผ่าน</span></span></label>
+              <label class="check good"><input type="checkbox" class="chk" data-text="ถ้าแพ้ไม้ก่อนหน้า จะไม่เพิ่ม lot เพื่อแก้มือ"> <span>ถ้าแพ้ไม้ก่อนหน้า จะไม่เพิ่ม Lot เพื่อแก้มือ</span></label>
+              <label class="check good"><input type="checkbox" class="chk" data-text="พร้อมไม่เทรด ถ้าระบบบอกว่ายังไม่ครบ"> <span>พร้อมไม่เทรด ถ้าระบบบอกว่ายังไม่ครบ</span></label>
+              <label class="check good"><input type="checkbox" class="chk" data-text="ถ่ายรูปกราฟก่อนเข้าไว้ทบทวน"> <span>ถ่ายรูปกราฟก่อนเข้าไว้ทบทวน</span></label>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>3) บันทึกแผนเทรด / Journal</h2>
+            <div class="form-grid-3">
+              <div class="field"><label>Symbol</label><input id="symbol" type="text" value="XAUUSD" placeholder="เช่น XAUUSD"></div>
+              <div class="field"><label>ผลลัพธ์ตอนนี้</label>
+                <select id="tradeResult">
+                  <option value="Pending">Pending / ยังไม่ปิด</option>
+                  <option value="Win">Win</option>
+                  <option value="Loss">Loss</option>
+                  <option value="BE">Break Even</option>
+                  <option value="Skipped">Skipped / ไม่เข้า</option>
+                </select>
+              </div>
+              <div class="field"><label>กำไร/ขาดทุนเป็น R</label><input id="pnlR" type="number" step="0.01" placeholder="เช่น 2 หรือ -1"></div>
+            </div>
+
+            <div class="form-grid">
+              <div class="field"><label>Balance / เงินทุน</label><input id="balance" type="number" placeholder="เช่น 1000" value="1000" oninput="calculateRisk()"></div>
+              <div class="field"><label>Risk % ต่อไม้</label><input id="riskPct" type="number" step="0.1" placeholder="เช่น 0.5 หรือ 1" value="0.5" oninput="calculateRisk()"></div>
+              <div class="field"><label>Entry</label><input id="entry" type="number" step="0.01" placeholder="เช่น 3350.00" oninput="calculateRisk()"></div>
+              <div class="field"><label>Stop Loss</label><input id="sl" type="number" step="0.01" placeholder="เช่น 3342.00" oninput="calculateRisk()"></div>
+              <div class="field"><label>TP1</label><input id="tp1" type="number" step="0.01" placeholder="เช่น 3360.00" oninput="calculateRisk()"></div>
+              <div class="field"><label>TP2</label><input id="tp2" type="number" step="0.01" placeholder="เช่น 3370.00" oninput="calculateRisk()"></div>
+            </div>
+            <div class="field"><label>เหตุผลเข้า/ไม่เข้าออเดอร์</label><textarea id="reason" placeholder="เช่น H4 uptrend, pullback EMA20, rejection ที่แนวรับ, RR 1:2 / หรือ งดเทรดเพราะมีข่าวแดง USD"></textarea></div>
+            <div class="field"><label>บทเรียนหลังจบไม้</label><textarea id="lesson" placeholder="หลังปิดออเดอร์ค่อยกลับมาใส่ เช่น เข้าเร็วไป / เคารพ SL / เลี่ยงข่าวได้ดี"></textarea></div>
+            <div class="actions">
+              <button class="btn btn-primary" onclick="saveTrade()">บันทึก Trade Journal</button>
+              <button class="btn btn-neutral" onclick="copyPlan()">Copy แผนเทรด</button>
+              <button class="btn btn-warning" onclick="markSkippedByNews()">บันทึกว่า 'ไม่เข้าเพราะข่าว'</button>
+              <button class="btn btn-danger" onclick="resetFormOnly()">ล้างฟอร์ม</button>
+            </div>
+            <div class="note">สูตร Lot เป็นค่าประมาณสำหรับ XAUUSD แบบ 1.00 lot = 100 oz และราคาเคลื่อน 1.00 ดอลลาร์ = ประมาณ $100 ต่อ 1 lot โปรดเช็ก contract size ของโบรกเกอร์ก่อนใช้เงินจริง</div>
+          </div>
+        </main>
+
+        <aside>
+          <div class="card">
+            <h2>ผลประเมิน</h2>
+            <div class="scorebox" id="scorebox">
+              <div>Checklist Score</div>
+              <div class="score" id="score">0%</div>
+              <div class="progress"><div class="bar" id="bar"></div></div>
+              <div class="status neutral" id="status">ยังไม่เลือก BUY/SELL</div>
+            </div>
+            <div id="blockerText" class="danger-note">ยังไม่ได้เช็กเงื่อนไขสำคัญ</div>
+          </div>
+
+          <div class="card">
+            <h2>News Guard ตอนนี้</h2>
+            <div id="newsGuardBox" class="info-note">ยังไม่ได้โหลดข่าว ForexFactory</div>
+            <div class="actions">
+              <button class="btn btn-blue" onclick="showPanelById('newsPanel')">ไปหน้า News Guard</button>
+              <button class="btn btn-green" onclick="loadForexFactoryNews()">ดึงข่าวตอนนี้</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>Risk Calculator</h2>
+            <div class="result-line"><span>Risk เงิน</span><strong id="riskMoney">$0.00</strong></div>
+            <div class="result-line"><span>ระยะ SL</span><strong id="slDistance">0.00</strong></div>
+            <div class="result-line"><span>Lot ประมาณ</span><strong id="lotSize">0.00</strong></div>
+            <div class="result-line"><span>RR ถึง TP1</span><strong id="rr1">-</strong></div>
+            <div class="result-line"><span>RR ถึง TP2</span><strong id="rr2">-</strong></div>
+            <div id="riskWarning" class="danger-note" style="display:none;"></div>
+          </div>
+
+          <div class="card">
+            <h2>กฎเหล็กของโค้ช PA</h2>
+            <div class="danger-note">
+              ถ้าข้อสีแดงไม่ครบ = ห้ามเข้า<br>
+              ถ้าคะแนนต่ำกว่า 80% = รอ<br>
+              ถ้า News Guard ขึ้นงดเทรด = ไม่ชนข่าว<br>
+              ถ้าเพิ่งเสียหนัก/ใจร้อน = ปิดจอ 15 นาที
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="newsPanel" class="panel">
+      <div class="grid">
+        <main>
+          <div class="card">
+            <h2>News Guard: ดึงข่าวแดง/ส้มจาก ForexFactory Weekly Export</h2>
+            <div class="info-note">
+              ปุ่มนี้จะดึงไฟล์ JSON รายสัปดาห์จาก ForexFactory/FairEconomy แล้วกรองเฉพาะ <b>High = ข่าวแดง</b> และ <b>Medium = ข่าวส้ม</b> เพื่อกันพี่เทรดชนข่าว
+            </div>
+            <div class="form-grid-3" style="margin-top:12px;">
+              <div class="field">
+                <label>สกุลเงินที่เกี่ยวข้อง</label>
+                <input id="currencyFilter" value="USD" placeholder="เช่น USD หรือ USD,EUR,GBP" oninput="saveNewsSettings(); renderNews(); updateNewsGuard();">
+              </div>
+              <div class="field">
+                <label>แสดง Impact</label>
+                <select id="impactFilter" onchange="saveNewsSettings(); renderNews(); updateNewsGuard();">
+                  <option value="High,Medium">High + Medium</option>
+                  <option value="High">High เท่านั้น</option>
+                  <option value="Medium">Medium เท่านั้น</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>สถานะโหลดข่าว</label>
+                <input id="newsLoadStatus" readonly value="ยังไม่ได้โหลด">
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="field"><label>ห้ามเทรดก่อนข่าวแดงกี่นาที</label><input id="highBefore" type="number" value="30" oninput="saveNewsSettings(); updateNewsGuard();"></div>
+              <div class="field"><label>ห้ามเทรดหลังข่าวแดงกี่นาที</label><input id="highAfter" type="number" value="30" oninput="saveNewsSettings(); updateNewsGuard();"></div>
+              <div class="field"><label>ห้ามเทรดก่อนข่าวส้มกี่นาที</label><input id="mediumBefore" type="number" value="15" oninput="saveNewsSettings(); updateNewsGuard();"></div>
+              <div class="field"><label>ห้ามเทรดหลังข่าวส้มกี่นาที</label><input id="mediumAfter" type="number" value="15" oninput="saveNewsSettings(); updateNewsGuard();"></div>
+            </div>
+
+            <div class="actions">
+              <button class="btn btn-green" onclick="loadForexFactoryNews()">ดึงข่าว ForexFactory</button>
+              <button class="btn btn-neutral" onclick="loadForexFactoryNewsViaProxy()">ถ้าดึงไม่ได้: ลองผ่าน Proxy</button>
+              <button class="btn btn-blue" onclick="openForexFactory()">เปิดหน้า ForexFactory</button>
+              <button class="btn btn-neutral" onclick="exportNewsJson()">Export ข่าว JSON</button>
+              <button class="btn btn-danger" onclick="clearNews()">ล้างข่าว</button>
+            </div>
+
+            <div id="newsGuardMain" class="info-note">กด “ดึงข่าว ForexFactory” เพื่อเริ่มใช้งานครับ</div>
+          </div>
+
+          <div class="card">
+            <h2>ตารางข่าว High / Medium</h2>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>เวลาในเครื่อง</th><th>สกุล</th><th>Impact</th><th>ข่าว</th><th>Forecast</th><th>Previous</th></tr>
+                </thead>
+                <tbody id="newsTableBody"><tr><td colspan="6">ยังไม่มีข่าว</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+        </main>
+
+        <aside>
+          <div class="card">
+            <h2>เพิ่มข่าวเอง / Import สำรอง</h2>
+            <div class="small">ใช้เมื่อดึงอัตโนมัติไม่ได้ หรือพี่อยากเพิ่มข่าวที่โค้ชเตือนเอง</div>
+            <div class="field"><label>เวลา</label><input id="manualNewsTime" type="datetime-local"></div>
+            <div class="field"><label>Currency</label><input id="manualNewsCurrency" value="USD"></div>
+            <div class="field"><label>Impact</label><select id="manualNewsImpact"><option value="High">High / ข่าวแดง</option><option value="Medium">Medium / ข่าวส้ม</option></select></div>
+            <div class="field"><label>ชื่อข่าว</label><input id="manualNewsTitle" placeholder="เช่น CPI / FOMC / NFP"></div>
+            <button class="btn btn-primary" onclick="addManualNews()">เพิ่มข่าวเอง</button>
+            <hr style="border:0;border-top:1px solid #e5e7eb;margin:16px 0;">
+            <div class="field"><label>วาง JSON จาก ForexFactory / ไฟล์ที่ Export</label><textarea id="newsJsonInput" placeholder='[{"title":"Core PCE","country":"USD","date":"2026-05-28T08:30:00-04:00","impact":"High"}]'></textarea></div>
+            <div class="actions">
+              <button class="btn btn-neutral" onclick="importNewsFromTextarea()">Import JSON</button>
+              <input type="file" id="newsFileInput" accept=".json" onchange="importNewsFile(event)">
+            </div>
+            <div class="note">ถ้าเปิดไฟล์นี้แบบ local แล้ว browser บล็อกการดึงข่าว ให้ใช้ปุ่ม Proxy หรือเปิดจากเว็บเซิร์ฟเวอร์ local เช่น VS Code Live Server</div>
+          </div>
+
+          <div class="card">
+            <h2>กฎกันชนข่าวของโค้ช</h2>
+            <div class="danger-note">
+              XAUUSD ให้โฟกัสข่าว USD ก่อน<br>
+              ข่าวแดง: งดเทรดก่อน/หลังอย่างน้อย 30 นาที<br>
+              ข่าวส้ม: ลดความเสี่ยงหรือรออย่างน้อย 15 นาที<br>
+              ถ้ากราฟสวยแต่ชนข่าว = ไม่ต้องเสียดาย
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="journalPanel" class="panel">
+      <div class="card">
+        <h2>Trade Journal ย้อนหลัง</h2>
+        <div class="form-grid-3">
+          <div class="field"><label>กรอง Symbol</label><input id="journalSymbolFilter" placeholder="เช่น XAUUSD" oninput="renderTrades()"></div>
+          <div class="field"><label>กรองผลลัพธ์</label>
+            <select id="journalResultFilter" onchange="renderTrades()">
+              <option value="">ทั้งหมด</option><option value="Pending">Pending</option><option value="Win">Win</option><option value="Loss">Loss</option><option value="BE">BE</option><option value="Skipped">Skipped</option>
+            </select>
+          </div>
+          <div class="field"><label>ค้นหาเหตุผล/บทเรียน</label><input id="journalTextFilter" placeholder="เช่น ข่าว / EMA / ใจร้อน" oninput="renderTrades()"></div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-neutral" onclick="exportTradesJson()">Export Journal JSON</button>
+          <button class="btn btn-neutral" onclick="exportTradesCsv()">Export Journal CSV</button>
+          <input type="file" id="tradeFileInput" accept=".json" onchange="importTradesFile(event)">
+          <button class="btn btn-danger" onclick="clearAllTrades()">ล้าง Journal ทั้งหมด</button>
+        </div>
+        <div id="statsBox" class="muted-box" style="margin-top:12px;">ยังไม่มีสถิติ</div>
+      </div>
+
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>วันเวลา</th><th>Symbol</th><th>ฝั่ง</th><th>Entry / SL / TP</th><th>Lot / RR</th><th>Score / News</th><th>ผล</th><th>R</th><th>เหตุผล / บทเรียน</th><th>จัดการ</th></tr></thead>
+            <tbody id="tradeTableBody"><tr><td colspan="10">ยังไม่มีบันทึก</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>รายละเอียดรายการที่เลือก</h2>
+        <div id="tradeDetail" class="journal">คลิก “ดู” ในตารางเพื่อดูรายละเอียด</div>
+      </div>
+    </section>
+
+    <div class="footer">PA Coach Web App — เพื่อวินัยและการศึกษา ไม่ใช่สัญญาณการันตีกำไร | ข่าวมาจาก ForexFactory Weekly Export เมื่อดึงสำเร็จ</div>
+  </div>
+
+  <script>
+    const FF_URL = "https://nfs.faireconomy.media/ff_calendar_thisweek.json";
+    const STORAGE_TRADES = "paCoachTradesV2";
+    const STORAGE_NEWS = "paCoachNewsV2";
+    const STORAGE_NEWS_SETTINGS = "paCoachNewsSettingsV2";
+    let tradeType = "", newsEvents = [], trades = [];
+
+    function escapeHtml(value){return String(value??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+    function num(id){const v=parseFloat(document.getElementById(id).value); return Number.isFinite(v)?v:0}
+    function formatDateTime(value){ if(!value)return "-"; const d=new Date(value); if(Number.isNaN(d.getTime()))return "-"; return d.toLocaleString("th-TH",{year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"});}
+    function minutesBetween(a,b){return Math.round((a.getTime()-b.getTime())/60000)}
+    function showPanel(id,btn){document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));if(btn)btn.classList.add("active"); if(id==="journalPanel")renderTrades(); if(id==="newsPanel"){renderNews();updateNewsGuard();}}
+    function showPanelById(id){const buttons=Array.from(document.querySelectorAll(".nav button")); const index=id==="tradePanel"?0:id==="newsPanel"?1:2; showPanel(id,buttons[index]);}
+    function showCheckTab(id,btn){document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));document.querySelectorAll(".checklist-group").forEach(g=>g.classList.remove("active"));btn.classList.add("active");document.getElementById(id).classList.add("active");}
+    function setTradeType(type){tradeType=type;document.getElementById("buyBtn").classList.toggle("active",type==="BUY");document.getElementById("sellBtn").classList.toggle("active",type==="SELL");updateScore();calculateRisk();}
+    document.addEventListener("change",e=>{if(e.target.classList&&e.target.classList.contains("chk"))updateScore();});
+    function getChecklistStats(){const all=Array.from(document.querySelectorAll(".chk"));const checked=all.filter(c=>c.checked);const critical=Array.from(document.querySelectorAll(".critical-chk"));const criticalMissing=critical.filter(c=>!c.checked);const percent=all.length?Math.round((checked.length/all.length)*100):0;return{all,checked,critical,criticalMissing,percent};}
+    function updateScore(){const {percent,criticalMissing}=getChecklistStats();document.getElementById("score").textContent=percent+"%";document.getElementById("bar").style.width=percent+"%";const bar=document.getElementById("bar"),status=document.getElementById("status"),scorebox=document.getElementById("scorebox"),blockerText=document.getElementById("blockerText");bar.style.background=percent>=80?"#22c55e":percent>=60?"#f59e0b":"#ef4444";scorebox.style.borderColor=percent>=80?"#86efac":percent>=60?"#fbbf24":"#fca5a5";const newsGuard=getNewsGuardStatus();if(!tradeType){status.textContent="ยังไม่เลือก BUY/SELL";status.className="status neutral";}else if(criticalMissing.length>0){status.textContent="ห้ามเข้า — ข้อสำคัญยังไม่ครบ";status.className="status fail";}else if(newsGuard.blocked){status.textContent="ห้ามเข้า — ชนข่าว";status.className="status fail";}else if(percent<80){status.textContent="รอก่อน — คะแนนยังไม่ถึง 80%";status.className="status wait";}else{status.textContent=tradeType+" ได้แบบมีวินัย";status.className="status pass";}if(criticalMissing.length>0){blockerText.style.display="block";blockerText.className="danger-note";blockerText.innerHTML="<b>ข้อสำคัญที่ยังขาด:</b><br>"+criticalMissing.map(c=>"• "+escapeHtml(c.dataset.text)).join("<br>");}else if(newsGuard.blocked){blockerText.style.display="block";blockerText.className="danger-note";blockerText.innerHTML="<b>ชนช่วงข่าว:</b><br>"+escapeHtml(newsGuard.message);}else{blockerText.style.display="block";blockerText.className="success-note";blockerText.innerHTML="ข้อสำคัญผ่านครบแล้ว ต่อไปดู RR, Lot, ข่าว และสภาพจิตใจก่อนกดจริง";}}
+    function calculateRisk(){const balance=num("balance"),riskPct=num("riskPct"),entry=num("entry"),sl=num("sl"),tp1=num("tp1"),tp2=num("tp2");const riskMoney=balance*(riskPct/100);const slDistance=Math.abs(entry-sl);const lot=slDistance>0?riskMoney/(slDistance*100):0;document.getElementById("riskMoney").textContent="$"+riskMoney.toFixed(2);document.getElementById("slDistance").textContent=slDistance.toFixed(2);document.getElementById("lotSize").textContent=lot.toFixed(2);const rr1=slDistance>0&&tp1?Math.abs(tp1-entry)/slDistance:0;const rr2=slDistance>0&&tp2?Math.abs(tp2-entry)/slDistance:0;document.getElementById("rr1").textContent=rr1?"1:"+rr1.toFixed(2):"-";document.getElementById("rr2").textContent=rr2?"1:"+rr2.toFixed(2):"-";const warning=document.getElementById("riskWarning");let msgs=[];if(riskPct>1)msgs.push("Risk เกิน 1% ต่อไม้ อันตรายสำหรับช่วงที่พอร์ตยังไม่นิ่ง");if(slDistance>0&&rr1>0&&rr1<1.5)msgs.push("RR ถึง TP1 ต่ำกว่า 1:1.5 อาจไม่คุ้มเสี่ยง");if(tradeType==="BUY"&&sl&&entry&&sl>=entry)msgs.push("BUY แต่ SL ไม่ได้อยู่ต่ำกว่า Entry");if(tradeType==="SELL"&&sl&&entry&&sl<=entry)msgs.push("SELL แต่ SL ไม่ได้อยู่สูงกว่า Entry");if(tradeType==="BUY"&&tp1&&entry&&tp1<=entry)msgs.push("BUY แต่ TP1 ไม่ได้อยู่สูงกว่า Entry");if(tradeType==="SELL"&&tp1&&entry&&tp1>=entry)msgs.push("SELL แต่ TP1 ไม่ได้อยู่ต่ำกว่า Entry");if(msgs.length){warning.style.display="block";warning.innerHTML=msgs.map(m=>"• "+escapeHtml(m)).join("<br>");}else warning.style.display="none";}
+    function normalizeNews(list){if(!Array.isArray(list))throw new Error("JSON ต้องเป็น array");return list.map((e,idx)=>({id:e.id||("news_"+Date.now()+"_"+idx+"_"+Math.random().toString(16).slice(2)),title:e.title||e.event||"Untitled news",country:e.country||e.currency||"",date:e.date||e.datetime||e.time||"",impact:e.impact||"",forecast:e.forecast||"",previous:e.previous||"",actual:e.actual||"",source:e.source||"ForexFactory"})).filter(e=>e.date&&e.country&&e.impact);}
+    function saveNews(){localStorage.setItem(STORAGE_NEWS,JSON.stringify(newsEvents));}
+    function loadNewsFromStorage(){try{newsEvents=JSON.parse(localStorage.getItem(STORAGE_NEWS)||"[]");}catch{newsEvents=[];}}
+    function getSelectedCurrencies(){return document.getElementById("currencyFilter").value.split(",").map(x=>x.trim().toUpperCase()).filter(Boolean);}
+    function getSelectedImpacts(){return document.getElementById("impactFilter").value.split(",").map(x=>x.trim()).filter(Boolean);}
+    function getNewsSettings(){return{currencies:document.getElementById("currencyFilter").value,impacts:document.getElementById("impactFilter").value,highBefore:document.getElementById("highBefore").value,highAfter:document.getElementById("highAfter").value,mediumBefore:document.getElementById("mediumBefore").value,mediumAfter:document.getElementById("mediumAfter").value};}
+    function saveNewsSettings(){localStorage.setItem(STORAGE_NEWS_SETTINGS,JSON.stringify(getNewsSettings()));}
+    function loadNewsSettings(){try{const s=JSON.parse(localStorage.getItem(STORAGE_NEWS_SETTINGS)||"{}");if(s.currencies)document.getElementById("currencyFilter").value=s.currencies;if(s.impacts)document.getElementById("impactFilter").value=s.impacts;if(s.highBefore)document.getElementById("highBefore").value=s.highBefore;if(s.highAfter)document.getElementById("highAfter").value=s.highAfter;if(s.mediumBefore)document.getElementById("mediumBefore").value=s.mediumBefore;if(s.mediumAfter)document.getElementById("mediumAfter").value=s.mediumAfter;}catch{}}
+    async function loadForexFactoryNews(){const status=document.getElementById("newsLoadStatus");status.value="กำลังดึงข่าว...";try{const res=await fetch(FF_URL+"?_="+Date.now(),{cache:"no-store"});if(!res.ok)throw new Error("HTTP "+res.status);const data=await res.json();newsEvents=normalizeNews(data);saveNews();status.value="โหลดสำเร็จ "+newsEvents.length+" ข่าว";renderNews();updateNewsGuard();alert("ดึงข่าว ForexFactory สำเร็จครับ");}catch(err){status.value="ดึงตรงไม่ได้";document.getElementById("newsGuardMain").className="danger-note";document.getElementById("newsGuardMain").innerHTML="ดึงข่าวตรงไม่สำเร็จ: "+escapeHtml(err.message)+"<br>ลองกดปุ่ม Proxy หรือ Import JSON เองครับ";updateNewsGuard();}}
+    async function loadForexFactoryNewsViaProxy(){const status=document.getElementById("newsLoadStatus");status.value="กำลังดึงผ่าน Proxy...";try{const proxy="https://api.allorigins.win/raw?url="+encodeURIComponent(FF_URL+"?_="+Date.now());const res=await fetch(proxy,{cache:"no-store"});if(!res.ok)throw new Error("HTTP "+res.status);const data=await res.json();newsEvents=normalizeNews(data).map(e=>({...e,source:"ForexFactory via proxy"}));saveNews();status.value="โหลดผ่าน Proxy สำเร็จ "+newsEvents.length+" ข่าว";renderNews();updateNewsGuard();alert("ดึงข่าวผ่าน Proxy สำเร็จครับ");}catch(err){status.value="Proxy ดึงไม่ได้";document.getElementById("newsGuardMain").className="danger-note";document.getElementById("newsGuardMain").innerHTML="Proxy ดึงข่าวไม่สำเร็จ: "+escapeHtml(err.message)+"<br>ให้เปิด ForexFactory แล้วใช้ Export JSON/CSV หรือเพิ่มข่าวเองครับ";updateNewsGuard();}}
+    function openForexFactory(){window.open("https://www.forexfactory.com/calendar","_blank","noopener,noreferrer");}
+    function renderNews(){const tbody=document.getElementById("newsTableBody");const currencies=getSelectedCurrencies();const impacts=getSelectedImpacts();const filtered=newsEvents.filter(e=>currencies.length===0||currencies.includes(String(e.country).toUpperCase())).filter(e=>impacts.includes(e.impact)).sort((a,b)=>new Date(a.date)-new Date(b.date));if(!filtered.length){tbody.innerHTML='<tr><td colspan="6">ไม่มีข่าวตามตัวกรองนี้</td></tr>';return;}tbody.innerHTML=filtered.map(e=>{const impactClass=e.impact==="High"?"pill-high":e.impact==="Medium"?"pill-medium":"pill-low";const rowClass=e.impact==="High"?"news-row-high":e.impact==="Medium"?"news-row-medium":"";return `<tr class="${rowClass}"><td>${escapeHtml(formatDateTime(e.date))}</td><td><b>${escapeHtml(e.country)}</b></td><td><span class="pill ${impactClass}">${escapeHtml(e.impact)}</span></td><td>${escapeHtml(e.title)}</td><td>${escapeHtml(e.forecast||"-")}</td><td>${escapeHtml(e.previous||"-")}</td></tr>`;}).join("");}
+    function getNewsGuardStatus(){const now=new Date();const currencies=getSelectedCurrencies();const impacts=getSelectedImpacts();const highBefore=Number(document.getElementById("highBefore")?.value||30),highAfter=Number(document.getElementById("highAfter")?.value||30),mediumBefore=Number(document.getElementById("mediumBefore")?.value||15),mediumAfter=Number(document.getElementById("mediumAfter")?.value||15);const relevant=newsEvents.filter(e=>currencies.length===0||currencies.includes(String(e.country).toUpperCase())).filter(e=>impacts.includes(e.impact)).map(e=>({...e,d:new Date(e.date)})).filter(e=>!Number.isNaN(e.d.getTime())).sort((a,b)=>a.d-b.d);const blocking=[];for(const e of relevant){const before=e.impact==="High"?highBefore:mediumBefore;const after=e.impact==="High"?highAfter:mediumAfter;const start=new Date(e.d.getTime()-before*60000);const end=new Date(e.d.getTime()+after*60000);if(now>=start&&now<=end)blocking.push({...e,start,end,before,after});}const upcoming=relevant.filter(e=>e.d>now).slice(0,5);if(blocking.length){const lines=blocking.map(e=>`${e.country} ${e.impact}: ${e.title} เวลา ${formatDateTime(e.date)} — รออีกประมาณ ${Math.max(0,minutesBetween(e.end,now))} นาที`);return{blocked:true,message:lines.join("\n"),upcoming};}return{blocked:false,message:upcoming.length?"ไม่มีข่าวที่ชนตอนนี้\nข่าวถัดไป:\n"+upcoming.map(e=>`• ${e.country} ${e.impact}: ${e.title} เวลา ${formatDateTime(e.date)}`).join("\n"):"ไม่มีข่าวที่ชนตอนนี้ และยังไม่มีข่าวถัดไปตามตัวกรอง",upcoming};}
+    function updateNewsGuard(){const status=getNewsGuardStatus();const box=document.getElementById("newsGuardBox"),main=document.getElementById("newsGuardMain");if(!newsEvents.length){box.className="info-note";box.innerHTML="ยังไม่ได้โหลดข่าว ForexFactory";main.className="info-note";main.innerHTML="กด “ดึงข่าว ForexFactory” เพื่อเริ่มใช้งานครับ";updateScore();return;}if(status.blocked){box.className="danger-note";box.innerHTML='<div class="big-warning">งดเทรดตอนนี้ — ชนข่าว</div><pre style="white-space:pre-wrap;font-family:Tahoma,Arial,sans-serif;">'+escapeHtml(status.message)+"</pre>";main.className="danger-note";main.innerHTML='<div class="big-warning">งดเทรดตอนนี้ — ชนข่าว</div><pre style="white-space:pre-wrap;font-family:Tahoma,Arial,sans-serif;">'+escapeHtml(status.message)+"</pre>";}else{box.className="success-note";box.innerHTML='<b>ตอนนี้ไม่ชนข่าวตามตัวกรอง</b><pre style="white-space:pre-wrap;font-family:Tahoma,Arial,sans-serif;">'+escapeHtml(status.message)+"</pre>";main.className="success-note";main.innerHTML='<b>ตอนนี้ไม่ชนข่าวตามตัวกรอง</b><pre style="white-space:pre-wrap;font-family:Tahoma,Arial,sans-serif;">'+escapeHtml(status.message)+"</pre>";}updateScore();}
+    function addManualNews(){const time=document.getElementById("manualNewsTime").value,currency=document.getElementById("manualNewsCurrency").value.trim().toUpperCase(),impact=document.getElementById("manualNewsImpact").value,title=document.getElementById("manualNewsTitle").value.trim();if(!time||!currency||!title){alert("กรอกเวลา Currency และชื่อข่าวก่อนครับ");return;}newsEvents.push({id:"manual_"+Date.now(),title,country:currency,date:new Date(time).toISOString(),impact,forecast:"",previous:"",source:"Manual"});saveNews();renderNews();updateNewsGuard();alert("เพิ่มข่าวเองแล้วครับ");}
+    function importNewsFromTextarea(){try{const data=JSON.parse(document.getElementById("newsJsonInput").value);newsEvents=normalizeNews(data);saveNews();renderNews();updateNewsGuard();document.getElementById("newsLoadStatus").value="Import สำเร็จ "+newsEvents.length+" ข่าว";alert("Import ข่าวสำเร็จครับ");}catch(err){alert("Import ข่าวไม่สำเร็จ: "+err.message);}}
+    function importNewsFile(event){const file=event.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const data=JSON.parse(reader.result);newsEvents=normalizeNews(data);saveNews();renderNews();updateNewsGuard();document.getElementById("newsLoadStatus").value="Import ไฟล์สำเร็จ "+newsEvents.length+" ข่าว";alert("Import ไฟล์ข่าวสำเร็จครับ");}catch(err){alert("อ่านไฟล์ข่าวไม่สำเร็จ: "+err.message);}};reader.readAsText(file);}
+    function exportNewsJson(){downloadText("pa-coach-news.json",JSON.stringify(newsEvents,null,2),"application/json");}
+    function clearNews(){if(!confirm("ล้างข่าวทั้งหมดใช่ไหมครับ?"))return;newsEvents=[];saveNews();renderNews();updateNewsGuard();document.getElementById("newsLoadStatus").value="ล้างข่าวแล้ว";}
+    function getCheckedTextArray(){return Array.from(document.querySelectorAll(".chk")).filter(c=>c.checked).map(c=>c.dataset.text);}
+    function makePlanText(){const stats=getChecklistStats(),newsGuard=getNewsGuardStatus(),now=new Date().toLocaleString("th-TH");return `PA Coach Trade Plan
+เวลา: ${now}
+Symbol: ${document.getElementById("symbol").value || "XAUUSD"}
+ฝั่ง: ${tradeType || "ยังไม่เลือก"}
+
+Entry: ${document.getElementById("entry").value || "-"}
+SL: ${document.getElementById("sl").value || "-"}
+TP1: ${document.getElementById("tp1").value || "-"}
+TP2: ${document.getElementById("tp2").value || "-"}
+Risk: ${document.getElementById("riskPct").value || "-"}%
+Lot ประมาณ: ${document.getElementById("lotSize").textContent}
+RR TP1: ${document.getElementById("rr1").textContent}
+RR TP2: ${document.getElementById("rr2").textContent}
+
+Checklist Score: ${stats.percent}%
+ผลประเมิน: ${document.getElementById("status").textContent}
+
+News Guard:
+${newsGuard.message}
+
+เหตุผล:
+${document.getElementById("reason").value || "-"}
+
+Checklist ที่ผ่าน:
+${getCheckedTextArray().map(x => "- " + x).join("\n") || "-"}`;}
+    function copyPlan(){navigator.clipboard.writeText(makePlanText()).then(()=>alert("Copy แผนเทรดแล้วครับ"));}
+    function markSkippedByNews(){const newsGuard=getNewsGuardStatus();document.getElementById("tradeResult").value="Skipped";document.getElementById("pnlR").value="0";const oldReason=document.getElementById("reason").value.trim();document.getElementById("reason").value=(oldReason?oldReason+"\n\n":"")+"ไม่เข้าออเดอร์ เพราะ News Guard เตือน:\n"+newsGuard.message;saveTrade();}
+    function getTradeObject(){const stats=getChecklistStats(),newsGuard=getNewsGuardStatus();return{id:"trade_"+Date.now()+"_"+Math.random().toString(16).slice(2),createdAt:new Date().toISOString(),symbol:document.getElementById("symbol").value.trim().toUpperCase()||"XAUUSD",side:tradeType||"-",entry:num("entry"),sl:num("sl"),tp1:num("tp1"),tp2:num("tp2"),balance:num("balance"),riskPct:num("riskPct"),riskMoney:document.getElementById("riskMoney").textContent,slDistance:document.getElementById("slDistance").textContent,lotSize:document.getElementById("lotSize").textContent,rr1:document.getElementById("rr1").textContent,rr2:document.getElementById("rr2").textContent,checklistScore:stats.percent,checklistPassed:getCheckedTextArray(),checklistMissingCritical:stats.criticalMissing.map(c=>c.dataset.text),appStatus:document.getElementById("status").textContent,newsBlocked:newsGuard.blocked,newsMessage:newsGuard.message,result:document.getElementById("tradeResult").value,pnlR:document.getElementById("pnlR").value===""?"":Number(document.getElementById("pnlR").value),reason:document.getElementById("reason").value.trim(),lesson:document.getElementById("lesson").value.trim()};}
+    function saveTrade(){const t=getTradeObject();trades.unshift(t);localStorage.setItem(STORAGE_TRADES,JSON.stringify(trades));renderTrades();alert("บันทึก Trade Journal แล้วครับ");showPanelById("journalPanel");showTradeDetail(t.id);}
+    function loadTradesFromStorage(){try{trades=JSON.parse(localStorage.getItem(STORAGE_TRADES)||"[]");}catch{trades=[];}}
+    function renderTrades(){const tbody=document.getElementById("tradeTableBody");const symbolFilter=(document.getElementById("journalSymbolFilter")?.value||"").trim().toUpperCase(),resultFilter=document.getElementById("journalResultFilter")?.value||"",textFilter=(document.getElementById("journalTextFilter")?.value||"").trim().toLowerCase();const filtered=trades.filter(t=>{const symbolOk=!symbolFilter||String(t.symbol||"").includes(symbolFilter);const resultOk=!resultFilter||t.result===resultFilter;const blob=`${t.reason||""} ${t.lesson||""} ${t.newsMessage||""}`.toLowerCase();const textOk=!textFilter||blob.includes(textFilter);return symbolOk&&resultOk&&textOk;});updateStats(filtered);if(!filtered.length){tbody.innerHTML='<tr><td colspan="10">ยังไม่มีบันทึกตามตัวกรองนี้</td></tr>';return;}tbody.innerHTML=filtered.map(t=>{const sideClass=t.side==="BUY"?"trade-buy":t.side==="SELL"?"trade-sell":"";const newsText=t.newsBlocked?"ชนข่าว":"ไม่ชนข่าว";const newsClass=t.newsBlocked?"pill-high":"pill-good";const reasonShort=`${t.reason||"-"}${t.lesson?"\nบทเรียน: "+t.lesson:""}`;return `<tr><td>${escapeHtml(formatDateTime(t.createdAt))}</td><td><b>${escapeHtml(t.symbol||"-")}</b></td><td class="${sideClass}">${escapeHtml(t.side||"-")}</td><td>Entry: ${escapeHtml(t.entry)}<br>SL: ${escapeHtml(t.sl)}<br>TP1: ${escapeHtml(t.tp1)}<br>TP2: ${escapeHtml(t.tp2)}</td><td>Lot: ${escapeHtml(t.lotSize)}<br>RR1: ${escapeHtml(t.rr1)}<br>RR2: ${escapeHtml(t.rr2)}</td><td>Score: ${escapeHtml(t.checklistScore)}%<br><span class="pill ${newsClass}">${newsText}</span></td><td><select onchange="updateTradeField('${t.id}','result',this.value)">${["Pending","Win","Loss","BE","Skipped"].map(x=>`<option value="${x}" ${t.result===x?"selected":""}>${x}</option>`).join("")}</select></td><td><input type="number" step="0.01" value="${escapeHtml(t.pnlR)}" onchange="updateTradeField('${t.id}','pnlR',this.value)" style="width:82px;"></td><td style="min-width:220px;white-space:pre-wrap;">${escapeHtml(reasonShort.slice(0,240))}${reasonShort.length>240?"...":""}</td><td><button class="btn btn-neutral" onclick="showTradeDetail('${t.id}')">ดู</button> <button class="btn btn-danger" onclick="deleteTrade('${t.id}')">ลบ</button></td></tr>`;}).join("");}
+    function updateStats(list){const box=document.getElementById("statsBox");if(!box)return;const total=list.length,wins=list.filter(t=>t.result==="Win").length,losses=list.filter(t=>t.result==="Loss").length,be=list.filter(t=>t.result==="BE").length,skipped=list.filter(t=>t.result==="Skipped").length,closed=wins+losses,winrate=closed?(wins/closed*100).toFixed(1):"0.0",totalR=list.reduce((sum,t)=>{const v=Number(t.pnlR);return sum+(Number.isFinite(v)?v:0);},0),avgScore=total?(list.reduce((sum,t)=>sum+Number(t.checklistScore||0),0)/total).toFixed(1):"0.0";box.innerHTML=`<b>สถิติจากรายการที่แสดง</b><br>ทั้งหมด: ${total} ไม้ | Win: ${wins} | Loss: ${losses} | BE: ${be} | Skipped: ${skipped} | Winrate: ${winrate}% | รวม R: ${totalR.toFixed(2)}R | คะแนน Checklist เฉลี่ย: ${avgScore}%`;}
+    function updateTradeField(id,field,value){const t=trades.find(x=>x.id===id);if(!t)return;t[field]=field==="pnlR"?(value===""?"":Number(value)):value;localStorage.setItem(STORAGE_TRADES,JSON.stringify(trades));renderTrades();showTradeDetail(id);}
+    function showTradeDetail(id){const t=trades.find(x=>x.id===id),el=document.getElementById("tradeDetail");if(!t)return;el.textContent=`รายละเอียด Trade Journal
+เวลา: ${formatDateTime(t.createdAt)}
+Symbol: ${t.symbol}
+ฝั่ง: ${t.side}
+ผล: ${t.result}
+R: ${t.pnlR}
+
+Entry: ${t.entry}
+SL: ${t.sl}
+TP1: ${t.tp1}
+TP2: ${t.tp2}
+Risk: ${t.riskPct}%
+Risk Money: ${t.riskMoney}
+Lot: ${t.lotSize}
+RR1: ${t.rr1}
+RR2: ${t.rr2}
+
+Checklist Score: ${t.checklistScore}%
+สถานะระบบ: ${t.appStatus}
+
+News Guard:
+${t.newsMessage}
+
+เหตุผล:
+${t.reason || "-"}
+
+บทเรียน:
+${t.lesson || "-"}
+
+Checklist ที่ผ่าน:
+${(t.checklistPassed || []).map(x => "- " + x).join("\n") || "-"}
+
+ข้อสำคัญที่ยังขาด:
+${(t.checklistMissingCritical || []).map(x => "- " + x).join("\n") || "-"}`;}
+    function deleteTrade(id){if(!confirm("ลบรายการนี้ใช่ไหมครับ?"))return;trades=trades.filter(t=>t.id!==id);localStorage.setItem(STORAGE_TRADES,JSON.stringify(trades));renderTrades();document.getElementById("tradeDetail").textContent="ลบรายการแล้ว";}
+    function exportTradesJson(){downloadText("pa-coach-trade-journal.json",JSON.stringify(trades,null,2),"application/json");}
+    function exportTradesCsv(){const headers=["createdAt","symbol","side","entry","sl","tp1","tp2","riskPct","lotSize","rr1","rr2","checklistScore","newsBlocked","result","pnlR","reason","lesson"];const rows=[headers.join(",")].concat(trades.map(t=>headers.map(h=>csvCell(t[h])).join(",")));downloadText("pa-coach-trade-journal.csv",rows.join("\n"),"text/csv;charset=utf-8");}
+    function csvCell(value){const s=String(value??"").replaceAll('"','""');return `"${s}"`;}
+    function importTradesFile(event){const file=event.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const data=JSON.parse(reader.result);if(!Array.isArray(data))throw new Error("ไฟล์ต้องเป็น array");trades=data.concat(trades);localStorage.setItem(STORAGE_TRADES,JSON.stringify(trades));renderTrades();alert("Import Journal สำเร็จครับ");}catch(err){alert("Import Journal ไม่สำเร็จ: "+err.message);}};reader.readAsText(file);}
+    function clearAllTrades(){if(!confirm("ล้าง Trade Journal ทั้งหมดใช่ไหมครับ?"))return;trades=[];localStorage.setItem(STORAGE_TRADES,JSON.stringify(trades));renderTrades();document.getElementById("tradeDetail").textContent="Journal ถูกล้างแล้ว";}
+    function downloadText(filename,content,type){const blob=new Blob([content],{type});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download=filename;a.click();URL.revokeObjectURL(url);}
+    function resetFormOnly(){if(!confirm("ล้างเฉพาะฟอร์มนี้ใช่ไหมครับ?"))return;tradeType="";document.querySelectorAll(".chk").forEach(c=>c.checked=false);document.querySelectorAll("input[type='number']").forEach(i=>{if(i.id==="balance")i.value="1000";else if(i.id==="riskPct")i.value="0.5";else if(!["highBefore","highAfter","mediumBefore","mediumAfter"].includes(i.id))i.value="";});document.getElementById("symbol").value="XAUUSD";document.getElementById("tradeResult").value="Pending";document.getElementById("reason").value="";document.getElementById("lesson").value="";document.getElementById("buyBtn").classList.remove("active");document.getElementById("sellBtn").classList.remove("active");updateScore();calculateRisk();}
+    function init(){loadNewsSettings();loadNewsFromStorage();loadTradesFromStorage();renderNews();renderTrades();updateScore();calculateRisk();updateNewsGuard();setInterval(updateNewsGuard,60000);}
+    window.addEventListener("load",init);
+  </script>
+</body>
+</html>
