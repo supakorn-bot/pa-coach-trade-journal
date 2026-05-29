@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PA Coach Web App - Checklist + ForexFactory News + Trade Journal</title>
+  <title>PA Coach Web App - Private</title>
   <style>
     * { box-sizing: border-box; }
     body { margin:0; font-family:Tahoma,Arial,sans-serif; background:#eef2f7; color:#17202a; line-height:1.55; }
@@ -78,9 +78,78 @@
     .footer { text-align:center; color:#6b7280; font-size:13px; padding:18px 0; }
     .muted-box { background:#f8fafc; border:1px solid #e2e8f0; border-radius:14px; padding:12px; }
     .big-warning { font-size:20px; font-weight:bold; }
+
+    body.auth-locked .app { display: none; }
+    body.auth-unlocked #authScreen { display: none; }
+    .auth-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+    }
+    .auth-card {
+      width: 100%;
+      max-width: 440px;
+      background: white;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 20px 55px rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.15);
+    }
+    .auth-card h1 {
+      margin: 0 0 8px;
+      color: #0f172a;
+      font-size: 26px;
+    }
+    .auth-card p { margin: 0 0 16px; color: #475569; }
+    .auth-error {
+      display: none;
+      margin-top: 10px;
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+      padding: 10px;
+      border-radius: 12px;
+      font-size: 14px;
+    }
+    .auth-meta {
+      margin-top: 14px;
+      color: #64748b;
+      font-size: 13px;
+    }
+    .remember-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 10px 0;
+      color: #334155;
+      font-size: 14px;
+    }
+    .remember-row input { width: auto; }
+
   </style>
 </head>
-<body>
+<body class="auth-locked">
+
+  <div id="authScreen" class="auth-screen">
+    <div class="auth-card">
+      <h1>PA Coach Private</h1>
+      <p>ใส่รหัสผ่านก่อนเข้า Web App เทรดทองของพี่</p>
+      <form onsubmit="unlockApp(event)">
+        <div class="field">
+          <label>รหัสผ่าน</label>
+          <input id="appPassword" type="password" placeholder="ใส่รหัสผ่าน" autocomplete="current-password" autofocus>
+        </div>
+        <label class="remember-row"><input id="rememberUnlock" type="checkbox"> จำเครื่องนี้ไว้</label>
+        <button class="btn btn-primary" type="submit" style="width:100%;">เข้าใช้งาน</button>
+        <div id="authError" class="auth-error">รหัสผ่านไม่ถูกต้องครับ</div>
+      </form>
+      <div class="auth-meta">หมายเหตุ: นี่เป็นการล็อกหน้าเว็บแบบ static เหมาะกับความเป็นส่วนตัวระดับกันคนทั่วไป ไม่ใช่ระบบความปลอดภัยระดับธนาคาร</div>
+    </div>
+  </div>
+
   <div class="app">
     <div class="hero">
       <h1>PA Coach Web App: Checklist + ข่าวแดง/ส้ม + Trade Journal</h1>
@@ -91,6 +160,7 @@
       <button class="active" onclick="showPanel('tradePanel', this)">Checklist ก่อนเข้า</button>
       <button onclick="showPanel('newsPanel', this)">News Guard ข่าวแดง/ส้ม</button>
       <button onclick="showPanel('journalPanel', this)">Trade Journal ย้อนหลัง</button>
+      <button onclick="lockApp()">ล็อกออก</button>
     </div>
 
     <section id="tradePanel" class="panel active">
@@ -361,6 +431,62 @@
   </div>
 
   <script>
+    const AUTH_HASH = "e13efe98cf27d85d5d7770adabf2e33f07c2cd05e288c2978c7b79f6650dd262";
+    const AUTH_SALT = "pa-coach-supakorn-2026-v1";
+
+    async function sha256Hex(text) {
+      const data = new TextEncoder().encode(text);
+      const digest = await crypto.subtle.digest("SHA-256", data);
+      return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, "0")).join("");
+    }
+
+    function setUnlockedState(isUnlocked) {
+      document.body.classList.toggle("auth-unlocked", isUnlocked);
+      document.body.classList.toggle("auth-locked", !isUnlocked);
+      if (isUnlocked) {
+        setTimeout(() => {
+          const active = document.activeElement;
+          if (!active || active.id === "appPassword") {
+            const firstBtn = document.querySelector(".nav button");
+            if (firstBtn) firstBtn.focus();
+          }
+        }, 50);
+      }
+    }
+
+    async function unlockApp(event) {
+      if (event) event.preventDefault();
+      const input = document.getElementById("appPassword");
+      const error = document.getElementById("authError");
+      const remember = document.getElementById("rememberUnlock");
+      const password = input.value || "";
+      const hash = await sha256Hex(password + AUTH_SALT);
+      if (hash === AUTH_HASH) {
+        sessionStorage.setItem("paCoachUnlocked", "1");
+        if (remember.checked) localStorage.setItem("paCoachRememberUnlock", "1");
+        error.style.display = "none";
+        input.value = "";
+        setUnlockedState(true);
+      } else {
+        error.style.display = "block";
+        input.select();
+      }
+    }
+
+    function lockApp() {
+      sessionStorage.removeItem("paCoachUnlocked");
+      localStorage.removeItem("paCoachRememberUnlock");
+      setUnlockedState(false);
+      setTimeout(() => document.getElementById("appPassword")?.focus(), 50);
+    }
+
+    function checkInitialAuth() {
+      const unlocked = sessionStorage.getItem("paCoachUnlocked") === "1" || localStorage.getItem("paCoachRememberUnlock") === "1";
+      setUnlockedState(unlocked);
+    }
+
+    document.addEventListener("DOMContentLoaded", checkInitialAuth);
+
     const FF_URL = "https://nfs.faireconomy.media/ff_calendar_thisweek.json";
     const STORAGE_TRADES = "paCoachTradesV2";
     const STORAGE_NEWS = "paCoachNewsV2";
