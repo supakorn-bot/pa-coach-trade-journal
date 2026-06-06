@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PA Coach Web App v3.2 - Import Export Journal Sync</title>
+<title>PA Coach Web App v3.3 - Google Sheet Sync + Drive Images</title>
 <style>
 :root{--bg:#08111f;--panel:#121b30;--panel2:#17233d;--line:#2b3a5c;--text:#eef5ff;--muted:#9fb0c8;--blue:#38bdf8;--violet:#a78bfa;--ok:#22c55e;--warn:#f59e0b;--bad:#ef4444}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 10% 0%,rgba(56,189,248,.18),transparent 30%),radial-gradient(circle at 85% 0%,rgba(167,139,250,.15),transparent 32%),var(--bg);color:var(--text);font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif}
@@ -29,9 +29,9 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
 <div class="wrap">
   <div class="hero">
     <div class="card">
-      <h1>PA Coach Web App v3.2 - Import Export Journal Sync</h1>
-      <p>เลือกหลายกลยุทธ์ซ้อนกันในไม้เดียว: H4 BOS + OB Retest + M15 Trigger + OB/QM/PA/MM + Journal + รูป Week/D1/H4/M15</p>
-      <span class="badge b-ok">Price Action</span><span class="badge b-warn">หลายข่าวในวันเดียว</span><span class="badge b-bad">แดง/ส้ม = Block Trade</span><span class="badge">AutoSave Draft</span><span class="badge b-ok">M15 Execution</span><span class="badge b-warn">Scalping Checklist</span><span class="badge b-ok">โหลดกลับไปแก้แผน</span><span class="badge b-ok">Weekly Chart</span><span class="badge b-warn">คลิกรูปเต็มจอ</span><span class="badge b-ok">Multi Strategy Checklist</span><span class="badge b-ok">Result Images</span><span class="badge b-ok">Import JSON</span><span class="badge b-ok">Journal Sync</span><span class="badge b-ok">BOS OB Retest Journal</span><span class="badge b-warn">Outside Bar M15</span><span class="badge b-ok">หลายกลยุทธ์ในไม้เดียว</span><span class="badge">รองรับ News API ภายหลัง</span>
+      <h1>PA Coach Web App v3.3 - Google Sheet Sync + Drive Images</h1>
+      <p>เลือกหลายกลยุทธ์ซ้อนกันในไม้เดียว + Sync Google Sheets/Drive: H4 BOS + OB Retest + M15 Trigger + Journal + รูป Week/D1/H4/M15</p>
+      <span class="badge b-ok">Price Action</span><span class="badge b-warn">หลายข่าวในวันเดียว</span><span class="badge b-bad">แดง/ส้ม = Block Trade</span><span class="badge">AutoSave Draft</span><span class="badge b-ok">M15 Execution</span><span class="badge b-warn">Scalping Checklist</span><span class="badge b-ok">โหลดกลับไปแก้แผน</span><span class="badge b-ok">Weekly Chart</span><span class="badge b-warn">คลิกรูปเต็มจอ</span><span class="badge b-ok">Multi Strategy Checklist</span><span class="badge b-ok">Result Images</span><span class="badge b-ok">Import JSON</span><span class="badge b-ok">Journal Sync</span><span class="badge b-ok">Google Sheet Sync</span><span class="badge b-ok">Drive Images</span><span class="badge b-warn">Cloud Backup</span><span class="badge b-ok">BOS OB Retest Journal</span><span class="badge b-warn">Outside Bar M15</span><span class="badge b-ok">หลายกลยุทธ์ในไม้เดียว</span><span class="badge">รองรับ News API ภายหลัง</span>
     </div>
     <div class="card">
       <h2>สถานะตอนนี้</h2>
@@ -207,7 +207,7 @@ Fri Jun 5 19:30 USD red Unemployment Rate 4.3% 4.3%"></textarea>
       <div class="grid">
         <div class="c3"><label>ค้นหา</label><input id="searchJournal" placeholder="XAUUSD / note"></div>
         <div class="c3"><label>สถานะ</label><select id="filterStatus"><option value="all">ทั้งหมด</option><option value="PLAN">แผน</option><option value="ACTIVE">เข้าแล้ว</option><option value="CLOSED">ปิดแล้ว</option><option value="NO_TRADE">ไม่เข้า</option></select></div>
-        <div class="c6" style="text-align:right;align-self:end"><input id="importJsonInput" type="file" accept="application/json,.json" style="display:none" onchange="importJsonFile(event)"><button class="ghost" onclick="$('importJsonInput').click()">Import JSON</button> <button class="ghost" onclick="exportJson()">Export JSON</button> <button class="ghost" onclick="exportCsv()">Export CSV</button> <button class="danger" onclick="clearAll()">ลบทั้งหมด</button></div>
+        <div class="c6" style="text-align:right;align-self:end"><input id="importJsonInput" type="file" accept="application/json,.json" style="display:none" onchange="importJsonFile(event)"><button class="ghost" onclick="$('importJsonInput').click()">Import JSON</button> <button class="ghost" onclick="exportJson()">Export JSON</button> <button class="ghost" onclick="exportCsv()">Export CSV</button> <button class="okbtn" onclick="syncLocalToCloud()">ส่งขึ้น Google Sheet</button> <button class="ghost" onclick="syncCloudToLocal()">โหลดจาก Google Sheet</button> <button class="danger" onclick="clearAll()">ลบทั้งหมด</button></div>
       </div>
       <div class="tablewrap"><table><thead><tr><th>วันเวลา</th><th>Symbol</th><th>แผน</th><th>ข่าว</th><th>ราคา/RR</th><th>รูป</th><th>ผล</th><th>จัดการ</th></tr></thead><tbody id="journalBody"></tbody></table></div>
     </div>
@@ -246,6 +246,20 @@ Fri Jun 5 19:30 USD red Unemployment Rate 4.3% 4.3%"></textarea>
         <div class="c4"><label>Risk % สูงสุด</label><input id="maxRisk" type="number" step="0.1" value="2"></div>
       </div>
       <div class="btns"><button class="primary" onclick="saveSetting()">บันทึกตั้งค่า</button><button class="ghost" onclick="restoreSetting()">คืนค่าแนะนำ</button></div>
+
+      <div class="note" style="margin-top:14px">
+        <h3>Google Sheet / Google Drive Sync — v3.3</h3>
+        <p>ใช้ Google Apps Script เป็นตัวกลาง: Web App บันทึกข้อมูลลง Google Sheet และอัปโหลดรูปเข้า Google Drive</p>
+        <div class="grid">
+          <div class="c8"><label>Apps Script Web App URL</label><input id="syncApiUrl" placeholder="https://script.google.com/macros/s/.../exec"></div>
+          <div class="c4"><label>API Secret</label><input id="syncSecret" type="password" placeholder="ใส่รหัสลับที่ตั้งใน Apps Script"></div>
+          <div class="c4"><label>Auto Sync หลังบันทึก</label><select id="syncAutoSave"><option value="off">ปิด</option><option value="on">เปิด</option></select></div>
+          <div class="c8"><label>สถานะ Sync</label><div id="syncStatus" class="note">ยังไม่ได้ตั้งค่า Sync</div></div>
+        </div>
+        <div class="btns"><button class="primary" onclick="saveSyncSetting()">บันทึกค่า Sync</button><button class="ghost" onclick="testCloudSync()">ทดสอบเชื่อมต่อ</button><button class="okbtn" onclick="syncLocalToCloud()">ส่งข้อมูลเครื่องนี้ขึ้น Google Sheet</button><button class="ghost" onclick="syncCloudToLocal()">โหลดข้อมูลจาก Google Sheet</button></div>
+        <p class="small">ความปลอดภัย: URL และ API Secret จะถูกเก็บใน localStorage ของ Browser เครื่องนี้เท่านั้น ไม่ได้ฝังในไฟล์ index.html ถ้า repo เป็น Public ห้าม hardcode secret ลงไฟล์เด็ดขาด</p>
+      </div>
+
       <div class="note" style="margin-top:14px">
         <b>ดึง ForexFactory โดยตรงจากไฟล์ HTML/GitHub Pages ยังไม่แนะนำ</b><br>
         เหตุผลคือมักติด CORS, หน้าเว็บเปลี่ยนโครงสร้าง, และการ scrape จาก browser ตรง ๆ ไม่เสถียร<br>
@@ -751,7 +765,7 @@ function showResultImg(id,i){let t=load().find(x=>x.id===id),src=(t?.resultImage
 function showImg(id,tf){let t=load().find(x=>x.id===id),src=tf==="w1"?t.chartW1:(tf==="d1"?t.chartD1:(tf==="h4"?t.chartH4:t.chartM15));$("modalTitle").textContent=`${t.symbol} ${tf==="w1"?"WEEK":tf.toUpperCase()}`;$("modalImg").src=src;$("modal").classList.add("active")} function closeImg(){$("modal").classList.remove("active")}
 function renderStats(){let rows=load(),closed=rows.filter(t=>t.status==="CLOSED"&&t.resultR!==null&&t.resultR!==""),wins=closed.filter(t=>+t.resultR>0),loss=closed.filter(t=>+t.resultR<0),sum=closed.reduce((s,t)=>s+(+t.resultR),0),win=closed.length?wins.length/closed.length*100:0;$("statsKpi").innerHTML=`<div class="box"><div class="num">${rows.length}</div><div class="lab">บันทึกทั้งหมด</div></div><div class="box"><div class="num">${closed.length}</div><div class="lab">ปิดแล้ว</div></div><div class="box"><div class="num">${fmt(win,1)}%</div><div class="lab">Win Rate</div></div><div class="box"><div class="num">${fmt(sum)}R</div><div class="lab">รวม R</div></div><div class="box"><div class="num">${wins.length}</div><div class="lab">ชนะ</div></div><div class="box"><div class="num">${loss.length}</div><div class="lab">แพ้</div></div><div class="box"><div class="num">${rows.filter(t=>t.status==="NO_TRADE").length}</div><div class="lab">ไม่เข้า</div></div><div class="box"><div class="num">${rows.filter(t=>(t.newsRows||[]).some(r=>r.rel&&(r.impact==="red"||r.impact==="orange"))).length}</div><div class="lab">ติดข่าวแรง</div></div>`;$("lessonList").innerHTML=rows.map(t=>t.lesson).filter(Boolean).slice(0,10).map(x=>`<div class="note" style="margin-bottom:8px">${x}</div>`).join("")||"ยังไม่มีข้อมูล"}
 function saveSetting(){localStorage.setItem(settingKey,JSON.stringify({minScore:+$("minScore").value,minRR:+$("minRR").value,maxRisk:+$("maxRisk").value}));evalAll();alert("บันทึกตั้งค่าแล้ว")} function restoreSetting(){localStorage.setItem(settingKey,JSON.stringify(def));$("minScore").value=8;$("minRR").value=2;$("maxRisk").value=2;evalAll()}
-function exportJson(){download("pa-trades-v3-2-journal-backup.json",JSON.stringify(load(),null,2),"application/json")} function exportCsv(){let h=["date","time","symbol","direction","status","decision","maxRR","resultR","resultImageCount","lesson"],csv=[h.join(",")].concat(load().map(t=>[t.tradeDate,t.tradeTime,t.symbol,t.direction,t.status,t.decision,t.maxRR,t.resultR,(t.resultImages||[]).length,t.lesson].map(x=>`"${String(x??"").replaceAll('"','""')}"`).join(","))).join("\n");download("pa-trades-v3-2-journal-backup.csv","\ufeff"+csv,"text/csv;charset=utf-8")} function download(n,c,t){let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click();URL.revokeObjectURL(a.href)}
+function exportJson(){download("pa-trades-v3-3-journal-backup.json",JSON.stringify(load(),null,2),"application/json")} function exportCsv(){let h=["date","time","symbol","direction","status","decision","maxRR","resultR","resultImageCount","lesson"],csv=[h.join(",")].concat(load().map(t=>[t.tradeDate,t.tradeTime,t.symbol,t.direction,t.status,t.decision,t.maxRR,t.resultR,(t.resultImages||[]).length,t.lesson].map(x=>`"${String(x??"").replaceAll('"','""')}"`).join(","))).join("\n");download("pa-trades-v3-3-journal-backup.csv","\ufeff"+csv,"text/csv;charset=utf-8")} function download(n,c,t){let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click();URL.revokeObjectURL(a.href)}
 function importJsonFile(event){
   const file = event.target.files && event.target.files[0];
   if(!file) return;
@@ -806,6 +820,134 @@ function importJsonFile(event){
   reader.readAsText(file);
 }
 
+
+
+
+// ===== Google Sheet / Drive Sync V3.3 =====
+const syncSettingKey = "paSyncSettingV33";
+let syncTimerV33 = null;
+
+function getSyncSetting(){
+  try{return JSON.parse(localStorage.getItem(syncSettingKey)||"{}");}catch(e){return {};}
+}
+function saveSyncSetting(){
+  const cfg={
+    url: ($("syncApiUrl")?.value||"").trim(),
+    secret: ($("syncSecret")?.value||"").trim(),
+    autoSave: ($("syncAutoSave")?.value||"off")
+  };
+  localStorage.setItem(syncSettingKey, JSON.stringify(cfg));
+  updateSyncStatus("บันทึกค่า Sync แล้ว");
+  alert("บันทึกค่า Google Sync แล้ว");
+}
+function loadSyncSetting(){
+  const cfg=getSyncSetting();
+  if($("syncApiUrl")) $("syncApiUrl").value=cfg.url||"";
+  if($("syncSecret")) $("syncSecret").value=cfg.secret||"";
+  if($("syncAutoSave")) $("syncAutoSave").value=cfg.autoSave||"off";
+  updateSyncStatus(cfg.url?"พร้อม Sync กับ Google Sheet":"ยังไม่ได้ตั้งค่า Sync");
+}
+function updateSyncStatus(msg, cls){
+  const box=$("syncStatus");
+  if(!box) return;
+  const cfg=getSyncSetting();
+  box.innerHTML = `<b>${msg}</b><br><span class="small">URL: ${cfg.url?"ตั้งค่าแล้ว":"ยังไม่มี"} | Auto Sync: ${cfg.autoSave||"off"}</span>`;
+  box.className = "note" + (cls?` ${cls}`:"");
+}
+function requireSyncConfig(){
+  const cfg=getSyncSetting();
+  if(!cfg.url) throw new Error("ยังไม่ได้ใส่ Apps Script Web App URL ในเมนูตั้งค่า");
+  if(!cfg.secret) throw new Error("ยังไม่ได้ใส่ API Secret ในเมนูตั้งค่า");
+  return cfg;
+}
+async function cloudApiV33(action, payload={}){
+  const cfg=requireSyncConfig();
+  const res = await fetch(cfg.url, {
+    method:"POST",
+    headers:{"Content-Type":"text/plain;charset=utf-8"},
+    body: JSON.stringify({action, secret:cfg.secret, ...payload})
+  });
+  const txt = await res.text();
+  let json;
+  try{ json=JSON.parse(txt); }catch(e){ throw new Error("Apps Script ไม่ได้ตอบ JSON: "+txt.slice(0,200)); }
+  if(!json.ok) throw new Error(json.error || "Google Sync error");
+  return json;
+}
+async function testCloudSync(){
+  try{
+    updateSyncStatus("กำลังทดสอบเชื่อมต่อ...");
+    const r=await cloudApiV33("ping",{});
+    updateSyncStatus(`เชื่อมต่อสำเร็จ: ${r.message||"OK"}`);
+    alert("เชื่อมต่อ Google Apps Script สำเร็จ");
+  }catch(e){
+    updateSyncStatus("เชื่อมต่อไม่สำเร็จ: "+e.message);
+    alert("เชื่อมต่อไม่สำเร็จ: "+e.message);
+  }
+}
+function setLocalTradesV33(trades){
+  localStorage.setItem(storeKey, JSON.stringify(trades||[]));
+  renderJournal();
+  renderStats();
+  evalAll();
+}
+async function syncLocalToCloud(options={}){
+  const silent=!!options.silent;
+  const mode=options.mode||"upsert";
+  try{
+    const trades=load();
+    if(!silent && !trades.length && !confirm("เครื่องนี้ไม่มี Journal จะส่งรายการว่างขึ้น Google Sheet ใช่ไหม?")) return;
+    updateSyncStatus(`กำลังส่ง ${trades.length} รายการขึ้น Google Sheet...`);
+    const r=await cloudApiV33("upsertTrades",{mode, trades});
+    if(Array.isArray(r.trades)) setLocalTradesV33(r.trades);
+    updateSyncStatus(`ส่งขึ้น Google Sheet สำเร็จ ${r.count||trades.length} รายการ`);
+    if(!silent) alert(`ส่งขึ้น Google Sheet สำเร็จ ${r.count||trades.length} รายการ`);
+  }catch(e){
+    updateSyncStatus("ส่งขึ้น Google Sheet ไม่สำเร็จ: "+e.message);
+    if(!silent) alert("ส่งขึ้น Google Sheet ไม่สำเร็จ: "+e.message);
+    else console.warn("Auto sync failed", e);
+  }
+}
+async function syncCloudToLocal(){
+  try{
+    updateSyncStatus("กำลังโหลดข้อมูลจาก Google Sheet...");
+    const r=await cloudApiV33("listTrades",{});
+    const cloud=Array.isArray(r.trades)?r.trades:[];
+    const current=load();
+    let mode="REPLACE";
+    if(current.length){
+      mode=prompt(`ในเครื่องมี ${current.length} รายการ\nใน Google Sheet มี ${cloud.length} รายการ\n\nพิมพ์ MERGE = รวมข้อมูล\nพิมพ์ REPLACE = ใช้ข้อมูล Google Sheet แทนทั้งหมด`,"MERGE");
+      if(mode===null) return;
+      mode=String(mode).trim().toUpperCase();
+    }
+    if(mode==="MERGE" || mode===""){
+      const map=new Map();
+      [...cloud, ...current].forEach(t=>{ if(t && t.id) map.set(t.id,t); });
+      setLocalTradesV33([...map.values()].sort((a,b)=>String(b.createdAt||"").localeCompare(String(a.createdAt||""))));
+    }else if(mode==="REPLACE"){
+      setLocalTradesV33(cloud);
+    }else{
+      alert("ยกเลิก: ต้องพิมพ์ MERGE หรือ REPLACE เท่านั้น");
+      return;
+    }
+    updateSyncStatus(`โหลดจาก Google Sheet สำเร็จ ${cloud.length} รายการ`);
+    showSec("journal");
+    alert(`โหลดจาก Google Sheet สำเร็จ ${cloud.length} รายการ`);
+  }catch(e){
+    updateSyncStatus("โหลดจาก Google Sheet ไม่สำเร็จ: "+e.message);
+    alert("โหลดจาก Google Sheet ไม่สำเร็จ: "+e.message);
+  }
+}
+function queueCloudSyncV33(){
+  const cfg=getSyncSetting();
+  if(!cfg.url || !cfg.secret || cfg.autoSave!=="on") return;
+  clearTimeout(syncTimerV33);
+  syncTimerV33=setTimeout(()=>syncLocalToCloud({silent:true,mode:"upsert"}),1500);
+}
+const baseSaveV33 = save;
+save = function(v){
+  baseSaveV33(v);
+  queueCloudSyncV33();
+};
 
 // ===== AutoSave Draft V4 =====
 const draftKey = "paJournalDraftV31";
@@ -905,6 +1047,12 @@ init = function(){
   oldInit();
   bindAutoSave();
   setTimeout(tryRestoreDraftOnLoad, 250);
+};
+
+const oldInitSyncV33 = init;
+init = function(){
+  oldInitSyncV33();
+  loadSyncSetting();
 };
 
 init();
