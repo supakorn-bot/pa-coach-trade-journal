@@ -447,64 +447,219 @@ Buy Zone:
   ]
 },
 
-  {
-    id:"xauusd-sell-wait-template",
-    symbol:"XAUUSD",
-    market:"Gold",
-    direction:"SELL",
-    status:"WAIT",
-    title:"XAUUSD — Sell Zone Plan",
-    timeframes:"Week / D1 / H4",
-    strategy:"BOS_OB_RETEST",
-    strategyName:"H4 BOS + OB Retest + M15 Trigger",
-    entryTf:"H4",
-    orderType:"ยังไม่วาง Order",
-    tradeMode:"swing",
-    d1Trend:"down",
-    h4Position:"resistance",
-    bias:"sell",
-    structure:"bos",
-    supportZone:"รอกรอกแนวรับจากกราฟล่าสุด",
-    resistanceZone:"รอกรอก Sell Zone จากกราฟล่าสุด",
-    entry:"",
-    sl:"",
-    tp1:"",
-    tp2:"",
-    tp3:"",
-    minRR:2,
-    summary:"แผนทองคำแบบ Sell ตามเทรนด์ รอ H4 BOS แล้ว Pullback กลับเข้า Supply / OB ก่อน ไม่ Sell ไล่",
-    tfPlan:`XAUUSD ใช้แผน Sell ตามเทรนด์เมื่อ D1/H4 เป็นขาลง
-รอราคา Pullback กลับเข้าแนวต้าน / Supply / OB H4
-ห้าม Sell ตอนราคาอยู่กลางทางหรือเพิ่งลงแรงมาชนแนวรับ
+{
+  id:"xauusd-a-main-sell-pullback-2026-06-07",
+  symbol:"XAUUSD",
+  market:"Gold",
+  direction:"SELL",
+  status:"WAIT",
+  title:"XAUUSD — A Main Sell Pullback Plan",
+  timeframes:"Week / D1 / H4",
+  strategy:"BOS_OB_RETEST",
+  strategyName:"H4 BOS + OB Retest + M15 Trigger",
+  entryTf:"H4",
+  orderType:"ยังไม่วาง Order",
+  tradeMode:"swing",
+  d1Trend:"down",
+  h4Position:"support",
+  bias:"sell",
+  structure:"trend",
+  supportZone:"4285-4241 / 4143 / 4000",
+  resistanceZone:"4360-4396 / 4415-4451 / 4469-4505",
+  entry:"",
+  sl:4451,
+  tp1:4285,
+  tp2:4241,
+  tp3:4143,
+  minRR:2,
+  summary:"XAUUSD ยังอ่อนแรงใน D1/H4 แต่ราคาอยู่ใกล้แนวรับใหญ่ จึงห้าม Sell ไล่ รอเด้งเข้า Sell Zone แล้วค่อยหา Sell Trigger",
+  tfPlan:`XAUUSD แผน A = Main Sell Pullback
 
-เงื่อนไขหลัก:
-1. D1 หรือ H4 ต้องมี Bias ลง
-2. H4 มี BOS ลง หรือทำ Lower High ชัด
-3. ราคา Pullback เข้า Sell Zone
-4. M15 มี Trigger ลง
-5. RR ต้องอย่างน้อย 1:2`,
-    m15Plan:`ใช้ M15 หา Trigger หลังราคาเข้า Sell Zone แล้วเท่านั้น
-Trigger ที่ใช้ได้:
-- Bearish Engulfing
-- Outside Bar
-- BOS / CHOCH ลง
-- Liquidity Sweep แล้วกลับตัวลง
-เข้าแบบ Sell Stop ใต้ Low ของ Trigger`,
-    entryReason:`ยังไม่เข้า จนกว่าราคาเข้า Sell Zone และมี M15 Trigger ยืนยัน`,
-    exitPlan:`ยกเลิกแผนถ้าราคาทะลุ Sell Zone ขึ้นไปแล้วปิด H4 เหนือโซน
-หรือมีข่าว USD แดง/ส้มใกล้เวลาเข้า`,
-    riskNote:"ทองผันผวนแรง ต้องเผื่อ Spread และห้ามวาง SL ชิดเกิน",
-    checklist:[
-      "D1/H4 เป็นขาลง",
-      "H4 มี BOS ลง",
-      "ราคา Pullback เข้า Sell Zone",
-      "M15 มี Trigger ลง",
-      "SL อยู่เหนือ Swing / Supply",
-      "TP มีพื้นที่ถึงแนวรับถัดไป",
-      "RR อย่างน้อย 1:2",
-      "ไม่มีข่าว USD แดง/ส้มใกล้เวลาเข้า"
-    ]
-  },
+ภาพรวม:
+Week ยังอยู่ในโซนย่อจากยอดใหญ่
+D1 และ H4 ยังอ่อนแรง อยู่ใต้ EMA หลัก
+แต่ราคาปัจจุบันอยู่ใกล้แนวรับใหญ่ 4285-4241
+ดังนั้นห้าม Sell ไล่ตรงแนวรับ
+
+Sell Zone:
+1. Sell Zone 1: 4360-4396
+2. Sell Zone 2: 4415-4451
+3. Sell Zone 3: 4469-4505
+
+เงื่อนไข Sell:
+1. ราคาเด้งเข้า Sell Zone
+2. H4 มี Reject หรือปิดกลับลง
+3. M15 มี BOS / CHOCH ลง
+4. มี Bearish Engulfing / Outside Bar / Reject
+5. วาง Sell Stop ใต้ Low ของ Trigger
+6. SL อยู่เหนือ Swing หรือเหนือโซน
+7. RR อย่างน้อย 1:2
+
+ห้าม Sell ไล่แถว 4327 / 4285 / 4241`,
+  m15Plan:`ใช้ M15 เป็นจุดเข้าเท่านั้น
+
+Sell Trigger:
+1. ราคาเข้า 4360-4396 หรือ 4415-4451
+2. M15 Sweep High แล้วกลับตัวลง
+3. M15 เกิด BOS / CHOCH ลง
+4. มี Bearish Engulfing หรือ Outside Bar
+5. วาง Sell Stop ใต้ Low ของ Trigger
+6. SL เหนือ Swing M15 หรือเหนือโซน
+7. ถ้าไม่ Trigger ภายใน 3-5 แท่ง M15 ให้ยกเลิกแผน`,
+  entryReason:`ยังไม่เข้า เพราะราคาอยู่ใกล้แนวรับใหญ่
+รอราคาเด้งเข้า Sell Zone 4360-4396 หรือ 4415-4451 แล้วค่อยหา Sell Trigger`,
+  exitPlan:`ยกเลิกแผน Sell ถ้า H4 ปิดเหนือ 4451 หรือ 4505
+หรือราคาเข้า Sell Zone แล้วไม่ Reject
+หรือ RR ต่ำกว่า 1:2
+หรือมีข่าว USD แดง/ส้มชนช่วงเข้า`,
+  riskNote:"ทองผันผวนแรง ห้าม Sell ไล่ตรงแนวรับ ต้องรอ Pullback + Trigger เท่านั้น",
+  checklist:[
+    "Week อยู่ในโซนย่อจากยอดใหญ่",
+    "D1 ยังอ่อนแรง",
+    "H4 ยังเป็นขาลงระยะสั้น",
+    "ราคาเด้งเข้า Sell Zone",
+    "มีแท่ง Reject บน H4 หรือ M15",
+    "M15 มี BOS / CHOCH ลง",
+    "SL อยู่เหนือ Swing หรือเหนือโซน",
+    "TP มีพื้นที่ถึง 4285 / 4241 / 4143",
+    "RR อย่างน้อย 1:2",
+    "ไม่ Sell ไล่ตรงแนวรับ"
+  ]
+},
+
+{
+  id:"xauusd-b-counter-buy-2026-06-07",
+  symbol:"XAUUSD",
+  market:"Gold",
+  direction:"BUY",
+  status:"WAIT",
+  title:"XAUUSD — B Counter Trend Buy Plan",
+  timeframes:"Week / D1 / H4 / M15",
+  strategy:"COUNTER_TREND",
+  strategyName:"Counter Trend เฉพาะโซนใหญ่",
+  entryTf:"H4",
+  orderType:"ยังไม่วาง Order",
+  tradeMode:"swing",
+  d1Trend:"down",
+  h4Position:"support",
+  bias:"buy",
+  structure:"choch",
+  supportZone:"4285-4241 / 4143-4100",
+  resistanceZone:"4360 / 4415 / 4451",
+  entry:"",
+  sl:4241,
+  tp1:4360,
+  tp2:4415,
+  tp3:4451,
+  minRR:2,
+  summary:"XAUUSD Buy นี้เป็น Counter Trend เท่านั้น ใช้เฉพาะเมื่อราคาแตะแนวรับใหญ่แล้วเกิดแรงกลับตัวชัด ห้าม Buy เดา",
+  tfPlan:`XAUUSD แผน B = Counter Trend Buy
+
+ภาพรวม:
+เทรนด์ D1/H4 ยังอ่อนแรง
+ดังนั้น Buy ใช้ได้เฉพาะเป็นแผนสวนเทรนด์จากแนวรับใหญ่เท่านั้น
+
+Buy Zone:
+1. Buy Zone หลัก: 4285-4241
+2. Deep Buy Zone: 4143-4100
+
+เงื่อนไข Buy:
+1. ราคาเข้า Buy Zone
+2. มีแท่ง Reject ชัด
+3. M15 หรือ H1 เกิด CHOCH/BOS ขึ้น
+4. ไม่หลุด 4241 แบบแรง
+5. มี Bullish Engulfing / Sweep Low แล้วกลับตัว
+6. RR อย่างน้อย 1:2
+
+ห้าม Buy เพราะคิดว่าราคาถูก ต้องรอ Trigger เท่านั้น`,
+  m15Plan:`Buy Trigger:
+1. ราคาเข้า 4285-4241
+2. M15 Sweep Low แล้วกลับขึ้น
+3. M15 CHOCH / BOS ขึ้น
+4. มี Bullish Engulfing หรือ Outside Bar
+5. วาง Buy Stop เหนือ High ของ Trigger
+6. SL ใต้ Swing Low
+7. ถ้าไม่ Trigger ภายใน 3-5 แท่ง M15 ให้ยกเลิก`,
+  entryReason:`ยังไม่ Buy ตอนนี้ เพราะเป็น Counter Trend
+รอให้ราคาเข้าแนวรับ 4285-4241 แล้วมี M15/H1 กลับตัวก่อน`,
+  exitPlan:`ยกเลิกแผน Buy ถ้า H4 ปิดต่ำกว่า 4241 แบบแรง
+หรือหลุดแนวรับแล้วไม่มีแรงกลับตัว
+หรือ RR ต่ำกว่า 1:2`,
+  riskNote:"แผนนี้สวนเทรนด์ ต้องใช้ lot เล็ก และออกบางส่วนที่ TP1",
+  checklist:[
+    "ยอมรับว่าเป็น Counter Trend",
+    "ราคาเข้า 4285-4241",
+    "มี Reject จากแนวรับใหญ่",
+    "M15 Sweep Low แล้วกลับตัว",
+    "M15 CHOCH/BOS ขึ้น",
+    "SL อยู่ใต้ Swing Low",
+    "TP1 แถว 4360",
+    "RR อย่างน้อย 1:2",
+    "ถ้าไม่ชัด = ไม่เข้า"
+  ]
+},
+
+{
+  id:"xauusd-c-sell-breakdown-2026-06-07",
+  symbol:"XAUUSD",
+  market:"Gold",
+  direction:"SELL",
+  status:"WAIT",
+  title:"XAUUSD — C Sell Breakdown Plan",
+  timeframes:"Week / D1 / H4",
+  strategy:"BOS_OB_RETEST",
+  strategyName:"H4 BOS + OB Retest + M15 Trigger",
+  entryTf:"H4",
+  orderType:"Sell/Buy Stop",
+  tradeMode:"swing",
+  d1Trend:"down",
+  h4Position:"breakout",
+  bias:"sell",
+  structure:"bos",
+  supportZone:"4285-4241",
+  resistanceZone:"4241-4285 / 4360",
+  entry:"",
+  sl:4360,
+  tp1:4143,
+  tp2:4000,
+  tp3:3852,
+  minRR:2,
+  summary:"XAUUSD Sell Breakdown ใช้เฉพาะเมื่อ H4 ปิดต่ำกว่า 4241 จริง แล้วรอ Retest กลับมา ไม่ Sell ไล่ตอนหลุด",
+  tfPlan:`XAUUSD แผน C = Sell Breakdown
+
+ใช้เฉพาะกรณีราคาหลุดแนวรับจริง
+ไม่ใช้กับไส้เทียนแทงลงแล้วเด้งกลับ
+
+เงื่อนไข:
+1. H4 ปิดต่ำกว่า 4241 จริง
+2. ไม่ใช่แค่ไส้เทียนหลุด
+3. รอ Retest กลับมา 4241-4285
+4. Retest แล้วไม่ผ่าน
+5. M15 มี Reject หรือ BOS ลง
+6. วาง Sell Stop ใต้ Low ของ Trigger
+7. SL เหนือ 4285 หรือ 4360
+8. TP ไปหา 4143 / 4000 / 3852`,
+  m15Plan:`Sell Breakdown Trigger:
+1. H4 ปิดหลุด 4241
+2. รอ Retest กลับมา 4241-4285
+3. M15 Reject หรือ BOS ลง
+4. Sell Stop ใต้ Low ของ Trigger
+5. ถ้าราคาเด้งกลับเหนือ 4360 ให้ยกเลิก`,
+  entryReason:`ยังไม่ใช้ Sell Breakdown จนกว่า H4 จะปิดต่ำกว่า 4241 จริงก่อน`,
+  exitPlan:`ยกเลิกแผนถ้า H4 กลับมายืนเหนือ 4360
+หรือหลุดแล้วไม่มี Retest ให้เข้าแบบ RR สวย`,
+  riskNote:"ห้าม Sell Stop เพราะกลัวตกรถ ต้องรอ H4 ปิดหลุดจริงและ Retest ก่อน",
+  checklist:[
+    "H4 ปิดต่ำกว่า 4241",
+    "ไม่ใช่แค่ไส้เทียนหลุด",
+    "รอ Retest กลับมา 4241-4285",
+    "M15 มี Reject/BOS ลง",
+    "SL อยู่เหนือ 4285 หรือ 4360",
+    "TP มีพื้นที่ถึง 4143 / 4000 / 3852",
+    "RR อย่างน้อย 1:2",
+    "ถ้าหลุดแล้วไล่ไม่ทัน = รอรอบใหม่"
+  ]
+},
 
   {
     id:"btcusd-buy-wait-template",
