@@ -21,7 +21,7 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
     <div class="card">
       <h1>PA Coach Web App v3.5</h1>
       <p>Anti Duplicate + Trade Lifecycle + Cloud First Sync: ใช้กับ XAUUSD / Forex / Crypto แบบ Price Action Swing Trade และ M15 Execution</p>
-      <span class="badge b-ok">Google Sheet Sync</span><span class="badge b-ok">Drive Images</span><span class="badge b-warn">กันข้อมูลซ้ำ</span><span class="badge b-info">PLAN → ACTIVE → CLOSED</span><span class="badge b-bad">ข่าวแดง/ส้ม = ยังไม่เข้า</span><span class="badge b-ok">เก็บ key เดิม paJournalV3</span>
+      <span class="badge b-ok">Google Sheet Sync</span><span class="badge b-ok">Drive Images</span><span class="badge b-warn">กันข้อมูลซ้ำ</span><span class="badge b-info">PLAN → ACTIVE → CLOSED</span><span class="badge b-bad">ข่าวแดง/ส้ม = ยังไม่เข้า</span><span class="badge b-ok">เก็บ key เดิม paJournalV3</span><span class="badge b-info">Telegram Alert</span>
     </div>
     <div class="card">
       <h2>สถานะตอนนี้</h2>
@@ -142,7 +142,7 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
       <div id="s7" class="panel">
         <h3>Step 7 — สรุปก่อนบันทึก</h3>
         <div id="finalDecision" class="decision wait"><div class="big">WAIT</div></div>
-        <div class="btns"><button class="ghost" onclick="prevStep()">ย้อนกลับ</button><button class="ghost" onclick="copyPlanText()">Copy แผน</button><button class="okbtn" onclick="savePlan()">บันทึก / อัปเดต Journal</button><button class="warnbtn" onclick="markNoTrade()">บันทึกเป็น NO_TRADE</button><button class="ghost" onclick="clearDraftAndReload()">เริ่มแผนใหม่</button></div>
+        <div class="btns"><button class="ghost" onclick="prevStep()">ย้อนกลับ</button><button class="ghost" onclick="copyPlanText()">Copy แผน</button><button class="warnbtn" onclick="sendTelegramAlert()">ส่ง Telegram Alert</button><button class="okbtn" onclick="savePlan()">บันทึก / อัปเดต Journal</button><button class="warnbtn" onclick="markNoTrade()">บันทึกเป็น NO_TRADE</button><button class="ghost" onclick="clearDraftAndReload()">เริ่มแผนใหม่</button></div>
       </div>
     </div>
   </section>
@@ -155,8 +155,8 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
 </section>
   <section id="journal" class="section">
     <div class="card">
-      <h2>Journal v3.4</h2>
-      <p>v3.4 กันข้อมูลซ้ำด้วย ID และใช้ key เดิม <b>paJournalV3</b> เพื่อให้ข้อมูลจาก v3.3 ยังขึ้นในเครื่องเดิม</p>
+      <h2>Journal v3.5</h2>
+      <p>v3.5 กันข้อมูลซ้ำด้วย ID และใช้ key เดิม <b>paJournalV3</b> เพื่อให้ข้อมูลจาก v3.3 ยังขึ้นในเครื่องเดิม</p>
       <div class="grid">
         <div class="c3"><label>ค้นหา</label><input id="searchJournal" placeholder="symbol / เหตุผล / บทเรียน"></div>
         <div class="c3"><label>Status</label><select id="filterStatus"><option value="all">ทั้งหมด</option><option>PLAN</option><option>PENDING</option><option>ACTIVE</option><option>CLOSED</option><option>NO_TRADE</option><option>CANCELLED</option></select></div>
@@ -198,7 +198,7 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
       <div class="btns"><button class="primary" onclick="saveSyncSetting()">บันทึกค่า Sync</button><button class="ghost" onclick="testCloudSync()">ทดสอบเชื่อมต่อ</button><button class="okbtn" onclick="syncLocalToCloud('upsert')">ส่งข้อมูลเครื่องนี้ขึ้น Google Sheet</button><button class="ghost" onclick="syncCloudToLocal('MERGE')">โหลดจาก Google Sheet แบบ MERGE</button><button class="warnbtn" onclick="syncCloudToLocal('REPLACE')">โหลดจาก Google Sheet แทนเครื่องนี้</button></div>
       <p class="small" style="margin-top:10px">อย่าใส่ Secret ลงในไฟล์ index.html เพราะ repo GitHub Pages เป็น public ได้ ค่า Sync จะเก็บใน localStorage ของ browser เครื่องนี้เท่านั้น</p>
     </div>
-    <div class="card" style="margin-top:14px"><h2>วิธีติดตั้งสั้น ๆ</h2><ol class="small"><li>เอาไฟล์ <b>index.html</b> v3.4 ไปทับใน repo <b>pa-coach-trade-journal</b></li><li>เอาไฟล์ <b>Code.gs</b> v3.4 ไปทับใน Apps Script</li><li>ตั้ง Script Properties: <b>PA_COACH_SECRET</b> และถ้ามีให้ใส่ <b>PA_COACH_SPREADSHEET_ID</b></li><li>Run <b>setupDatabase</b> ครั้งเดียว แล้ว Deploy → Manage deployments → Edit → New version</li><li>เปิดเว็บ GitHub Pages กด Settings → Test Sync → Load from Google Sheet</li></ol></div>
+    <div class="card" style="margin-top:14px"><h2>วิธีติดตั้งสั้น ๆ</h2><ol class="small"><li>เอาไฟล์ <b>index.html</b> v3.5 ไปทับใน repo <b>pa-coach-trade-journal</b></li><li>เอาไฟล์ <b>Code.gs</b> v3.5 ไปทับใน Apps Script</li><li>ตั้ง Script Properties: <b>PA_COACH_SECRET</b> และถ้ามีให้ใส่ <b>PA_COACH_SPREADSHEET_ID</b></li><li>Run <b>setupDatabase</b> ครั้งเดียว แล้ว Deploy → Manage deployments → Edit → New version</li><li>เปิดเว็บ GitHub Pages กด Settings → Test Sync → Load from Google Sheet</li></ol></div>
   </section>
 
   <div class="footer">PA Coach Web App v3.5 — เครื่องมือฝึกวินัยและบันทึกการเทรด ไม่ใช่สัญญาณการันตีกำไร</div>
@@ -1003,7 +1003,7 @@ function savePlan(){
    d={...old,...d,id:editingPlanId,createdAt:old.createdAt||d.createdAt,updatedAt:new Date().toISOString(),status:old.status&&old.status!=="PLAN"?old.status:d.status,resultImages:old.resultImages||d.resultImages,resultR:old.resultR??d.resultR,exitPrice:old.exitPrice??d.exitPrice,emotion:old.emotion||d.emotion,lesson:old.lesson||d.lesson};
    rows=rows.map(x=>x.id===editingPlanId?d:x); editingPlanId=null; updateEditingUI(false);
  }else rows.unshift(d);
- save(rows); localStorage.removeItem(draftKey); renderJournal(); renderStats(); showSec("journal"); alert("บันทึก Journal v3.4 แล้วครับ");
+ save(rows); localStorage.removeItem(draftKey); renderJournal(); renderStats(); showSec("journal"); alert("บันทึก Journal v3.5 แล้วครับ");
 }
 function markNoTrade(){let d=dataObj("NO_TRADE"); d.resultR=0; d.lesson=(d.lesson||"")+"\nไม่เข้า เพราะ: "+(d.blocks||[]).join(", "); let rows=load(); rows.unshift(d); save(rows); renderJournal(); renderStats(); showSec("journal"); alert("บันทึกเป็น NO_TRADE แล้วครับ ดีมากที่ไม่ฝืนเข้า");}
 function editPlan(id){const t=load().find(x=>x.id===id); if(!t)return; applyTradeToForm(t); editingPlanId=id; updateEditingUI(true); showSec("planner"); showStep("s1");}
@@ -1023,6 +1023,84 @@ function copyPlanText(){
  const t=dataObj();
  const txt=`PA Coach Trade Plan ${APP_VERSION}\nSymbol: ${t.symbol} ${t.direction}\nStrategy: ${t.strategyName}\nTF: ${t.entryTf} / Mode: ${t.tradeMode}\nDecision: ${t.decision}\n\nEntry: ${t.entry??"-"}\nSL: ${t.sl??"-"}\nTP1: ${t.tp1??"-"}\nTP2: ${t.tp2??"-"}\nTP3: ${t.tp3??"-"}\nMax RR: ${fmt(t.maxRR)}\n\nD1/H4 Plan:\n${t.tfPlan}\n\nEntry Reason:\n${t.entryReason}\n\nBlocks:\n${(t.blocks||[]).map(x=>"- "+x).join("\n")||"-"}`;
  navigator.clipboard.writeText(txt).then(()=>alert("Copy แผนแล้วครับ"));
+}
+
+
+function htmlSafeForTelegram(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function buildTelegramTextFromPlanner(t) {
+  const symbol = htmlSafeForTelegram(t.symbol || "-");
+  const direction = htmlSafeForTelegram(t.direction || "WAIT");
+  const status = htmlSafeForTelegram(t.status || "PLAN");
+  const strategy = htmlSafeForTelegram(t.strategyName || t.strategy || "-");
+  const decision = htmlSafeForTelegram(t.decision || "-");
+
+  const entry = htmlSafeForTelegram(t.entry ?? "-");
+  const sl = htmlSafeForTelegram(t.sl ?? "-");
+  const tp1 = htmlSafeForTelegram(t.tp1 ?? "-");
+  const tp2 = htmlSafeForTelegram(t.tp2 ?? "-");
+  const tp3 = htmlSafeForTelegram(t.tp3 ?? "-");
+  const rr = htmlSafeForTelegram(fmt(t.maxRR));
+
+  const reason = htmlSafeForTelegram(t.entryReason || "-");
+  const risk = htmlSafeForTelegram(t.riskNote || "-");
+  const blocks = (t.blocks || []).length
+    ? (t.blocks || []).map(x => "• " + htmlSafeForTelegram(x)).join("\n")
+    : "-";
+
+  return [
+    "🚨 <b>PA Coach Alert</b>",
+    "",
+    "<b>Symbol:</b> " + symbol,
+    "<b>Direction:</b> " + direction,
+    "<b>Status:</b> " + status,
+    "<b>Strategy:</b> " + strategy,
+    "",
+    "<b>Decision:</b> " + decision,
+    "",
+    "<b>Entry:</b> " + entry,
+    "<b>SL:</b> " + sl,
+    "<b>TP1:</b> " + tp1,
+    "<b>TP2:</b> " + tp2,
+    "<b>TP3:</b> " + tp3,
+    "<b>Max RR:</b> " + rr,
+    "",
+    "<b>เหตุผลเข้า / ไม่เข้า:</b>",
+    reason,
+    "",
+    "<b>สิ่งที่ยังบล็อกอยู่:</b>",
+    blocks,
+    "",
+    "<b>Risk Note:</b>",
+    risk,
+    "",
+    "⚠️ เช็กแท่งปิด, ข่าว, SL, RR ก่อนเข้าออเดอร์"
+  ].join("\n");
+}
+
+async function sendTelegramAlert() {
+  const t = dataObj();
+  const text = buildTelegramTextFromPlanner(t);
+
+  if (!confirm(`ส่ง Telegram Alert สำหรับ ${t.symbol} ${t.direction} ใช่ไหม?`)) {
+    return;
+  }
+
+  try {
+    await cloudApi("telegramAlert", {
+      text: text,
+      trade: t
+    });
+
+    alert("ส่ง Telegram Alert แล้วครับ");
+  } catch (e) {
+    alert("ส่ง Telegram ไม่สำเร็จ: " + e.message);
+  }
 }
 
 async function imageFileToDataUrl(file,max=1500,quality=.82){
