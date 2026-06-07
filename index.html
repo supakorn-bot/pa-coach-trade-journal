@@ -260,6 +260,7 @@ const scalpChecks=[
  ["m9","ข่าวไม่ชนช่วงเข้า","ส้ม/แดงใกล้เวลา = รอ"],
  ["m10","ยอมไม่เข้าได้","ไม่มี Setup = ยังไม่เข้า"]
 ];
+
 const todayWatchlistItems = [
   {
     symbol: "ETHUSD",
@@ -284,42 +285,6 @@ const todayWatchlistItems = [
     action: "ห้าม Sell ไล่แถวแนวรับ รอเด้งเข้า Sell Zone หรือรอหลุดแล้ว Retest",
     planId: "xauusd-a-main-sell-pullback-2026-06-07",
     statusClass: "yellowp"
-  },
-  {
-    symbol: "BTCUSD",
-    market: "Crypto",
-    status: "WAIT",
-    bias: "WAIT",
-    mainPlan: "Template",
-    watchZone: "รอกราฟล่าสุด",
-    dangerZone: "ยังไม่กำหนด",
-    action: "ยังไม่ใช่ตัวหลัก รอ D1/H4 ชัดก่อน",
-    planId: "btcusd-buy-wait-template",
-    statusClass: "orangep"
-  },
-  {
-    symbol: "GBPJPY",
-    market: "Forex",
-    status: "WAIT",
-    bias: "WAIT",
-    mainPlan: "Template",
-    watchZone: "รอ OB / Supply / Demand ชัด",
-    dangerZone: "คู่ JPY ไส้แรง ต้องลด Lot",
-    action: "ยังไม่ดูจริงจังจนกว่า H4 มีโซนและ BOS ชัด",
-    planId: "gbpjpy-sell-wait-template",
-    statusClass: "orangep"
-  },
-  {
-    symbol: "EURUSD",
-    market: "Forex",
-    status: "WAIT",
-    bias: "WAIT",
-    mainPlan: "Template",
-    watchZone: "รอ D1/H4 Bias ชัด",
-    dangerZone: "เช็กข่าว EUR/USD",
-    action: "ยังไม่ต้องเปิดกราฟนาน รอ Telegram H4 Watchlist",
-    planId: "eurusd-forex-wait-template",
-    statusClass: "orangep"
   }
 ];
 
