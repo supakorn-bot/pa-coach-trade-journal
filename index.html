@@ -267,14 +267,13 @@ const coachTradePlans=[
     tp2:1550,
     tp3:1490,
     minRR:2,
-    summary:"Week / D1 / H4 ยังเป็นขาลง แต่ราคาอยู่ใกล้แนวรับใหญ่ 1590-1550 จึงยังไม่ควร Sell ไล่ทันที",
+    summary:"ETHUSD ยังเป็นขาลง แต่ราคาอยู่ใกล้แนวรับใหญ่ 1590-1550 จึงยังไม่ควร Sell ไล่ทันที",
     tfPlan:`ETHUSD ยังเป็นขาลงใน Week / D1 / H4
-แต่ราคากำลังอยู่ใกล้แนวรับใหญ่ 1590-1550
+แต่ราคาอยู่ใกล้แนวรับใหญ่ 1590-1550
 แผนหลักคือรอราคาดีดขึ้นเข้า Sell Zone 1625-1665 ก่อน
 จากนั้นค่อยหา Sell จากสัญญาณ Reject หรือ BOS ลง
 
 Sell Stop ใช้ได้เฉพาะเมื่อ H4 ปิดต่ำกว่า 1538-1550 จริงก่อน
-ไม่ใช้แค่ไส้เทียนแทงลง
 ถ้าหลุดแล้ว แผนที่ปลอดภัยกว่าคือรอ Retest กลับมาแถว 1550-1590 แล้วค่อย Sell`,
     m15Plan:`ใช้ M15 เป็นจุดยืนยันเท่านั้น
 1. ราคาเด้งเข้า Sell Zone 1625-1665 ก่อน
@@ -282,15 +281,11 @@ Sell Stop ใช้ได้เฉพาะเมื่อ H4 ปิดต่ำ
 3. รอแท่ง Reject / Engulfing / Outside Bar
 4. ใช้ Sell Stop ใต้ Low ของ Trigger
 5. SL เหนือ Swing M15 หรือเหนือโซน
-6. RR ต้องอย่างน้อย 1:2
-7. ถ้าไม่ Trigger ภายใน 3-5 แท่ง M15 ให้ยกเลิกแผน`,
+6. RR ต้องอย่างน้อย 1:2`,
     entryReason:`ยังไม่เข้า เพราะราคาอยู่ใกล้แนวรับใหญ่ 1590-1550
-รออย่างใดอย่างหนึ่ง:
-1. ราคาเด้งขึ้น Sell Zone 1625-1665 แล้วเกิด Reject
-2. หรือ H4 ปิดหลุด 1538-1550 แล้วรอ Retest ค่อย Sell`,
+รอราคาเด้งเข้า Sell Zone หรือรอหลุดแล้ว Retest`,
     exitPlan:`ยกเลิกแผนถ้า H4 ปิดกลับเหนือ 1690
-หรือราคาไม่ยอม Reject ใน Sell Zone
-หรือมีข่าวแรงชนช่วงเข้าออเดอร์
+หรือราคาไม่ Reject ใน Sell Zone
 หรือ RR ต่ำกว่า 1:2`,
     riskNote:"ห้าม Sell ไล่ตรงแนวรับ 1590-1550 เพราะเสี่ยงโดนเด้งสวน",
     checklist:[
@@ -300,9 +295,185 @@ Sell Stop ใช้ได้เฉพาะเมื่อ H4 ปิดต่ำ
       "ราคาเด้งเข้า Sell Zone 1625-1665",
       "มีแท่ง Reject หรือแท่งแดงกลับตัว",
       "M15 หรือ H4 มี BOS ลง",
-      "วาง SL ได้ชัดเจนเหนือแนวต้าน",
       "RR อย่างน้อย 1:2",
       "ไม่ Sell ไล่ตรงแนวรับ 1590-1550"
+    ]
+  },
+
+  {
+    id:"xauusd-sell-wait-template",
+    symbol:"XAUUSD",
+    market:"Gold",
+    direction:"SELL",
+    status:"WAIT",
+    title:"XAUUSD — Sell Zone Plan",
+    timeframes:"Week / D1 / H4",
+    strategy:"BOS_OB_RETEST",
+    strategyName:"H4 BOS + OB Retest + M15 Trigger",
+    entryTf:"H4",
+    orderType:"ยังไม่วาง Order",
+    tradeMode:"swing",
+    d1Trend:"down",
+    h4Position:"resistance",
+    bias:"sell",
+    structure:"bos",
+    supportZone:"รอกรอกแนวรับจากกราฟล่าสุด",
+    resistanceZone:"รอกรอก Sell Zone จากกราฟล่าสุด",
+    entry:"",
+    sl:"",
+    tp1:"",
+    tp2:"",
+    tp3:"",
+    minRR:2,
+    summary:"แผนทองคำแบบ Sell ตามเทรนด์ รอ H4 BOS แล้ว Pullback กลับเข้า Supply / OB ก่อน ไม่ Sell ไล่",
+    tfPlan:`XAUUSD ใช้แผน Sell ตามเทรนด์เมื่อ D1/H4 เป็นขาลง
+รอราคา Pullback กลับเข้าแนวต้าน / Supply / OB H4
+ห้าม Sell ตอนราคาอยู่กลางทางหรือเพิ่งลงแรงมาชนแนวรับ
+
+เงื่อนไขหลัก:
+1. D1 หรือ H4 ต้องมี Bias ลง
+2. H4 มี BOS ลง หรือทำ Lower High ชัด
+3. ราคา Pullback เข้า Sell Zone
+4. M15 มี Trigger ลง
+5. RR ต้องอย่างน้อย 1:2`,
+    m15Plan:`ใช้ M15 หา Trigger หลังราคาเข้า Sell Zone แล้วเท่านั้น
+Trigger ที่ใช้ได้:
+- Bearish Engulfing
+- Outside Bar
+- BOS / CHOCH ลง
+- Liquidity Sweep แล้วกลับตัวลง
+เข้าแบบ Sell Stop ใต้ Low ของ Trigger`,
+    entryReason:`ยังไม่เข้า จนกว่าราคาเข้า Sell Zone และมี M15 Trigger ยืนยัน`,
+    exitPlan:`ยกเลิกแผนถ้าราคาทะลุ Sell Zone ขึ้นไปแล้วปิด H4 เหนือโซน
+หรือมีข่าว USD แดง/ส้มใกล้เวลาเข้า`,
+    riskNote:"ทองผันผวนแรง ต้องเผื่อ Spread และห้ามวาง SL ชิดเกิน",
+    checklist:[
+      "D1/H4 เป็นขาลง",
+      "H4 มี BOS ลง",
+      "ราคา Pullback เข้า Sell Zone",
+      "M15 มี Trigger ลง",
+      "SL อยู่เหนือ Swing / Supply",
+      "TP มีพื้นที่ถึงแนวรับถัดไป",
+      "RR อย่างน้อย 1:2",
+      "ไม่มีข่าว USD แดง/ส้มใกล้เวลาเข้า"
+    ]
+  },
+
+  {
+    id:"btcusd-buy-wait-template",
+    symbol:"BTCUSD",
+    market:"Crypto",
+    direction:"BUY",
+    status:"WAIT",
+    title:"BTCUSD — Buy Pullback Plan",
+    timeframes:"Week / D1 / H4",
+    strategy:"BOS_OB_RETEST",
+    strategyName:"H4 BOS + OB Retest + M15 Trigger",
+    entryTf:"H4",
+    orderType:"ยังไม่วาง Order",
+    tradeMode:"swing",
+    d1Trend:"up",
+    h4Position:"support",
+    bias:"buy",
+    structure:"bos",
+    supportZone:"รอกรอก Buy Zone / Demand จากกราฟล่าสุด",
+    resistanceZone:"รอกรอกแนวต้าน / TP Zone จากกราฟล่าสุด",
+    entry:"",
+    sl:"",
+    tp1:"",
+    tp2:"",
+    tp3:"",
+    minRR:2,
+    summary:"แผน BTC แบบ Buy Pullback รอราคาเข้า Demand / Retest Zone แล้วหา M15 Trigger ไม่ Buy กลางอากาศ",
+    tfPlan:`BTCUSD ใช้แผน Buy เมื่อ D1/H4 ยังเป็นขาขึ้น
+รอราคา Pullback กลับเข้า Demand / OB / Retest Zone
+ไม่ Buy ไล่ตอนแท่งเขียวยาว
+
+เงื่อนไขหลัก:
+1. D1/H4 ยังเป็นขาขึ้น
+2. H4 มี BOS ขึ้น หรือทำ Higher Low ชัด
+3. ราคา Pullback เข้า Buy Zone
+4. M15 มี CHOCH/BOS ขึ้น
+5. RR ต้องอย่างน้อย 1:2`,
+    m15Plan:`ใช้ M15 หา Trigger หลังราคาเข้า Buy Zone แล้วเท่านั้น
+Trigger ที่ใช้ได้:
+- Bullish Engulfing
+- Outside Bar
+- CHOCH / BOS ขึ้น
+- Sweep Low แล้วกลับตัวขึ้น
+เข้าแบบ Buy Stop เหนือ High ของ Trigger`,
+    entryReason:`ยังไม่เข้า จนกว่าราคา Pullback เข้า Buy Zone และ M15 ยืนยันกลับตัวขึ้น`,
+    exitPlan:`ยกเลิกแผนถ้า H4 ปิดหลุด Buy Zone
+หรือโครงสร้างเปลี่ยนเป็น Lower Low`,
+    riskNote:"Crypto เหวี่ยงแรง ต้องลด Lot และไม่วาง SL ชิดเกิน",
+    checklist:[
+      "D1/H4 เป็นขาขึ้น",
+      "H4 มี BOS ขึ้น",
+      "ราคา Pullback เข้า Buy Zone",
+      "M15 มี CHOCH/BOS ขึ้น",
+      "SL อยู่ใต้ Swing Low",
+      "TP มีพื้นที่ถึงแนวต้านถัดไป",
+      "RR อย่างน้อย 1:2",
+      "ไม่ Buy ไล่แท่งเขียวยาว"
+    ]
+  },
+
+  {
+    id:"gbpjpy-sell-wait-template",
+    symbol:"GBPJPY",
+    market:"Forex",
+    direction:"SELL",
+    status:"WAIT",
+    title:"GBPJPY — Sell Retest Plan",
+    timeframes:"D1 / H4 / M15",
+    strategy:"OB_SH_BOS_RTO",
+    strategyName:"Order Block: SH + BOS + RTO",
+    entryTf:"H4",
+    orderType:"ยังไม่วาง Order",
+    tradeMode:"swing",
+    d1Trend:"down",
+    h4Position:"resistance",
+    bias:"sell",
+    structure:"bos",
+    supportZone:"รอกรอกแนวรับ / TP Zone จากกราฟล่าสุด",
+    resistanceZone:"รอกรอก OB / Supply Zone จากกราฟล่าสุด",
+    entry:"",
+    sl:"",
+    tp1:"",
+    tp2:"",
+    tp3:"",
+    minRR:2,
+    summary:"แผน GBPJPY แบบ Sell หลัง Sweep High + BOS แล้วรอ RTO กลับเข้า Order Block",
+    tfPlan:`GBPJPY ใช้แผน Sell เมื่อราคามี Sweep High หรือชน Supply ใหญ่
+จากนั้นต้องเกิด BOS ลงก่อน
+แล้วรอราคา RTO / Retest กลับเข้า OB หรือแนวต้านเดิม
+
+เงื่อนไขหลัก:
+1. D1/H4 ไม่ใช่ขาขึ้นแข็งแรง
+2. มี Sweep High หรือ Reject จากแนวต้าน
+3. เกิด BOS ลง
+4. ราคา RTO กลับเข้า OB
+5. M15 มี Trigger ลง
+6. RR อย่างน้อย 1:2`,
+    m15Plan:`ใช้ M15 หา Trigger หลังราคา RTO เข้า OB แล้วเท่านั้น
+Trigger ที่ใช้ได้:
+- Bearish Engulfing
+- M15 BOS ลง
+- Reject / Pin Bar ที่ OB
+- Sell Stop ใต้ Low ของ Trigger`,
+    entryReason:`ยังไม่เข้า จนกว่า H4 มี BOS ลงและราคา RTO กลับเข้า OB`,
+    exitPlan:`ยกเลิกแผนถ้าราคาปิด H4 เหนือ OB
+หรือไม่มี Trigger ภายใน 3-5 แท่ง M15`,
+    riskNote:"GBPJPY เหวี่ยงแรง ต้องระวังไส้เทียนและข่าว GBP/JPY",
+    checklist:[
+      "มี Sweep High หรือ Reject จากแนวต้าน",
+      "H4 เกิด BOS ลง",
+      "ราคา RTO กลับเข้า OB",
+      "M15 มี Trigger ลง",
+      "SL อยู่เหนือ Swing High / OB",
+      "TP มีพื้นที่ถึงแนวรับถัดไป",
+      "RR อย่างน้อย 1:2",
+      "ไม่มีข่าว GBP/JPY แรงใกล้เวลาเข้า"
     ]
   }
 ];
