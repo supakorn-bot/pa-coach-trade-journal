@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PA Coach Web App v3.5 - Coach Trade Plans</title>
+<title>PA Coach Web App v3.6 - Telegram Alert Workflow</title>
 <style>
 :root{--bg:#07101f;--panel:#111c31;--panel2:#17243e;--line:#2b3b5f;--text:#eef6ff;--muted:#9fb2cf;--blue:#38bdf8;--violet:#a78bfa;--ok:#22c55e;--warn:#f59e0b;--bad:#ef4444;--info:#60a5fa}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 8% 0%,rgba(56,189,248,.18),transparent 34%),radial-gradient(circle at 88% 0%,rgba(167,139,250,.16),transparent 34%),var(--bg);color:var(--text);font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif}.wrap{max-width:1280px;margin:auto;padding:18px}.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;margin-bottom:14px}.card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:17px;box-shadow:0 14px 45px rgba(0,0,0,.28)}h1,h2,h3{margin:0 0 10px}h1{font-size:28px}h2{font-size:20px}h3{font-size:16px}p{margin:0 0 10px;color:var(--muted);line-height:1.65}.small{font-size:12px;color:var(--muted);line-height:1.5}.tabs,.steps,.btns{display:flex;gap:9px;flex-wrap:wrap}.tabs{margin:14px 0}.steps{margin:10px 0 14px}.tab,.step,button{font-family:inherit;font-weight:800;border:0;border-radius:13px;padding:10px 13px;cursor:pointer}.tab,.step,.ghost{background:rgba(255,255,255,.07);color:var(--text);border:1px solid rgba(255,255,255,.13)}.tab.active,.step.active{background:linear-gradient(90deg,rgba(56,189,248,.26),rgba(167,139,250,.24));border-color:rgba(56,189,248,.45)}.primary{background:linear-gradient(90deg,#38bdf8,#a78bfa);color:#06111e}.okbtn{background:rgba(34,197,94,.18);color:#bbf7d0;border:1px solid rgba(34,197,94,.38)}.danger{background:rgba(239,68,68,.18);color:#fecaca;border:1px solid rgba(239,68,68,.38)}.warnbtn{background:rgba(245,158,11,.17);color:#fed7aa;border:1px solid rgba(245,158,11,.38)}
@@ -19,9 +19,9 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
 <div class="wrap">
   <div class="hero">
     <div class="card">
-      <h1>PA Coach Web App v3.5</h1>
+      <h1>PA Coach Web App v3.6</h1>
       <p>Anti Duplicate + Trade Lifecycle + Cloud First Sync: ใช้กับ XAUUSD / Forex / Crypto แบบ Price Action Swing Trade และ M15 Execution</p>
-      <span class="badge b-ok">Google Sheet Sync</span><span class="badge b-ok">Drive Images</span><span class="badge b-warn">กันข้อมูลซ้ำ</span><span class="badge b-info">PLAN → ACTIVE → CLOSED</span><span class="badge b-bad">ข่าวแดง/ส้ม = ยังไม่เข้า</span><span class="badge b-ok">เก็บ key เดิม paJournalV3</span><span class="badge b-info">Telegram Alert</span>
+      <span class="badge b-ok">Google Sheet Sync</span><span class="badge b-ok">Drive Images</span><span class="badge b-warn">กันข้อมูลซ้ำ</span><span class="badge b-info">PLAN → ACTIVE → CLOSED</span><span class="badge b-bad">ข่าวแดง/ส้ม = ยังไม่เข้า</span><span class="badge b-ok">เก็บ key เดิม paJournalV3</span><span class="badge b-info">Telegram Alert</span><span class="badge b-warn">WAIT/READY/ENTRY/CANCEL</span>
     </div>
     <div class="card">
       <h2>สถานะตอนนี้</h2>
@@ -142,7 +142,7 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
       <div id="s7" class="panel">
         <h3>Step 7 — สรุปก่อนบันทึก</h3>
         <div id="finalDecision" class="decision wait"><div class="big">WAIT</div></div>
-        <div class="btns"><button class="ghost" onclick="prevStep()">ย้อนกลับ</button><button class="ghost" onclick="copyPlanText()">Copy แผน</button><button class="warnbtn" onclick="sendTelegramAlert()">ส่ง Telegram Alert</button><button class="okbtn" onclick="savePlan()">บันทึก / อัปเดต Journal</button><button class="warnbtn" onclick="markNoTrade()">บันทึกเป็น NO_TRADE</button><button class="ghost" onclick="clearDraftAndReload()">เริ่มแผนใหม่</button></div>
+        <div class="btns"><button class="ghost" onclick="prevStep()">ย้อนกลับ</button><button class="ghost" onclick="copyPlanText()">Copy แผน</button><button class="ghost" onclick="sendTelegramAlert('WAIT')">WAIT Alert</button><button class="warnbtn" onclick="sendTelegramAlert('READY')">READY Alert</button><button class="okbtn" onclick="sendTelegramAlert('ENTRY')">ENTRY Alert</button><button class="danger" onclick="sendTelegramAlert('CANCEL')">CANCEL Alert</button><button class="okbtn" onclick="savePlan()">บันทึก / อัปเดต Journal</button><button class="warnbtn" onclick="markNoTrade()">บันทึกเป็น NO_TRADE</button><button class="ghost" onclick="clearDraftAndReload()">เริ่มแผนใหม่</button></div>
       </div>
     </div>
   </section>
@@ -155,8 +155,8 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
 </section>
   <section id="journal" class="section">
     <div class="card">
-      <h2>Journal v3.5</h2>
-      <p>v3.5 กันข้อมูลซ้ำด้วย ID และใช้ key เดิม <b>paJournalV3</b> เพื่อให้ข้อมูลจาก v3.3 ยังขึ้นในเครื่องเดิม</p>
+      <h2>Journal v3.6</h2>
+      <p>v3.6 กันข้อมูลซ้ำด้วย ID และใช้ key เดิม <b>paJournalV3</b> เพื่อให้ข้อมูลจาก v3.3 ยังขึ้นในเครื่องเดิม</p>
       <div class="grid">
         <div class="c3"><label>ค้นหา</label><input id="searchJournal" placeholder="symbol / เหตุผล / บทเรียน"></div>
         <div class="c3"><label>Status</label><select id="filterStatus"><option value="all">ทั้งหมด</option><option>PLAN</option><option>PENDING</option><option>ACTIVE</option><option>CLOSED</option><option>NO_TRADE</option><option>CANCELLED</option></select></div>
@@ -198,17 +198,17 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
       <div class="btns"><button class="primary" onclick="saveSyncSetting()">บันทึกค่า Sync</button><button class="ghost" onclick="testCloudSync()">ทดสอบเชื่อมต่อ</button><button class="okbtn" onclick="syncLocalToCloud('upsert')">ส่งข้อมูลเครื่องนี้ขึ้น Google Sheet</button><button class="ghost" onclick="syncCloudToLocal('MERGE')">โหลดจาก Google Sheet แบบ MERGE</button><button class="warnbtn" onclick="syncCloudToLocal('REPLACE')">โหลดจาก Google Sheet แทนเครื่องนี้</button></div>
       <p class="small" style="margin-top:10px">อย่าใส่ Secret ลงในไฟล์ index.html เพราะ repo GitHub Pages เป็น public ได้ ค่า Sync จะเก็บใน localStorage ของ browser เครื่องนี้เท่านั้น</p>
     </div>
-    <div class="card" style="margin-top:14px"><h2>วิธีติดตั้งสั้น ๆ</h2><ol class="small"><li>เอาไฟล์ <b>index.html</b> v3.5 ไปทับใน repo <b>pa-coach-trade-journal</b></li><li>เอาไฟล์ <b>Code.gs</b> v3.5 ไปทับใน Apps Script</li><li>ตั้ง Script Properties: <b>PA_COACH_SECRET</b> และถ้ามีให้ใส่ <b>PA_COACH_SPREADSHEET_ID</b></li><li>Run <b>setupDatabase</b> ครั้งเดียว แล้ว Deploy → Manage deployments → Edit → New version</li><li>เปิดเว็บ GitHub Pages กด Settings → Test Sync → Load from Google Sheet</li></ol></div>
+    <div class="card" style="margin-top:14px"><h2>วิธีติดตั้งสั้น ๆ</h2><ol class="small"><li>เอาไฟล์ <b>index.html</b> v3.6 ไปทับใน repo <b>pa-coach-trade-journal</b></li><li>เอาไฟล์ <b>Code.gs</b> v3.6 ไปทับใน Apps Script</li><li>ตั้ง Script Properties: <b>PA_COACH_SECRET</b> และถ้ามีให้ใส่ <b>PA_COACH_SPREADSHEET_ID</b></li><li>Run <b>setupDatabase</b> ครั้งเดียว แล้ว Deploy → Manage deployments → Edit → New version</li><li>เปิดเว็บ GitHub Pages กด Settings → Test Sync → Load from Google Sheet</li></ol></div>
   </section>
 
-  <div class="footer">PA Coach Web App v3.5 — เครื่องมือฝึกวินัยและบันทึกการเทรด ไม่ใช่สัญญาณการันตีกำไร</div>
+  <div class="footer">PA Coach Web App v3.6 — เครื่องมือฝึกวินัยและบันทึกการเทรด ไม่ใช่สัญญาณการันตีกำไร</div>
 </div>
 
 <div id="modal" class="modal"><div class="card"><div class="modalTop"><h2 id="modalTitle">รูปกราฟ</h2><div><button class="ghost" onclick="toggleBrowserFullscreen()">เต็มจอ</button> <button class="ghost" onclick="closeImg()">ปิด</button></div></div><img id="modalImg" onclick="toggleBrowserFullscreen()"></div></div>
 
 <script>
 const $=id=>document.getElementById(id);
-const APP_VERSION="v3.5";
+const APP_VERSION="v3.6";
 const storeKey="paJournalV3";              // ใช้ key เดิมจาก v3.3 เพื่อให้ข้อมูลเก่ายังขึ้น
 const draftKey="paJournalDraftV34";
 const syncSettingKey="paSyncSettingV33";   // ใช้ key เดิมจาก v3.3 เพื่อไม่ต้องกรอก URL/Secret ใหม่
@@ -1003,7 +1003,7 @@ function savePlan(){
    d={...old,...d,id:editingPlanId,createdAt:old.createdAt||d.createdAt,updatedAt:new Date().toISOString(),status:old.status&&old.status!=="PLAN"?old.status:d.status,resultImages:old.resultImages||d.resultImages,resultR:old.resultR??d.resultR,exitPrice:old.exitPrice??d.exitPrice,emotion:old.emotion||d.emotion,lesson:old.lesson||d.lesson};
    rows=rows.map(x=>x.id===editingPlanId?d:x); editingPlanId=null; updateEditingUI(false);
  }else rows.unshift(d);
- save(rows); localStorage.removeItem(draftKey); renderJournal(); renderStats(); showSec("journal"); alert("บันทึก Journal v3.5 แล้วครับ");
+ save(rows); localStorage.removeItem(draftKey); renderJournal(); renderStats(); showSec("journal"); alert("บันทึก Journal v3.6 แล้วครับ");
 }
 function markNoTrade(){let d=dataObj("NO_TRADE"); d.resultR=0; d.lesson=(d.lesson||"")+"\nไม่เข้า เพราะ: "+(d.blocks||[]).join(", "); let rows=load(); rows.unshift(d); save(rows); renderJournal(); renderStats(); showSec("journal"); alert("บันทึกเป็น NO_TRADE แล้วครับ ดีมากที่ไม่ฝืนเข้า");}
 function editPlan(id){const t=load().find(x=>x.id===id); if(!t)return; applyTradeToForm(t); editingPlanId=id; updateEditingUI(true); showSec("planner"); showStep("s1");}
@@ -1033,10 +1033,46 @@ function htmlSafeForTelegram(value) {
     .replace(/>/g, "&gt;");
 }
 
-function buildTelegramTextFromPlanner(t) {
+function telegramAlertProfile(alertType) {
+  const type = String(alertType || "WAIT").toUpperCase();
+  const profiles = {
+    WAIT: {
+      icon: "⏳",
+      title: "WAIT Alert",
+      status: "WAIT / ยังไม่เข้า",
+      action: "รอราคาเข้าโซนก่อน ห้ามกดออเดอร์จากอารมณ์",
+      footer: "ใช้เพื่อเตือนตัวเองว่าแผนยังไม่พร้อมเข้า"
+    },
+    READY: {
+      icon: "🟡",
+      title: "READY Alert",
+      status: "READY / ราคาใกล้โซน รอ Trigger",
+      action: "เปิดกราฟ M15 รอ BOS/CHOCH หรือ Reject Candle เท่านั้น",
+      footer: "ราคาเข้าโซนแล้ว แต่ยังต้องรอ Trigger ก่อนเข้า"
+    },
+    ENTRY: {
+      icon: "🟢",
+      title: "ENTRY Alert",
+      status: "ENTRY / มีแผน Entry-SL-TP",
+      action: "เช็กข่าว เช็ก RR เช็ก Lot แล้วค่อยวาง Order ตามแผน",
+      footer: "ใช้เมื่อมี Entry, SL, TP และเงื่อนไขครบแล้ว"
+    },
+    CANCEL: {
+      icon: "🔴",
+      title: "CANCEL Alert",
+      status: "CANCEL / ยกเลิกแผน",
+      action: "ยกเลิกแผนนี้ ไม่เข้าไล่ราคา รอ Setup ใหม่",
+      footer: "การไม่เข้า คือการปกป้องทุน"
+    }
+  };
+  return profiles[type] || profiles.WAIT;
+}
+
+function buildTelegramTextFromPlanner(t, alertType) {
+  const profile = telegramAlertProfile(alertType);
   const symbol = htmlSafeForTelegram(t.symbol || "-");
   const direction = htmlSafeForTelegram(t.direction || "WAIT");
-  const status = htmlSafeForTelegram(t.status || "PLAN");
+  const status = htmlSafeForTelegram(profile.status);
   const strategy = htmlSafeForTelegram(t.strategyName || t.strategy || "-");
   const decision = htmlSafeForTelegram(t.decision || "-");
 
@@ -1047,6 +1083,8 @@ function buildTelegramTextFromPlanner(t) {
   const tp3 = htmlSafeForTelegram(t.tp3 ?? "-");
   const rr = htmlSafeForTelegram(fmt(t.maxRR));
 
+  const support = htmlSafeForTelegram(t.supportZone || "-");
+  const resistance = htmlSafeForTelegram(t.resistanceZone || "-");
   const reason = htmlSafeForTelegram(t.entryReason || "-");
   const risk = htmlSafeForTelegram(t.riskNote || "-");
   const blocks = (t.blocks || []).length
@@ -1054,21 +1092,29 @@ function buildTelegramTextFromPlanner(t) {
     : "-";
 
   return [
-    "🚨 <b>PA Coach Alert</b>",
+    profile.icon + " <b>PA Coach " + htmlSafeForTelegram(profile.title) + "</b>",
     "",
     "<b>Symbol:</b> " + symbol,
     "<b>Direction:</b> " + direction,
     "<b>Status:</b> " + status,
     "<b>Strategy:</b> " + strategy,
     "",
+    "<b>Coach Action:</b>",
+    htmlSafeForTelegram(profile.action),
+    "",
     "<b>Decision:</b> " + decision,
     "",
-    "<b>Entry:</b> " + entry,
-    "<b>SL:</b> " + sl,
-    "<b>TP1:</b> " + tp1,
-    "<b>TP2:</b> " + tp2,
-    "<b>TP3:</b> " + tp3,
-    "<b>Max RR:</b> " + rr,
+    "<b>Key Zones:</b>",
+    "Support: " + support,
+    "Resistance: " + resistance,
+    "",
+    "<b>Entry Plan:</b>",
+    "Entry: " + entry,
+    "SL: " + sl,
+    "TP1: " + tp1,
+    "TP2: " + tp2,
+    "TP3: " + tp3,
+    "Max RR: " + rr,
     "",
     "<b>เหตุผลเข้า / ไม่เข้า:</b>",
     reason,
@@ -1079,25 +1125,29 @@ function buildTelegramTextFromPlanner(t) {
     "<b>Risk Note:</b>",
     risk,
     "",
+    "⚠️ " + htmlSafeForTelegram(profile.footer),
     "⚠️ เช็กแท่งปิด, ข่าว, SL, RR ก่อนเข้าออเดอร์"
   ].join("\n");
 }
 
-async function sendTelegramAlert() {
+async function sendTelegramAlert(alertType = "WAIT") {
   const t = dataObj();
-  const text = buildTelegramTextFromPlanner(t);
+  const type = String(alertType || "WAIT").toUpperCase();
+  const profile = telegramAlertProfile(type);
+  const text = buildTelegramTextFromPlanner(t, type);
+  const tradeForTelegram = {...t, telegramAlertType:type, telegramAlertStatus:profile.status};
 
-  if (!confirm(`ส่ง Telegram Alert สำหรับ ${t.symbol} ${t.direction} ใช่ไหม?`)) {
+  if (!confirm(`ส่ง ${profile.title} สำหรับ ${t.symbol} ${t.direction} ใช่ไหม?`)) {
     return;
   }
 
   try {
     await cloudApi("telegramAlert", {
       text: text,
-      trade: t
+      trade: tradeForTelegram
     });
 
-    alert("ส่ง Telegram Alert แล้วครับ");
+    alert(`ส่ง ${profile.title} เข้า Telegram แล้วครับ`);
   } catch (e) {
     alert("ส่ง Telegram ไม่สำเร็จ: " + e.message);
   }
@@ -1152,8 +1202,8 @@ function renderStats(){
  $("kpiBox").innerHTML=`<div class="box"><div class="num">${rows.length}</div><div class="lab">บันทึกทั้งหมด</div></div><div class="box"><div class="num">${closed.length}</div><div class="lab">ปิด/มีผลแล้ว</div></div><div class="box"><div class="num">${fmt(win,1)}%</div><div class="lab">Win Rate</div></div><div class="box"><div class="num">${fmt(sum)}R</div><div class="lab">รวม R</div></div><div class="box"><div class="num">${rows.filter(t=>t.status==="NO_TRADE").length}</div><div class="lab">ไม่เข้า</div></div><div class="box"><div class="num">${rows.filter(t=>t.status==="ACTIVE").length}</div><div class="lab">Active</div></div><div class="box"><div class="num">${wins.length}</div><div class="lab">ชนะ</div></div><div class="box"><div class="num">${loss.length}</div><div class="lab">แพ้</div></div>`;
  const lessons=rows.filter(t=>t.lesson).slice(0,8); $("lessonList").innerHTML=lessons.map(t=>`<div class="c6"><div class="note"><b>${esc(t.symbol)} ${esc(t.direction)} ${esc(t.resultR??"")}R</b><br>${esc(t.lesson)}</div></div>`).join("")||'<div class="note">ยังไม่มีบทเรียน</div>';
 }
-function exportJson(){download("pa-coach-trades-v3-4.json",JSON.stringify({appVersion:APP_VERSION,exportedAt:new Date().toISOString(),trades:load()},null,2),"application/json");}
-function exportCsv(){const h=["date","time","symbol","direction","status","strategy","entry","sl","tp1","tp2","tp3","maxRR","resultR","lesson"], csv=[h.join(",")].concat(load().map(t=>[t.tradeDate,t.tradeTime,t.symbol,t.direction,t.status,t.strategyName||t.strategy,t.entry,t.sl,t.tp1,t.tp2,t.tp3,t.maxRR,t.resultR,t.lesson].map(x=>`"${String(x??"").replaceAll('"','""')}"`).join(","))).join("\n"); download("pa-coach-trades-v3-4.csv","\ufeff"+csv,"text/csv;charset=utf-8");}
+function exportJson(){download("pa-coach-trades-v3-6.json",JSON.stringify({appVersion:APP_VERSION,exportedAt:new Date().toISOString(),trades:load()},null,2),"application/json");}
+function exportCsv(){const h=["date","time","symbol","direction","status","strategy","entry","sl","tp1","tp2","tp3","maxRR","resultR","lesson"], csv=[h.join(",")].concat(load().map(t=>[t.tradeDate,t.tradeTime,t.symbol,t.direction,t.status,t.strategyName||t.strategy,t.entry,t.sl,t.tp1,t.tp2,t.tp3,t.maxRR,t.resultR,t.lesson].map(x=>`"${String(x??"").replaceAll('"','""')}"`).join(","))).join("\n"); download("pa-coach-trades-v3-6.csv","\ufeff"+csv,"text/csv;charset=utf-8");}
 function download(name,content,type){const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([content],{type})); a.download=name; a.click(); URL.revokeObjectURL(a.href);}
 function bindImport(){ $("importFile").addEventListener("change",e=>{const file=e.target.files[0]; if(!file)return; const r=new FileReader(); r.onload=()=>{try{const parsed=JSON.parse(r.result); const imported=Array.isArray(parsed)?parsed:parsed.trades; if(!Array.isArray(imported)) throw new Error("JSON ไม่ใช่รูปแบบ PA Coach"); const merged=dedupeTrades([...imported,...load()]); save(merged); renderJournal(); renderStats(); alert(`Import สำเร็จ ${imported.length} รายการ / รวมเหลือ ${merged.length}`);}catch(err){alert("Import ไม่สำเร็จ: "+err.message);} e.target.value="";}; r.readAsText(file);});}
 
