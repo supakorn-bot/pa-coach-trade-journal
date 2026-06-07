@@ -242,63 +242,210 @@ const scalpChecks=[
  ["m10","ยอมไม่เข้าได้","ไม่มี Setup = ยังไม่เข้า"]
 ];
 const coachTradePlans=[
-  {
-    id:"ethusd-sell-wait-2026-06-07",
-    symbol:"ETHUSD",
-    market:"Crypto",
-    direction:"SELL",
-    status:"WAIT",
-    title:"ETHUSD — Sell Plan",
-    timeframes:"Week / D1 / H4",
-    strategy:"BOS_OB_RETEST",
-    strategyName:"H4 BOS + OB Retest + M15 Trigger",
-    entryTf:"H4",
-    orderType:"ยังไม่วาง Order",
-    tradeMode:"swing",
-    d1Trend:"down",
-    h4Position:"support",
-    bias:"sell",
-    structure:"trend",
-    supportZone:"1590-1550 / ถ้าหลุดจริงดู 1538",
-    resistanceZone:"1625-1665 / เหนือ 1690",
-    entry:"",
-    sl:1690,
-    tp1:1593,
-    tp2:1550,
-    tp3:1490,
-    minRR:2,
-    summary:"ETHUSD ยังเป็นขาลง แต่ราคาอยู่ใกล้แนวรับใหญ่ 1590-1550 จึงยังไม่ควร Sell ไล่ทันที",
-    tfPlan:`ETHUSD ยังเป็นขาลงใน Week / D1 / H4
-แต่ราคาอยู่ใกล้แนวรับใหญ่ 1590-1550
-แผนหลักคือรอราคาดีดขึ้นเข้า Sell Zone 1625-1665 ก่อน
-จากนั้นค่อยหา Sell จากสัญญาณ Reject หรือ BOS ลง
+{
+  id:"ethusd-a-main-sell-pullback-2026-06-07",
+  symbol:"ETHUSD",
+  market:"Crypto",
+  direction:"SELL",
+  status:"WAIT",
+  title:"ETHUSD — A Main Sell Pullback Plan",
+  timeframes:"Week / D1 / H4",
+  strategy:"BOS_OB_RETEST",
+  strategyName:"H4 BOS + OB Retest + M15 Trigger",
+  entryTf:"H4",
+  orderType:"ยังไม่วาง Order",
+  tradeMode:"swing",
+  d1Trend:"down",
+  h4Position:"resistance",
+  bias:"sell",
+  structure:"trend",
+  supportZone:"1609 / 1569-1550 / 1530-1491",
+  resistanceZone:"1648-1665 / 1689-1715 / 1728-1768",
+  entry:"",
+  sl:1728,
+  tp1:1609,
+  tp2:1550,
+  tp3:1491,
+  minRR:2,
+  summary:"ETHUSD ยังเป็นขาลงใหญ่ แต่ราคาเด้งจากแนวรับขึ้นมาใกล้โซนต้าน H4 จึงรอ Sell Pullback เท่านั้น ไม่ Sell ไล่",
+  tfPlan:`ETHUSD แผน A = Main Sell Pullback
 
-Sell Stop ใช้ได้เฉพาะเมื่อ H4 ปิดต่ำกว่า 1538-1550 จริงก่อน
-ถ้าหลุดแล้ว แผนที่ปลอดภัยกว่าคือรอ Retest กลับมาแถว 1550-1590 แล้วค่อย Sell`,
-    m15Plan:`ใช้ M15 เป็นจุดยืนยันเท่านั้น
-1. ราคาเด้งเข้า Sell Zone 1625-1665 ก่อน
-2. รอ M15 เกิด BOS/CHOCH ลง
-3. รอแท่ง Reject / Engulfing / Outside Bar
+ภาพรวม:
+Week / D1 / H4 ยังเป็นขาลงใหญ่
+ราคาเด้งจากแนวรับใหญ่ 1550-1530 ขึ้นมาแถว 1630-1648
+จุดนี้ยังไม่ Sell ทันที เพราะอาจเด้งต่อไปทดสอบโซนบน
+
+Sell Zone:
+1. โซนแรก 1648-1665
+2. โซนปลอดภัยกว่า 1689-1715
+3. ถ้าขึ้นลึก ระวัง 1728-1768
+
+เงื่อนไข Sell:
+1. ราคาเข้า Sell Zone
+2. H4 มีแท่ง Reject หรือปิดกลับลง
+3. M15 มี BOS / CHOCH ลง
 4. ใช้ Sell Stop ใต้ Low ของ Trigger
-5. SL เหนือ Swing M15 หรือเหนือโซน
-6. RR ต้องอย่างน้อย 1:2`,
-    entryReason:`ยังไม่เข้า เพราะราคาอยู่ใกล้แนวรับใหญ่ 1590-1550
-รอราคาเด้งเข้า Sell Zone หรือรอหลุดแล้ว Retest`,
-    exitPlan:`ยกเลิกแผนถ้า H4 ปิดกลับเหนือ 1690
+5. SL ต้องอยู่เหนือ Swing หรือเหนือโซน
+6. RR ต้องอย่างน้อย 1:2
+
+ห้าม Sell ไล่ถ้าราคาอยู่ใกล้ 1609 / 1569 / 1550`,
+  m15Plan:`ใช้ M15 เป็นตัวเข้าเท่านั้น
+
+Sell Trigger:
+1. ราคาเข้า 1648-1665 หรือ 1689-1715
+2. M15 Sweep High แล้วกลับตัวลง
+3. M15 เกิด BOS / CHOCH ลง
+4. มี Bearish Engulfing หรือ Outside Bar
+5. วาง Sell Stop ใต้ Low ของ Trigger
+6. ถ้าไม่ Trigger ภายใน 3-5 แท่ง M15 ให้ยกเลิกแผน`,
+  entryReason:`ยังไม่เข้า เพราะราคากำลังเด้งจากแนวรับใหญ่
+รอให้ราคาเข้า Sell Zone แล้วเกิด Reject/BOS ลงก่อน`,
+  exitPlan:`ยกเลิกแผน Sell ถ้า H4 ปิดเหนือ 1728 หรือ 1768
 หรือราคาไม่ Reject ใน Sell Zone
 หรือ RR ต่ำกว่า 1:2`,
-    riskNote:"ห้าม Sell ไล่ตรงแนวรับ 1590-1550 เพราะเสี่ยงโดนเด้งสวน",
-    checklist:[
-      "Week ยังเป็นขาลง",
-      "D1 ยังอยู่ใต้ EMA หลัก",
-      "H4 ยังทำ Lower High / Lower Low",
-      "ราคาเด้งเข้า Sell Zone 1625-1665",
-      "มีแท่ง Reject หรือแท่งแดงกลับตัว",
-      "M15 หรือ H4 มี BOS ลง",
-      "RR อย่างน้อย 1:2",
-      "ไม่ Sell ไล่ตรงแนวรับ 1590-1550"
-    ]
-  },
+  riskNote:"Crypto เหวี่ยงแรง ห้าม Sell ไล่ตรงแนวรับ ต้องรอ Pullback + Trigger เท่านั้น",
+  checklist:[
+    "Week ยังเป็นขาลง",
+    "D1 ยังเป็นขาลง",
+    "H4 เด้งเข้า Sell Zone",
+    "ราคาอยู่แถว 1648-1665 หรือ 1689-1715",
+    "มีแท่ง Reject บน H4",
+    "M15 มี BOS / CHOCH ลง",
+    "SL อยู่เหนือ Swing หรือเหนือโซน",
+    "TP มีพื้นที่ถึง 1609 / 1550 / 1491",
+    "RR อย่างน้อย 1:2",
+    "ไม่ Sell ไล่ตรงแนวรับ"
+  ]
+},
+
+{
+  id:"ethusd-b-counter-buy-2026-06-07",
+  symbol:"ETHUSD",
+  market:"Crypto",
+  direction:"BUY",
+  status:"WAIT",
+  title:"ETHUSD — B Counter Trend Buy Plan",
+  timeframes:"D1 / H4 / M15",
+  strategy:"COUNTER_TREND",
+  strategyName:"Counter Trend เฉพาะโซนใหญ่",
+  entryTf:"H4",
+  orderType:"ยังไม่วาง Order",
+  tradeMode:"swing",
+  d1Trend:"down",
+  h4Position:"support",
+  bias:"buy",
+  structure:"choch",
+  supportZone:"1585-1609 / 1569-1550",
+  resistanceZone:"1648 / 1689 / 1728",
+  entry:"",
+  sl:1530,
+  tp1:1648,
+  tp2:1689,
+  tp3:1728,
+  minRR:2,
+  summary:"ETHUSD Buy นี้เป็น Counter Trend เท่านั้น ใช้เล่นเด้งสั้นจากแนวรับใหญ่ ต้องรอ M15/H4 ยืนยัน ห้าม Buy ไล่",
+  tfPlan:`ETHUSD แผน B = Counter Trend Buy
+
+ภาพรวม:
+เทรนด์ใหญ่ยังลง แต่ราคาเด้งจากแนวรับใหญ่
+Buy ใช้ได้เฉพาะเป็นแผนสวนเทรนด์แบบสั้นเท่านั้น
+
+Buy Zone:
+1. รอราคาย่อกลับ 1585-1609
+2. ถ้าลึกให้ดู 1569-1550
+3. ห้าม Buy ตอนราคาไล่ขึ้นใกล้ 1648 แล้ว
+
+เงื่อนไข Buy:
+1. ราคา Pullback เข้า Buy Zone
+2. ไม่หลุด 1550 แบบแรง
+3. M15 เกิด CHOCH/BOS ขึ้น
+4. มี Bullish Engulfing หรือ Sweep Low
+5. RR ต้องอย่างน้อย 1:2`,
+  m15Plan:`Buy Trigger:
+1. ราคาเข้า 1585-1609 หรือ 1569-1550
+2. M15 Sweep Low แล้วกลับขึ้น
+3. M15 CHOCH / BOS ขึ้น
+4. วาง Buy Stop เหนือ High ของ Trigger
+5. SL ใต้ Swing Low
+6. ถ้าไม่ Trigger ภายใน 3-5 แท่ง M15 ให้ยกเลิก`,
+  entryReason:`ยังไม่ Buy ตอนนี้ เพราะราคาเด้งมาแล้ว
+รอ Pullback เข้า Buy Zone และให้ M15 ยืนยันก่อน`,
+  exitPlan:`ยกเลิกแผน Buy ถ้า H4 ปิดต่ำกว่า 1530
+หรือหลุด 1550 แล้วไม่มีแรงกลับตัว
+หรือ RR ต่ำกว่า 1:2`,
+  riskNote:"แผนนี้สวนเทรนด์ใหญ่ ใช้ Lot เล็ก และต้องออกบางส่วนที่ TP1",
+  checklist:[
+    "ยอมรับว่าเป็น Counter Trend",
+    "ราคา Pullback เข้า 1585-1609",
+    "ไม่หลุด 1550 แบบแรง",
+    "M15 Sweep Low แล้วกลับตัว",
+    "M15 CHOCH/BOS ขึ้น",
+    "SL อยู่ใต้ Swing Low",
+    "TP1 ใกล้ 1648",
+    "RR อย่างน้อย 1:2",
+    "ถ้าไม่ชัด = ไม่เข้า"
+  ]
+},
+
+{
+  id:"ethusd-c-sell-breakdown-2026-06-07",
+  symbol:"ETHUSD",
+  market:"Crypto",
+  direction:"SELL",
+  status:"WAIT",
+  title:"ETHUSD — C Sell Breakdown Plan",
+  timeframes:"Week / D1 / H4",
+  strategy:"BOS_OB_RETEST",
+  strategyName:"H4 BOS + OB Retest + M15 Trigger",
+  entryTf:"H4",
+  orderType:"Sell/Buy Stop",
+  tradeMode:"swing",
+  d1Trend:"down",
+  h4Position:"breakout",
+  bias:"sell",
+  structure:"bos",
+  supportZone:"1569-1550 / 1530",
+  resistanceZone:"1609-1633",
+  entry:"",
+  sl:1633,
+  tp1:1491,
+  tp2:1450,
+  tp3:1380,
+  minRR:2,
+  summary:"ETHUSD แผน Sell Breakdown ใช้เฉพาะเมื่อ H4 ปิดหลุด 1569-1550 จริง หรือหลุด 1530 แล้ว Retest ไม่ผ่าน",
+  tfPlan:`ETHUSD แผน C = Sell Breakdown
+
+ใช้เฉพาะกรณีราคาหลุดแนวรับจริง
+ไม่ใช้กับไส้เทียนแทงลงแล้วเด้งกลับ
+
+เงื่อนไข:
+1. H4 ปิดต่ำกว่า 1569-1550
+2. หรือราคาหลุด 1530 แล้ว Retest ไม่ผ่าน
+3. รอ Retest กลับมา 1550-1590 แล้วเกิด Reject
+4. M15 มี BOS/CHOCH ลง
+5. วาง SL เหนือ 1609 หรือ 1633
+6. TP ไปหา 1491 / 1450 / 1380`,
+  m15Plan:`Sell Breakdown Trigger:
+1. H4 ปิดหลุด 1569-1550
+2. รอ Retest กลับขึ้นมา
+3. M15 Reject หรือ BOS ลง
+4. Sell Stop ใต้ Low ของ Trigger
+5. ถ้าราคาเด้งกลับเหนือ 1633 ให้ยกเลิก`,
+  entryReason:`ยังไม่ใช้ Sell Breakdown จนกว่า H4 จะปิดหลุดแนวรับจริงก่อน`,
+  exitPlan:`ยกเลิกแผนถ้า H4 กลับมายืนเหนือ 1633
+หรือหลุดแล้วไม่มี Retest ให้เข้าแบบ RR สวย`,
+  riskNote:"ห้าม Sell Stop จากความกลัว ต้องรอ H4 ปิดหลุดจริงก่อน",
+  checklist:[
+    "H4 ปิดต่ำกว่า 1569-1550",
+    "ไม่ใช่แค่ไส้เทียนหลุด",
+    "รอ Retest กลับมา",
+    "M15 มี Reject/BOS ลง",
+    "SL อยู่เหนือ 1609 หรือ 1633",
+    "TP มีพื้นที่ถึง 1491 / 1450 / 1380",
+    "RR อย่างน้อย 1:2",
+    "ถ้าหลุดแล้วไล่ไม่ทัน = รอรอบใหม่"
+  ]
+},
 
   {
     id:"xauusd-sell-wait-template",
@@ -477,6 +624,107 @@ Trigger ที่ใช้ได้:
     ]
   }
 ];
+function makeForexWaitPlan(symbol, baseCurrency, quoteCurrency){
+  const isJpyPair = symbol.includes("JPY");
+
+  return {
+    id:`${symbol.toLowerCase()}-forex-wait-template`,
+    symbol:symbol,
+    market:"Forex",
+    direction:"WAIT",
+    status:"WAIT",
+    title:`${symbol} — Forex PA Wait Plan`,
+    timeframes:"D1 / H4 / M15",
+    strategy:"BOS_OB_RETEST",
+    strategyName:"H4 BOS + OB Retest + M15 Trigger",
+    entryTf:"H4",
+    orderType:"ยังไม่วาง Order",
+    tradeMode:"swing",
+    d1Trend:"sideway",
+    h4Position:"middle",
+    bias:"wait",
+    structure:"unclear",
+    supportZone:"รอกรอก Demand / Support Zone จากกราฟล่าสุด",
+    resistanceZone:"รอกรอก Supply / Resistance Zone จากกราฟล่าสุด",
+    entry:"",
+    sl:"",
+    tp1:"",
+    tp2:"",
+    tp3:"",
+    minRR:2,
+
+    summary:`${symbol} เป็น Template รอกราฟล่าสุดก่อนเลือก Buy หรือ Sell ห้ามเข้าออเดอร์ถ้า D1/H4 ยังไม่ให้ Bias ชัด`,
+
+    tfPlan:`${symbol} ใช้เป็นแผนรอ Price Action จาก D1 / H4 ก่อน
+
+กติกาหลัก:
+1. ดู D1 ก่อนว่าเทรนด์หลักขึ้น ลง หรือ Sideway
+2. ดู H4 ว่าราคาอยู่ที่แนวรับ แนวต้าน Supply Demand หรือกลางทาง
+3. ถ้า H4 อยู่กลางทาง = ยังไม่เข้า
+4. ถ้าจะ Buy ต้องรอ H4 มี BOS ขึ้น หรือเกิด Higher Low ชัด
+5. ถ้าจะ Sell ต้องรอ H4 มี BOS ลง หรือเกิด Lower High ชัด
+6. หลังได้โซนจาก H4 แล้ว ใช้ M15 เป็นจุดเข้าเท่านั้น
+7. RR ต้องอย่างน้อย 1:2
+8. ถ้ามีข่าวแรงของ ${baseCurrency} หรือ ${quoteCurrency} ใกล้เวลาเข้า = ยังไม่เข้า`,
+
+    m15Plan:`ใช้ M15 เป็น Trigger หลังจาก D1/H4 ให้โซนแล้วเท่านั้น
+
+Buy Trigger:
+- M15 Sweep Low แล้วกลับตัวขึ้น
+- M15 CHOCH / BOS ขึ้น
+- Bullish Engulfing / Outside Bar
+- Buy Stop เหนือ High ของ Trigger
+
+Sell Trigger:
+- M15 Sweep High แล้วกลับตัวลง
+- M15 CHOCH / BOS ลง
+- Bearish Engulfing / Outside Bar
+- Sell Stop ใต้ Low ของ Trigger
+
+ถ้าไม่เกิด Trigger ภายใน 3-5 แท่ง M15 ให้ยกเลิกแผน`,
+
+    entryReason:`ยังไม่เข้า เพราะเป็น Template รอกราฟล่าสุด
+ต้องเลือก Buy หรือ Sell หลังเห็น D1/H4 Structure ชัดก่อน`,
+
+    exitPlan:`ยกเลิกแผนถ้า:
+1. ราคาอยู่กลางกรอบ
+2. RR ต่ำกว่า 1:2
+3. ข่าว ${baseCurrency} หรือ ${quoteCurrency} แรงใกล้เวลาเข้า
+4. M15 ไม่เกิด Trigger
+5. ราคาทะลุโซนแล้วไม่ Retest`,
+
+    riskNote:isJpyPair
+      ? `คู่ JPY เหวี่ยงแรงและไส้เทียนยาว ต้องลด Lot เผื่อ Spread และเช็กข่าว ${baseCurrency}/${quoteCurrency}`
+      : `เช็กข่าว ${baseCurrency}/${quoteCurrency} ก่อนเข้าเสมอ และห้ามเทรดกลางทาง`,
+
+    checklist:[
+      `เช็กข่าว ${baseCurrency} และ ${quoteCurrency}`,
+      "D1 ให้ Bias ชัด",
+      "H4 ไม่อยู่กลางทาง",
+      "มี Support / Resistance / Supply / Demand ชัด",
+      "มี BOS หรือ CHOCH รองรับ",
+      "รอ Pullback / Retest ก่อน",
+      "M15 มี Trigger ยืนยัน",
+      "SL อยู่หลัง Swing หรือหลังโซน",
+      "TP มีพื้นที่ถึงแนวถัดไป",
+      "RR อย่างน้อย 1:2"
+    ]
+  };
+}
+
+coachTradePlans.push(
+  makeForexWaitPlan("AUDUSD","AUD","USD"),
+  makeForexWaitPlan("AUDJPY","AUD","JPY"),
+  makeForexWaitPlan("GBPUSD","GBP","USD"),
+  makeForexWaitPlan("USDCHF","USD","CHF"),
+  makeForexWaitPlan("USDJPY","USD","JPY"),
+  makeForexWaitPlan("EURUSD","EUR","USD"),
+  makeForexWaitPlan("USDCAD","USD","CAD"),
+  makeForexWaitPlan("EURAUD","EUR","AUD"),
+  makeForexWaitPlan("EURCHF","EUR","CHF"),
+  makeForexWaitPlan("EURJPY","EUR","JPY")
+);
+
 const strategyChecks={
  BOS_OB_RETEST:[["s_bos1","H4 เกิด BOS ไปทางแผน"],["s_bos2","ระบุ OB / Retest Zone ชัด"],["s_bos3","ราคา Pullback กลับเข้าโซน"],["s_bos4","ไม่เข้าเมื่อราคาอยู่กลางทาง"],["s_bos5","M15 มี Trigger ยืนยัน"],["s_bos6","Entry/SL/TP วางตาม Trigger"],["s_bos7","RR ถึง 1:2 ขึ้นไป"],["s_bos8","ข่าวไม่ชน"]],
  OB_SH_BOS_RTO:[["s_ob1","มี Swing High/Low สำคัญ"],["s_ob2","เกิด BOS หลัง Sweep/Reject"],["s_ob3","เลือก OB ต้นทางถูก"],["s_ob4","รอ RTO/Retest กลับโซน"],["s_ob5","มี Reject/Trigger"],["s_ob6","SL หลัง OB/Swing"],["s_ob7","TP ถึง liquidity ถัดไป"],["s_ob8","RR ผ่าน"]],
