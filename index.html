@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PA Coach Web App v3.4 - Anti Duplicate + Trade Lifecycle</title>
+<title>PA Coach Web App v3.5 - Coach Trade Plans</title>
 <style>
 :root{--bg:#07101f;--panel:#111c31;--panel2:#17243e;--line:#2b3b5f;--text:#eef6ff;--muted:#9fb2cf;--blue:#38bdf8;--violet:#a78bfa;--ok:#22c55e;--warn:#f59e0b;--bad:#ef4444;--info:#60a5fa}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 8% 0%,rgba(56,189,248,.18),transparent 34%),radial-gradient(circle at 88% 0%,rgba(167,139,250,.16),transparent 34%),var(--bg);color:var(--text);font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif}.wrap{max-width:1280px;margin:auto;padding:18px}.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;margin-bottom:14px}.card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:17px;box-shadow:0 14px 45px rgba(0,0,0,.28)}h1,h2,h3{margin:0 0 10px}h1{font-size:28px}h2{font-size:20px}h3{font-size:16px}p{margin:0 0 10px;color:var(--muted);line-height:1.65}.small{font-size:12px;color:var(--muted);line-height:1.5}.tabs,.steps,.btns{display:flex;gap:9px;flex-wrap:wrap}.tabs{margin:14px 0}.steps{margin:10px 0 14px}.tab,.step,button{font-family:inherit;font-weight:800;border:0;border-radius:13px;padding:10px 13px;cursor:pointer}.tab,.step,.ghost{background:rgba(255,255,255,.07);color:var(--text);border:1px solid rgba(255,255,255,.13)}.tab.active,.step.active{background:linear-gradient(90deg,rgba(56,189,248,.26),rgba(167,139,250,.24));border-color:rgba(56,189,248,.45)}.primary{background:linear-gradient(90deg,#38bdf8,#a78bfa);color:#06111e}.okbtn{background:rgba(34,197,94,.18);color:#bbf7d0;border:1px solid rgba(34,197,94,.38)}.danger{background:rgba(239,68,68,.18);color:#fecaca;border:1px solid rgba(239,68,68,.38)}.warnbtn{background:rgba(245,158,11,.17);color:#fed7aa;border:1px solid rgba(245,158,11,.38)}
@@ -19,7 +19,7 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
 <div class="wrap">
   <div class="hero">
     <div class="card">
-      <h1>PA Coach Web App v3.4</h1>
+      <h1>PA Coach Web App v3.5</h1>
       <p>Anti Duplicate + Trade Lifecycle + Cloud First Sync: ใช้กับ XAUUSD / Forex / Crypto แบบ Price Action Swing Trade และ M15 Execution</p>
       <span class="badge b-ok">Google Sheet Sync</span><span class="badge b-ok">Drive Images</span><span class="badge b-warn">กันข้อมูลซ้ำ</span><span class="badge b-info">PLAN → ACTIVE → CLOSED</span><span class="badge b-bad">ข่าวแดง/ส้ม = ยังไม่เข้า</span><span class="badge b-ok">เก็บ key เดิม paJournalV3</span>
     </div>
@@ -32,6 +32,7 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
 
   <div class="tabs">
     <button class="tab active" data-sec="planner">วางแผนแบบ Step</button>
+    <button class="tab" data-sec="tradePlans">แผนโค้ช PA</button>
     <button class="tab" data-sec="journal">บันทึกการเทรด</button>
     <button class="tab" data-sec="stats">สถิติ</button>
     <button class="tab" data-sec="settings">ตั้งค่า / Sync</button>
@@ -145,7 +146,13 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
       </div>
     </div>
   </section>
-
+<section id="tradePlans" class="section">
+  <div class="card">
+    <h2>แผนโค้ช PA</h2>
+    <p>แผนจากการวิเคราะห์ Week / D1 / H4 สามารถกดโหลดเข้า Planner แล้วบันทึกเข้า Journal ได้</p>
+    <div id="coachPlanCards" class="grid"></div>
+  </div>
+</section>
   <section id="journal" class="section">
     <div class="card">
       <h2>Journal v3.4</h2>
@@ -194,14 +201,14 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
     <div class="card" style="margin-top:14px"><h2>วิธีติดตั้งสั้น ๆ</h2><ol class="small"><li>เอาไฟล์ <b>index.html</b> v3.4 ไปทับใน repo <b>pa-coach-trade-journal</b></li><li>เอาไฟล์ <b>Code.gs</b> v3.4 ไปทับใน Apps Script</li><li>ตั้ง Script Properties: <b>PA_COACH_SECRET</b> และถ้ามีให้ใส่ <b>PA_COACH_SPREADSHEET_ID</b></li><li>Run <b>setupDatabase</b> ครั้งเดียว แล้ว Deploy → Manage deployments → Edit → New version</li><li>เปิดเว็บ GitHub Pages กด Settings → Test Sync → Load from Google Sheet</li></ol></div>
   </section>
 
-  <div class="footer">PA Coach Web App v3.4 — เครื่องมือฝึกวินัยและบันทึกการเทรด ไม่ใช่สัญญาณการันตีกำไร</div>
+  <div class="footer">PA Coach Web App v3.5 — เครื่องมือฝึกวินัยและบันทึกการเทรด ไม่ใช่สัญญาณการันตีกำไร</div>
 </div>
 
 <div id="modal" class="modal"><div class="card"><div class="modalTop"><h2 id="modalTitle">รูปกราฟ</h2><div><button class="ghost" onclick="toggleBrowserFullscreen()">เต็มจอ</button> <button class="ghost" onclick="closeImg()">ปิด</button></div></div><img id="modalImg" onclick="toggleBrowserFullscreen()"></div></div>
 
 <script>
 const $=id=>document.getElementById(id);
-const APP_VERSION="v3.4";
+const APP_VERSION="v3.5";
 const storeKey="paJournalV3";              // ใช้ key เดิมจาก v3.3 เพื่อให้ข้อมูลเก่ายังขึ้น
 const draftKey="paJournalDraftV34";
 const syncSettingKey="paSyncSettingV33";   // ใช้ key เดิมจาก v3.3 เพื่อไม่ต้องกรอก URL/Secret ใหม่
@@ -233,6 +240,71 @@ const scalpChecks=[
  ["m8","Expire 3-5 แท่ง M15","ไม่ Trigger ให้ยกเลิก"],
  ["m9","ข่าวไม่ชนช่วงเข้า","ส้ม/แดงใกล้เวลา = รอ"],
  ["m10","ยอมไม่เข้าได้","ไม่มี Setup = ยังไม่เข้า"]
+];
+const coachTradePlans=[
+  {
+    id:"ethusd-sell-wait-2026-06-07",
+    symbol:"ETHUSD",
+    market:"Crypto",
+    direction:"SELL",
+    status:"WAIT",
+    title:"ETHUSD — Sell Plan",
+    timeframes:"Week / D1 / H4",
+    strategy:"BOS_OB_RETEST",
+    strategyName:"H4 BOS + OB Retest + M15 Trigger",
+    entryTf:"H4",
+    orderType:"ยังไม่วาง Order",
+    tradeMode:"swing",
+    d1Trend:"down",
+    h4Position:"support",
+    bias:"sell",
+    structure:"trend",
+    supportZone:"1590-1550 / ถ้าหลุดจริงดู 1538",
+    resistanceZone:"1625-1665 / เหนือ 1690",
+    entry:"",
+    sl:1690,
+    tp1:1593,
+    tp2:1550,
+    tp3:1490,
+    minRR:2,
+    summary:"Week / D1 / H4 ยังเป็นขาลง แต่ราคาอยู่ใกล้แนวรับใหญ่ 1590-1550 จึงยังไม่ควร Sell ไล่ทันที",
+    tfPlan:`ETHUSD ยังเป็นขาลงใน Week / D1 / H4
+แต่ราคากำลังอยู่ใกล้แนวรับใหญ่ 1590-1550
+แผนหลักคือรอราคาดีดขึ้นเข้า Sell Zone 1625-1665 ก่อน
+จากนั้นค่อยหา Sell จากสัญญาณ Reject หรือ BOS ลง
+
+Sell Stop ใช้ได้เฉพาะเมื่อ H4 ปิดต่ำกว่า 1538-1550 จริงก่อน
+ไม่ใช้แค่ไส้เทียนแทงลง
+ถ้าหลุดแล้ว แผนที่ปลอดภัยกว่าคือรอ Retest กลับมาแถว 1550-1590 แล้วค่อย Sell`,
+    m15Plan:`ใช้ M15 เป็นจุดยืนยันเท่านั้น
+1. ราคาเด้งเข้า Sell Zone 1625-1665 ก่อน
+2. รอ M15 เกิด BOS/CHOCH ลง
+3. รอแท่ง Reject / Engulfing / Outside Bar
+4. ใช้ Sell Stop ใต้ Low ของ Trigger
+5. SL เหนือ Swing M15 หรือเหนือโซน
+6. RR ต้องอย่างน้อย 1:2
+7. ถ้าไม่ Trigger ภายใน 3-5 แท่ง M15 ให้ยกเลิกแผน`,
+    entryReason:`ยังไม่เข้า เพราะราคาอยู่ใกล้แนวรับใหญ่ 1590-1550
+รออย่างใดอย่างหนึ่ง:
+1. ราคาเด้งขึ้น Sell Zone 1625-1665 แล้วเกิด Reject
+2. หรือ H4 ปิดหลุด 1538-1550 แล้วรอ Retest ค่อย Sell`,
+    exitPlan:`ยกเลิกแผนถ้า H4 ปิดกลับเหนือ 1690
+หรือราคาไม่ยอม Reject ใน Sell Zone
+หรือมีข่าวแรงชนช่วงเข้าออเดอร์
+หรือ RR ต่ำกว่า 1:2`,
+    riskNote:"ห้าม Sell ไล่ตรงแนวรับ 1590-1550 เพราะเสี่ยงโดนเด้งสวน",
+    checklist:[
+      "Week ยังเป็นขาลง",
+      "D1 ยังอยู่ใต้ EMA หลัก",
+      "H4 ยังทำ Lower High / Lower Low",
+      "ราคาเด้งเข้า Sell Zone 1625-1665",
+      "มีแท่ง Reject หรือแท่งแดงกลับตัว",
+      "M15 หรือ H4 มี BOS ลง",
+      "วาง SL ได้ชัดเจนเหนือแนวต้าน",
+      "RR อย่างน้อย 1:2",
+      "ไม่ Sell ไล่ตรงแนวรับ 1590-1550"
+    ]
+  }
 ];
 const strategyChecks={
  BOS_OB_RETEST:[["s_bos1","H4 เกิด BOS ไปทางแผน"],["s_bos2","ระบุ OB / Retest Zone ชัด"],["s_bos3","ราคา Pullback กลับเข้าโซน"],["s_bos4","ไม่เข้าเมื่อราคาอยู่กลางทาง"],["s_bos5","M15 มี Trigger ยืนยัน"],["s_bos6","Entry/SL/TP วางตาม Trigger"],["s_bos7","RR ถึง 1:2 ขึ้นไป"],["s_bos8","ข่าวไม่ชน"]],
@@ -273,7 +345,137 @@ function migrateOldLocal(){
    try{const arr=JSON.parse(localStorage.getItem(k)||"[]"); if(Array.isArray(arr)&&arr.length){localStorage.setItem(storeKey,JSON.stringify(dedupeTrades(arr))); break;}}catch(e){}
  }
 }
+function renderCoachTradePlans(){
+ const box=$("coachPlanCards");
+ if(!box) return;
 
+ box.innerHTML=coachTradePlans.map(p=>`
+   <div class="c6">
+     <div class="card">
+       <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+         <div>
+           <h3 style="color:#facc15">${esc(p.title)}</h3>
+           <p>${esc(p.timeframes)} | ${esc(p.strategyName)}</p>
+         </div>
+         <div>
+           <span class="pill redp">${esc(p.direction)}</span>
+           <span class="pill orangep">${esc(p.status)}</span>
+         </div>
+       </div>
+
+       <div class="note" style="margin-top:10px">
+         ${esc(p.summary)}
+       </div>
+
+       <div class="grid" style="margin-top:12px">
+         <div class="c6">
+           <div class="note">
+             <b>Sell Zone</b><br>
+             ${esc(p.resistanceZone)}
+           </div>
+         </div>
+         <div class="c6">
+           <div class="note">
+             <b>Support / Break Zone</b><br>
+             ${esc(p.supportZone)}
+           </div>
+         </div>
+         <div class="c4">
+           <span class="badge b-bad">SL: ${esc(p.sl)}</span>
+         </div>
+         <div class="c8">
+           <span class="badge b-ok">TP1 ${esc(p.tp1)}</span>
+           <span class="badge b-ok">TP2 ${esc(p.tp2)}</span>
+           <span class="badge b-ok">TP3 ${esc(p.tp3)}</span>
+         </div>
+       </div>
+
+       <h3 style="margin-top:14px">Checklist สำคัญ</h3>
+       <div class="small">
+         ${(p.checklist||[]).map(x=>`• ${esc(x)}`).join("<br>")}
+       </div>
+
+       <div class="btns" style="margin-top:14px">
+         <button class="primary" onclick="loadCoachPlanToPlanner('${esc(p.id)}')">โหลดเข้า Planner</button>
+         <button class="ghost" onclick="copyCoachPlan('${esc(p.id)}')">Copy แผน</button>
+       </div>
+     </div>
+   </div>
+ `).join("");
+}
+
+function loadCoachPlanToPlanner(id){
+ const p=coachTradePlans.find(x=>x.id===id);
+ if(!p) return;
+
+ $("symbol").value=p.symbol;
+ $("market").value=p.market;
+ $("strategy").value=p.strategy;
+ $("direction").value=p.direction;
+ $("entryTf").value=p.entryTf;
+ $("orderType").value=p.orderType;
+ $("tradeMode").value=p.tradeMode;
+ $("d1Trend").value=p.d1Trend;
+ $("h4Position").value=p.h4Position;
+ $("bias").value=p.bias;
+ $("structure").value=p.structure;
+ $("supportZone").value=p.supportZone;
+ $("resistanceZone").value=p.resistanceZone;
+ $("tfPlan").value=p.tfPlan;
+ $("entry").value=p.entry;
+ $("sl").value=p.sl;
+ $("tp1").value=p.tp1;
+ $("tp2").value=p.tp2;
+ $("tp3").value=p.tp3;
+ $("minRR").value=p.minRR;
+ $("riskNote").value=p.riskNote;
+ $("m15Plan").value=p.m15Plan;
+ $("entryReason").value=p.entryReason;
+ $("exitPlan").value=p.exitPlan;
+
+ renderStrategyChecklist();
+ evalAll();
+ autoSaveDraft();
+ showSec("planner");
+ showStep("s1");
+
+ alert("โหลดแผน ETHUSD เข้า Planner แล้วครับ ให้พี่ไล่ Step แล้วค่อยบันทึกเข้า Journal");
+}
+
+function copyCoachPlan(id){
+ const p=coachTradePlans.find(x=>x.id===id);
+ if(!p) return;
+
+ const txt=`${p.title}
+Status: ${p.status}
+Direction: ${p.direction}
+Timeframes: ${p.timeframes}
+
+Summary:
+${p.summary}
+
+Sell Zone:
+${p.resistanceZone}
+
+Support / Break Zone:
+${p.supportZone}
+
+SL: ${p.sl}
+TP1: ${p.tp1}
+TP2: ${p.tp2}
+TP3: ${p.tp3}
+
+Plan:
+${p.tfPlan}
+
+M15 Trigger:
+${p.m15Plan}
+
+Risk Note:
+${p.riskNote}`;
+
+ navigator.clipboard.writeText(txt).then(()=>alert("Copy แผนโค้ช PA แล้วครับ"));
+}
 function showSec(id){document.querySelectorAll(".section").forEach(x=>x.classList.toggle("active",x.id===id));document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.sec===id)); if(id==="journal") renderJournal(); if(id==="stats") renderStats();}
 function showStep(id){stepIndex=Math.max(0,stepList.indexOf(id));document.querySelectorAll(".panel").forEach(x=>x.classList.toggle("active",x.id===id));document.querySelectorAll(".step").forEach(x=>x.classList.toggle("active",x.dataset.step===id)); evalAll(); autoSaveDraft();}
 function nextStep(){showStep(stepList[Math.min(stepIndex+1,stepList.length-1)]);} function prevStep(){showStep(stepList[Math.max(stepIndex-1,0)]);}
@@ -492,109 +694,9 @@ function init(){
  migrateOldLocal();
  $("tradeDate").value=$("tradeDate").value||nowDate(); $("tradeTime").value=$("tradeTime").value||nowTime();
  renderChecks(); addNewsRow({date:nowDate(),time:"",cur:"USD",impact:"red",event:"",rel:true}); clearNews();
- bindEvents(); loadSyncSetting(); renderJournal(); renderStats(); evalAll(); setTimeout(tryRestoreDraftOnLoad,250);
+ bindEvents(); loadSyncSetting(); renderJournal(); renderStats(); renderCoachTradePlans(); evalAll(); setTimeout(tryRestoreDraftOnLoad,250);
 }
 init();
 </script>
-<!-- Coach PA Trade Plan: ETHUSD -->
-<section id="coach-pa-ethusd-plan" style="
-  max-width: 1100px;
-  margin: 24px auto;
-  padding: 20px;
-  border-radius: 18px;
-  background: #101827;
-  color: #e5e7eb;
-  font-family: Tahoma, Arial, sans-serif;
-  border: 1px solid #334155;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-">
-  <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-    <div>
-      <h2 style="margin:0 0 8px; color:#facc15;">ETHUSD — Coach PA Sell Plan</h2>
-      <p style="margin:0; color:#cbd5e1;">Week / Daily / H4 | Price Action Swing Trade</p>
-    </div>
-
-    <div style="
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: #7f1d1d;
-      color: #fecaca;
-      font-weight: bold;
-      height: fit-content;
-    ">
-      Status: WAIT / ยังไม่เข้า
-    </div>
-  </div>
-
-  <hr style="border:0; border-top:1px solid #334155; margin:18px 0;">
-
-  <div style="
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap:12px;
-  ">
-    <div style="background:#0f172a; padding:14px; border-radius:14px; border:1px solid #334155;">
-      <strong style="color:#f87171;">Bias หลัก</strong>
-      <p style="margin:8px 0 0;">Sell ตามเทรนด์ใหญ่</p>
-    </div>
-
-    <div style="background:#0f172a; padding:14px; border-radius:14px; border:1px solid #334155;">
-      <strong style="color:#facc15;">Sell Zone</strong>
-      <p style="margin:8px 0 0;">1625 - 1665</p>
-    </div>
-
-    <div style="background:#0f172a; padding:14px; border-radius:14px; border:1px solid #334155;">
-      <strong style="color:#fb7185;">Stop Loss</strong>
-      <p style="margin:8px 0 0;">เหนือ 1690</p>
-    </div>
-
-    <div style="background:#0f172a; padding:14px; border-radius:14px; border:1px solid #334155;">
-      <strong style="color:#22c55e;">Take Profit</strong>
-      <p style="margin:8px 0 0;">TP1 1593 / TP2 1550 / TP3 1485-1500</p>
-    </div>
-  </div>
-
-  <div style="margin-top:18px; background:#111827; padding:16px; border-radius:14px; border-left:5px solid #facc15;">
-    <h3 style="margin:0 0 10px; color:#facc15;">แผนหลักของโค้ช PA</h3>
-    <p style="margin:0; line-height:1.7;">
-      ETHUSD ยังเป็นขาลงใน Week / D1 / H4 แต่ตอนนี้ราคาอยู่ใกล้แนวรับใหญ่ 1590 - 1550
-      จึงยังไม่ควร Sell ไล่ทันที ให้รอราคาดีดขึ้นเข้าโซน 1625 - 1665 แล้วค่อยหา Sell
-      จากสัญญาณ Reject หรือ BOS ลง
-    </p>
-  </div>
-
-  <div style="margin-top:18px; background:#111827; padding:16px; border-radius:14px; border-left:5px solid #38bdf8;">
-    <h3 style="margin:0 0 10px; color:#38bdf8;">Sell Stop ใช้ได้เมื่อไร?</h3>
-    <p style="margin:0; line-height:1.7;">
-      ใช้ Sell Stop เฉพาะเมื่อ H4 ปิดต่ำกว่า 1538 - 1550 จริงก่อน
-      ห้ามใช้แค่ไส้เทียนแทงลง ถ้าหลุดแล้วดีที่สุดคือรอ Retest กลับมาแถว 1550 - 1590 แล้วค่อย Sell
-    </p>
-  </div>
-
-  <div style="margin-top:18px;">
-    <h3 style="color:#e5e7eb;">Checklist ก่อนเข้า Sell</h3>
-
-    <label style="display:block; margin:8px 0;"><input type="checkbox"> Week ยังเป็นขาลง</label>
-    <label style="display:block; margin:8px 0;"><input type="checkbox"> D1 ยังอยู่ใต้ EMA หลัก</label>
-    <label style="display:block; margin:8px 0;"><input type="checkbox"> H4 ยังทำ Lower High / Lower Low</label>
-    <label style="display:block; margin:8px 0;"><input type="checkbox"> ราคาเด้งเข้า Sell Zone 1625 - 1665</label>
-    <label style="display:block; margin:8px 0;"><input type="checkbox"> มีแท่ง Reject หรือแท่งแดงกลับตัว</label>
-    <label style="display:block; margin:8px 0;"><input type="checkbox"> M15 หรือ H4 มี BOS ลง</label>
-    <label style="display:block; margin:8px 0;"><input type="checkbox"> วาง SL ได้ชัดเจนเหนือแนวต้าน</label>
-    <label style="display:block; margin:8px 0;"><input type="checkbox"> RR อย่างน้อย 1:2</label>
-    <label style="display:block; margin:8px 0;"><input type="checkbox"> ไม่ Sell ไล่ตรงแนวรับ 1590 - 1550</label>
-  </div>
-
-  <div style="
-    margin-top:18px;
-    padding:14px;
-    border-radius:14px;
-    background:#1e293b;
-    color:#f8fafc;
-  ">
-    <strong>Coach PA Note:</strong>
-    ตอนนี้ยังไม่เข้า รอ Action ก่อน ไม้ที่ดีต้องได้ SL สั้น TP ไกล และ RR คุ้ม
-  </div>
-</section>
 </body>
 </html>
