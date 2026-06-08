@@ -71,7 +71,7 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
           <div class="c3"><label>เวลา</label><input id="tradeTime" type="time"></div>
           <div class="c3"><label>Symbol</label><input id="symbol" value="XAUUSD"></div>
           <div class="c3"><label>ตลาด</label><select id="market"><option>Gold</option><option>Forex</option><option>Crypto</option></select></div>
-          <div class="c4"><label>Strategy หลัก</label><select id="strategy"><option value="BOS_OB_RETEST" selected>H4 BOS + OB Retest + M15 Trigger</option><option value="OB_SH_BOS_RTO">Order Block: SH + BOS + RTO</option><option value="COUNTER_TREND">Counter Trend เฉพาะโซนใหญ่</option><option value="DOUBLE_DOJI">Double Doji</option><option value="QM_PATTERN">QM Pattern</option><option value="M15_SCALP">M15 Scalping รีด RR</option><option value="MM_PROCESS">MM / Process Gate</option></select></div>
+          <div class="c4"><label>Strategy หลัก</label><select id="strategy"><option value="BOS_OB_RETEST" selected>H4 BOS + OB Retest + M15 Trigger</option><option value="H4_RETEST_M15_EMA200">H4 Retest + M15 EMA200 + Winning Bar</option><option value="OB_SH_BOS_RTO">Order Block: SH + BOS + RTO</option><option value="COUNTER_TREND">Counter Trend เฉพาะโซนใหญ่</option><option value="DOUBLE_DOJI">Double Doji</option><option value="QM_PATTERN">QM Pattern</option><option value="M15_SCALP">M15 Scalping รีด RR</option><option value="MM_PROCESS">MM / Process Gate</option></select></div>
           <div class="c2"><label>Direction</label><select id="direction"><option>SELL</option><option>BUY</option><option>WAIT</option></select></div>
           <div class="c2"><label>Entry TF</label><select id="entryTf"><option>D1</option><option selected>H4</option><option>H1</option><option>M15</option></select></div>
           <div class="c2"><label>Order Type</label><select id="orderType"><option>Sell/Buy Stop</option><option>Sell/Buy Limit</option><option>Market</option><option selected>ยังไม่วาง Order</option></select></div>
@@ -130,7 +130,7 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
           <div class="c2"><label>ทุนบัญชี</label><input id="balance" type="number" value="1000"></div>
           <div class="c2"><label>Risk %</label><input id="riskPercent" type="number" step="0.1" value="0.5"></div>
           <div class="c2"><label>Min RR</label><input id="minRR" type="number" step="0.1" value="2"></div>
-          <div class="c4"><label>M15 Entry Type</label><select id="m15EntryType"><option>ยังไม่เข้า</option><option>Bearish/Bullish Outside Bar</option><option>M15 BOS / CHOCH</option><option>OB Retest Reject</option><option>Break + Retest</option><option>Pullback EMA</option><option>Liquidity Sweep</option><option>Sell/Buy Stop ใต้/เหนือ Trigger</option><option>Aggressive Candle Close</option></select></div>
+          <div class="c4"><label>M15 Entry Type</label><select id="m15EntryType"><option>ยังไม่เข้า</option><option>M15 Winning Bar ที่โซน H4</option><option>Bearish/Bullish Outside Bar</option><option>M15 BOS / CHOCH</option><option>OB Retest Reject</option><option>Break + Retest</option><option>Pullback EMA</option><option>Liquidity Sweep</option><option>Sell/Buy Stop ใต้/เหนือ Trigger</option><option>Aggressive Candle Close</option></select></div>
           <div class="c2"><label>Expire M15 bars</label><input id="m15ExpireBars" type="number" value="3"></div>
           <div class="c12"><label>Risk Note</label><input id="riskNote" placeholder="เช่น ถ้าข่าวแดงใกล้เวลาเข้า ยกเลิกแผน"></div>
           <div class="c12"><div id="rrBox" class="note">กรอก Entry/SL/TP เพื่อคำนวณ RR</div></div>
@@ -146,12 +146,31 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
           <div class="c6"><label>รูปกราฟ H4</label><input id="chartH4" type="file" accept="image/*"><div id="previewH4" class="preview">ยังไม่มีรูป H4</div></div>
           <div class="c6"><label>รูปกราฟ M15 / จุดเข้า</label><input id="chartM15" type="file" accept="image/*"><div id="previewM15" class="preview">ยังไม่มีรูป M15</div></div>
           <div class="c12"><label>แผน M15 สำหรับรีด RR</label><textarea id="m15Plan">ใช้ M15 เป็นจุดเข้าเท่านั้น หลัง H4 ให้ Bias และโซนแล้ว
-1. ราคาเข้า OB H4 / Retest Zone แล้วเท่านั้น
-2. ห้ามกด Sell/Buy ทันทีเมื่อแตะโซน ต้องรอ M15 Trigger
-3. Trigger ที่ใช้ได้: Outside Bar, Engulfing, BOS/CHOCH, Reject ชัด
-4. Safe Entry: Sell Stop ใต้ Low หรือ Buy Stop เหนือ High ของ Trigger
-5. SL หลัง Swing M15 + เผื่อ Spread
-6. RR ต้องอย่างน้อย 1:2 และถ้าไม่ Trigger ภายใน 3-5 แท่ง M15 ให้ยกเลิกแผน</textarea></div>
+
+กฎเหล็ก:
+1. H4 ต้องปิดแท่งก่อน
+2. ราคาเข้า H4 Retest Zone แล้วเท่านั้น
+3. ห้ามกด Sell/Buy ทันทีเมื่อแตะโซน
+4. ต้องรอ M15 Trigger ที่ปิดแท่งแล้ว
+
+Trigger ที่ใช้ได้:
+1. M15 Winning Bar ที่โซน H4
+2. Reject / Engulfing / Outside Bar
+3. Sweep High/Low แล้วกลับตัว
+4. BOS / CHOCH ไปทางแผน
+5. EMA200 M15 สนับสนุน
+
+Sell:
+- ราคาอยู่ใต้ EMA200 M15 หรือหลุด EMA200 แล้ว Retest ไม่ผ่าน
+- ใช้ Sell Stop ใต้ Low ของ Winning Bar / Trigger
+- SL เหนือ High ของ Winning Bar หรือเหนือ Swing M15
+
+Buy:
+- ราคาอยู่เหนือ EMA200 M15 หรือทะลุ EMA200 แล้ว Retest ไม่หลุด
+- ใช้ Buy Stop เหนือ High ของ Winning Bar / Trigger
+- SL ใต้ Low ของ Winning Bar หรือใต้ Swing M15
+
+ถ้าไม่มี Trigger ภายใน 3-5 แท่ง M15 ให้ยกเลิกแผน</textarea></div>
           <div class="c12"><label>เหตุผลเข้า / เหตุผลไม่เข้า</label><textarea id="entryReason">ยังไม่เข้าเพราะต้องให้ครบลำดับก่อน: H4 BOS → ราคา Retest OB H4 → M15 มี Trigger ยืนยัน</textarea></div>
           <div class="c12"><label>แผนออก / ยกเลิกแผน</label><textarea id="exitPlan">ยกเลิกแผนถ้ามีข่าว USD แดง/ส้มใกล้เวลาเข้า, ราคาออกจาก OB แล้วไม่ Trigger, หรือ RR ไม่ถึง 1:2</textarea></div>
         </div>
@@ -237,6 +256,7 @@ let editingPlanId=null, reviewingId=null, reviewImagesBuffer=[];
 let syncTimer=null;
 
 const checks=[
+["c0","H4 ปิดแท่งแล้ว","ห้ามตัดสินใจจากแท่ง H4 ที่ยังไม่ปิด เพราะอาจเป็นไส้หลอก / Fake Break"],
  ["c1","D1/H4 มี Bias ชัด","ไม่เดาจาก M15 อย่างเดียว"],
  ["c2","ราคาอยู่ที่โซนสำคัญ","แนวรับ/แนวต้าน/OB/Supply Demand"],
  ["c3","มี BOS/CHOCH หรือโครงสร้างรองรับ","ไม่เข้าเพราะแท่งเดียว"],
@@ -933,6 +953,23 @@ const strategyChecks={
  COUNTER_TREND:[["s_ct1","อยู่โซนใหญ่ D1/H4 เท่านั้น"],["s_ct2","มี Sweep/False Break"],["s_ct3","มี Rejection แรง"],["s_ct4","M15/H1 เกิด CHOCH/BOS กลับตัว"],["s_ct5","เข้าเฉพาะ Retest หลัง CHOCH"],["s_ct6","TP1 สั้น ชนแนวแรกต้องระวัง"],["s_ct7","Risk ไม่เกิน 0.5%"],["s_ct8","ไม่มีข่าวแรงชน"]],
  DOUBLE_DOJI:[["s_dd1","เกิด Double Doji ที่โซนสำคัญ"],["s_dd2","แท่งก่อนหน้ามีแรงชัด"],["s_dd3","รอ Break กรอบ Doji"],["s_dd4","SL หลังกรอบ/หลัง Swing"],["s_dd5","RR ผ่านก่อนวาง order"]],
  QM_PATTERN:[["s_qm1","มีโครงสร้าง HH/HL หรือ LL/LH ก่อน"],["s_qm2","เกิด Break Structure"],["s_qm3","มี Left Shoulder / Head / Right Shoulder"],["s_qm4","รอราคา Retest QML"],["s_qm5","มี Trigger"],["s_qm6","SL หลัง Head"],["s_qm7","RR ผ่าน"]],
+H4_RETEST_M15_EMA200:[
+  ["s_ema200_0","H4 ต้องปิดแท่งก่อน","ห้ามใช้แท่ง H4 ที่ยังวิ่งอยู่มาตัดสินใจเข้าออเดอร์"],
+  ["s_ema200_1","H4 มี Bias ชัด","Sell = H4 ขาลง / Buy = H4 อยู่โซน Demand หรือกลับตัวชัด"],
+  ["s_ema200_2","ราคาเข้าโซน H4 แล้ว","Sell Zone / Buy Zone ต้องมาจาก H4 ไม่ใช่เดาจาก M15"],
+  ["s_ema200_3","โซนเกิดจาก Swing Low/High เดิม","Sell = หลุด Swing Low แล้ว Retest / Buy = ทะลุ Swing High แล้ว Retest"],
+  ["s_ema200_4","M15 ต้องปิดแท่งก่อน","ห้ามใช้แท่ง M15 ที่ยังไม่ปิดเป็น Trigger"],
+  ["s_ema200_5","M15 มี Winning Bar ที่โซน H4","Sell = แท่งแดงชนะ / Buy = แท่งเขียวชนะ ต้องเกิดตรงแนว H4"],
+  ["s_ema200_6","Winning Bar ปิดไปทางเดียวกับแผน","Sell = ปิดใกล้ Low / Buy = ปิดใกล้ High"],
+  ["s_ema200_7","M15 มี Reject / Sweep / Engulfing เพิ่มแรงยืนยัน","ถ้ามีร่วมกับ Winning Bar จะดีกว่า"],
+  ["s_ema200_8","M15 มี BOS หรือ CHOCH ไปทางแผน","Sell ต้องเห็นโครงสร้างลง / Buy ต้องเห็นโครงสร้างขึ้น"],
+  ["s_ema200_9","EMA200 M15 สนับสนุน","Sell = ราคาอยู่ใต้ EMA200 / Buy = ราคาอยู่เหนือ EMA200"],
+  ["s_ema200_10","ถ้ายังไม่ผ่าน EMA200 ต้องรอ","Sell รอหลุด EMA200 หรือ Retest EMA200 ไม่ผ่าน / Buy รอทะลุ EMA200 หรือ Retest ไม่หลุด"],
+  ["s_ema200_11","Entry ใช้ Stop ใต้/เหนือ Winning Bar","Sell Stop ใต้ Low / Buy Stop เหนือ High ห้าม Market ไล่"],
+  ["s_ema200_12","SL อยู่หลัง Winning Bar หรือหลัง Swing","SL ต้องอยู่ตรงจุดที่ถ้าชนแล้วแผนผิดจริง"],
+  ["s_ema200_13","TP มีพื้นที่ถึงแนวถัดไป","TP1 = Low/High ใกล้สุด, TP2 = แนวรับ/ต้านถัดไป"],
+  ["s_ema200_14","RR อย่างน้อย 1:2","ถ้า RR ไม่ถึง ให้บันทึก NO_TRADE"]
+], 
  M15_SCALP:[["s_sc1","H4 ให้ Bias และโซนแล้ว"],["s_sc2","M15 เข้าโซนจริง"],["s_sc3","M15 Trigger ชัด"],["s_sc4","Entry ไม่ไล่ราคา"],["s_sc5","Expire แผนชัด"],["s_sc6","RR ผ่าน"],["s_sc7","ข่าวไม่ชน"]],
  MM_PROCESS:[["s_mm1","Lot คำนวณจาก Risk"],["s_mm2","ยอมเสียได้ถ้าโดน SL"],["s_mm3","ไม่เข้าเกิน 1-2 ไม้ติดกัน"],["s_mm4","มีแผนปิด TP/SL"],["s_mm5","เขียนบทเรียนหลังจบไม้"]]
 };
