@@ -13,6 +13,55 @@
 table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255,255,255,.08);padding:9px;text-align:left;vertical-align:top;font-size:13px}th{background:rgba(255,255,255,.055);font-size:12px;color:#d5e3f6}.tablewrap{overflow:auto;margin-top:10px;max-height:560px;border:1px solid rgba(255,255,255,.08);border-radius:14px}.pill{display:inline-block;border-radius:999px;padding:4px 8px;font-size:12px;border:1px solid rgba(255,255,255,.13);white-space:nowrap}.redp{color:#fecaca;background:rgba(239,68,68,.16);border-color:rgba(239,68,68,.36)}.orangep{color:#fed7aa;background:rgba(245,158,11,.16);border-color:rgba(245,158,11,.36)}.yellowp{color:#fef08a;background:rgba(234,179,8,.12);border-color:rgba(234,179,8,.30)}.greenp{color:#bbf7d0;background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.32)}.bluep{color:#bae6fd;background:rgba(56,189,248,.12);border-color:rgba(56,189,248,.32)}
 .check{display:flex;gap:9px;align-items:flex-start;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);border-radius:13px;padding:10px;min-height:62px}.check input{width:auto;margin-top:4px;accent-color:#38bdf8}.check b{display:block}.check small{display:block;color:var(--muted);line-height:1.45}.preview{border:1px dashed rgba(255,255,255,.20);border-radius:14px;min-height:112px;padding:8px;background:#0c1629}.preview img{width:100%;max-height:230px;object-fit:contain;border-radius:10px}.thumb{width:94px;max-height:58px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,.16);cursor:pointer}.result-img-grid{display:flex;gap:10px;flex-wrap:wrap}.result-img-card{position:relative;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);border-radius:12px;padding:7px}.result-img-card img{width:130px;height:82px;object-fit:cover;border-radius:9px;cursor:pointer}.result-img-card button{position:absolute;top:4px;right:4px;padding:4px 7px;border-radius:999px;font-size:11px}.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.kpi .box{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px}.kpi .num{font-size:24px;font-weight:900}.kpi .lab{font-size:12px;color:var(--muted)}.modal{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:10px;z-index:99}.modal.active{display:flex}.modal .card{max-width:98vw;width:98vw;max-height:96vh;overflow:auto}.modal img{width:100%;max-height:84vh;object-fit:contain;border-radius:12px;background:#000}.modalTop{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.footer{text-align:center;color:var(--muted);font-size:12px;padding:18px 0}.hidden{display:none!important}
 @media(max-width:900px){.hero{grid-template-columns:1fr}.c9,.c8,.c6,.c4,.c3,.c2{grid-column:span 12}.kpi{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.wrap{padding:12px}h1{font-size:23px}.kpi{grid-template-columns:1fr}}
+/* ===== Fix Checklist Readability ===== */
+#checklist .check,
+#strategyChecklist .check,
+#scalpChecklist .check {
+  grid-column: span 4;
+  min-height: auto;
+  align-items: flex-start;
+  padding: 14px;
+}
+
+#checklist .check b,
+#strategyChecklist .check b,
+#scalpChecklist .check b {
+  font-size: 15px;
+  line-height: 1.45;
+  margin-bottom: 4px;
+}
+
+#checklist .check small,
+#strategyChecklist .check small,
+#scalpChecklist .check small {
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+#checklist .check input,
+#strategyChecklist .check input,
+#scalpChecklist .check input {
+  flex: 0 0 auto;
+  margin-top: 5px;
+}
+
+/* จอขนาดกลาง ให้เหลือ 2 กล่องต่อแถว */
+@media (max-width: 1100px) {
+  #checklist .check,
+  #strategyChecklist .check,
+  #scalpChecklist .check {
+    grid-column: span 6;
+  }
+}
+
+/* มือถือ ให้กล่องละ 1 แถว */
+@media (max-width: 700px) {
+  #checklist .check,
+  #strategyChecklist .check,
+  #scalpChecklist .check {
+    grid-column: span 12;
+  }
+}
 </style>
 </head>
 <body>
