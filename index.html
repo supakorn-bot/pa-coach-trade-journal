@@ -13,55 +13,6 @@
 table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255,255,255,.08);padding:9px;text-align:left;vertical-align:top;font-size:13px}th{background:rgba(255,255,255,.055);font-size:12px;color:#d5e3f6}.tablewrap{overflow:auto;margin-top:10px;max-height:560px;border:1px solid rgba(255,255,255,.08);border-radius:14px}.pill{display:inline-block;border-radius:999px;padding:4px 8px;font-size:12px;border:1px solid rgba(255,255,255,.13);white-space:nowrap}.redp{color:#fecaca;background:rgba(239,68,68,.16);border-color:rgba(239,68,68,.36)}.orangep{color:#fed7aa;background:rgba(245,158,11,.16);border-color:rgba(245,158,11,.36)}.yellowp{color:#fef08a;background:rgba(234,179,8,.12);border-color:rgba(234,179,8,.30)}.greenp{color:#bbf7d0;background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.32)}.bluep{color:#bae6fd;background:rgba(56,189,248,.12);border-color:rgba(56,189,248,.32)}
 .check{display:flex;gap:9px;align-items:flex-start;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);border-radius:13px;padding:10px;min-height:62px}.check input{width:auto;margin-top:4px;accent-color:#38bdf8}.check b{display:block}.check small{display:block;color:var(--muted);line-height:1.45}.preview{border:1px dashed rgba(255,255,255,.20);border-radius:14px;min-height:112px;padding:8px;background:#0c1629}.preview img{width:100%;max-height:230px;object-fit:contain;border-radius:10px}.thumb{width:94px;max-height:58px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,.16);cursor:pointer}.result-img-grid{display:flex;gap:10px;flex-wrap:wrap}.result-img-card{position:relative;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);border-radius:12px;padding:7px}.result-img-card img{width:130px;height:82px;object-fit:cover;border-radius:9px;cursor:pointer}.result-img-card button{position:absolute;top:4px;right:4px;padding:4px 7px;border-radius:999px;font-size:11px}.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.kpi .box{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px}.kpi .num{font-size:24px;font-weight:900}.kpi .lab{font-size:12px;color:var(--muted)}.modal{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:10px;z-index:99}.modal.active{display:flex}.modal .card{max-width:98vw;width:98vw;max-height:96vh;overflow:auto}.modal img{width:100%;max-height:84vh;object-fit:contain;border-radius:12px;background:#000}.modalTop{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.footer{text-align:center;color:var(--muted);font-size:12px;padding:18px 0}.hidden{display:none!important}
 @media(max-width:900px){.hero{grid-template-columns:1fr}.c9,.c8,.c6,.c4,.c3,.c2{grid-column:span 12}.kpi{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.wrap{padding:12px}h1{font-size:23px}.kpi{grid-template-columns:1fr}}
-/* ===== Fix Checklist Readability ===== */
-#checklist .check,
-#strategyChecklist .check,
-#scalpChecklist .check {
-  grid-column: span 4;
-  min-height: auto;
-  align-items: flex-start;
-  padding: 14px;
-}
-
-#checklist .check b,
-#strategyChecklist .check b,
-#scalpChecklist .check b {
-  font-size: 15px;
-  line-height: 1.45;
-  margin-bottom: 4px;
-}
-
-#checklist .check small,
-#strategyChecklist .check small,
-#scalpChecklist .check small {
-  font-size: 13px;
-  line-height: 1.55;
-}
-
-#checklist .check input,
-#strategyChecklist .check input,
-#scalpChecklist .check input {
-  flex: 0 0 auto;
-  margin-top: 5px;
-}
-
-/* จอขนาดกลาง ให้เหลือ 2 กล่องต่อแถว */
-@media (max-width: 1100px) {
-  #checklist .check,
-  #strategyChecklist .check,
-  #scalpChecklist .check {
-    grid-column: span 6;
-  }
-}
-
-/* มือถือ ให้กล่องละ 1 แถว */
-@media (max-width: 700px) {
-  #checklist .check,
-  #strategyChecklist .check,
-  #scalpChecklist .check {
-    grid-column: span 12;
-  }
-}
 </style>
 </head>
 <body>
@@ -120,7 +71,7 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
           <div class="c3"><label>เวลา</label><input id="tradeTime" type="time"></div>
           <div class="c3"><label>Symbol</label><input id="symbol" value="XAUUSD"></div>
           <div class="c3"><label>ตลาด</label><select id="market"><option>Gold</option><option>Forex</option><option>Crypto</option></select></div>
-          <div class="c4"><label>Strategy หลัก</label><select id="strategy"><option value="BOS_OB_RETEST" selected>H4 BOS + OB Retest + M15 Trigger</option><option value="H4_RETEST_M15_EMA200">H4 Retest + M15 EMA200 + Winning Bar</option><option value="OB_SH_BOS_RTO">Order Block: SH + BOS + RTO</option><option value="COUNTER_TREND">Counter Trend เฉพาะโซนใหญ่</option><option value="DOUBLE_DOJI">Double Doji</option><option value="QM_PATTERN">QM Pattern</option><option value="M15_SCALP">M15 Scalping รีด RR</option><option value="MM_PROCESS">MM / Process Gate</option></select></div>
+          <div class="c4"><label>Strategy หลัก</label><select id="strategy"><option value="BOS_OB_RETEST" selected>H4 BOS + OB Retest + M15 Trigger</option><option value="OB_SH_BOS_RTO">Order Block: SH + BOS + RTO</option><option value="COUNTER_TREND">Counter Trend เฉพาะโซนใหญ่</option><option value="DOUBLE_DOJI">Double Doji</option><option value="QM_PATTERN">QM Pattern</option><option value="M15_SCALP">M15 Scalping รีด RR</option><option value="MM_PROCESS">MM / Process Gate</option></select></div>
           <div class="c2"><label>Direction</label><select id="direction"><option>SELL</option><option>BUY</option><option>WAIT</option></select></div>
           <div class="c2"><label>Entry TF</label><select id="entryTf"><option>D1</option><option selected>H4</option><option>H1</option><option>M15</option></select></div>
           <div class="c2"><label>Order Type</label><select id="orderType"><option>Sell/Buy Stop</option><option>Sell/Buy Limit</option><option>Market</option><option selected>ยังไม่วาง Order</option></select></div>
@@ -179,7 +130,7 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
           <div class="c2"><label>ทุนบัญชี</label><input id="balance" type="number" value="1000"></div>
           <div class="c2"><label>Risk %</label><input id="riskPercent" type="number" step="0.1" value="0.5"></div>
           <div class="c2"><label>Min RR</label><input id="minRR" type="number" step="0.1" value="2"></div>
-          <div class="c4"><label>M15 Entry Type</label><select id="m15EntryType"><option>ยังไม่เข้า</option><option>M15 Winning Bar ที่โซน H4</option><option>Bearish/Bullish Outside Bar</option><option>M15 BOS / CHOCH</option><option>OB Retest Reject</option><option>Break + Retest</option><option>Pullback EMA</option><option>Liquidity Sweep</option><option>Sell/Buy Stop ใต้/เหนือ Trigger</option><option>Aggressive Candle Close</option></select></div>
+          <div class="c4"><label>M15 Entry Type</label><select id="m15EntryType"><option>ยังไม่เข้า</option><option>Bearish/Bullish Outside Bar</option><option>M15 BOS / CHOCH</option><option>OB Retest Reject</option><option>Break + Retest</option><option>Pullback EMA</option><option>Liquidity Sweep</option><option>Sell/Buy Stop ใต้/เหนือ Trigger</option><option>Aggressive Candle Close</option></select></div>
           <div class="c2"><label>Expire M15 bars</label><input id="m15ExpireBars" type="number" value="3"></div>
           <div class="c12"><label>Risk Note</label><input id="riskNote" placeholder="เช่น ถ้าข่าวแดงใกล้เวลาเข้า ยกเลิกแผน"></div>
           <div class="c12"><div id="rrBox" class="note">กรอก Entry/SL/TP เพื่อคำนวณ RR</div></div>
@@ -195,31 +146,12 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
           <div class="c6"><label>รูปกราฟ H4</label><input id="chartH4" type="file" accept="image/*"><div id="previewH4" class="preview">ยังไม่มีรูป H4</div></div>
           <div class="c6"><label>รูปกราฟ M15 / จุดเข้า</label><input id="chartM15" type="file" accept="image/*"><div id="previewM15" class="preview">ยังไม่มีรูป M15</div></div>
           <div class="c12"><label>แผน M15 สำหรับรีด RR</label><textarea id="m15Plan">ใช้ M15 เป็นจุดเข้าเท่านั้น หลัง H4 ให้ Bias และโซนแล้ว
-
-กฎเหล็ก:
-1. H4 ต้องปิดแท่งก่อน
-2. ราคาเข้า H4 Retest Zone แล้วเท่านั้น
-3. ห้ามกด Sell/Buy ทันทีเมื่อแตะโซน
-4. ต้องรอ M15 Trigger ที่ปิดแท่งแล้ว
-
-Trigger ที่ใช้ได้:
-1. M15 Winning Bar ที่โซน H4
-2. Reject / Engulfing / Outside Bar
-3. Sweep High/Low แล้วกลับตัว
-4. BOS / CHOCH ไปทางแผน
-5. EMA200 M15 สนับสนุน
-
-Sell:
-- ราคาอยู่ใต้ EMA200 M15 หรือหลุด EMA200 แล้ว Retest ไม่ผ่าน
-- ใช้ Sell Stop ใต้ Low ของ Winning Bar / Trigger
-- SL เหนือ High ของ Winning Bar หรือเหนือ Swing M15
-
-Buy:
-- ราคาอยู่เหนือ EMA200 M15 หรือทะลุ EMA200 แล้ว Retest ไม่หลุด
-- ใช้ Buy Stop เหนือ High ของ Winning Bar / Trigger
-- SL ใต้ Low ของ Winning Bar หรือใต้ Swing M15
-
-ถ้าไม่มี Trigger ภายใน 3-5 แท่ง M15 ให้ยกเลิกแผน</textarea></div>
+1. ราคาเข้า OB H4 / Retest Zone แล้วเท่านั้น
+2. ห้ามกด Sell/Buy ทันทีเมื่อแตะโซน ต้องรอ M15 Trigger
+3. Trigger ที่ใช้ได้: Outside Bar, Engulfing, BOS/CHOCH, Reject ชัด
+4. Safe Entry: Sell Stop ใต้ Low หรือ Buy Stop เหนือ High ของ Trigger
+5. SL หลัง Swing M15 + เผื่อ Spread
+6. RR ต้องอย่างน้อย 1:2 และถ้าไม่ Trigger ภายใน 3-5 แท่ง M15 ให้ยกเลิกแผน</textarea></div>
           <div class="c12"><label>เหตุผลเข้า / เหตุผลไม่เข้า</label><textarea id="entryReason">ยังไม่เข้าเพราะต้องให้ครบลำดับก่อน: H4 BOS → ราคา Retest OB H4 → M15 มี Trigger ยืนยัน</textarea></div>
           <div class="c12"><label>แผนออก / ยกเลิกแผน</label><textarea id="exitPlan">ยกเลิกแผนถ้ามีข่าว USD แดง/ส้มใกล้เวลาเข้า, ราคาออกจาก OB แล้วไม่ Trigger, หรือ RR ไม่ถึง 1:2</textarea></div>
         </div>
@@ -305,7 +237,6 @@ let editingPlanId=null, reviewingId=null, reviewImagesBuffer=[];
 let syncTimer=null;
 
 const checks=[
-["c0","H4 ปิดแท่งแล้ว","ห้ามตัดสินใจจากแท่ง H4 ที่ยังไม่ปิด เพราะอาจเป็นไส้หลอก / Fake Break"],
  ["c1","D1/H4 มี Bias ชัด","ไม่เดาจาก M15 อย่างเดียว"],
  ["c2","ราคาอยู่ที่โซนสำคัญ","แนวรับ/แนวต้าน/OB/Supply Demand"],
  ["c3","มี BOS/CHOCH หรือโครงสร้างรองรับ","ไม่เข้าเพราะแท่งเดียว"],
@@ -329,7 +260,6 @@ const scalpChecks=[
  ["m9","ข่าวไม่ชนช่วงเข้า","ส้ม/แดงใกล้เวลา = รอ"],
  ["m10","ยอมไม่เข้าได้","ไม่มี Setup = ยังไม่เข้า"]
 ];
-
 const todayWatchlistItems = [
   {
     symbol: "ETHUSD",
@@ -354,6 +284,42 @@ const todayWatchlistItems = [
     action: "ห้าม Sell ไล่แถวแนวรับ รอเด้งเข้า Sell Zone หรือรอหลุดแล้ว Retest",
     planId: "xauusd-a-main-sell-pullback-2026-06-07",
     statusClass: "yellowp"
+  },
+  {
+    symbol: "BTCUSD",
+    market: "Crypto",
+    status: "WAIT",
+    bias: "WAIT",
+    mainPlan: "Template",
+    watchZone: "รอกราฟล่าสุด",
+    dangerZone: "ยังไม่กำหนด",
+    action: "ยังไม่ใช่ตัวหลัก รอ D1/H4 ชัดก่อน",
+    planId: "btcusd-buy-wait-template",
+    statusClass: "orangep"
+  },
+  {
+    symbol: "GBPJPY",
+    market: "Forex",
+    status: "WAIT",
+    bias: "WAIT",
+    mainPlan: "Template",
+    watchZone: "รอ OB / Supply / Demand ชัด",
+    dangerZone: "คู่ JPY ไส้แรง ต้องลด Lot",
+    action: "ยังไม่ดูจริงจังจนกว่า H4 มีโซนและ BOS ชัด",
+    planId: "gbpjpy-sell-wait-template",
+    statusClass: "orangep"
+  },
+  {
+    symbol: "EURUSD",
+    market: "Forex",
+    status: "WAIT",
+    bias: "WAIT",
+    mainPlan: "Template",
+    watchZone: "รอ D1/H4 Bias ชัด",
+    dangerZone: "เช็กข่าว EUR/USD",
+    action: "ยังไม่ต้องเปิดกราฟนาน รอ Telegram H4 Watchlist",
+    planId: "eurusd-forex-wait-template",
+    statusClass: "orangep"
   }
 ];
 
@@ -1002,23 +968,6 @@ const strategyChecks={
  COUNTER_TREND:[["s_ct1","อยู่โซนใหญ่ D1/H4 เท่านั้น"],["s_ct2","มี Sweep/False Break"],["s_ct3","มี Rejection แรง"],["s_ct4","M15/H1 เกิด CHOCH/BOS กลับตัว"],["s_ct5","เข้าเฉพาะ Retest หลัง CHOCH"],["s_ct6","TP1 สั้น ชนแนวแรกต้องระวัง"],["s_ct7","Risk ไม่เกิน 0.5%"],["s_ct8","ไม่มีข่าวแรงชน"]],
  DOUBLE_DOJI:[["s_dd1","เกิด Double Doji ที่โซนสำคัญ"],["s_dd2","แท่งก่อนหน้ามีแรงชัด"],["s_dd3","รอ Break กรอบ Doji"],["s_dd4","SL หลังกรอบ/หลัง Swing"],["s_dd5","RR ผ่านก่อนวาง order"]],
  QM_PATTERN:[["s_qm1","มีโครงสร้าง HH/HL หรือ LL/LH ก่อน"],["s_qm2","เกิด Break Structure"],["s_qm3","มี Left Shoulder / Head / Right Shoulder"],["s_qm4","รอราคา Retest QML"],["s_qm5","มี Trigger"],["s_qm6","SL หลัง Head"],["s_qm7","RR ผ่าน"]],
-H4_RETEST_M15_EMA200:[
-  ["s_ema200_0","H4 ต้องปิดแท่งก่อน","ห้ามใช้แท่ง H4 ที่ยังวิ่งอยู่มาตัดสินใจเข้าออเดอร์"],
-  ["s_ema200_1","H4 มี Bias ชัด","Sell = H4 ขาลง / Buy = H4 อยู่โซน Demand หรือกลับตัวชัด"],
-  ["s_ema200_2","ราคาเข้าโซน H4 แล้ว","Sell Zone / Buy Zone ต้องมาจาก H4 ไม่ใช่เดาจาก M15"],
-  ["s_ema200_3","โซนเกิดจาก Swing Low/High เดิม","Sell = หลุด Swing Low แล้ว Retest / Buy = ทะลุ Swing High แล้ว Retest"],
-  ["s_ema200_4","M15 ต้องปิดแท่งก่อน","ห้ามใช้แท่ง M15 ที่ยังไม่ปิดเป็น Trigger"],
-  ["s_ema200_5","M15 มี Winning Bar ที่โซน H4","Sell = แท่งแดงชนะ / Buy = แท่งเขียวชนะ ต้องเกิดตรงแนว H4"],
-  ["s_ema200_6","Winning Bar ปิดไปทางเดียวกับแผน","Sell = ปิดใกล้ Low / Buy = ปิดใกล้ High"],
-  ["s_ema200_7","M15 มี Reject / Sweep / Engulfing เพิ่มแรงยืนยัน","ถ้ามีร่วมกับ Winning Bar จะดีกว่า"],
-  ["s_ema200_8","M15 มี BOS หรือ CHOCH ไปทางแผน","Sell ต้องเห็นโครงสร้างลง / Buy ต้องเห็นโครงสร้างขึ้น"],
-  ["s_ema200_9","EMA200 M15 สนับสนุน","Sell = ราคาอยู่ใต้ EMA200 / Buy = ราคาอยู่เหนือ EMA200"],
-  ["s_ema200_10","ถ้ายังไม่ผ่าน EMA200 ต้องรอ","Sell รอหลุด EMA200 หรือ Retest EMA200 ไม่ผ่าน / Buy รอทะลุ EMA200 หรือ Retest ไม่หลุด"],
-  ["s_ema200_11","Entry ใช้ Stop ใต้/เหนือ Winning Bar","Sell Stop ใต้ Low / Buy Stop เหนือ High ห้าม Market ไล่"],
-  ["s_ema200_12","SL อยู่หลัง Winning Bar หรือหลัง Swing","SL ต้องอยู่ตรงจุดที่ถ้าชนแล้วแผนผิดจริง"],
-  ["s_ema200_13","TP มีพื้นที่ถึงแนวถัดไป","TP1 = Low/High ใกล้สุด, TP2 = แนวรับ/ต้านถัดไป"],
-  ["s_ema200_14","RR อย่างน้อย 1:2","ถ้า RR ไม่ถึง ให้บันทึก NO_TRADE"]
-], 
  M15_SCALP:[["s_sc1","H4 ให้ Bias และโซนแล้ว"],["s_sc2","M15 เข้าโซนจริง"],["s_sc3","M15 Trigger ชัด"],["s_sc4","Entry ไม่ไล่ราคา"],["s_sc5","Expire แผนชัด"],["s_sc6","RR ผ่าน"],["s_sc7","ข่าวไม่ชน"]],
  MM_PROCESS:[["s_mm1","Lot คำนวณจาก Risk"],["s_mm2","ยอมเสียได้ถ้าโดน SL"],["s_mm3","ไม่เข้าเกิน 1-2 ไม้ติดกัน"],["s_mm4","มีแผนปิด TP/SL"],["s_mm5","เขียนบทเรียนหลังจบไม้"]]
 };
@@ -1033,16 +982,76 @@ function fmt(n,d=2){return Number.isFinite(Number(n))?Number(n).toFixed(d):"-";}
 function parseTime(t){const d=Date.parse(t||"");return Number.isFinite(d)?d:0;}
 function sortTrades(rows){return [...rows].sort((a,b)=>parseTime(b.updatedAt||b.createdAt)-parseTime(a.updatedAt||a.createdAt));}
 function canonicalKey(t){return t.id || `${t.tradeDate||""}|${t.tradeTime||""}|${t.symbol||""}|${t.direction||""}|${t.entry||""}|${t.sl||""}`;}
-function dedupeTrades(rows){
- const map=new Map();
- (rows||[]).filter(Boolean).forEach((t,i)=>{
-   const copy={...t,id:t.id||uuid()};
-   const key=canonicalKey(copy);
-   const old=map.get(key);
-   if(!old || parseTime(copy.updatedAt||copy.createdAt)>parseTime(old.updatedAt||old.createdAt)) map.set(key,copy);
- });
- return sortTrades([...map.values()]);
+
+function isGoodImageSrc(src){
+  return typeof src === "string" && src.trim().length > 20;
 }
+
+function isDriveImageSrc(src){
+  const s = String(src || "");
+  return s.includes("drive.google.com") || s.includes("googleusercontent.com") || s.includes("drive.usercontent.google.com");
+}
+
+function pickBetterImage(a,b){
+  if(isDriveImageSrc(a)) return a;
+  if(isDriveImageSrc(b)) return b;
+  if(isGoodImageSrc(a)) return a;
+  if(isGoodImageSrc(b)) return b;
+  return a || b || "";
+}
+
+function mergeResultImagesKeep(oldImgs,newImgs){
+  const a = Array.isArray(oldImgs) ? oldImgs : [];
+  const b = Array.isArray(newImgs) ? newImgs : [];
+  const out = [];
+
+  [...a,...b].forEach(src=>{
+    if(!isGoodImageSrc(src)) return;
+    if(!out.includes(src)) out.push(src);
+  });
+
+  return out;
+}
+
+function mergeTradeKeepImages(oldTrade,newTrade){
+  const oldT = oldTrade || {};
+  const newT = newTrade || {};
+
+  const oldTime = parseTime(oldT.updatedAt || oldT.createdAt);
+  const newTime = parseTime(newT.updatedAt || newT.createdAt);
+
+  // ข้อมูลหลักใช้ตัวที่ใหม่กว่า
+  const base = newTime >= oldTime ? {...oldT,...newT} : {...newT,...oldT};
+
+  // แต่รูปห้ามหาย ถ้าฝั่งใหม่ไม่มีรูป ให้เก็บรูปจากฝั่งเก่าไว้
+  base.chartW1  = pickBetterImage(newT.chartW1,  oldT.chartW1);
+  base.chartD1  = pickBetterImage(newT.chartD1,  oldT.chartD1);
+  base.chartH4  = pickBetterImage(newT.chartH4,  oldT.chartH4);
+  base.chartM15 = pickBetterImage(newT.chartM15, oldT.chartM15);
+
+  base.resultImages = mergeResultImagesKeep(oldT.resultImages, newT.resultImages);
+
+  return base;
+}
+
+function dedupeTrades(rows){
+  const map = new Map();
+
+  (rows || []).filter(Boolean).forEach(t=>{
+    const copy = {...t, id:t.id || uuid()};
+    const key = canonicalKey(copy);
+    const old = map.get(key);
+
+    if(!old){
+      map.set(key, copy);
+    }else{
+      map.set(key, mergeTradeKeepImages(old, copy));
+    }
+  });
+
+  return sortTrades([...map.values()]);
+}
+
 function load(){try{return dedupeTrades(JSON.parse(localStorage.getItem(storeKey)||"[]"));}catch(e){return [];}}
 function save(rows){localStorage.setItem(storeKey,JSON.stringify(dedupeTrades(rows))); queueCloudSync();}
 function migrateOldLocal(){
@@ -1536,7 +1545,103 @@ function requireSyncConfig(){const cfg=getSyncSetting(); if(!cfg.url)throw new E
 async function cloudApi(action,payload={}){const cfg=requireSyncConfig(); const res=await fetch(cfg.url,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action,secret:cfg.secret,...payload})}); const txt=await res.text(); let json; try{json=JSON.parse(txt);}catch(e){throw new Error("Apps Script ไม่ได้ตอบ JSON: "+txt.slice(0,200));} if(!json.ok)throw new Error(json.error||"Google Sync error"); return json;}
 async function testCloudSync(){try{updateSyncStatus("กำลังทดสอบเชื่อมต่อ..."); const r=await cloudApi("ping",{}); updateSyncStatus(`เชื่อมต่อสำเร็จ ${r.version||""}`); alert("เชื่อมต่อ Google Sheet สำเร็จ");}catch(e){updateSyncStatus("เชื่อมต่อไม่สำเร็จ: "+e.message); alert("เชื่อมต่อไม่สำเร็จ: "+e.message);}}
 async function syncLocalToCloud(mode="upsert",silent=false){try{const rows=load(); updateSyncStatus(`กำลังส่ง ${rows.length} รายการขึ้น Google Sheet...`); const r=await cloudApi("upsertTrades",{trades:rows,mode}); const saved=Array.isArray(r.trades)?r.trades:rows; localStorage.setItem(storeKey,JSON.stringify(dedupeTrades(saved))); renderJournal(); renderStats(); updateSyncStatus(`ส่งขึ้น Google Sheet สำเร็จ ${saved.length} รายการ`); if(!silent)alert(`ส่งขึ้น Google Sheet สำเร็จ ${saved.length} รายการ`);}catch(e){updateSyncStatus("ส่งขึ้น Google Sheet ไม่สำเร็จ: "+e.message); if(!silent)alert("ส่งขึ้น Google Sheet ไม่สำเร็จ: "+e.message);}}
-async function syncCloudToLocal(mode="MERGE"){try{updateSyncStatus("กำลังโหลดจาก Google Sheet..."); const r=await cloudApi("listTrades",{}); const cloud=Array.isArray(r.trades)?r.trades:[]; const local=load(); const merged=mode==="REPLACE"?dedupeTrades(cloud):dedupeTrades([...cloud,...local]); localStorage.setItem(storeKey,JSON.stringify(merged)); renderJournal(); renderStats(); updateSyncStatus(`โหลดจาก Google Sheet สำเร็จ cloud ${cloud.length} / local now ${merged.length}`); showSec("journal"); alert(`โหลดจาก Google Sheet สำเร็จ ${cloud.length} รายการ / รวมเหลือ ${merged.length}`);}catch(e){updateSyncStatus("โหลดจาก Google Sheet ไม่สำเร็จ: "+e.message); alert("โหลดจาก Google Sheet ไม่สำเร็จ: "+e.message);}}
+function paHasImage_(src){
+  return typeof src === "string" && src.trim().length > 20;
+}
+
+function paPreferImage_(cloudSrc, localSrc){
+  const c = cloudSrc || "";
+  const l = localSrc || "";
+
+  // ถ้า local ยังเป็นรูป base64 ที่เพิ่งอัปโหลด ให้รักษาไว้ก่อน
+  if(paHasImage_(l) && String(l).startsWith("data:image/")) return l;
+
+  // ถ้า cloud ไม่มีรูป แต่ local มีรูป ให้ใช้ local
+  if(!paHasImage_(c) && paHasImage_(l)) return l;
+
+  // ถ้า cloud มีรูป ใช้ cloud
+  if(paHasImage_(c)) return c;
+
+  return l || c || "";
+}
+
+function paMergeResultImages_(cloudImgs, localImgs){
+  const c = Array.isArray(cloudImgs) ? cloudImgs : [];
+  const l = Array.isArray(localImgs) ? localImgs : [];
+  const out = [];
+
+  [...l, ...c].forEach(src=>{
+    if(!paHasImage_(src)) return;
+    if(!out.includes(src)) out.push(src);
+  });
+
+  return out;
+}
+
+function paMergeCloudWithLocalImages_(cloudTrade, localTrade){
+  const c = cloudTrade || {};
+  const l = localTrade || {};
+  const merged = {...l, ...c};
+
+  merged.chartW1  = paPreferImage_(c.chartW1,  l.chartW1);
+  merged.chartD1  = paPreferImage_(c.chartD1,  l.chartD1);
+  merged.chartH4  = paPreferImage_(c.chartH4,  l.chartH4);
+  merged.chartM15 = paPreferImage_(c.chartM15, l.chartM15);
+
+  merged.resultImages = paMergeResultImages_(c.resultImages, l.resultImages);
+
+  return merged;
+}
+
+
+async function syncCloudToLocal(mode="MERGE"){
+  try{
+    updateSyncStatus("กำลังโหลดจาก Google Sheet...");
+
+    const r = await cloudApi("listTrades",{});
+    const cloud = Array.isArray(r.trades) ? r.trades : [];
+    const local = load();
+
+    let merged = [];
+
+    if(mode === "REPLACE"){
+      merged = dedupeTrades(cloud);
+    }else{
+      const localMap = new Map();
+
+      local.forEach(t=>{
+        const key = t.id || canonicalKey(t);
+        localMap.set(key, t);
+      });
+
+      const cloudKeys = new Set();
+
+      const cloudMerged = cloud.map(c=>{
+        const key = c.id || canonicalKey(c);
+        cloudKeys.add(key);
+        const localSame = localMap.get(key);
+        return paMergeCloudWithLocalImages_(c, localSame);
+      });
+
+      const localOnly = local.filter(l=>{
+        const key = l.id || canonicalKey(l);
+        return !cloudKeys.has(key);
+      });
+
+      merged = dedupeTrades([...cloudMerged, ...localOnly]);
+    }
+
+    localStorage.setItem(storeKey, JSON.stringify(merged));
+    renderJournal();
+    renderStats();
+    updateSyncStatus(`โหลดจาก Google Sheet สำเร็จ cloud ${cloud.length} / local now ${merged.length}`);
+    showSec("journal");
+    alert(`โหลดจาก Google Sheet สำเร็จ ${cloud.length} รายการ / รวมเหลือ ${merged.length}`);
+  }catch(e){
+    updateSyncStatus("โหลดจาก Google Sheet ไม่สำเร็จ: " + e.message);
+    alert("โหลดจาก Google Sheet ไม่สำเร็จ: " + e.message);
+  }
+}
 async function cloudDelete(id){try{const cfg=getSyncSetting(); if(!cfg.url||!cfg.secret)return; await cloudApi("deleteTrade",{id}); updateSyncStatus("ลบใน Google Sheet แล้ว");}catch(e){console.warn(e);}}
 function queueCloudSync(){const cfg=getSyncSetting(); if(cfg.autoSave!=="on"||!cfg.url||!cfg.secret)return; clearTimeout(syncTimer); syncTimer=setTimeout(()=>syncLocalToCloud("upsert",true),1600);}
 
