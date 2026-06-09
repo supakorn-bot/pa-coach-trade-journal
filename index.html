@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PA Coach Web App v3.8 - Today Watchlist Dashboard</title>
+<title>PA Coach Web App v3.8.3 - Strict Swing Gate</title>
 <style>
 :root{--bg:#07101f;--panel:#111c31;--panel2:#17243e;--line:#2b3b5f;--text:#eef6ff;--muted:#9fb2cf;--blue:#38bdf8;--violet:#a78bfa;--ok:#22c55e;--warn:#f59e0b;--bad:#ef4444;--info:#60a5fa}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 8% 0%,rgba(56,189,248,.18),transparent 34%),radial-gradient(circle at 88% 0%,rgba(167,139,250,.16),transparent 34%),var(--bg);color:var(--text);font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif}.wrap{max-width:1280px;margin:auto;padding:18px}.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;margin-bottom:14px}.card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:17px;box-shadow:0 14px 45px rgba(0,0,0,.28)}h1,h2,h3{margin:0 0 10px}h1{font-size:28px}h2{font-size:20px}h3{font-size:16px}p{margin:0 0 10px;color:var(--muted);line-height:1.65}.small{font-size:12px;color:var(--muted);line-height:1.5}.tabs,.steps,.btns{display:flex;gap:9px;flex-wrap:wrap}.tabs{margin:14px 0}.steps{margin:10px 0 14px}.tab,.step,button{font-family:inherit;font-weight:800;border:0;border-radius:13px;padding:10px 13px;cursor:pointer}.tab,.step,.ghost{background:rgba(255,255,255,.07);color:var(--text);border:1px solid rgba(255,255,255,.13)}.tab.active,.step.active{background:linear-gradient(90deg,rgba(56,189,248,.26),rgba(167,139,250,.24));border-color:rgba(56,189,248,.45)}.primary{background:linear-gradient(90deg,#38bdf8,#a78bfa);color:#06111e}.okbtn{background:rgba(34,197,94,.18);color:#bbf7d0;border:1px solid rgba(34,197,94,.38)}.danger{background:rgba(239,68,68,.18);color:#fecaca;border:1px solid rgba(239,68,68,.38)}.warnbtn{background:rgba(245,158,11,.17);color:#fed7aa;border:1px solid rgba(245,158,11,.38)}
@@ -11,7 +11,7 @@
 .section,.panel{display:none}.section.active,.panel.active{display:block}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}.c12{grid-column:span 12}.c9{grid-column:span 9}.c8{grid-column:span 8}.c6{grid-column:span 6}.c4{grid-column:span 4}.c3{grid-column:span 3}.c2{grid-column:span 2}label{display:block;font-size:13px;margin-bottom:6px;color:#d9e7fb}input,select,textarea{width:100%;background:#0c172a;color:var(--text);border:1px solid var(--line);border-radius:13px;padding:10px 11px;outline:none;font-family:inherit;font-size:14px}textarea{min-height:88px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:rgba(56,189,248,.75);box-shadow:0 0 0 3px rgba(56,189,248,.12)}
 .note,.decision{background:rgba(56,189,248,.09);border:1px solid rgba(56,189,248,.22);border-radius:15px;padding:13px;line-height:1.55}.decision.go{border-color:rgba(34,197,94,.55);background:rgba(34,197,94,.13)}.decision.wait{border-color:rgba(245,158,11,.55);background:rgba(245,158,11,.13)}.decision.no{border-color:rgba(239,68,68,.55);background:rgba(239,68,68,.13)}.big{font-size:24px;font-weight:900}.muted{color:var(--muted)}.editmode{border-color:rgba(34,197,94,.42);background:rgba(34,197,94,.08)}
 table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255,255,255,.08);padding:9px;text-align:left;vertical-align:top;font-size:13px}th{background:rgba(255,255,255,.055);font-size:12px;color:#d5e3f6}.tablewrap{overflow:auto;margin-top:10px;max-height:560px;border:1px solid rgba(255,255,255,.08);border-radius:14px}.pill{display:inline-block;border-radius:999px;padding:4px 8px;font-size:12px;border:1px solid rgba(255,255,255,.13);white-space:nowrap}.redp{color:#fecaca;background:rgba(239,68,68,.16);border-color:rgba(239,68,68,.36)}.orangep{color:#fed7aa;background:rgba(245,158,11,.16);border-color:rgba(245,158,11,.36)}.yellowp{color:#fef08a;background:rgba(234,179,8,.12);border-color:rgba(234,179,8,.30)}.greenp{color:#bbf7d0;background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.32)}.bluep{color:#bae6fd;background:rgba(56,189,248,.12);border-color:rgba(56,189,248,.32)}
-.check{display:flex;gap:9px;align-items:flex-start;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);border-radius:13px;padding:10px;min-height:62px}.check input{width:auto;margin-top:4px;accent-color:#38bdf8}.check b{display:block}.check small{display:block;color:var(--muted);line-height:1.45}.preview{border:1px dashed rgba(255,255,255,.20);border-radius:14px;min-height:112px;padding:8px;background:#0c1629}.preview img{width:100%;max-height:230px;object-fit:contain;border-radius:10px}.thumb{width:94px;max-height:58px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,.16);cursor:pointer}.result-img-grid{display:flex;gap:10px;flex-wrap:wrap}.result-img-card{position:relative;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);border-radius:12px;padding:7px}.result-img-card img{width:130px;height:82px;object-fit:cover;border-radius:9px;cursor:pointer}.result-img-card button{position:absolute;top:4px;right:4px;padding:4px 7px;border-radius:999px;font-size:11px}.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.kpi .box{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px}.kpi .num{font-size:24px;font-weight:900}.kpi .lab{font-size:12px;color:var(--muted)}.modal{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:10px;z-index:99}.modal.active{display:flex}.modal .card{max-width:98vw;width:98vw;max-height:96vh;overflow:auto}.modal img{width:100%;max-height:84vh;object-fit:contain;border-radius:12px;background:#000}.modalTop{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.footer{text-align:center;color:var(--muted);font-size:12px;padding:18px 0}.hidden{display:none!important}
+.check{display:flex;gap:9px;align-items:flex-start;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);border-radius:13px;padding:10px;min-height:62px}.check input{width:auto;margin-top:4px;accent-color:#38bdf8}.check span{min-width:0}.check b{display:block;font-size:14px;line-height:1.28}.check small{display:block;color:var(--muted);line-height:1.45;font-size:12px;margin-top:3px}#checklist .check,#strategyChecklist .check,#scalpChecklist .check{grid-column:span 4;min-height:96px}#strategyChecklist .check{min-height:104px}@media(max-width:1100px){#checklist .check,#strategyChecklist .check,#scalpChecklist .check{grid-column:span 6}}@media(max-width:680px){#checklist .check,#strategyChecklist .check,#scalpChecklist .check{grid-column:span 12;min-height:auto}}.preview{border:1px dashed rgba(255,255,255,.20);border-radius:14px;min-height:112px;padding:8px;background:#0c1629}.preview img{width:100%;max-height:230px;object-fit:contain;border-radius:10px}.thumb{width:94px;max-height:58px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,.16);cursor:pointer}.result-img-grid{display:flex;gap:10px;flex-wrap:wrap}.result-img-card{position:relative;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);border-radius:12px;padding:7px}.result-img-card img{width:130px;height:82px;object-fit:cover;border-radius:9px;cursor:pointer}.result-img-card button{position:absolute;top:4px;right:4px;padding:4px 7px;border-radius:999px;font-size:11px}.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.kpi .box{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px}.kpi .num{font-size:24px;font-weight:900}.kpi .lab{font-size:12px;color:var(--muted)}.modal{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:10px;z-index:99}.modal.active{display:flex}.modal .card{max-width:98vw;width:98vw;max-height:96vh;overflow:auto}.modal img{width:100%;max-height:84vh;object-fit:contain;border-radius:12px;background:#000}.modalTop{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.footer{text-align:center;color:var(--muted);font-size:12px;padding:18px 0}.hidden{display:none!important}
 @media(max-width:900px){.hero{grid-template-columns:1fr}.c9,.c8,.c6,.c4,.c3,.c2{grid-column:span 12}.kpi{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.wrap{padding:12px}h1{font-size:23px}.kpi{grid-template-columns:1fr}}
 </style>
 </head>
@@ -19,7 +19,7 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
 <div class="wrap">
   <div class="hero">
     <div class="card">
-      <h1>PA Coach Web App v3.8</h1>
+      <h1>PA Coach Web App v3.8.3</h1>
       <p>Anti Duplicate + Trade Lifecycle + Cloud First Sync: ใช้กับ XAUUSD / Forex / Crypto แบบ Price Action Swing Trade และ M15 Execution</p>
       <span class="badge b-ok">Google Sheet Sync</span><span class="badge b-ok">Drive Images</span><span class="badge b-warn">กันข้อมูลซ้ำ</span><span class="badge b-info">PLAN → ACTIVE → CLOSED</span><span class="badge b-bad">ข่าวแดง/ส้ม = ยังไม่เข้า</span><span class="badge b-ok">เก็บ key เดิม paJournalV3</span><span class="badge b-info">Telegram Alert</span>
     </div>
@@ -51,7 +51,8 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
         <b>กฎใช้งาน:</b><br>
         WAIT = ไม่ต้องเฝ้า<br>
         NEAR SUPPORT = ห้าม Sell ไล่<br>
-        READY SELL = เปิด M15 รอ Reject / BOS / CHOCH ลง<br>
+        READY SELL = ใช้ได้เฉพาะเมื่อ H4 ปิดหลุด Swing Low จริง + Retest แล้ว + M15 ต่ำกว่า EMA200<br>
+        ถ้าแค่แตะ Sell Zone / H4 Reject = WATCH เท่านั้น ห้ามเรียก READY<br>
         BREAKDOWN WATCH = รอ H4 ปิดหลุดจริงและรอ Retest
       </div>
     </div>
@@ -71,7 +72,7 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
           <div class="c3"><label>เวลา</label><input id="tradeTime" type="time"></div>
           <div class="c3"><label>Symbol</label><input id="symbol" value="XAUUSD"></div>
           <div class="c3"><label>ตลาด</label><select id="market"><option>Gold</option><option>Forex</option><option>Crypto</option></select></div>
-          <div class="c4"><label>Strategy หลัก</label><select id="strategy"><option value="BOS_OB_RETEST" selected>H4 BOS + OB Retest + M15 Trigger</option><option value="OB_SH_BOS_RTO">Order Block: SH + BOS + RTO</option><option value="COUNTER_TREND">Counter Trend เฉพาะโซนใหญ่</option><option value="DOUBLE_DOJI">Double Doji</option><option value="QM_PATTERN">QM Pattern</option><option value="M15_SCALP">M15 Scalping รีด RR</option><option value="MM_PROCESS">MM / Process Gate</option></select></div>
+          <div class="c4"><label>Strategy หลัก</label><select id="strategy"><option value="BOS_OB_RETEST" selected>H4 BOS + OB Retest + M15 Trigger</option><option value="H4_SWING_BREAK_RETEST">H4 Swing Break + Retest (รอหลุด Swing ก่อน)</option><option value="H4_SIGNAL_M15_SNIPER">H4 Signal + M15 Sniper Entry</option><option value="OB_SH_BOS_RTO">Order Block: SH + BOS + RTO</option><option value="COUNTER_TREND">Counter Trend เฉพาะโซนใหญ่</option><option value="DOUBLE_DOJI">Double Doji</option><option value="QM_PATTERN">QM Pattern</option><option value="M15_SCALP">M15 Scalping รีด RR</option><option value="MM_PROCESS">MM / Process Gate</option></select></div>
           <div class="c2"><label>Direction</label><select id="direction"><option>SELL</option><option>BUY</option><option>WAIT</option></select></div>
           <div class="c2"><label>Entry TF</label><select id="entryTf"><option>D1</option><option selected>H4</option><option>H1</option><option>M15</option></select></div>
           <div class="c2"><label>Order Type</label><select id="orderType"><option>Sell/Buy Stop</option><option>Sell/Buy Limit</option><option>Market</option><option selected>ยังไม่วาง Order</option></select></div>
@@ -130,7 +131,7 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
           <div class="c2"><label>ทุนบัญชี</label><input id="balance" type="number" value="1000"></div>
           <div class="c2"><label>Risk %</label><input id="riskPercent" type="number" step="0.1" value="0.5"></div>
           <div class="c2"><label>Min RR</label><input id="minRR" type="number" step="0.1" value="2"></div>
-          <div class="c4"><label>M15 Entry Type</label><select id="m15EntryType"><option>ยังไม่เข้า</option><option>Bearish/Bullish Outside Bar</option><option>M15 BOS / CHOCH</option><option>OB Retest Reject</option><option>Break + Retest</option><option>Pullback EMA</option><option>Liquidity Sweep</option><option>Sell/Buy Stop ใต้/เหนือ Trigger</option><option>Aggressive Candle Close</option></select></div>
+          <div class="c4"><label>M15 Entry Type</label><select id="m15EntryType"><option>ยังไม่เข้า</option><option>H4 Swing Break แล้วรอ Retest</option><option>M15 ต่ำกว่า/เหนือ EMA200 แล้วค่อยเข้า</option><option>M15 Trigger ที่ Retest Zone</option><option>H4 Signal แล้วรอ M15 Sniper Entry</option><option>H4 Confirmation Entry ทันที</option><option>Bearish/Bullish Outside Bar</option><option>M15 BOS / CHOCH</option><option>OB Retest Reject</option><option>Break + Retest</option><option>Pullback EMA</option><option>Liquidity Sweep</option><option>Sell/Buy Stop ใต้/เหนือ Trigger</option><option>Aggressive Candle Close</option></select></div>
           <div class="c2"><label>Expire M15 bars</label><input id="m15ExpireBars" type="number" value="3"></div>
           <div class="c12"><label>Risk Note</label><input id="riskNote" placeholder="เช่น ถ้าข่าวแดงใกล้เวลาเข้า ยกเลิกแผน"></div>
           <div class="c12"><div id="rrBox" class="note">กรอก Entry/SL/TP เพื่อคำนวณ RR</div></div>
@@ -145,15 +146,46 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
           <div class="c6"><label>รูปกราฟ D1</label><input id="chartD1" type="file" accept="image/*"><div id="previewD1" class="preview">ยังไม่มีรูป D1</div></div>
           <div class="c6"><label>รูปกราฟ H4</label><input id="chartH4" type="file" accept="image/*"><div id="previewH4" class="preview">ยังไม่มีรูป H4</div></div>
           <div class="c6"><label>รูปกราฟ M15 / จุดเข้า</label><input id="chartM15" type="file" accept="image/*"><div id="previewM15" class="preview">ยังไม่มีรูป M15</div></div>
-          <div class="c12"><label>แผน M15 สำหรับรีด RR</label><textarea id="m15Plan">ใช้ M15 เป็นจุดเข้าเท่านั้น หลัง H4 ให้ Bias และโซนแล้ว
-1. ราคาเข้า OB H4 / Retest Zone แล้วเท่านั้น
-2. ห้ามกด Sell/Buy ทันทีเมื่อแตะโซน ต้องรอ M15 Trigger
-3. Trigger ที่ใช้ได้: Outside Bar, Engulfing, BOS/CHOCH, Reject ชัด
-4. Safe Entry: Sell Stop ใต้ Low หรือ Buy Stop เหนือ High ของ Trigger
-5. SL หลัง Swing M15 + เผื่อ Spread
-6. RR ต้องอย่างน้อย 1:2 และถ้าไม่ Trigger ภายใน 3-5 แท่ง M15 ให้ยกเลิกแผน</textarea></div>
-          <div class="c12"><label>เหตุผลเข้า / เหตุผลไม่เข้า</label><textarea id="entryReason">ยังไม่เข้าเพราะต้องให้ครบลำดับก่อน: H4 BOS → ราคา Retest OB H4 → M15 มี Trigger ยืนยัน</textarea></div>
-          <div class="c12"><label>แผนออก / ยกเลิกแผน</label><textarea id="exitPlan">ยกเลิกแผนถ้ามีข่าว USD แดง/ส้มใกล้เวลาเข้า, ราคาออกจาก OB แล้วไม่ Trigger, หรือ RR ไม่ถึง 1:2</textarea></div>
+          <div class="c12"><label>แผน M15 สำหรับรีด RR</label><textarea id="m15Plan">ระบบ H4 Swing Break + Retest + M15 EMA200:
+
+หลักใหญ่:
+1. หา Swing High / Swing Low บน H4 ก่อน
+2. รอ H4 ปิด Break โครงสร้างจริง
+3. ห้ามเข้าไล่แท่ง Break และห้ามเข้าเพราะกลัวตกรถ
+4. รอราคากลับมา Retest จุด Swing เดิม
+5. ใช้ M15 หา Trigger เพื่อให้ SL สั้นและ RR สูง
+6. EMA200 M15 เป็นประตูอนุญาตเข้า
+
+Sell Setup:
+1. H4 มี Swing High และ Swing Low ชัด
+2. H4 ปิดหลุด Swing Low = Break / BOS ลง
+3. รอราคากลับมา Retest Swing Low เดิม
+4. Retest แล้วไม่กลับขึ้นไปใน Range เดิม
+5. M15 ต้องอยู่ใต้ EMA200 หรือหลุด EMA200 แล้ว Retest ไม่ผ่าน
+6. M15 มี Bearish Winning Bar / Reject / BOS ลง
+7. เข้า Sell Stop ใต้ Low ของ M15 Trigger
+8. SL เหนือ Retest High หรือเหนือ Swing High
+9. TP ไปหา Low ถัดไป / Demand ถัดไป
+
+Buy Setup:
+1. H4 มี Swing Low และ Swing High ชัด
+2. H4 ปิดทะลุ Swing High = Break / BOS ขึ้น
+3. รอราคากลับมา Retest Swing High เดิม
+4. Retest แล้วไม่หลุดกลับเข้า Range เดิม
+5. M15 ต้องอยู่เหนือ EMA200 หรือทะลุ EMA200 แล้ว Retest ไม่หลุด
+6. M15 มี Bullish Winning Bar / Reject / BOS ขึ้น
+7. เข้า Buy Stop เหนือ High ของ M15 Trigger
+8. SL ใต้ Retest Low หรือใต้ Swing Low
+9. TP ไปหา High ถัดไป / Supply ถัดไป
+
+กฎเหล็ก:
+- H4 Reject = แค่เตือน
+- H4 Break Swing = เริ่มมีสิทธิ์มองหาออเดอร์
+- Retest = จุดเตรียมเข้า
+- M15 EMA200 + Trigger = จุดยิง
+- ถ้า RR ไม่ถึง 1:2 หรือยังกลัวตกรถ ให้บันทึก NO_TRADE</textarea></div>
+          <div class="c12"><label>เหตุผลเข้า / เหตุผลไม่เข้า</label><textarea id="entryReason">ยังไม่เข้าเพราะต้องให้ครบลำดับก่อน: H4 เจอ Swing High/Low → H4 ปิด Break → ราคา Retest → M15 อยู่ฝั่ง EMA200 ที่ถูกต้อง → M15 มี Trigger ยืนยัน</textarea></div>
+          <div class="c12"><label>แผนออก / ยกเลิกแผน</label><textarea id="exitPlan">ยกเลิกแผนถ้ายังไม่มี H4 Break Swing จริง, M15 ยังไม่ผ่าน EMA200, มีข่าวแรง, ราคา Retest แล้วกลับเข้า Range เดิม, หรือ RR ไม่ถึง 1:2</textarea></div>
         </div>
         <div class="btns"><button class="ghost" onclick="prevStep()">ย้อนกลับ</button><button class="primary" onclick="nextStep()">ต่อไป</button></div>
       </div>
@@ -220,14 +252,14 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
     <div class="card" style="margin-top:14px"><h2>วิธีติดตั้งสั้น ๆ</h2><ol class="small"><li>เอาไฟล์ <b>index.html</b> v3.5 ไปทับใน repo <b>pa-coach-trade-journal</b></li><li>เอาไฟล์ <b>Code.gs</b> v3.5 ไปทับใน Apps Script</li><li>ตั้ง Script Properties: <b>PA_COACH_SECRET</b> และถ้ามีให้ใส่ <b>PA_COACH_SPREADSHEET_ID</b></li><li>Run <b>setupDatabase</b> ครั้งเดียว แล้ว Deploy → Manage deployments → Edit → New version</li><li>เปิดเว็บ GitHub Pages กด Settings → Test Sync → Load from Google Sheet</li></ol></div>
   </section>
 
-  <div class="footer">PA Coach Web App v3.8 — เครื่องมือฝึกวินัยและบันทึกการเทรด ไม่ใช่สัญญาณการันตีกำไร</div>
+  <div class="footer">PA Coach Web App v3.8.3 — Strict Swing Gate: H4 Reject ยังไม่ใช่ Entry / ต้องรอ Swing Break + Retest + M15 EMA200</div>
 </div>
 
 <div id="modal" class="modal"><div class="card"><div class="modalTop"><h2 id="modalTitle">รูปกราฟ</h2><div><button class="ghost" onclick="toggleBrowserFullscreen()">เต็มจอ</button> <button class="ghost" onclick="closeImg()">ปิด</button></div></div><img id="modalImg" onclick="toggleBrowserFullscreen()"></div></div>
 
 <script>
 const $=id=>document.getElementById(id);
-const APP_VERSION="v3.8";
+const APP_VERSION="v3.8.3";
 const storeKey="paJournalV3";              // ใช้ key เดิมจาก v3.3 เพื่อให้ข้อมูลเก่ายังขึ้น
 const draftKey="paJournalDraftV34";
 const syncSettingKey="paSyncSettingV33";   // ใช้ key เดิมจาก v3.3 เพื่อไม่ต้องกรอก URL/Secret ใหม่
@@ -237,39 +269,44 @@ let editingPlanId=null, reviewingId=null, reviewImagesBuffer=[];
 let syncTimer=null;
 
 const checks=[
+ ["c0","H4 ปิดแท่งแล้ว","ห้ามตัดสินใจจากแท่ง H4 ที่ยังไม่ปิด เพราะอาจเป็นไส้หลอก / Fake Break"],
  ["c1","D1/H4 มี Bias ชัด","ไม่เดาจาก M15 อย่างเดียว"],
- ["c2","ราคาอยู่ที่โซนสำคัญ","แนวรับ/แนวต้าน/OB/Supply Demand"],
- ["c3","มี BOS/CHOCH หรือโครงสร้างรองรับ","ไม่เข้าเพราะแท่งเดียว"],
- ["c4","รอ Retest/Pullback แล้ว","ไม่ไล่ราคา"],
- ["c5","มี Trigger Candle","Pin/Engulfing/Outside Bar/Reject"],
- ["c6","SL อยู่หลัง Swing","ไม่ชิดเกินจนโดนไส้"],
- ["c7","TP มีพื้นที่ถึงแนวถัดไป","ไม่ชนแนวใกล้เกิน"],
- ["c8","RR ถึงขั้นต่ำ","แนะนำ 1:2 ขึ้นไป"],
- ["c9","Risk อยู่ในแผน","แนะนำ 0.25-1% ต่อไม้"],
- ["c10","ไม่มีข่าวแดง/ส้มใกล้เวลาเข้า","ถ้ามี ให้ NO_TRADE"]
+ ["c2","เจอ Swing High และ Swing Low ชัด","ต้องมีขอบโครงสร้างก่อน ไม่เข้าเพราะเห็นแท่ง Reject เดี่ยว ๆ"],
+ ["c3","H4 ปิด Break โครงสร้างจริง","Sell = ปิดหลุด Swing Low / Buy = ปิดทะลุ Swing High"],
+ ["c4","รอ Retest/Pullback แล้ว","Break ยังไม่ใช่จุดเข้า ต้องรอกลับมา Retest เพื่อรีด RR"],
+ ["c5","ราคาอยู่ที่โซนสำคัญ","แนวรับ/แนวต้าน/OB/Supply Demand/Retest Zone"],
+ ["c6","มี BOS/CHOCH หรือโครงสร้างรองรับ","ไม่เข้าเพราะแท่งเดียว"],
+ ["c7","มี Trigger Candle","Pin/Engulfing/Outside Bar/Reject/Winning Bar"],
+ ["c8","SL อยู่หลัง Swing","ไม่ชิดเกินจนโดนไส้"],
+ ["c9","TP มีพื้นที่ถึงแนวถัดไป","ไม่ชนแนวใกล้เกิน"],
+ ["c10","RR ถึงขั้นต่ำ","แนะนำ 1:2 ขึ้นไป"],
+ ["c11","Risk อยู่ในแผน","แนะนำ 0.25-1% ต่อไม้"],
+ ["c12","ไม่มีข่าวแดง/ส้มใกล้เวลาเข้า","ถ้ามี ให้ NO_TRADE"],
+ ["c13","ไม่ใช่การเข้าเพราะกลัวตกรถ","ถ้ารู้สึก FOMO ให้บันทึก WAIT/NO_TRADE ก่อน"]
 ];
 const scalpChecks=[
  ["m1","ราคาเข้าโซน H4 แล้ว","M15 ใช้หา Trigger เท่านั้น"],
- ["m2","M15 มี BOS/CHOCH หรือ LH/HL ชัด","ไม่เดาทิศทางกลางกรอบ"],
- ["m3","EMA 10/20/50 สนับสนุน","Sell กดใต้ EMA / Buy รับเหนือ EMA"],
- ["m4","มี Trigger Candle M15","Outside bar / Engulfing / Reject"],
- ["m5","Entry ใช้ Stop/Limit ตามแผน","ไม่ไล่ Market ถ้าแท่งยาวแล้ว"],
- ["m6","SL หลัง Swing M15 + เผื่อ spread","ไม่วางใกล้เกิน"],
- ["m7","RR ขั้นต่ำ 1:2","ถ้าไม่ถึง ไม่เข้า"],
- ["m8","Expire 3-5 แท่ง M15","ไม่ Trigger ให้ยกเลิก"],
- ["m9","ข่าวไม่ชนช่วงเข้า","ส้ม/แดงใกล้เวลา = รอ"],
- ["m10","ยอมไม่เข้าได้","ไม่มี Setup = ยังไม่เข้า"]
+ ["m2","M15 ต้องปิดแท่งก่อน","ห้ามใช้แท่ง M15 ที่ยังวิ่งอยู่เป็น Trigger"],
+ ["m3","EMA200 M15 สนับสนุน","Sell ต้องอยู่ใต้ EMA200 หรือหลุดแล้ว Retest ไม่ผ่าน / Buy ต้องอยู่เหนือ EMA200 หรือทะลุแล้ว Retest ไม่หลุด"],
+ ["m4","M15 มี BOS/CHOCH หรือ LH/HL ชัด","ไม่เดาทิศทางกลางกรอบ"],
+ ["m5","มี Trigger Candle M15","Outside bar / Engulfing / Reject / Winning Bar"],
+ ["m6","Entry ใช้ Stop/Limit ตามแผน","ไม่ไล่ Market ถ้าแท่งยาวแล้ว"],
+ ["m7","SL หลัง Swing M15 + เผื่อ spread","ไม่วางใกล้เกิน"],
+ ["m8","RR ขั้นต่ำ 1:2","ถ้าไม่ถึง ไม่เข้า"],
+ ["m9","Expire 3-5 แท่ง M15","ไม่ Trigger ให้ยกเลิก"],
+ ["m10","ข่าวไม่ชนช่วงเข้า","ส้ม/แดงใกล้เวลา = รอ"],
+ ["m11","ยอมไม่เข้าได้","ไม่มี Setup = ยังไม่เข้า"]
 ];
 const todayWatchlistItems = [
   {
     symbol: "ETHUSD",
     market: "Crypto",
-    status: "WAIT",
-    bias: "SELL",
-    mainPlan: "A Main Sell Pullback",
+    status: "WATCH — ยังไม่เข้า",
+    bias: "SELL เฉพาะหลัง H4 Break Swing Low",
+    mainPlan: "H4 Swing Break + Retest",
     watchZone: "Sell Zone 1: 1648-1665 / Sell Zone 2: 1689-1715",
-    dangerZone: "Breakdown: 1569-1550",
-    action: "ยังไม่เข้า รอราคาเข้า Sell Zone แล้วค่อยเปิด M15 หา Reject / BOS ลง",
+    dangerZone: "ห้ามเรียก READY SELL จนกว่า H4 ปิดหลุด Swing Low จริง แล้ว Retest ไม่กลับเข้า Range",
+    action: "ยังไม่เข้า แม้ราคาเข้า Sell Zone ต้องรอ H4 ปิดหลุด Swing Low → Retest → M15 ต่ำกว่า EMA200 → Reject/BOS ลง",
     planId: "ethusd-a-main-sell-pullback-2026-06-07",
     statusClass: "orangep"
   },
@@ -964,6 +1001,34 @@ coachTradePlans.push(
 
 const strategyChecks={
  BOS_OB_RETEST:[["s_bos1","H4 เกิด BOS ไปทางแผน"],["s_bos2","ระบุ OB / Retest Zone ชัด"],["s_bos3","ราคา Pullback กลับเข้าโซน"],["s_bos4","ไม่เข้าเมื่อราคาอยู่กลางทาง"],["s_bos5","M15 มี Trigger ยืนยัน"],["s_bos6","Entry/SL/TP วางตาม Trigger"],["s_bos7","RR ถึง 1:2 ขึ้นไป"],["s_bos8","ข่าวไม่ชน"]],
+ H4_SWING_BREAK_RETEST:[
+  ["s_sbr_1","เจอ Swing High และ Swing Low ชัด","ต้องเห็นกรอบโครงสร้างก่อน ไม่เดาจากแท่งเดียว"],
+  ["s_sbr_2","ราคาทำ Break โครงสร้างแล้ว","Sell = H4 ปิดหลุด Swing Low / Buy = H4 ปิดทะลุ Swing High"],
+  ["s_sbr_3","Break ต้องเป็นแท่งปิดจริง","ไม่ใช้แค่ไส้เทียนแทงหลุดแล้วกลับ"],
+  ["s_sbr_4","ไม่เข้าไล่แท่ง Break","หลัง Break ต้องรอ Retest ก่อน เพื่อให้ RR ดีขึ้น"],
+  ["s_sbr_5","Retest กลับมาที่ Swing เดิม","Sell = Retest Swing Low เดิม / Buy = Retest Swing High เดิม"],
+  ["s_sbr_6","Retest แล้วราคาไม่กลับเข้า Range เดิม","Sell ต้องยืนใต้ Swing Low เดิม / Buy ต้องยืนเหนือ Swing High เดิม"],
+  ["s_sbr_7","M15 ต้องอยู่ฝั่ง EMA200 ที่ถูกต้อง","Sell = ต่ำกว่า EMA200 หรือ Retest EMA200 ไม่ผ่าน / Buy = เหนือ EMA200 หรือ Retest ไม่หลุด"],
+  ["s_sbr_8","M15 มี Trigger ที่จุด Retest","Winning Bar / Reject / Engulfing / Outside Bar / Sweep"],
+  ["s_sbr_9","M15 มี BOS หรือ CHOCH ไปทางแผน","Sell ต้องเห็นโครงสร้างลง / Buy ต้องเห็นโครงสร้างขึ้น"],
+  ["s_sbr_10","Entry ใช้ Stop Order","Sell Stop ใต้ Low ของ M15 Trigger / Buy Stop เหนือ High ของ M15 Trigger"],
+  ["s_sbr_11","SL วางหลัง Retest Zone","Sell วางเหนือ Retest High / Buy วางใต้ Retest Low"],
+  ["s_sbr_12","TP อิง Swing ถัดไป","TP1 แนวใกล้สุด, TP2 Swing ใหญ่, TP3 โซนถัดไป"],
+  ["s_sbr_13","RR อย่างน้อย 1:2","ถ้า Retest มาแล้วแต่ RR ไม่ถึง ให้บันทึก NO_TRADE"],
+  ["s_sbr_14","ไม่มีอารมณ์กลัวตกรถ","ถ้ารู้สึกรีบ ให้ยังไม่เข้า"]
+ ],
+ H4_SIGNAL_M15_SNIPER:[
+  ["s_sniper_0","H4 ต้องปิดแท่งก่อน","ห้ามใช้แท่ง H4 ที่ยังวิ่งอยู่มาตัดสินใจเข้าออเดอร์"],
+  ["s_sniper_1","H4 เป็น Signal / Permission เท่านั้น","H4 มีหน้าที่บอกว่าเริ่มมองหาออเดอร์ได้ แต่ยังไม่ใช่จุดเข้า"],
+  ["s_sniper_2","H4 อยู่ที่แนวรับ/แนวต้านสำคัญ","Sell = แนวต้าน/Supply/Retest Zone, Buy = แนวรับ/Demand"],
+  ["s_sniper_3","H4 มี Winning Bar / Outside Bar / Reject","ต้องเกิดบริเวณโซน H4 ไม่ใช่กลางทาง"],
+  ["s_sniper_4","ห้ามเข้า Market ทันทีหลัง H4 ปิด","ให้เปิด M15 เพื่อหาจุดเข้า RR ที่ดีกว่า"],
+  ["s_sniper_5","M15 ต้องอยู่ฝั่ง EMA200 ที่ถูกต้อง","Sell = ต่ำกว่า EMA200 / Buy = เหนือ EMA200"],
+  ["s_sniper_6","M15 มี Trigger ชัด","Winning Bar / Reject / Engulfing / Outside Bar / Sweep / BOS"],
+  ["s_sniper_7","Entry ใช้ Stop Order","Sell Stop ใต้ Low ของ M15 Trigger / Buy Stop เหนือ High ของ M15 Trigger"],
+  ["s_sniper_8","SL อยู่หลัง Swing M15","SL สั้นกว่า H4 แต่ต้องไม่ชิดเกินไป"],
+  ["s_sniper_9","RR อย่างน้อย 1:2","ถ้า RR ไม่ถึง ให้บันทึก NO_TRADE"]
+ ],
  OB_SH_BOS_RTO:[["s_ob1","มี Swing High/Low สำคัญ"],["s_ob2","เกิด BOS หลัง Sweep/Reject"],["s_ob3","เลือก OB ต้นทางถูก"],["s_ob4","รอ RTO/Retest กลับโซน"],["s_ob5","มี Reject/Trigger"],["s_ob6","SL หลัง OB/Swing"],["s_ob7","TP ถึง liquidity ถัดไป"],["s_ob8","RR ผ่าน"]],
  COUNTER_TREND:[["s_ct1","อยู่โซนใหญ่ D1/H4 เท่านั้น"],["s_ct2","มี Sweep/False Break"],["s_ct3","มี Rejection แรง"],["s_ct4","M15/H1 เกิด CHOCH/BOS กลับตัว"],["s_ct5","เข้าเฉพาะ Retest หลัง CHOCH"],["s_ct6","TP1 สั้น ชนแนวแรกต้องระวัง"],["s_ct7","Risk ไม่เกิน 0.5%"],["s_ct8","ไม่มีข่าวแรงชน"]],
  DOUBLE_DOJI:[["s_dd1","เกิด Double Doji ที่โซนสำคัญ"],["s_dd2","แท่งก่อนหน้ามีแรงชัด"],["s_dd3","รอ Break กรอบ Doji"],["s_dd4","SL หลังกรอบ/หลัง Swing"],["s_dd5","RR ผ่านก่อนวาง order"]],
@@ -1128,7 +1193,9 @@ function sendWatchlistTelegram(symbol){
     "<b>Coach PA Action:</b>",
     htmlSafeForTelegram(item.action),
     "",
-    "⚠️ ไม่ใช่สัญญาณเข้าออเดอร์ทันที ต้องรอ H4/M15 Trigger ก่อน"
+    "⚠️ ไม่ใช่สัญญาณเข้าออเดอร์ทันที",
+    "กฎใหม่: ห้าม READY SELL ถ้ายังไม่มี H4 ปิดหลุด Swing Low + Retest + M15 ต่ำกว่า EMA200 + Trigger",
+    "ถ้าแค่เข้า Sell Zone หรือ H4 Reject ให้เรียก WATCH เท่านั้น"
   ].join("\n");
 
   if (!confirm(`ส่ง Watchlist Alert ของ ${item.symbol} เข้า Telegram ใช่ไหม?`)) return;
@@ -1337,8 +1404,10 @@ function calcRR(){
 function evaluation(){
  const news=newsStatus(), rr=calcRR();
  const paScore=checkedCount(checks.map(c=>c[0]));
+ const paTotal=checks.length;
  const stList=strategyList(), stScore=checkedCount(stList.map(c=>c[0]));
  const mScore=checkedCount(scalpChecks.map(c=>c[0]));
+ const mTotal=scalpChecks.length;
  const minRR=Number(val("minRR")||2);
  const blocks=[];
  if(news.blocked) blocks.push("ชนข่าวแดง/ส้ม");
@@ -1346,12 +1415,23 @@ function evaluation(){
  if(val("h4Position")==="middle") blocks.push("ราคาอยู่กลางกรอบ");
  if(rr.validRisk && rr.max < minRR) blocks.push(`RR ต่ำกว่า ${minRR}`);
  if(!rr.validRisk) blocks.push("ยังไม่ได้กรอก Entry/SL");
- if(paScore<8) blocks.push("PA Checklist ยังไม่ครบ 8/10");
+ if(paScore < Math.ceil(paTotal*.80)) blocks.push(`PA Checklist ยังไม่ครบ ${Math.ceil(paTotal*.80)}/${paTotal}`);
  if(stList.length && stScore < Math.ceil(stList.length*.75)) blocks.push("Strategy Checklist ยังไม่ผ่าน 75%");
+ if(val("direction")!=="WAIT" && val("m15EntryType")==="ยังไม่เข้า") blocks.push("ยังไม่มี M15 Entry Type / ยังไม่ควรเข้า");
+ if(val("strategy")==="H4_SWING_BREAK_RETEST"){
+   const must=["s_sbr_1","s_sbr_2","s_sbr_3","s_sbr_4","s_sbr_5","s_sbr_7","s_sbr_8","s_sbr_10","s_sbr_13"];
+   const missingMust=must.filter(id=>!$(id)?.checked);
+   if(missingMust.length) blocks.push("Strict Swing Gate ยังไม่ผ่าน: ต้องมี Swing → Break ปิดแท่ง → Retest → M15 EMA200 → Trigger");
+ }
+ if(val("strategy")==="H4_SIGNAL_M15_SNIPER"){
+   const must=["s_sniper_0","s_sniper_4","s_sniper_5","s_sniper_6","s_sniper_7","s_sniper_9"];
+   const missingMust=must.filter(id=>!$(id)?.checked);
+   if(missingMust.length) blocks.push("Sniper Gate ยังไม่ผ่าน: H4 เป็นแค่สัญญาณ ต้องรอ M15 EMA200 + Trigger");
+ }
  let cls="go", title="PLAN พร้อมรอ Trigger";
  if(blocks.length){cls="wait";title="WAIT: ยังไม่เข้า";}
  if(news.blocked || val("direction")==="WAIT" || val("h4Position")==="middle") {cls="no"; title="NO_TRADE / WAIT";}
- return {news,rr,paScore,stScore,stTotal:stList.length,mScore,blocks,cls,title};
+ return {news,rr,paScore,paTotal,stScore,stTotal:stList.length,mScore,mTotal,blocks,cls,title};
 }
 function evalAll(){
  renderStrategyChecklist();
@@ -1360,14 +1440,14 @@ function evalAll(){
  if(newsBox){newsBox.className="decision "+ev.news.cls; newsBox.innerHTML=`<div class="big">${ev.news.title}</div><div>${ev.news.detail}</div>`;}
  const rr=$("rrBox");
  if(rr){rr.innerHTML=`Risk ระยะ SL: <b>${fmt(ev.rr.risk,3)}</b> | RR1: <b>${fmt(ev.rr.rr1)}</b> | RR2: <b>${fmt(ev.rr.rr2)}</b> | RR3: <b>${fmt(ev.rr.rr3)}</b> | Max RR: <b>${fmt(ev.rr.max)}</b>`;}
- const html=`<div class="big">${ev.title}</div><div>PA ${ev.paScore}/10 | Strategy ${ev.stScore}/${ev.stTotal||0} | M15 ${ev.mScore}/10 | Max RR ${fmt(ev.rr.max)}</div>${ev.blocks.length?`<div style="margin-top:8px"><b>เหตุผลที่ยังไม่เข้า:</b><br>${ev.blocks.map(x=>"• "+esc(x)).join("<br>")}</div>`:`<div class="muted">ครบเงื่อนไขหลักแล้ว แต่ยังต้องรอแท่งปิด/Trigger จริงก่อนส่ง order</div>`}`;
+ const html=`<div class="big">${ev.title}</div><div>PA ${ev.paScore}/${ev.paTotal||0} | Strategy ${ev.stScore}/${ev.stTotal||0} | M15 ${ev.mScore}/${ev.mTotal||0} | Max RR ${fmt(ev.rr.max)}</div>${ev.blocks.length?`<div style="margin-top:8px"><b>เหตุผลที่ยังไม่เข้า:</b><br>${ev.blocks.map(x=>"• "+esc(x)).join("<br>")}</div>`:`<div class="muted">ครบเงื่อนไขหลักแล้ว แต่ยังต้องรอแท่งปิด/Trigger จริงก่อนส่ง order</div>`}`;
  ["topDecision","finalDecision"].forEach(id=>{const box=$(id); if(box){box.className="decision "+ev.cls; box.innerHTML=html;}});
  return ev;
 }
 
 function dataObj(forceStatus){
  const ev=evalAll(); const status=forceStatus || (ev.cls==="no"?"NO_TRADE":"PLAN");
- return {id:editingPlanId||uuid(), appVersion:APP_VERSION, createdAt:new Date().toISOString(), updatedAt:new Date().toISOString(), tradeDate:val("tradeDate"), tradeTime:val("tradeTime"), symbol:val("symbol").trim().toUpperCase()||"XAUUSD", market:val("market"), strategy:val("strategy"), strategyName:$("strategy").selectedOptions[0]?.text||val("strategy"), direction:val("direction"), entryTf:val("entryTf"), orderType:val("orderType"), tradeMode:val("tradeMode"), newsWindow:val("newsWindow"), relevantCurrencies:val("relevantCurrencies"), manualNewsMode:val("manualNewsMode"), newsRows:newsRows(), d1Trend:val("d1Trend"), h4Position:val("h4Position"), bias:val("bias"), structure:val("structure"), supportZone:val("supportZone"), resistanceZone:val("resistanceZone"), tfPlan:val("tfPlan"), entry:num("entry"), sl:num("sl"), tp1:num("tp1"), tp2:num("tp2"), tp3:num("tp3"), balance:num("balance"), riskPercent:num("riskPercent"), minRR:num("minRR"), riskNote:val("riskNote"), m15EntryType:val("m15EntryType"), m15ExpireBars:val("m15ExpireBars"), m15Plan:val("m15Plan"), entryReason:val("entryReason"), exitPlan:val("exitPlan"), chartW1:charts.w1, chartD1:charts.d1, chartH4:charts.h4, chartM15:charts.m15, paPassed:checkedTexts(checks), paMissing:missingTexts(), strategyPassed:strategyCheckedTexts(), strategyMissing:strategyMissingTexts(), strategyScore:ev.stScore, strategyTotal:ev.stTotal, score:ev.paScore, scalpScore:ev.mScore, scalpPassed:checkedTexts(scalpChecks), scalpMissing:scalpMissingTexts(), rr1:ev.rr.rr1, rr2:ev.rr.rr2, rr3:ev.rr.rr3, maxRR:ev.rr.max, decision:ev.title, decisionClass:ev.cls, blocks:ev.blocks, status, resultR:null, exitPrice:null, emotion:"", lesson:"", resultImages:[]};
+ return {id:editingPlanId||uuid(), appVersion:APP_VERSION, createdAt:new Date().toISOString(), updatedAt:new Date().toISOString(), tradeDate:val("tradeDate"), tradeTime:val("tradeTime"), symbol:val("symbol").trim().toUpperCase()||"XAUUSD", market:val("market"), strategy:val("strategy"), strategyName:$("strategy").selectedOptions[0]?.text||val("strategy"), direction:val("direction"), entryTf:val("entryTf"), orderType:val("orderType"), tradeMode:val("tradeMode"), newsWindow:val("newsWindow"), relevantCurrencies:val("relevantCurrencies"), manualNewsMode:val("manualNewsMode"), newsRows:newsRows(), d1Trend:val("d1Trend"), h4Position:val("h4Position"), bias:val("bias"), structure:val("structure"), supportZone:val("supportZone"), resistanceZone:val("resistanceZone"), tfPlan:val("tfPlan"), entry:num("entry"), sl:num("sl"), tp1:num("tp1"), tp2:num("tp2"), tp3:num("tp3"), balance:num("balance"), riskPercent:num("riskPercent"), minRR:num("minRR"), riskNote:val("riskNote"), m15EntryType:val("m15EntryType"), m15ExpireBars:val("m15ExpireBars"), m15Plan:val("m15Plan"), entryReason:val("entryReason"), exitPlan:val("exitPlan"), chartW1:charts.w1, chartD1:charts.d1, chartH4:charts.h4, chartM15:charts.m15, paPassed:checkedTexts(checks), paMissing:missingTexts(), strategyPassed:strategyCheckedTexts(), strategyMissing:strategyMissingTexts(), strategyScore:ev.stScore, strategyTotal:ev.stTotal, score:ev.paScore, paTotal:ev.paTotal, scalpScore:ev.mScore, scalpTotal:ev.mTotal, scalpPassed:checkedTexts(scalpChecks), scalpMissing:scalpMissingTexts(), rr1:ev.rr.rr1, rr2:ev.rr.rr2, rr3:ev.rr.rr3, maxRR:ev.rr.max, decision:ev.title, decisionClass:ev.cls, blocks:ev.blocks, status, resultR:null, exitPrice:null, emotion:"", lesson:"", resultImages:[]};
 }
 function savePlan(){
  let d=dataObj(); if(!d.symbol){alert("กรอก Symbol ก่อน");return;}
@@ -1453,7 +1533,8 @@ function buildTelegramTextFromPlanner(t) {
     "<b>Risk Note:</b>",
     risk,
     "",
-    "⚠️ เช็กแท่งปิด, ข่าว, SL, RR ก่อนเข้าออเดอร์"
+    "⚠️ เช็กแท่งปิด, ข่าว, SL, RR ก่อนเข้าออเดอร์",
+    "กฎกันกราฟหลอก: H4 Reject = แค่เตือน / ต้องรอ Swing Break + Retest + M15 EMA200 + Trigger"
   ].join("\n");
 }
 
@@ -1500,7 +1581,7 @@ function renderJournal(){
    const badNews=(t.newsRows||[]).filter(r=>r.rel&&["red","orange"].includes(r.impact));
    const thumbs=[t.chartW1,t.chartD1,t.chartH4,t.chartM15].filter(Boolean).slice(0,2).map(src=>`<img class="thumb" src="${src}" onclick="showImg('${src}','รูปกราฟ')">`).join(" ");
    const resThumbs=(t.resultImages||[]).slice(0,2).map((src,i)=>`<img class="thumb" src="${src}" onclick="showResultImg('${t.id}',${i})">`).join(" ");
-   return `<tr><td>${esc(t.tradeDate||"")}<br><span class="muted">${esc(t.tradeTime||"")}</span><br><span class="small">${esc((t.updatedAt||t.createdAt||"").slice(0,10))}</span></td><td><b>${esc(t.symbol)}</b><br>${esc(t.market||"")} / ${esc(t.entryTf||"")}<br><span class="muted">${esc(t.strategyName||t.strategy||"")}</span></td><td>${dirPill(t.direction)} ${statusPill(t.status)}<br><span class="muted">${esc(t.decision||"")}</span></td><td>E: ${esc(t.entry??"-")}<br>SL: ${esc(t.sl??"-")}<br>TP1: ${esc(t.tp1??"-")} / TP2: ${esc(t.tp2??"-")} / TP3: ${esc(t.tp3??"-")}</td><td>Max RR: <b>${fmt(t.maxRR)}</b><br>PA ${esc(t.score??0)}/10<br>Strategy ${esc(t.strategyScore??0)}/${esc(t.strategyTotal??0)}</td><td>${badNews.length?`<span class="pill redp">ชนข่าว ${badNews.length}</span>`:`<span class="pill greenp">ข่าวผ่าน</span>`}<br>${thumbs}<br>${resThumbs}</td><td>R: <b>${esc(t.resultR??"-")}</b><br>Exit: ${esc(t.exitPrice??"-")}<br><span class="muted">${esc(t.emotion||"")}</span></td><td><button class="ghost" onclick="editPlan('${t.id}')">แก้</button> <button class="okbtn" onclick="selectReview('${t.id}')">รีวิว</button> <button class="danger" onclick="deleteTrade('${t.id}')">ลบ</button></td></tr>`;
+   return `<tr><td>${esc(t.tradeDate||"")}<br><span class="muted">${esc(t.tradeTime||"")}</span><br><span class="small">${esc((t.updatedAt||t.createdAt||"").slice(0,10))}</span></td><td><b>${esc(t.symbol)}</b><br>${esc(t.market||"")} / ${esc(t.entryTf||"")}<br><span class="muted">${esc(t.strategyName||t.strategy||"")}</span></td><td>${dirPill(t.direction)} ${statusPill(t.status)}<br><span class="muted">${esc(t.decision||"")}</span></td><td>E: ${esc(t.entry??"-")}<br>SL: ${esc(t.sl??"-")}<br>TP1: ${esc(t.tp1??"-")} / TP2: ${esc(t.tp2??"-")} / TP3: ${esc(t.tp3??"-")}</td><td>Max RR: <b>${fmt(t.maxRR)}</b><br>PA ${esc(t.score??0)}/${esc(t.paTotal??10)}<br>Strategy ${esc(t.strategyScore??0)}/${esc(t.strategyTotal??0)}</td><td>${badNews.length?`<span class="pill redp">ชนข่าว ${badNews.length}</span>`:`<span class="pill greenp">ข่าวผ่าน</span>`}<br>${thumbs}<br>${resThumbs}</td><td>R: <b>${esc(t.resultR??"-")}</b><br>Exit: ${esc(t.exitPrice??"-")}<br><span class="muted">${esc(t.emotion||"")}</span></td><td><button class="ghost" onclick="editPlan('${t.id}')">แก้</button> <button class="okbtn" onclick="selectReview('${t.id}')">รีวิว</button> <button class="danger" onclick="deleteTrade('${t.id}')">ลบ</button></td></tr>`;
  }).join("");
 }
 function selectReview(id){
