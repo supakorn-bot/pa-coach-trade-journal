@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PA Coach Web App v3.8.3 - Strict Swing Gate</title>
+<title>PA Coach Web App v3.8.8 - Real Small Mode + Strict Swing Gate</title>
 <style>
 :root{--bg:#07101f;--panel:#111c31;--panel2:#17243e;--line:#2b3b5f;--text:#eef6ff;--muted:#9fb2cf;--blue:#38bdf8;--violet:#a78bfa;--ok:#22c55e;--warn:#f59e0b;--bad:#ef4444;--info:#60a5fa}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 8% 0%,rgba(56,189,248,.18),transparent 34%),radial-gradient(circle at 88% 0%,rgba(167,139,250,.16),transparent 34%),var(--bg);color:var(--text);font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif}.wrap{max-width:1280px;margin:auto;padding:18px}.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;margin-bottom:14px}.card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:17px;box-shadow:0 14px 45px rgba(0,0,0,.28)}h1,h2,h3{margin:0 0 10px}h1{font-size:28px}h2{font-size:20px}h3{font-size:16px}p{margin:0 0 10px;color:var(--muted);line-height:1.65}.small{font-size:12px;color:var(--muted);line-height:1.5}.tabs,.steps,.btns{display:flex;gap:9px;flex-wrap:wrap}.tabs{margin:14px 0}.steps{margin:10px 0 14px}.tab,.step,button{font-family:inherit;font-weight:800;border:0;border-radius:13px;padding:10px 13px;cursor:pointer}.tab,.step,.ghost{background:rgba(255,255,255,.07);color:var(--text);border:1px solid rgba(255,255,255,.13)}.tab.active,.step.active{background:linear-gradient(90deg,rgba(56,189,248,.26),rgba(167,139,250,.24));border-color:rgba(56,189,248,.45)}.primary{background:linear-gradient(90deg,#38bdf8,#a78bfa);color:#06111e}.okbtn{background:rgba(34,197,94,.18);color:#bbf7d0;border:1px solid rgba(34,197,94,.38)}.danger{background:rgba(239,68,68,.18);color:#fecaca;border:1px solid rgba(239,68,68,.38)}.warnbtn{background:rgba(245,158,11,.17);color:#fed7aa;border:1px solid rgba(245,158,11,.38)}
@@ -11,22 +11,22 @@
 .section,.panel{display:none}.section.active,.panel.active{display:block}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}.c12{grid-column:span 12}.c9{grid-column:span 9}.c8{grid-column:span 8}.c6{grid-column:span 6}.c4{grid-column:span 4}.c3{grid-column:span 3}.c2{grid-column:span 2}label{display:block;font-size:13px;margin-bottom:6px;color:#d9e7fb}input,select,textarea{width:100%;background:#0c172a;color:var(--text);border:1px solid var(--line);border-radius:13px;padding:10px 11px;outline:none;font-family:inherit;font-size:14px}textarea{min-height:88px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:rgba(56,189,248,.75);box-shadow:0 0 0 3px rgba(56,189,248,.12)}
 .note,.decision{background:rgba(56,189,248,.09);border:1px solid rgba(56,189,248,.22);border-radius:15px;padding:13px;line-height:1.55}.decision.go{border-color:rgba(34,197,94,.55);background:rgba(34,197,94,.13)}.decision.wait{border-color:rgba(245,158,11,.55);background:rgba(245,158,11,.13)}.decision.no{border-color:rgba(239,68,68,.55);background:rgba(239,68,68,.13)}.big{font-size:24px;font-weight:900}.muted{color:var(--muted)}.editmode{border-color:rgba(34,197,94,.42);background:rgba(34,197,94,.08)}
 table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255,255,255,.08);padding:9px;text-align:left;vertical-align:top;font-size:13px}th{background:rgba(255,255,255,.055);font-size:12px;color:#d5e3f6}.tablewrap{overflow:auto;margin-top:10px;max-height:560px;border:1px solid rgba(255,255,255,.08);border-radius:14px}.pill{display:inline-block;border-radius:999px;padding:4px 8px;font-size:12px;border:1px solid rgba(255,255,255,.13);white-space:nowrap}.redp{color:#fecaca;background:rgba(239,68,68,.16);border-color:rgba(239,68,68,.36)}.orangep{color:#fed7aa;background:rgba(245,158,11,.16);border-color:rgba(245,158,11,.36)}.yellowp{color:#fef08a;background:rgba(234,179,8,.12);border-color:rgba(234,179,8,.30)}.greenp{color:#bbf7d0;background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.32)}.bluep{color:#bae6fd;background:rgba(56,189,248,.12);border-color:rgba(56,189,248,.32)}
-.check{display:flex;gap:9px;align-items:flex-start;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);border-radius:13px;padding:10px;min-height:62px}.check input{width:auto;margin-top:4px;accent-color:#38bdf8}.check span{min-width:0}.check b{display:block;font-size:14px;line-height:1.28}.check small{display:block;color:var(--muted);line-height:1.45;font-size:12px;margin-top:3px}#checklist .check,#strategyChecklist .check,#scalpChecklist .check{grid-column:span 4;min-height:96px}#strategyChecklist .check{min-height:104px}@media(max-width:1100px){#checklist .check,#strategyChecklist .check,#scalpChecklist .check{grid-column:span 6}}@media(max-width:680px){#checklist .check,#strategyChecklist .check,#scalpChecklist .check{grid-column:span 12;min-height:auto}}.preview{border:1px dashed rgba(255,255,255,.20);border-radius:14px;min-height:112px;padding:8px;background:#0c1629}.preview img{width:100%;max-height:230px;object-fit:contain;border-radius:10px}.thumb{width:94px;max-height:58px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,.16);cursor:pointer}.result-img-grid{display:flex;gap:10px;flex-wrap:wrap}.result-img-card{position:relative;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);border-radius:12px;padding:7px}.result-img-card img{width:130px;height:82px;object-fit:cover;border-radius:9px;cursor:pointer}.result-img-card button{position:absolute;top:4px;right:4px;padding:4px 7px;border-radius:999px;font-size:11px}.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.kpi .box{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px}.kpi .num{font-size:24px;font-weight:900}.kpi .lab{font-size:12px;color:var(--muted)}.modal{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:10px;z-index:99}.modal.active{display:flex}.modal .card{max-width:98vw;width:98vw;max-height:96vh;overflow:auto}.modal img{width:100%;max-height:84vh;object-fit:contain;border-radius:12px;background:#000}.modalTop{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.footer{text-align:center;color:var(--muted);font-size:12px;padding:18px 0}.hidden{display:none!important}
-@media(max-width:900px){.hero{grid-template-columns:1fr}.c9,.c8,.c6,.c4,.c3,.c2{grid-column:span 12}.kpi{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.wrap{padding:12px}h1{font-size:23px}.kpi{grid-template-columns:1fr}}
+.check{display:flex;gap:9px;align-items:flex-start;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);border-radius:13px;padding:10px;min-height:62px}.check input{width:auto;margin-top:4px;accent-color:#38bdf8}.check span{min-width:0}.check b{display:block;font-size:14px;line-height:1.28}.check small{display:block;color:var(--muted);line-height:1.45;font-size:12px;margin-top:3px}#checklist .check,#strategyChecklist .check,#scalpChecklist .check{grid-column:span 4;min-height:96px}.preview{border:1px dashed rgba(255,255,255,.20);border-radius:14px;min-height:112px;padding:8px;background:#0c1629}.preview img{width:100%;max-height:230px;object-fit:contain;border-radius:10px}.thumb{width:94px;max-height:58px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,.16);cursor:pointer}.result-img-grid{display:flex;gap:10px;flex-wrap:wrap}.result-img-card{position:relative;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);border-radius:12px;padding:7px}.result-img-card img{width:130px;height:82px;object-fit:cover;border-radius:9px;cursor:pointer}.result-img-card button{position:absolute;top:4px;right:4px;padding:4px 7px;border-radius:999px;font-size:11px}.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.kpi .box{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px}.kpi .num{font-size:24px;font-weight:900}.kpi .lab{font-size:12px;color:var(--muted)}.modal{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:10px;z-index:99}.modal.active{display:flex}.modal .card{max-width:98vw;width:98vw;max-height:96vh;overflow:auto}.modal img{width:100%;max-height:84vh;object-fit:contain;border-radius:12px;background:#000}.modalTop{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.footer{text-align:center;color:var(--muted);font-size:12px;padding:18px 0}.hidden{display:none!important}
+@media(max-width:1100px){#checklist .check,#strategyChecklist .check,#scalpChecklist .check{grid-column:span 6}}@media(max-width:900px){.hero{grid-template-columns:1fr}.c9,.c8,.c6,.c4,.c3,.c2{grid-column:span 12}.kpi{grid-template-columns:repeat(2,1fr)}}@media(max-width:680px){#checklist .check,#strategyChecklist .check,#scalpChecklist .check{grid-column:span 12;min-height:auto}}@media(max-width:560px){.wrap{padding:12px}h1{font-size:23px}.kpi{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="hero">
     <div class="card">
-      <h1>PA Coach Web App v3.8.3</h1>
-      <p>Anti Duplicate + Trade Lifecycle + Cloud First Sync: ใช้กับ XAUUSD / Forex / Crypto แบบ Price Action Swing Trade และ M15 Execution</p>
-      <span class="badge b-ok">Google Sheet Sync</span><span class="badge b-ok">Drive Images</span><span class="badge b-warn">กันข้อมูลซ้ำ</span><span class="badge b-info">PLAN → ACTIVE → CLOSED</span><span class="badge b-bad">ข่าวแดง/ส้ม = ยังไม่เข้า</span><span class="badge b-ok">เก็บ key เดิม paJournalV3</span><span class="badge b-info">Telegram Alert</span>
+      <h1>PA Coach Web App v3.8.8</h1>
+      <p>Real Small Mode + Strict Swing Gate สำหรับ XAUUSD / Forex / Crypto แบบ Price Action Swing Trade และ M15 Execution</p>
+      <span class="badge b-ok">Google Sheet Sync</span><span class="badge b-ok">Drive Images</span><span class="badge b-info">Telegram Alert</span><span class="badge b-warn">Strict Swing Gate</span><span class="badge b-bad">ข่าวแดง/ส้ม = ยังไม่เข้า</span><span class="badge b-ok">key เดิม paJournalV3</span>
     </div>
     <div class="card">
       <h2>สถานะตอนนี้</h2>
       <div id="topDecision" class="decision wait"><div class="big">WAIT</div><div class="muted">กรอกข้อมูล แล้วระบบจะช่วยคุมวินัยก่อนเข้า</div></div>
-      <p style="margin-top:10px">กฎหลัก: ถ้า RR ไม่ถึง 1:2, อยู่กลางทาง, หรือชนข่าว USD แดง/ส้ม ให้บันทึกเป็น “NO_TRADE” ได้เลย ไม่ต้องฝืนเข้า</p>
+      <p style="margin-top:10px">กฎหลัก: วันละ 1 ไม้ / Risk ต่ำ / แพ้ 1 ไม้หยุดทันที ถ้า RR ไม่ถึง 1:2, อยู่กลางทาง, หรือชนข่าว USD แดง/ส้ม ให้บันทึกเป็น NO_TRADE</p>
     </div>
   </div>
 
@@ -38,25 +38,6 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
     <button class="tab" data-sec="stats">สถิติ</button>
     <button class="tab" data-sec="settings">ตั้งค่า / Sync</button>
   </div>
-
-
-  <section id="todayWatchlist" class="section">
-    <div class="card">
-      <h2>Today Watchlist Dashboard</h2>
-      <p>สรุปว่าตอนนี้ตัวไหนควรดู ตัวไหนยังไม่ต้องดู และต้องรอ Action อะไร</p>
-
-      <div id="todayWatchlistCards" class="grid"></div>
-
-      <div class="note" style="margin-top:14px">
-        <b>กฎใช้งาน:</b><br>
-        WAIT = ไม่ต้องเฝ้า<br>
-        NEAR SUPPORT = ห้าม Sell ไล่<br>
-        READY SELL = ใช้ได้เฉพาะเมื่อ H4 ปิดหลุด Swing Low จริง + Retest แล้ว + M15 ต่ำกว่า EMA200<br>
-        ถ้าแค่แตะ Sell Zone / H4 Reject = WATCH เท่านั้น ห้ามเรียก READY<br>
-        BREAKDOWN WATCH = รอ H4 ปิดหลุดจริงและรอ Retest
-      </div>
-    </div>
-  </section>
 
   <section id="planner" class="section active">
     <div id="plannerCard" class="card">
@@ -72,7 +53,7 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
           <div class="c3"><label>เวลา</label><input id="tradeTime" type="time"></div>
           <div class="c3"><label>Symbol</label><input id="symbol" value="XAUUSD"></div>
           <div class="c3"><label>ตลาด</label><select id="market"><option>Gold</option><option>Forex</option><option>Crypto</option></select></div>
-          <div class="c4"><label>Strategy หลัก</label><select id="strategy"><option value="BOS_OB_RETEST" selected>H4 BOS + OB Retest + M15 Trigger</option><option value="H4_SWING_BREAK_RETEST">H4 Swing Break + Retest (รอหลุด Swing ก่อน)</option><option value="H4_SIGNAL_M15_SNIPER">H4 Signal + M15 Sniper Entry</option><option value="OB_SH_BOS_RTO">Order Block: SH + BOS + RTO</option><option value="COUNTER_TREND">Counter Trend เฉพาะโซนใหญ่</option><option value="DOUBLE_DOJI">Double Doji</option><option value="QM_PATTERN">QM Pattern</option><option value="M15_SCALP">M15 Scalping รีด RR</option><option value="MM_PROCESS">MM / Process Gate</option></select></div>
+          <div class="c4"><label>Strategy หลัก</label><select id="strategy"><option value="H4_SWING_BREAK_RETEST" selected>H4 Swing Break + Retest</option><option value="BOS_OB_RETEST">H4 BOS + OB Retest + M15 Trigger</option><option value="OB_SH_BOS_RTO">Order Block: SH + BOS + RTO</option><option value="M15_SCALP">M15 Scalping รีด RR</option><option value="COUNTER_TREND">Counter Trend เฉพาะโซนใหญ่</option><option value="WAIT_ONLY">Wait / Journal Only</option></select></div>
           <div class="c2"><label>Direction</label><select id="direction"><option>SELL</option><option>BUY</option><option>WAIT</option></select></div>
           <div class="c2"><label>Entry TF</label><select id="entryTf"><option>D1</option><option selected>H4</option><option>H1</option><option>M15</option></select></div>
           <div class="c2"><label>Order Type</label><select id="orderType"><option>Sell/Buy Stop</option><option>Sell/Buy Limit</option><option>Market</option><option selected>ยังไม่วาง Order</option></select></div>
@@ -83,14 +64,14 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
 
       <div id="s2" class="panel">
         <h3>Step 2 — News Guard</h3>
-        <div class="note">สำหรับ XAUUSD ให้สนใจ USD เป็นหลัก เช่น NFP, CPI, FOMC, Unemployment, Average Hourly Earnings ถ้ามีข่าวแดง/ส้มในช่วงห้ามเทรด ให้ตัดสินใจเป็น <b>ยังไม่เข้า</b></div>
+        <div class="note">สำหรับ XAUUSD ให้สนใจ USD เป็นหลัก เช่น NFP, CPI, FOMC ถ้ามีข่าวแดง/ส้มในช่วง ±120 นาที ให้ตัดสินใจเป็น <b>ยังไม่เข้า</b></div>
         <div class="grid" style="margin-top:12px">
           <div class="c3"><label>News window ± นาที</label><input id="newsWindow" type="number" value="120"></div>
           <div class="c3"><label>Currency ที่เกี่ยวข้อง</label><input id="relevantCurrencies" value="USD"></div>
           <div class="c3"><label>Manual News Mode</label><select id="manualNewsMode"><option value="auto">Auto จากตารางข่าว</option><option value="none">ไม่มีข่าวสำคัญ</option><option value="yellow">ข่าวเหลือง</option><option value="orange">ข่าวส้ม</option><option value="red">ข่าวแดง</option></select></div>
           <div class="c3"><label>&nbsp;</label><button class="ghost" onclick="fillNfpExample()">ใส่ตัวอย่าง NFP</button></div>
           <div class="c12"><div class="tablewrap"><table><thead><tr><th>วัน</th><th>เวลา</th><th>Currency</th><th>Impact</th><th>ข่าว</th><th>เกี่ยวกับไม้?</th><th>ลบ</th></tr></thead><tbody id="newsBody"></tbody></table></div><div class="btns"><button class="ghost" onclick="addNewsRow()">+ เพิ่มข่าว</button><button class="ghost" onclick="clearNews()">ล้างข่าว</button></div></div>
-          <div class="c12"><label>วางข่าวจาก ForexFactory / Text แล้วกด Parse</label><textarea id="pasteNews" placeholder="Fri Jun 5 19:30 USD red Non-Farm Employment Change 85K 115K"></textarea><div class="btns"><button class="ghost" onclick="parsePastedNews()">Parse ข่าวจากข้อความ</button></div></div>
+          <div class="c12"><label>วางข่าวจาก ForexFactory / Text แล้วกด Parse</label><textarea id="pasteNews" placeholder="Fri Jun 5 19:30 USD red Non-Farm Employment Change"></textarea><div class="btns"><button class="ghost" onclick="parsePastedNews()">Parse ข่าวจากข้อความ</button></div></div>
           <div class="c12"><div id="newsDecision" class="decision wait"><div class="big">รอเช็กข่าว</div></div></div>
         </div>
         <div class="btns"><button class="ghost" onclick="prevStep()">ย้อนกลับ</button><button class="primary" onclick="nextStep()">ต่อไป</button></div>
@@ -105,9 +86,7 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
           <div class="c3"><label>Market Structure</label><select id="structure"><option value="bos">BOS แล้ว รอ Retest</option><option value="choch">CHOCH เริ่มเปลี่ยนทาง</option><option value="range">Range / Sideway</option><option value="trend">Trend ต่อเนื่อง</option><option value="unclear">ไม่ชัด</option></select></div>
           <div class="c6"><label>Support Zone</label><input id="supportZone" value="4430-4440, 4330"></div>
           <div class="c6"><label>Resistance Zone</label><input id="resistanceZone" value="4488-4495, 4520-4535"></div>
-          <div class="c12"><label>แผนจาก D1/H4</label><textarea id="tfPlan">H4 มี BOS ลงแล้ว ให้รอราคา Pullback/Retest กลับเข้า OB H4 หรือแนวต้านเดิมก่อน
-เมื่อราคาเข้าโซนขาย ให้เปิด M15 หา Trigger เท่านั้น: Bearish Outside Bar, M15 BOS/CHOCH ลง, หรือ Reject ชัด
-ห้าม Sell ไล่ราคาหลังทิ้งแรง ถ้าพลาดโซนให้รอ Pullback ใหม่</textarea></div>
+          <div class="c12"><label>แผนจาก D1/H4</label><textarea id="tfPlan">H4 Reject ยังไม่ใช่ Entry ต้องรอ H4 ปิดหลุด/ทะลุ Swing จริงก่อน แล้วรอ Retest จากนั้นค่อยลง M15 หา Trigger</textarea></div>
         </div>
         <div class="btns"><button class="ghost" onclick="prevStep()">ย้อนกลับ</button><button class="primary" onclick="nextStep()">ต่อไป</button></div>
       </div>
@@ -129,63 +108,22 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
           <div class="c2"><label>TP2</label><input id="tp2" type="number" step="0.001"></div>
           <div class="c2"><label>TP3</label><input id="tp3" type="number" step="0.001"></div>
           <div class="c2"><label>ทุนบัญชี</label><input id="balance" type="number" value="1000"></div>
-          <div class="c2"><label>Risk %</label><input id="riskPercent" type="number" step="0.1" value="0.5"></div>
+          <div class="c2"><label>Risk %</label><input id="riskPercent" type="number" step="0.1" value="0.25"></div>
           <div class="c2"><label>Min RR</label><input id="minRR" type="number" step="0.1" value="2"></div>
-          <div class="c4"><label>M15 Entry Type</label><select id="m15EntryType"><option>ยังไม่เข้า</option><option>H4 Swing Break แล้วรอ Retest</option><option>M15 ต่ำกว่า/เหนือ EMA200 แล้วค่อยเข้า</option><option>M15 Trigger ที่ Retest Zone</option><option>H4 Signal แล้วรอ M15 Sniper Entry</option><option>H4 Confirmation Entry ทันที</option><option>Bearish/Bullish Outside Bar</option><option>M15 BOS / CHOCH</option><option>OB Retest Reject</option><option>Break + Retest</option><option>Pullback EMA</option><option>Liquidity Sweep</option><option>Sell/Buy Stop ใต้/เหนือ Trigger</option><option>Aggressive Candle Close</option></select></div>
-          <div class="c2"><label>Expire M15 bars</label><input id="m15ExpireBars" type="number" value="3"></div>
-          <div class="c12"><label>Risk Note</label><input id="riskNote" placeholder="เช่น ถ้าข่าวแดงใกล้เวลาเข้า ยกเลิกแผน"></div>
-          <div class="c12"><div id="rrBox" class="note">กรอก Entry/SL/TP เพื่อคำนวณ RR</div></div>
+          <div class="c4"><label>M15 Entry Type</label><select id="m15EntryType"><option>ยังไม่เข้า</option><option>H4 Swing Break แล้วรอ Retest</option><option>M15 ต่ำกว่า/เหนือ EMA200 แล้วค่อยเข้า</option><option>M15 Trigger ที่ Retest Zone</option><option>Bearish/Bullish Outside Bar</option><option>M15 BOS / CHOCH</option><option>OB Retest Reject</option><option>Liquidity Sweep</option></select></div>
+          <div class="c12"><div id="rrBox" class="decision wait"><div class="big">RR ยังไม่ครบ</div></div></div>
         </div>
         <div class="btns"><button class="ghost" onclick="prevStep()">ย้อนกลับ</button><button class="primary" onclick="nextStep()">ต่อไป</button></div>
       </div>
 
       <div id="s6" class="panel">
-        <h3>Step 6 — รูปกราฟ Week / D1 / H4 / M15</h3>
+        <h3>Step 6 — แนบรูปกราฟ</h3>
         <div class="grid">
-          <div class="c6"><label>รูปกราฟ Week / Weekly</label><input id="chartW1" type="file" accept="image/*"><div id="previewW1" class="preview">ยังไม่มีรูป Week</div></div>
-          <div class="c6"><label>รูปกราฟ D1</label><input id="chartD1" type="file" accept="image/*"><div id="previewD1" class="preview">ยังไม่มีรูป D1</div></div>
-          <div class="c6"><label>รูปกราฟ H4</label><input id="chartH4" type="file" accept="image/*"><div id="previewH4" class="preview">ยังไม่มีรูป H4</div></div>
-          <div class="c6"><label>รูปกราฟ M15 / จุดเข้า</label><input id="chartM15" type="file" accept="image/*"><div id="previewM15" class="preview">ยังไม่มีรูป M15</div></div>
-          <div class="c12"><label>แผน M15 สำหรับรีด RR</label><textarea id="m15Plan">ระบบ H4 Swing Break + Retest + M15 EMA200:
-
-หลักใหญ่:
-1. หา Swing High / Swing Low บน H4 ก่อน
-2. รอ H4 ปิด Break โครงสร้างจริง
-3. ห้ามเข้าไล่แท่ง Break และห้ามเข้าเพราะกลัวตกรถ
-4. รอราคากลับมา Retest จุด Swing เดิม
-5. ใช้ M15 หา Trigger เพื่อให้ SL สั้นและ RR สูง
-6. EMA200 M15 เป็นประตูอนุญาตเข้า
-
-Sell Setup:
-1. H4 มี Swing High และ Swing Low ชัด
-2. H4 ปิดหลุด Swing Low = Break / BOS ลง
-3. รอราคากลับมา Retest Swing Low เดิม
-4. Retest แล้วไม่กลับขึ้นไปใน Range เดิม
-5. M15 ต้องอยู่ใต้ EMA200 หรือหลุด EMA200 แล้ว Retest ไม่ผ่าน
-6. M15 มี Bearish Winning Bar / Reject / BOS ลง
-7. เข้า Sell Stop ใต้ Low ของ M15 Trigger
-8. SL เหนือ Retest High หรือเหนือ Swing High
-9. TP ไปหา Low ถัดไป / Demand ถัดไป
-
-Buy Setup:
-1. H4 มี Swing Low และ Swing High ชัด
-2. H4 ปิดทะลุ Swing High = Break / BOS ขึ้น
-3. รอราคากลับมา Retest Swing High เดิม
-4. Retest แล้วไม่หลุดกลับเข้า Range เดิม
-5. M15 ต้องอยู่เหนือ EMA200 หรือทะลุ EMA200 แล้ว Retest ไม่หลุด
-6. M15 มี Bullish Winning Bar / Reject / BOS ขึ้น
-7. เข้า Buy Stop เหนือ High ของ M15 Trigger
-8. SL ใต้ Retest Low หรือใต้ Swing Low
-9. TP ไปหา High ถัดไป / Supply ถัดไป
-
-กฎเหล็ก:
-- H4 Reject = แค่เตือน
-- H4 Break Swing = เริ่มมีสิทธิ์มองหาออเดอร์
-- Retest = จุดเตรียมเข้า
-- M15 EMA200 + Trigger = จุดยิง
-- ถ้า RR ไม่ถึง 1:2 หรือยังกลัวตกรถ ให้บันทึก NO_TRADE</textarea></div>
-          <div class="c12"><label>เหตุผลเข้า / เหตุผลไม่เข้า</label><textarea id="entryReason">ยังไม่เข้าเพราะต้องให้ครบลำดับก่อน: H4 เจอ Swing High/Low → H4 ปิด Break → ราคา Retest → M15 อยู่ฝั่ง EMA200 ที่ถูกต้อง → M15 มี Trigger ยืนยัน</textarea></div>
-          <div class="c12"><label>แผนออก / ยกเลิกแผน</label><textarea id="exitPlan">ยกเลิกแผนถ้ายังไม่มี H4 Break Swing จริง, M15 ยังไม่ผ่าน EMA200, มีข่าวแรง, ราคา Retest แล้วกลับเข้า Range เดิม, หรือ RR ไม่ถึง 1:2</textarea></div>
+          <div class="c3"><label>Weekly</label><input type="file" accept="image/*" onchange="loadChart(event,'w1')"><div id="preview_w1" class="preview"></div></div>
+          <div class="c3"><label>D1</label><input type="file" accept="image/*" onchange="loadChart(event,'d1')"><div id="preview_d1" class="preview"></div></div>
+          <div class="c3"><label>H4</label><input type="file" accept="image/*" onchange="loadChart(event,'h4')"><div id="preview_h4" class="preview"></div></div>
+          <div class="c3"><label>M15</label><input type="file" accept="image/*" onchange="loadChart(event,'m15')"><div id="preview_m15" class="preview"></div></div>
+          <div class="c12"><label>Note / เหตุผลเพิ่มเติม</label><textarea id="note" placeholder="เขียนเหตุผล เช่น รอ H4 ปิดหลุด Swing Low + Retest + M15 Trigger"></textarea></div>
         </div>
         <div class="btns"><button class="ghost" onclick="prevStep()">ย้อนกลับ</button><button class="primary" onclick="nextStep()">ต่อไป</button></div>
       </div>
@@ -193,44 +131,21 @@ Buy Setup:
       <div id="s7" class="panel">
         <h3>Step 7 — สรุปก่อนบันทึก</h3>
         <div id="finalDecision" class="decision wait"><div class="big">WAIT</div></div>
-        <div class="btns"><button class="ghost" onclick="prevStep()">ย้อนกลับ</button><button class="ghost" onclick="copyPlanText()">Copy แผน</button><button class="warnbtn" onclick="sendTelegramAlert()">ส่ง Telegram Alert</button><button class="okbtn" onclick="savePlan()">บันทึก / อัปเดต Journal</button><button class="warnbtn" onclick="markNoTrade()">บันทึกเป็น NO_TRADE</button><button class="ghost" onclick="clearDraftAndReload()">เริ่มแผนใหม่</button></div>
+        <div class="btns" style="margin-top:12px"><button class="ghost" onclick="prevStep()">ย้อนกลับ</button><button class="primary" onclick="savePlan('PLAN')">บันทึกเป็น PLAN</button><button class="okbtn" onclick="savePlan('PENDING')">บันทึกเป็น PENDING</button><button class="warnbtn" onclick="savePlan('NO_TRADE')">บันทึกเป็น NO_TRADE</button><button class="danger hidden" id="cancelEditBtn" onclick="cancelEdit()">ยกเลิกแก้ไข</button></div>
       </div>
     </div>
   </section>
-<section id="tradePlans" class="section">
-  <div class="card">
-    <h2>แผนโค้ช PA</h2>
-    <p>แผนจากการวิเคราะห์ Week / D1 / H4 สามารถกดโหลดเข้า Planner แล้วบันทึกเข้า Journal ได้</p>
-    <div id="coachPlanCards" class="grid"></div>
-  </div>
-</section>
-  <section id="journal" class="section">
-    <div class="card">
-      <h2>Journal v3.5</h2>
-      <p>v3.5 กันข้อมูลซ้ำด้วย ID และใช้ key เดิม <b>paJournalV3</b> เพื่อให้ข้อมูลจาก v3.3 ยังขึ้นในเครื่องเดิม</p>
-      <div class="grid">
-        <div class="c3"><label>ค้นหา</label><input id="searchJournal" placeholder="symbol / เหตุผล / บทเรียน"></div>
-        <div class="c3"><label>Status</label><select id="filterStatus"><option value="all">ทั้งหมด</option><option>PLAN</option><option>PENDING</option><option>ACTIVE</option><option>CLOSED</option><option>NO_TRADE</option><option>CANCELLED</option></select></div>
-        <div class="c3"><label>Symbol</label><input id="filterSymbol" placeholder="XAUUSD"></div>
-        <div class="c3"><label>&nbsp;</label><button class="ghost" onclick="renderJournal();renderStats()">กรอง</button></div>
-      </div>
-      <div class="btns"><button class="ghost" onclick="exportJson()">Export JSON</button><button class="ghost" onclick="exportCsv()">Export CSV</button><label class="ghost" style="display:inline-flex;align-items:center;gap:8px;cursor:pointer">Import JSON<input id="importFile" type="file" accept="application/json" class="hidden"></label><button class="danger" onclick="dedupeLocalNow()">ล้างรายการซ้ำในเครื่อง</button></div>
-      <div class="tablewrap"><table><thead><tr><th>วันเวลา</th><th>Symbol/แผน</th><th>ฝั่ง/สถานะ</th><th>Entry/SL/TP</th><th>RR/Score</th><th>News/รูป</th><th>ผล</th><th>จัดการ</th></tr></thead><tbody id="journalBody"><tr><td colspan="8">ยังไม่มีบันทึก</td></tr></tbody></table></div>
-    </div>
 
-    <div class="card" style="margin-top:14px">
-      <h2>อัปเดตผลลัพธ์ไม้ที่เลือก</h2>
-      <div id="reviewBox" class="note">กด “รีวิว” ในตารางก่อน</div>
-      <div id="reviewForm" class="grid hidden" style="margin-top:12px">
-        <div class="c3"><label>Status</label><select id="reviewStatus"><option>PLAN</option><option>PENDING</option><option>ACTIVE</option><option>CLOSED</option><option>NO_TRADE</option><option>CANCELLED</option></select></div>
-        <div class="c3"><label>Exit Price</label><input id="reviewExitPrice" type="number" step="0.001"></div>
-        <div class="c3"><label>Result R</label><input id="reviewResultR" type="number" step="0.01" placeholder="เช่น 2 / -1 / 0"></div>
-        <div class="c3"><label>อารมณ์ตอนเข้า</label><input id="reviewEmotion" placeholder="ใจร้อน / รอครบ / กลัวตกรถ"></div>
-        <div class="c12"><label>บทเรียน</label><textarea id="reviewLesson" placeholder="ไม้ดี/ไม้เสีย เพราะอะไร ครั้งหน้าต้องทำอะไร"></textarea></div>
-        <div class="c12"><label>รูปผลลัพธ์หลังเข้า/หลังปิดไม้</label><input id="resultImages" type="file" accept="image/*" multiple><div id="resultPreview" class="result-img-grid" style="margin-top:8px"></div></div>
-        <div class="c12"><div class="btns"><button class="okbtn" onclick="saveReview()">บันทึกรีวิว</button><button class="ghost" onclick="clearReviewSelection()">ยกเลิกเลือก</button></div></div>
-      </div>
-    </div>
+  <section id="todayWatchlist" class="section">
+    <div class="card"><h2>Today Watchlist Dashboard</h2><p>สรุปว่าตัวไหนควรดู ตัวไหนยังไม่ต้องดู และต้องรอ Action อะไร</p><div id="todayWatchlistCards" class="grid"></div><div class="note" style="margin-top:14px"><b>กฎใช้งาน:</b><br>WAIT = ไม่ต้องเฝ้า<br>NEAR SUPPORT = ห้าม Sell ไล่<br>STRICT READY = ต้องมี H4 ปิดหลุด Swing Low/High จริง + Retest + M15 EMA200 + Trigger<br>H4 Reject อย่างเดียว = WATCH เท่านั้น</div></div>
+  </section>
+
+  <section id="tradePlans" class="section">
+    <div class="card"><h2>แผนโค้ช PA</h2><div class="grid" id="planCards"></div></div>
+  </section>
+
+  <section id="journal" class="section">
+    <div class="card"><h2>บันทึกการเทรด</h2><div class="btns"><button class="ghost" onclick="exportJson()">Export JSON</button><button class="ghost" onclick="exportCsv()">Export CSV</button><button class="ghost" onclick="syncCloudToLocal('MERGE')">Load MERGE</button><button class="warnbtn" onclick="repairLocalData()">ซ่อมข้อมูล</button><button class="okbtn" onclick="syncLocalToCloud('upsert')">Sync ขึ้น Sheet</button></div><div class="tablewrap"><table><thead><tr><th>วันที่</th><th>Symbol</th><th>Direction</th><th>Status</th><th>Decision</th><th>RR</th><th>รูป</th><th>จัดการ</th></tr></thead><tbody id="journalBody"></tbody></table></div></div>
   </section>
 
   <section id="stats" class="section">
@@ -246,1505 +161,261 @@ Buy Setup:
         <div class="c4"><label>Auto Sync หลังบันทึก</label><select id="syncAutoSave"><option value="off">ปิด</option><option value="on">เปิด</option></select></div>
         <div class="c8"><label>สถานะ Sync</label><div id="syncStatus" class="note">ยังไม่ได้ตั้งค่า Sync</div></div>
       </div>
-      <div class="btns"><button class="primary" onclick="saveSyncSetting()">บันทึกค่า Sync</button><button class="ghost" onclick="testCloudSync()">ทดสอบเชื่อมต่อ</button><button class="okbtn" onclick="syncLocalToCloud('upsert')">ส่งข้อมูลเครื่องนี้ขึ้น Google Sheet</button><button class="ghost" onclick="syncCloudToLocal('MERGE')">โหลดจาก Google Sheet แบบ MERGE</button><button class="warnbtn" onclick="syncCloudToLocal('REPLACE')">โหลดจาก Google Sheet แทนเครื่องนี้</button></div>
+      <div class="btns"><button class="primary" onclick="saveSyncSetting()">บันทึกค่า Sync</button><button class="ghost" onclick="testCloudSync()">ทดสอบเชื่อมต่อ</button><button class="okbtn" onclick="syncLocalToCloud('upsert')">ส่งข้อมูลเครื่องนี้ขึ้น Google Sheet</button><button class="ghost" onclick="syncCloudToLocal('MERGE')">โหลดจาก Google Sheet แบบ MERGE</button><button class="warnbtn" onclick="syncCloudToLocal('REPLACE')">โหลดจาก Google Sheet แทนเครื่องนี้</button><button class="ghost" onclick="fixDriveImageSharing()">Fix รูป Drive</button><button class="ghost" onclick="cloudApi('backupSnapshot',{}).then(r=>setSyncStatus(r.ok?'Backup: '+r.fileUrl:r.error, r.ok))">Backup Snapshot</button></div>
       <p class="small" style="margin-top:10px">อย่าใส่ Secret ลงในไฟล์ index.html เพราะ repo GitHub Pages เป็น public ได้ ค่า Sync จะเก็บใน localStorage ของ browser เครื่องนี้เท่านั้น</p>
     </div>
-    <div class="card" style="margin-top:14px"><h2>วิธีติดตั้งสั้น ๆ</h2><ol class="small"><li>เอาไฟล์ <b>index.html</b> v3.5 ไปทับใน repo <b>pa-coach-trade-journal</b></li><li>เอาไฟล์ <b>Code.gs</b> v3.5 ไปทับใน Apps Script</li><li>ตั้ง Script Properties: <b>PA_COACH_SECRET</b> และถ้ามีให้ใส่ <b>PA_COACH_SPREADSHEET_ID</b></li><li>Run <b>setupDatabase</b> ครั้งเดียว แล้ว Deploy → Manage deployments → Edit → New version</li><li>เปิดเว็บ GitHub Pages กด Settings → Test Sync → Load from Google Sheet</li></ol></div>
+    <div class="card" style="margin-top:14px"><h2>วิธีติดตั้งสั้น ๆ</h2><ol class="small"><li>เอาไฟล์ <b>index.html</b> v3.8.6 ไปทับใน repo <b>pa-coach-trade-journal</b></li><li>เอาไฟล์ <b>Code.gs</b> v3.6 ไปทับใน Apps Script</li><li>ตั้ง Script Properties: <b>PA_COACH_SECRET</b> และถ้ามี Telegram ให้ใส่ <b>TELEGRAM_BOT_TOKEN</b>, <b>TELEGRAM_CHAT_ID</b></li><li>Run <b>setupDatabase</b> ครั้งเดียว แล้ว Deploy → Manage deployments → Edit → New version</li><li>เปิดเว็บ GitHub Pages กด Settings → Test Sync → Load from Google Sheet</li></ol></div>
   </section>
 
-  <div class="footer">PA Coach Web App v3.8.3 — Strict Swing Gate: H4 Reject ยังไม่ใช่ Entry / ต้องรอ Swing Break + Retest + M15 EMA200</div>
+  <div class="footer">PA Coach Web App v3.8.8 — Real Small Mode + Strict Swing Gate: วันละ 1 ไม้ / Risk ต่ำ / H4 Break + Retest + M15 EMA200</div>
 </div>
 
-<div id="modal" class="modal"><div class="card"><div class="modalTop"><h2 id="modalTitle">รูปกราฟ</h2><div><button class="ghost" onclick="toggleBrowserFullscreen()">เต็มจอ</button> <button class="ghost" onclick="closeImg()">ปิด</button></div></div><img id="modalImg" onclick="toggleBrowserFullscreen()"></div></div>
+<div id="modal" class="modal"><div class="card"><div class="modalTop"><h2 id="modalTitle">รูปกราฟ</h2><div><button class="ghost" onclick="toggleBrowserFullscreen()">เต็มจอ</button> <button class="ghost" onclick="closeImg()">ปิด</button></div></div><img id="modalImg" onclick="toggleBrowserFullscreen()" onerror="imgError(this)"></div></div>
 
 <script>
 const $=id=>document.getElementById(id);
-const APP_VERSION="v3.8.3";
-const storeKey="paJournalV3";              // ใช้ key เดิมจาก v3.3 เพื่อให้ข้อมูลเก่ายังขึ้น
+const APP_VERSION="v3.8.7";
+const storeKey="paJournalV3";
 const draftKey="paJournalDraftV34";
-const syncSettingKey="paSyncSettingV33";   // ใช้ key เดิมจาก v3.3 เพื่อไม่ต้องกรอก URL/Secret ใหม่
+const syncSettingKey="paSyncSettingV33";
 let stepList=["s1","s2","s3","s4","s5","s6","s7"], stepIndex=0;
 let charts={w1:"",d1:"",h4:"",m15:""};
-let editingPlanId=null, reviewingId=null, reviewImagesBuffer=[];
-let syncTimer=null;
+let editingPlanId=null, reviewImagesBuffer=[];
 
 const checks=[
- ["c0","H4 ปิดแท่งแล้ว","ห้ามตัดสินใจจากแท่ง H4 ที่ยังไม่ปิด เพราะอาจเป็นไส้หลอก / Fake Break"],
+ ["c0","H4 ปิดแท่งแล้ว","ห้ามตัดสินใจจากแท่ง H4 ที่ยังไม่ปิด เพราะอาจเป็นไส้หลอก"],
  ["c1","D1/H4 มี Bias ชัด","ไม่เดาจาก M15 อย่างเดียว"],
- ["c2","เจอ Swing High และ Swing Low ชัด","ต้องมีขอบโครงสร้างก่อน ไม่เข้าเพราะเห็นแท่ง Reject เดี่ยว ๆ"],
+ ["c2","เจอ Swing High และ Swing Low ชัด","ต้องมีขอบโครงสร้างก่อน ไม่เข้าเพราะ Reject เดี่ยว ๆ"],
  ["c3","H4 ปิด Break โครงสร้างจริง","Sell = ปิดหลุด Swing Low / Buy = ปิดทะลุ Swing High"],
- ["c4","รอ Retest/Pullback แล้ว","Break ยังไม่ใช่จุดเข้า ต้องรอกลับมา Retest เพื่อรีด RR"],
- ["c5","ราคาอยู่ที่โซนสำคัญ","แนวรับ/แนวต้าน/OB/Supply Demand/Retest Zone"],
- ["c6","มี BOS/CHOCH หรือโครงสร้างรองรับ","ไม่เข้าเพราะแท่งเดียว"],
- ["c7","มี Trigger Candle","Pin/Engulfing/Outside Bar/Reject/Winning Bar"],
- ["c8","SL อยู่หลัง Swing","ไม่ชิดเกินจนโดนไส้"],
- ["c9","TP มีพื้นที่ถึงแนวถัดไป","ไม่ชนแนวใกล้เกิน"],
- ["c10","RR ถึงขั้นต่ำ","แนะนำ 1:2 ขึ้นไป"],
- ["c11","Risk อยู่ในแผน","แนะนำ 0.25-1% ต่อไม้"],
- ["c12","ไม่มีข่าวแดง/ส้มใกล้เวลาเข้า","ถ้ามี ให้ NO_TRADE"],
- ["c13","ไม่ใช่การเข้าเพราะกลัวตกรถ","ถ้ารู้สึก FOMO ให้บันทึก WAIT/NO_TRADE ก่อน"]
+ ["c4","ราคา Retest หลัง Break","ไม่ไล่ราคากลางทาง"],
+ ["c5","M15 อยู่ฝั่ง EMA200 ถูกทาง","Sell ต่ำกว่า EMA200 / Buy สูงกว่า EMA200"],
+ ["c6","มี Trigger Candle / M15 BOS","Pin, Engulfing, Outside Bar, CHOCH/BOS"],
+ ["c7","SL อยู่หลัง Swing","ไม่ชิดจนโดนไส้"],
+ ["c8","RR ถึงขั้นต่ำ 1:2","ถ้าไม่ถึง ห้ามเข้า"],
+ ["c9","ไม่มีข่าวแดง/ส้มชนไม้","USD news สำคัญให้หลบ"],
+ ["c10","Risk ต่ำตาม Real Small Mode","วันละ 1 ไม้ แพ้แล้วหยุด"],
+ ["c11","ไม่ใช่อารมณ์แก้มือ","เข้าเพราะแผน ไม่ใช่ FOMO"]
 ];
-const scalpChecks=[
- ["m1","ราคาเข้าโซน H4 แล้ว","M15 ใช้หา Trigger เท่านั้น"],
- ["m2","M15 ต้องปิดแท่งก่อน","ห้ามใช้แท่ง M15 ที่ยังวิ่งอยู่เป็น Trigger"],
- ["m3","EMA200 M15 สนับสนุน","Sell ต้องอยู่ใต้ EMA200 หรือหลุดแล้ว Retest ไม่ผ่าน / Buy ต้องอยู่เหนือ EMA200 หรือทะลุแล้ว Retest ไม่หลุด"],
- ["m4","M15 มี BOS/CHOCH หรือ LH/HL ชัด","ไม่เดาทิศทางกลางกรอบ"],
- ["m5","มี Trigger Candle M15","Outside bar / Engulfing / Reject / Winning Bar"],
- ["m6","Entry ใช้ Stop/Limit ตามแผน","ไม่ไล่ Market ถ้าแท่งยาวแล้ว"],
- ["m7","SL หลัง Swing M15 + เผื่อ spread","ไม่วางใกล้เกิน"],
- ["m8","RR ขั้นต่ำ 1:2","ถ้าไม่ถึง ไม่เข้า"],
- ["m9","Expire 3-5 แท่ง M15","ไม่ Trigger ให้ยกเลิก"],
- ["m10","ข่าวไม่ชนช่วงเข้า","ส้ม/แดงใกล้เวลา = รอ"],
- ["m11","ยอมไม่เข้าได้","ไม่มี Setup = ยังไม่เข้า"]
-];
-const todayWatchlistItems = [
-  {
-    symbol: "ETHUSD",
-    market: "Crypto",
-    status: "WATCH — ยังไม่เข้า",
-    bias: "SELL เฉพาะหลัง H4 Break Swing Low",
-    mainPlan: "H4 Swing Break + Retest",
-    watchZone: "Sell Zone 1: 1648-1665 / Sell Zone 2: 1689-1715",
-    dangerZone: "ห้ามเรียก READY SELL จนกว่า H4 ปิดหลุด Swing Low จริง แล้ว Retest ไม่กลับเข้า Range",
-    action: "ยังไม่เข้า แม้ราคาเข้า Sell Zone ต้องรอ H4 ปิดหลุด Swing Low → Retest → M15 ต่ำกว่า EMA200 → Reject/BOS ลง",
-    planId: "ethusd-a-main-sell-pullback-2026-06-07",
-    statusClass: "orangep"
-  },
-  {
-    symbol: "XAUUSD",
-    market: "Gold",
-    status: "NEAR SUPPORT",
-    bias: "WAIT / SELL PULLBACK",
-    mainPlan: "A Main Sell Pullback",
-    watchZone: "Sell Zone: 4360-4396 / 4415-4451 / 4469-4505",
-    dangerZone: "Support: 4285-4241 / Breakdown below 4241",
-    action: "ห้าม Sell ไล่แถวแนวรับ รอเด้งเข้า Sell Zone หรือรอหลุดแล้ว Retest",
-    planId: "xauusd-a-main-sell-pullback-2026-06-07",
-    statusClass: "yellowp"
-  },
-  {
-    symbol: "BTCUSD",
-    market: "Crypto",
-    status: "WAIT",
-    bias: "WAIT",
-    mainPlan: "Template",
-    watchZone: "รอกราฟล่าสุด",
-    dangerZone: "ยังไม่กำหนด",
-    action: "ยังไม่ใช่ตัวหลัก รอ D1/H4 ชัดก่อน",
-    planId: "btcusd-buy-wait-template",
-    statusClass: "orangep"
-  },
-  {
-    symbol: "GBPJPY",
-    market: "Forex",
-    status: "WAIT",
-    bias: "WAIT",
-    mainPlan: "Template",
-    watchZone: "รอ OB / Supply / Demand ชัด",
-    dangerZone: "คู่ JPY ไส้แรง ต้องลด Lot",
-    action: "ยังไม่ดูจริงจังจนกว่า H4 มีโซนและ BOS ชัด",
-    planId: "gbpjpy-sell-wait-template",
-    statusClass: "orangep"
-  },
-  {
-    symbol: "EURUSD",
-    market: "Forex",
-    status: "WAIT",
-    bias: "WAIT",
-    mainPlan: "Template",
-    watchZone: "รอ D1/H4 Bias ชัด",
-    dangerZone: "เช็กข่าว EUR/USD",
-    action: "ยังไม่ต้องเปิดกราฟนาน รอ Telegram H4 Watchlist",
-    planId: "eurusd-forex-wait-template",
-    statusClass: "orangep"
-  }
-];
-
-const coachTradePlans=[
-{
-  id:"ethusd-a-main-sell-pullback-2026-06-07",
-  symbol:"ETHUSD",
-  market:"Crypto",
-  direction:"SELL",
-  status:"WAIT",
-  title:"ETHUSD — A Main Sell Pullback Plan",
-  timeframes:"Week / D1 / H4",
-  strategy:"BOS_OB_RETEST",
-  strategyName:"H4 BOS + OB Retest + M15 Trigger",
-  entryTf:"H4",
-  orderType:"ยังไม่วาง Order",
-  tradeMode:"swing",
-  d1Trend:"down",
-  h4Position:"resistance",
-  bias:"sell",
-  structure:"trend",
-  supportZone:"1609 / 1569-1550 / 1530-1491",
-  resistanceZone:"1648-1665 / 1689-1715 / 1728-1768",
-  entry:"",
-  sl:1728,
-  tp1:1609,
-  tp2:1550,
-  tp3:1491,
-  minRR:2,
-  summary:"ETHUSD ยังเป็นขาลงใหญ่ แต่ราคาเด้งจากแนวรับขึ้นมาใกล้โซนต้าน H4 จึงรอ Sell Pullback เท่านั้น ไม่ Sell ไล่",
-  tfPlan:`ETHUSD แผน A = Main Sell Pullback
-
-ภาพรวม:
-Week / D1 / H4 ยังเป็นขาลงใหญ่
-ราคาเด้งจากแนวรับใหญ่ 1550-1530 ขึ้นมาแถว 1630-1648
-จุดนี้ยังไม่ Sell ทันที เพราะอาจเด้งต่อไปทดสอบโซนบน
-
-Sell Zone:
-1. โซนแรก 1648-1665
-2. โซนปลอดภัยกว่า 1689-1715
-3. ถ้าขึ้นลึก ระวัง 1728-1768
-
-เงื่อนไข Sell:
-1. ราคาเข้า Sell Zone
-2. H4 มีแท่ง Reject หรือปิดกลับลง
-3. M15 มี BOS / CHOCH ลง
-4. ใช้ Sell Stop ใต้ Low ของ Trigger
-5. SL ต้องอยู่เหนือ Swing หรือเหนือโซน
-6. RR ต้องอย่างน้อย 1:2
-
-ห้าม Sell ไล่ถ้าราคาอยู่ใกล้ 1609 / 1569 / 1550`,
-  m15Plan:`ใช้ M15 เป็นตัวเข้าเท่านั้น
-
-Sell Trigger:
-1. ราคาเข้า 1648-1665 หรือ 1689-1715
-2. M15 Sweep High แล้วกลับตัวลง
-3. M15 เกิด BOS / CHOCH ลง
-4. มี Bearish Engulfing หรือ Outside Bar
-5. วาง Sell Stop ใต้ Low ของ Trigger
-6. ถ้าไม่ Trigger ภายใน 3-5 แท่ง M15 ให้ยกเลิกแผน`,
-  entryReason:`ยังไม่เข้า เพราะราคากำลังเด้งจากแนวรับใหญ่
-รอให้ราคาเข้า Sell Zone แล้วเกิด Reject/BOS ลงก่อน`,
-  exitPlan:`ยกเลิกแผน Sell ถ้า H4 ปิดเหนือ 1728 หรือ 1768
-หรือราคาไม่ Reject ใน Sell Zone
-หรือ RR ต่ำกว่า 1:2`,
-  riskNote:"Crypto เหวี่ยงแรง ห้าม Sell ไล่ตรงแนวรับ ต้องรอ Pullback + Trigger เท่านั้น",
-  checklist:[
-    "Week ยังเป็นขาลง",
-    "D1 ยังเป็นขาลง",
-    "H4 เด้งเข้า Sell Zone",
-    "ราคาอยู่แถว 1648-1665 หรือ 1689-1715",
-    "มีแท่ง Reject บน H4",
-    "M15 มี BOS / CHOCH ลง",
-    "SL อยู่เหนือ Swing หรือเหนือโซน",
-    "TP มีพื้นที่ถึง 1609 / 1550 / 1491",
-    "RR อย่างน้อย 1:2",
-    "ไม่ Sell ไล่ตรงแนวรับ"
-  ]
-},
-
-{
-  id:"ethusd-b-counter-buy-2026-06-07",
-  symbol:"ETHUSD",
-  market:"Crypto",
-  direction:"BUY",
-  status:"WAIT",
-  title:"ETHUSD — B Counter Trend Buy Plan",
-  timeframes:"D1 / H4 / M15",
-  strategy:"COUNTER_TREND",
-  strategyName:"Counter Trend เฉพาะโซนใหญ่",
-  entryTf:"H4",
-  orderType:"ยังไม่วาง Order",
-  tradeMode:"swing",
-  d1Trend:"down",
-  h4Position:"support",
-  bias:"buy",
-  structure:"choch",
-  supportZone:"1585-1609 / 1569-1550",
-  resistanceZone:"1648 / 1689 / 1728",
-  entry:"",
-  sl:1530,
-  tp1:1648,
-  tp2:1689,
-  tp3:1728,
-  minRR:2,
-  summary:"ETHUSD Buy นี้เป็น Counter Trend เท่านั้น ใช้เล่นเด้งสั้นจากแนวรับใหญ่ ต้องรอ M15/H4 ยืนยัน ห้าม Buy ไล่",
-  tfPlan:`ETHUSD แผน B = Counter Trend Buy
-
-ภาพรวม:
-เทรนด์ใหญ่ยังลง แต่ราคาเด้งจากแนวรับใหญ่
-Buy ใช้ได้เฉพาะเป็นแผนสวนเทรนด์แบบสั้นเท่านั้น
-
-Buy Zone:
-1. รอราคาย่อกลับ 1585-1609
-2. ถ้าลึกให้ดู 1569-1550
-3. ห้าม Buy ตอนราคาไล่ขึ้นใกล้ 1648 แล้ว
-
-เงื่อนไข Buy:
-1. ราคา Pullback เข้า Buy Zone
-2. ไม่หลุด 1550 แบบแรง
-3. M15 เกิด CHOCH/BOS ขึ้น
-4. มี Bullish Engulfing หรือ Sweep Low
-5. RR ต้องอย่างน้อย 1:2`,
-  m15Plan:`Buy Trigger:
-1. ราคาเข้า 1585-1609 หรือ 1569-1550
-2. M15 Sweep Low แล้วกลับขึ้น
-3. M15 CHOCH / BOS ขึ้น
-4. วาง Buy Stop เหนือ High ของ Trigger
-5. SL ใต้ Swing Low
-6. ถ้าไม่ Trigger ภายใน 3-5 แท่ง M15 ให้ยกเลิก`,
-  entryReason:`ยังไม่ Buy ตอนนี้ เพราะราคาเด้งมาแล้ว
-รอ Pullback เข้า Buy Zone และให้ M15 ยืนยันก่อน`,
-  exitPlan:`ยกเลิกแผน Buy ถ้า H4 ปิดต่ำกว่า 1530
-หรือหลุด 1550 แล้วไม่มีแรงกลับตัว
-หรือ RR ต่ำกว่า 1:2`,
-  riskNote:"แผนนี้สวนเทรนด์ใหญ่ ใช้ Lot เล็ก และต้องออกบางส่วนที่ TP1",
-  checklist:[
-    "ยอมรับว่าเป็น Counter Trend",
-    "ราคา Pullback เข้า 1585-1609",
-    "ไม่หลุด 1550 แบบแรง",
-    "M15 Sweep Low แล้วกลับตัว",
-    "M15 CHOCH/BOS ขึ้น",
-    "SL อยู่ใต้ Swing Low",
-    "TP1 ใกล้ 1648",
-    "RR อย่างน้อย 1:2",
-    "ถ้าไม่ชัด = ไม่เข้า"
-  ]
-},
-
-{
-  id:"ethusd-c-sell-breakdown-2026-06-07",
-  symbol:"ETHUSD",
-  market:"Crypto",
-  direction:"SELL",
-  status:"WAIT",
-  title:"ETHUSD — C Sell Breakdown Plan",
-  timeframes:"Week / D1 / H4",
-  strategy:"BOS_OB_RETEST",
-  strategyName:"H4 BOS + OB Retest + M15 Trigger",
-  entryTf:"H4",
-  orderType:"Sell/Buy Stop",
-  tradeMode:"swing",
-  d1Trend:"down",
-  h4Position:"breakout",
-  bias:"sell",
-  structure:"bos",
-  supportZone:"1569-1550 / 1530",
-  resistanceZone:"1609-1633",
-  entry:"",
-  sl:1633,
-  tp1:1491,
-  tp2:1450,
-  tp3:1380,
-  minRR:2,
-  summary:"ETHUSD แผน Sell Breakdown ใช้เฉพาะเมื่อ H4 ปิดหลุด 1569-1550 จริง หรือหลุด 1530 แล้ว Retest ไม่ผ่าน",
-  tfPlan:`ETHUSD แผน C = Sell Breakdown
-
-ใช้เฉพาะกรณีราคาหลุดแนวรับจริง
-ไม่ใช้กับไส้เทียนแทงลงแล้วเด้งกลับ
-
-เงื่อนไข:
-1. H4 ปิดต่ำกว่า 1569-1550
-2. หรือราคาหลุด 1530 แล้ว Retest ไม่ผ่าน
-3. รอ Retest กลับมา 1550-1590 แล้วเกิด Reject
-4. M15 มี BOS/CHOCH ลง
-5. วาง SL เหนือ 1609 หรือ 1633
-6. TP ไปหา 1491 / 1450 / 1380`,
-  m15Plan:`Sell Breakdown Trigger:
-1. H4 ปิดหลุด 1569-1550
-2. รอ Retest กลับขึ้นมา
-3. M15 Reject หรือ BOS ลง
-4. Sell Stop ใต้ Low ของ Trigger
-5. ถ้าราคาเด้งกลับเหนือ 1633 ให้ยกเลิก`,
-  entryReason:`ยังไม่ใช้ Sell Breakdown จนกว่า H4 จะปิดหลุดแนวรับจริงก่อน`,
-  exitPlan:`ยกเลิกแผนถ้า H4 กลับมายืนเหนือ 1633
-หรือหลุดแล้วไม่มี Retest ให้เข้าแบบ RR สวย`,
-  riskNote:"ห้าม Sell Stop จากความกลัว ต้องรอ H4 ปิดหลุดจริงก่อน",
-  checklist:[
-    "H4 ปิดต่ำกว่า 1569-1550",
-    "ไม่ใช่แค่ไส้เทียนหลุด",
-    "รอ Retest กลับมา",
-    "M15 มี Reject/BOS ลง",
-    "SL อยู่เหนือ 1609 หรือ 1633",
-    "TP มีพื้นที่ถึง 1491 / 1450 / 1380",
-    "RR อย่างน้อย 1:2",
-    "ถ้าหลุดแล้วไล่ไม่ทัน = รอรอบใหม่"
-  ]
-},
-
-{
-  id:"xauusd-a-main-sell-pullback-2026-06-07",
-  symbol:"XAUUSD",
-  market:"Gold",
-  direction:"SELL",
-  status:"WAIT",
-  title:"XAUUSD — A Main Sell Pullback Plan",
-  timeframes:"Week / D1 / H4",
-  strategy:"BOS_OB_RETEST",
-  strategyName:"H4 BOS + OB Retest + M15 Trigger",
-  entryTf:"H4",
-  orderType:"ยังไม่วาง Order",
-  tradeMode:"swing",
-  d1Trend:"down",
-  h4Position:"support",
-  bias:"sell",
-  structure:"trend",
-  supportZone:"4285-4241 / 4143 / 4000",
-  resistanceZone:"4360-4396 / 4415-4451 / 4469-4505",
-  entry:"",
-  sl:4451,
-  tp1:4285,
-  tp2:4241,
-  tp3:4143,
-  minRR:2,
-  summary:"XAUUSD ยังอ่อนแรงใน D1/H4 แต่ราคาอยู่ใกล้แนวรับใหญ่ จึงห้าม Sell ไล่ รอเด้งเข้า Sell Zone แล้วค่อยหา Sell Trigger",
-  tfPlan:`XAUUSD แผน A = Main Sell Pullback
-
-ภาพรวม:
-Week ยังอยู่ในโซนย่อจากยอดใหญ่
-D1 และ H4 ยังอ่อนแรง อยู่ใต้ EMA หลัก
-แต่ราคาปัจจุบันอยู่ใกล้แนวรับใหญ่ 4285-4241
-ดังนั้นห้าม Sell ไล่ตรงแนวรับ
-
-Sell Zone:
-1. Sell Zone 1: 4360-4396
-2. Sell Zone 2: 4415-4451
-3. Sell Zone 3: 4469-4505
-
-เงื่อนไข Sell:
-1. ราคาเด้งเข้า Sell Zone
-2. H4 มี Reject หรือปิดกลับลง
-3. M15 มี BOS / CHOCH ลง
-4. มี Bearish Engulfing / Outside Bar / Reject
-5. วาง Sell Stop ใต้ Low ของ Trigger
-6. SL อยู่เหนือ Swing หรือเหนือโซน
-7. RR อย่างน้อย 1:2
-
-ห้าม Sell ไล่แถว 4327 / 4285 / 4241`,
-  m15Plan:`ใช้ M15 เป็นจุดเข้าเท่านั้น
-
-Sell Trigger:
-1. ราคาเข้า 4360-4396 หรือ 4415-4451
-2. M15 Sweep High แล้วกลับตัวลง
-3. M15 เกิด BOS / CHOCH ลง
-4. มี Bearish Engulfing หรือ Outside Bar
-5. วาง Sell Stop ใต้ Low ของ Trigger
-6. SL เหนือ Swing M15 หรือเหนือโซน
-7. ถ้าไม่ Trigger ภายใน 3-5 แท่ง M15 ให้ยกเลิกแผน`,
-  entryReason:`ยังไม่เข้า เพราะราคาอยู่ใกล้แนวรับใหญ่
-รอราคาเด้งเข้า Sell Zone 4360-4396 หรือ 4415-4451 แล้วค่อยหา Sell Trigger`,
-  exitPlan:`ยกเลิกแผน Sell ถ้า H4 ปิดเหนือ 4451 หรือ 4505
-หรือราคาเข้า Sell Zone แล้วไม่ Reject
-หรือ RR ต่ำกว่า 1:2
-หรือมีข่าว USD แดง/ส้มชนช่วงเข้า`,
-  riskNote:"ทองผันผวนแรง ห้าม Sell ไล่ตรงแนวรับ ต้องรอ Pullback + Trigger เท่านั้น",
-  checklist:[
-    "Week อยู่ในโซนย่อจากยอดใหญ่",
-    "D1 ยังอ่อนแรง",
-    "H4 ยังเป็นขาลงระยะสั้น",
-    "ราคาเด้งเข้า Sell Zone",
-    "มีแท่ง Reject บน H4 หรือ M15",
-    "M15 มี BOS / CHOCH ลง",
-    "SL อยู่เหนือ Swing หรือเหนือโซน",
-    "TP มีพื้นที่ถึง 4285 / 4241 / 4143",
-    "RR อย่างน้อย 1:2",
-    "ไม่ Sell ไล่ตรงแนวรับ"
-  ]
-},
-
-{
-  id:"xauusd-b-counter-buy-2026-06-07",
-  symbol:"XAUUSD",
-  market:"Gold",
-  direction:"BUY",
-  status:"WAIT",
-  title:"XAUUSD — B Counter Trend Buy Plan",
-  timeframes:"Week / D1 / H4 / M15",
-  strategy:"COUNTER_TREND",
-  strategyName:"Counter Trend เฉพาะโซนใหญ่",
-  entryTf:"H4",
-  orderType:"ยังไม่วาง Order",
-  tradeMode:"swing",
-  d1Trend:"down",
-  h4Position:"support",
-  bias:"buy",
-  structure:"choch",
-  supportZone:"4285-4241 / 4143-4100",
-  resistanceZone:"4360 / 4415 / 4451",
-  entry:"",
-  sl:4241,
-  tp1:4360,
-  tp2:4415,
-  tp3:4451,
-  minRR:2,
-  summary:"XAUUSD Buy นี้เป็น Counter Trend เท่านั้น ใช้เฉพาะเมื่อราคาแตะแนวรับใหญ่แล้วเกิดแรงกลับตัวชัด ห้าม Buy เดา",
-  tfPlan:`XAUUSD แผน B = Counter Trend Buy
-
-ภาพรวม:
-เทรนด์ D1/H4 ยังอ่อนแรง
-ดังนั้น Buy ใช้ได้เฉพาะเป็นแผนสวนเทรนด์จากแนวรับใหญ่เท่านั้น
-
-Buy Zone:
-1. Buy Zone หลัก: 4285-4241
-2. Deep Buy Zone: 4143-4100
-
-เงื่อนไข Buy:
-1. ราคาเข้า Buy Zone
-2. มีแท่ง Reject ชัด
-3. M15 หรือ H1 เกิด CHOCH/BOS ขึ้น
-4. ไม่หลุด 4241 แบบแรง
-5. มี Bullish Engulfing / Sweep Low แล้วกลับตัว
-6. RR อย่างน้อย 1:2
-
-ห้าม Buy เพราะคิดว่าราคาถูก ต้องรอ Trigger เท่านั้น`,
-  m15Plan:`Buy Trigger:
-1. ราคาเข้า 4285-4241
-2. M15 Sweep Low แล้วกลับขึ้น
-3. M15 CHOCH / BOS ขึ้น
-4. มี Bullish Engulfing หรือ Outside Bar
-5. วาง Buy Stop เหนือ High ของ Trigger
-6. SL ใต้ Swing Low
-7. ถ้าไม่ Trigger ภายใน 3-5 แท่ง M15 ให้ยกเลิก`,
-  entryReason:`ยังไม่ Buy ตอนนี้ เพราะเป็น Counter Trend
-รอให้ราคาเข้าแนวรับ 4285-4241 แล้วมี M15/H1 กลับตัวก่อน`,
-  exitPlan:`ยกเลิกแผน Buy ถ้า H4 ปิดต่ำกว่า 4241 แบบแรง
-หรือหลุดแนวรับแล้วไม่มีแรงกลับตัว
-หรือ RR ต่ำกว่า 1:2`,
-  riskNote:"แผนนี้สวนเทรนด์ ต้องใช้ lot เล็ก และออกบางส่วนที่ TP1",
-  checklist:[
-    "ยอมรับว่าเป็น Counter Trend",
-    "ราคาเข้า 4285-4241",
-    "มี Reject จากแนวรับใหญ่",
-    "M15 Sweep Low แล้วกลับตัว",
-    "M15 CHOCH/BOS ขึ้น",
-    "SL อยู่ใต้ Swing Low",
-    "TP1 แถว 4360",
-    "RR อย่างน้อย 1:2",
-    "ถ้าไม่ชัด = ไม่เข้า"
-  ]
-},
-
-{
-  id:"xauusd-c-sell-breakdown-2026-06-07",
-  symbol:"XAUUSD",
-  market:"Gold",
-  direction:"SELL",
-  status:"WAIT",
-  title:"XAUUSD — C Sell Breakdown Plan",
-  timeframes:"Week / D1 / H4",
-  strategy:"BOS_OB_RETEST",
-  strategyName:"H4 BOS + OB Retest + M15 Trigger",
-  entryTf:"H4",
-  orderType:"Sell/Buy Stop",
-  tradeMode:"swing",
-  d1Trend:"down",
-  h4Position:"breakout",
-  bias:"sell",
-  structure:"bos",
-  supportZone:"4285-4241",
-  resistanceZone:"4241-4285 / 4360",
-  entry:"",
-  sl:4360,
-  tp1:4143,
-  tp2:4000,
-  tp3:3852,
-  minRR:2,
-  summary:"XAUUSD Sell Breakdown ใช้เฉพาะเมื่อ H4 ปิดต่ำกว่า 4241 จริง แล้วรอ Retest กลับมา ไม่ Sell ไล่ตอนหลุด",
-  tfPlan:`XAUUSD แผน C = Sell Breakdown
-
-ใช้เฉพาะกรณีราคาหลุดแนวรับจริง
-ไม่ใช้กับไส้เทียนแทงลงแล้วเด้งกลับ
-
-เงื่อนไข:
-1. H4 ปิดต่ำกว่า 4241 จริง
-2. ไม่ใช่แค่ไส้เทียนหลุด
-3. รอ Retest กลับมา 4241-4285
-4. Retest แล้วไม่ผ่าน
-5. M15 มี Reject หรือ BOS ลง
-6. วาง Sell Stop ใต้ Low ของ Trigger
-7. SL เหนือ 4285 หรือ 4360
-8. TP ไปหา 4143 / 4000 / 3852`,
-  m15Plan:`Sell Breakdown Trigger:
-1. H4 ปิดหลุด 4241
-2. รอ Retest กลับมา 4241-4285
-3. M15 Reject หรือ BOS ลง
-4. Sell Stop ใต้ Low ของ Trigger
-5. ถ้าราคาเด้งกลับเหนือ 4360 ให้ยกเลิก`,
-  entryReason:`ยังไม่ใช้ Sell Breakdown จนกว่า H4 จะปิดต่ำกว่า 4241 จริงก่อน`,
-  exitPlan:`ยกเลิกแผนถ้า H4 กลับมายืนเหนือ 4360
-หรือหลุดแล้วไม่มี Retest ให้เข้าแบบ RR สวย`,
-  riskNote:"ห้าม Sell Stop เพราะกลัวตกรถ ต้องรอ H4 ปิดหลุดจริงและ Retest ก่อน",
-  checklist:[
-    "H4 ปิดต่ำกว่า 4241",
-    "ไม่ใช่แค่ไส้เทียนหลุด",
-    "รอ Retest กลับมา 4241-4285",
-    "M15 มี Reject/BOS ลง",
-    "SL อยู่เหนือ 4285 หรือ 4360",
-    "TP มีพื้นที่ถึง 4143 / 4000 / 3852",
-    "RR อย่างน้อย 1:2",
-    "ถ้าหลุดแล้วไล่ไม่ทัน = รอรอบใหม่"
-  ]
-},
-
-  {
-    id:"btcusd-buy-wait-template",
-    symbol:"BTCUSD",
-    market:"Crypto",
-    direction:"BUY",
-    status:"WAIT",
-    title:"BTCUSD — Buy Pullback Plan",
-    timeframes:"Week / D1 / H4",
-    strategy:"BOS_OB_RETEST",
-    strategyName:"H4 BOS + OB Retest + M15 Trigger",
-    entryTf:"H4",
-    orderType:"ยังไม่วาง Order",
-    tradeMode:"swing",
-    d1Trend:"up",
-    h4Position:"support",
-    bias:"buy",
-    structure:"bos",
-    supportZone:"รอกรอก Buy Zone / Demand จากกราฟล่าสุด",
-    resistanceZone:"รอกรอกแนวต้าน / TP Zone จากกราฟล่าสุด",
-    entry:"",
-    sl:"",
-    tp1:"",
-    tp2:"",
-    tp3:"",
-    minRR:2,
-    summary:"แผน BTC แบบ Buy Pullback รอราคาเข้า Demand / Retest Zone แล้วหา M15 Trigger ไม่ Buy กลางอากาศ",
-    tfPlan:`BTCUSD ใช้แผน Buy เมื่อ D1/H4 ยังเป็นขาขึ้น
-รอราคา Pullback กลับเข้า Demand / OB / Retest Zone
-ไม่ Buy ไล่ตอนแท่งเขียวยาว
-
-เงื่อนไขหลัก:
-1. D1/H4 ยังเป็นขาขึ้น
-2. H4 มี BOS ขึ้น หรือทำ Higher Low ชัด
-3. ราคา Pullback เข้า Buy Zone
-4. M15 มี CHOCH/BOS ขึ้น
-5. RR ต้องอย่างน้อย 1:2`,
-    m15Plan:`ใช้ M15 หา Trigger หลังราคาเข้า Buy Zone แล้วเท่านั้น
-Trigger ที่ใช้ได้:
-- Bullish Engulfing
-- Outside Bar
-- CHOCH / BOS ขึ้น
-- Sweep Low แล้วกลับตัวขึ้น
-เข้าแบบ Buy Stop เหนือ High ของ Trigger`,
-    entryReason:`ยังไม่เข้า จนกว่าราคา Pullback เข้า Buy Zone และ M15 ยืนยันกลับตัวขึ้น`,
-    exitPlan:`ยกเลิกแผนถ้า H4 ปิดหลุด Buy Zone
-หรือโครงสร้างเปลี่ยนเป็น Lower Low`,
-    riskNote:"Crypto เหวี่ยงแรง ต้องลด Lot และไม่วาง SL ชิดเกิน",
-    checklist:[
-      "D1/H4 เป็นขาขึ้น",
-      "H4 มี BOS ขึ้น",
-      "ราคา Pullback เข้า Buy Zone",
-      "M15 มี CHOCH/BOS ขึ้น",
-      "SL อยู่ใต้ Swing Low",
-      "TP มีพื้นที่ถึงแนวต้านถัดไป",
-      "RR อย่างน้อย 1:2",
-      "ไม่ Buy ไล่แท่งเขียวยาว"
-    ]
-  },
-
-  {
-    id:"gbpjpy-sell-wait-template",
-    symbol:"GBPJPY",
-    market:"Forex",
-    direction:"SELL",
-    status:"WAIT",
-    title:"GBPJPY — Sell Retest Plan",
-    timeframes:"D1 / H4 / M15",
-    strategy:"OB_SH_BOS_RTO",
-    strategyName:"Order Block: SH + BOS + RTO",
-    entryTf:"H4",
-    orderType:"ยังไม่วาง Order",
-    tradeMode:"swing",
-    d1Trend:"down",
-    h4Position:"resistance",
-    bias:"sell",
-    structure:"bos",
-    supportZone:"รอกรอกแนวรับ / TP Zone จากกราฟล่าสุด",
-    resistanceZone:"รอกรอก OB / Supply Zone จากกราฟล่าสุด",
-    entry:"",
-    sl:"",
-    tp1:"",
-    tp2:"",
-    tp3:"",
-    minRR:2,
-    summary:"แผน GBPJPY แบบ Sell หลัง Sweep High + BOS แล้วรอ RTO กลับเข้า Order Block",
-    tfPlan:`GBPJPY ใช้แผน Sell เมื่อราคามี Sweep High หรือชน Supply ใหญ่
-จากนั้นต้องเกิด BOS ลงก่อน
-แล้วรอราคา RTO / Retest กลับเข้า OB หรือแนวต้านเดิม
-
-เงื่อนไขหลัก:
-1. D1/H4 ไม่ใช่ขาขึ้นแข็งแรง
-2. มี Sweep High หรือ Reject จากแนวต้าน
-3. เกิด BOS ลง
-4. ราคา RTO กลับเข้า OB
-5. M15 มี Trigger ลง
-6. RR อย่างน้อย 1:2`,
-    m15Plan:`ใช้ M15 หา Trigger หลังราคา RTO เข้า OB แล้วเท่านั้น
-Trigger ที่ใช้ได้:
-- Bearish Engulfing
-- M15 BOS ลง
-- Reject / Pin Bar ที่ OB
-- Sell Stop ใต้ Low ของ Trigger`,
-    entryReason:`ยังไม่เข้า จนกว่า H4 มี BOS ลงและราคา RTO กลับเข้า OB`,
-    exitPlan:`ยกเลิกแผนถ้าราคาปิด H4 เหนือ OB
-หรือไม่มี Trigger ภายใน 3-5 แท่ง M15`,
-    riskNote:"GBPJPY เหวี่ยงแรง ต้องระวังไส้เทียนและข่าว GBP/JPY",
-    checklist:[
-      "มี Sweep High หรือ Reject จากแนวต้าน",
-      "H4 เกิด BOS ลง",
-      "ราคา RTO กลับเข้า OB",
-      "M15 มี Trigger ลง",
-      "SL อยู่เหนือ Swing High / OB",
-      "TP มีพื้นที่ถึงแนวรับถัดไป",
-      "RR อย่างน้อย 1:2",
-      "ไม่มีข่าว GBP/JPY แรงใกล้เวลาเข้า"
-    ]
-  }
-];
-function makeForexWaitPlan(symbol, baseCurrency, quoteCurrency){
-  const isJpyPair = symbol.includes("JPY");
-
-  return {
-    id:`${symbol.toLowerCase()}-forex-wait-template`,
-    symbol:symbol,
-    market:"Forex",
-    direction:"WAIT",
-    status:"WAIT",
-    title:`${symbol} — Forex PA Wait Plan`,
-    timeframes:"D1 / H4 / M15",
-    strategy:"BOS_OB_RETEST",
-    strategyName:"H4 BOS + OB Retest + M15 Trigger",
-    entryTf:"H4",
-    orderType:"ยังไม่วาง Order",
-    tradeMode:"swing",
-    d1Trend:"sideway",
-    h4Position:"middle",
-    bias:"wait",
-    structure:"unclear",
-    supportZone:"รอกรอก Demand / Support Zone จากกราฟล่าสุด",
-    resistanceZone:"รอกรอก Supply / Resistance Zone จากกราฟล่าสุด",
-    entry:"",
-    sl:"",
-    tp1:"",
-    tp2:"",
-    tp3:"",
-    minRR:2,
-
-    summary:`${symbol} เป็น Template รอกราฟล่าสุดก่อนเลือก Buy หรือ Sell ห้ามเข้าออเดอร์ถ้า D1/H4 ยังไม่ให้ Bias ชัด`,
-
-    tfPlan:`${symbol} ใช้เป็นแผนรอ Price Action จาก D1 / H4 ก่อน
-
-กติกาหลัก:
-1. ดู D1 ก่อนว่าเทรนด์หลักขึ้น ลง หรือ Sideway
-2. ดู H4 ว่าราคาอยู่ที่แนวรับ แนวต้าน Supply Demand หรือกลางทาง
-3. ถ้า H4 อยู่กลางทาง = ยังไม่เข้า
-4. ถ้าจะ Buy ต้องรอ H4 มี BOS ขึ้น หรือเกิด Higher Low ชัด
-5. ถ้าจะ Sell ต้องรอ H4 มี BOS ลง หรือเกิด Lower High ชัด
-6. หลังได้โซนจาก H4 แล้ว ใช้ M15 เป็นจุดเข้าเท่านั้น
-7. RR ต้องอย่างน้อย 1:2
-8. ถ้ามีข่าวแรงของ ${baseCurrency} หรือ ${quoteCurrency} ใกล้เวลาเข้า = ยังไม่เข้า`,
-
-    m15Plan:`ใช้ M15 เป็น Trigger หลังจาก D1/H4 ให้โซนแล้วเท่านั้น
-
-Buy Trigger:
-- M15 Sweep Low แล้วกลับตัวขึ้น
-- M15 CHOCH / BOS ขึ้น
-- Bullish Engulfing / Outside Bar
-- Buy Stop เหนือ High ของ Trigger
-
-Sell Trigger:
-- M15 Sweep High แล้วกลับตัวลง
-- M15 CHOCH / BOS ลง
-- Bearish Engulfing / Outside Bar
-- Sell Stop ใต้ Low ของ Trigger
-
-ถ้าไม่เกิด Trigger ภายใน 3-5 แท่ง M15 ให้ยกเลิกแผน`,
-
-    entryReason:`ยังไม่เข้า เพราะเป็น Template รอกราฟล่าสุด
-ต้องเลือก Buy หรือ Sell หลังเห็น D1/H4 Structure ชัดก่อน`,
-
-    exitPlan:`ยกเลิกแผนถ้า:
-1. ราคาอยู่กลางกรอบ
-2. RR ต่ำกว่า 1:2
-3. ข่าว ${baseCurrency} หรือ ${quoteCurrency} แรงใกล้เวลาเข้า
-4. M15 ไม่เกิด Trigger
-5. ราคาทะลุโซนแล้วไม่ Retest`,
-
-    riskNote:isJpyPair
-      ? `คู่ JPY เหวี่ยงแรงและไส้เทียนยาว ต้องลด Lot เผื่อ Spread และเช็กข่าว ${baseCurrency}/${quoteCurrency}`
-      : `เช็กข่าว ${baseCurrency}/${quoteCurrency} ก่อนเข้าเสมอ และห้ามเทรดกลางทาง`,
-
-    checklist:[
-      `เช็กข่าว ${baseCurrency} และ ${quoteCurrency}`,
-      "D1 ให้ Bias ชัด",
-      "H4 ไม่อยู่กลางทาง",
-      "มี Support / Resistance / Supply / Demand ชัด",
-      "มี BOS หรือ CHOCH รองรับ",
-      "รอ Pullback / Retest ก่อน",
-      "M15 มี Trigger ยืนยัน",
-      "SL อยู่หลัง Swing หรือหลังโซน",
-      "TP มีพื้นที่ถึงแนวถัดไป",
-      "RR อย่างน้อย 1:2"
-    ]
-  };
-}
-
-coachTradePlans.push(
-  makeForexWaitPlan("AUDUSD","AUD","USD"),
-  makeForexWaitPlan("AUDJPY","AUD","JPY"),
-  makeForexWaitPlan("GBPUSD","GBP","USD"),
-  makeForexWaitPlan("USDCHF","USD","CHF"),
-  makeForexWaitPlan("USDJPY","USD","JPY"),
-  makeForexWaitPlan("EURUSD","EUR","USD"),
-  makeForexWaitPlan("USDCAD","USD","CAD"),
-  makeForexWaitPlan("EURAUD","EUR","AUD"),
-  makeForexWaitPlan("EURCHF","EUR","CHF"),
-  makeForexWaitPlan("EURJPY","EUR","JPY")
-);
-
 const strategyChecks={
- BOS_OB_RETEST:[["s_bos1","H4 เกิด BOS ไปทางแผน"],["s_bos2","ระบุ OB / Retest Zone ชัด"],["s_bos3","ราคา Pullback กลับเข้าโซน"],["s_bos4","ไม่เข้าเมื่อราคาอยู่กลางทาง"],["s_bos5","M15 มี Trigger ยืนยัน"],["s_bos6","Entry/SL/TP วางตาม Trigger"],["s_bos7","RR ถึง 1:2 ขึ้นไป"],["s_bos8","ข่าวไม่ชน"]],
- H4_SWING_BREAK_RETEST:[
-  ["s_sbr_1","เจอ Swing High และ Swing Low ชัด","ต้องเห็นกรอบโครงสร้างก่อน ไม่เดาจากแท่งเดียว"],
-  ["s_sbr_2","ราคาทำ Break โครงสร้างแล้ว","Sell = H4 ปิดหลุด Swing Low / Buy = H4 ปิดทะลุ Swing High"],
-  ["s_sbr_3","Break ต้องเป็นแท่งปิดจริง","ไม่ใช้แค่ไส้เทียนแทงหลุดแล้วกลับ"],
-  ["s_sbr_4","ไม่เข้าไล่แท่ง Break","หลัง Break ต้องรอ Retest ก่อน เพื่อให้ RR ดีขึ้น"],
-  ["s_sbr_5","Retest กลับมาที่ Swing เดิม","Sell = Retest Swing Low เดิม / Buy = Retest Swing High เดิม"],
-  ["s_sbr_6","Retest แล้วราคาไม่กลับเข้า Range เดิม","Sell ต้องยืนใต้ Swing Low เดิม / Buy ต้องยืนเหนือ Swing High เดิม"],
-  ["s_sbr_7","M15 ต้องอยู่ฝั่ง EMA200 ที่ถูกต้อง","Sell = ต่ำกว่า EMA200 หรือ Retest EMA200 ไม่ผ่าน / Buy = เหนือ EMA200 หรือ Retest ไม่หลุด"],
-  ["s_sbr_8","M15 มี Trigger ที่จุด Retest","Winning Bar / Reject / Engulfing / Outside Bar / Sweep"],
-  ["s_sbr_9","M15 มี BOS หรือ CHOCH ไปทางแผน","Sell ต้องเห็นโครงสร้างลง / Buy ต้องเห็นโครงสร้างขึ้น"],
-  ["s_sbr_10","Entry ใช้ Stop Order","Sell Stop ใต้ Low ของ M15 Trigger / Buy Stop เหนือ High ของ M15 Trigger"],
-  ["s_sbr_11","SL วางหลัง Retest Zone","Sell วางเหนือ Retest High / Buy วางใต้ Retest Low"],
-  ["s_sbr_12","TP อิง Swing ถัดไป","TP1 แนวใกล้สุด, TP2 Swing ใหญ่, TP3 โซนถัดไป"],
-  ["s_sbr_13","RR อย่างน้อย 1:2","ถ้า Retest มาแล้วแต่ RR ไม่ถึง ให้บันทึก NO_TRADE"],
-  ["s_sbr_14","ไม่มีอารมณ์กลัวตกรถ","ถ้ารู้สึกรีบ ให้ยังไม่เข้า"]
- ],
- H4_SIGNAL_M15_SNIPER:[
-  ["s_sniper_0","H4 ต้องปิดแท่งก่อน","ห้ามใช้แท่ง H4 ที่ยังวิ่งอยู่มาตัดสินใจเข้าออเดอร์"],
-  ["s_sniper_1","H4 เป็น Signal / Permission เท่านั้น","H4 มีหน้าที่บอกว่าเริ่มมองหาออเดอร์ได้ แต่ยังไม่ใช่จุดเข้า"],
-  ["s_sniper_2","H4 อยู่ที่แนวรับ/แนวต้านสำคัญ","Sell = แนวต้าน/Supply/Retest Zone, Buy = แนวรับ/Demand"],
-  ["s_sniper_3","H4 มี Winning Bar / Outside Bar / Reject","ต้องเกิดบริเวณโซน H4 ไม่ใช่กลางทาง"],
-  ["s_sniper_4","ห้ามเข้า Market ทันทีหลัง H4 ปิด","ให้เปิด M15 เพื่อหาจุดเข้า RR ที่ดีกว่า"],
-  ["s_sniper_5","M15 ต้องอยู่ฝั่ง EMA200 ที่ถูกต้อง","Sell = ต่ำกว่า EMA200 / Buy = เหนือ EMA200"],
-  ["s_sniper_6","M15 มี Trigger ชัด","Winning Bar / Reject / Engulfing / Outside Bar / Sweep / BOS"],
-  ["s_sniper_7","Entry ใช้ Stop Order","Sell Stop ใต้ Low ของ M15 Trigger / Buy Stop เหนือ High ของ M15 Trigger"],
-  ["s_sniper_8","SL อยู่หลัง Swing M15","SL สั้นกว่า H4 แต่ต้องไม่ชิดเกินไป"],
-  ["s_sniper_9","RR อย่างน้อย 1:2","ถ้า RR ไม่ถึง ให้บันทึก NO_TRADE"]
- ],
- OB_SH_BOS_RTO:[["s_ob1","มี Swing High/Low สำคัญ"],["s_ob2","เกิด BOS หลัง Sweep/Reject"],["s_ob3","เลือก OB ต้นทางถูก"],["s_ob4","รอ RTO/Retest กลับโซน"],["s_ob5","มี Reject/Trigger"],["s_ob6","SL หลัง OB/Swing"],["s_ob7","TP ถึง liquidity ถัดไป"],["s_ob8","RR ผ่าน"]],
- COUNTER_TREND:[["s_ct1","อยู่โซนใหญ่ D1/H4 เท่านั้น"],["s_ct2","มี Sweep/False Break"],["s_ct3","มี Rejection แรง"],["s_ct4","M15/H1 เกิด CHOCH/BOS กลับตัว"],["s_ct5","เข้าเฉพาะ Retest หลัง CHOCH"],["s_ct6","TP1 สั้น ชนแนวแรกต้องระวัง"],["s_ct7","Risk ไม่เกิน 0.5%"],["s_ct8","ไม่มีข่าวแรงชน"]],
- DOUBLE_DOJI:[["s_dd1","เกิด Double Doji ที่โซนสำคัญ"],["s_dd2","แท่งก่อนหน้ามีแรงชัด"],["s_dd3","รอ Break กรอบ Doji"],["s_dd4","SL หลังกรอบ/หลัง Swing"],["s_dd5","RR ผ่านก่อนวาง order"]],
- QM_PATTERN:[["s_qm1","มีโครงสร้าง HH/HL หรือ LL/LH ก่อน"],["s_qm2","เกิด Break Structure"],["s_qm3","มี Left Shoulder / Head / Right Shoulder"],["s_qm4","รอราคา Retest QML"],["s_qm5","มี Trigger"],["s_qm6","SL หลัง Head"],["s_qm7","RR ผ่าน"]],
- M15_SCALP:[["s_sc1","H4 ให้ Bias และโซนแล้ว"],["s_sc2","M15 เข้าโซนจริง"],["s_sc3","M15 Trigger ชัด"],["s_sc4","Entry ไม่ไล่ราคา"],["s_sc5","Expire แผนชัด"],["s_sc6","RR ผ่าน"],["s_sc7","ข่าวไม่ชน"]],
- MM_PROCESS:[["s_mm1","Lot คำนวณจาก Risk"],["s_mm2","ยอมเสียได้ถ้าโดน SL"],["s_mm3","ไม่เข้าเกิน 1-2 ไม้ติดกัน"],["s_mm4","มีแผนปิด TP/SL"],["s_mm5","เขียนบทเรียนหลังจบไม้"]]
+ H4_SWING_BREAK_RETEST:[["st1","H4 ปิดหลุด/ทะลุ Swing จริง","ไม่ใช่แค่ไส้ทะลุ"],["st2","Retest โซน Break","ราคากลับมาทดสอบแล้วไม่ผ่าน"],["st3","M15 Trigger ที่ Retest","มีสัญญาณกลับตัวใน TF เล็ก"]],
+ BOS_OB_RETEST:[["st1","H4 BOS/CHOCH ชัด","โครงสร้างเปลี่ยนจริง"],["st2","มี OB/Supply Demand รองรับ","ราคาเข้าโซนก่อน"],["st3","M15 Reject/BOS","เข้าแบบ Sniper ไม่กดมั่ว"]],
+ OB_SH_BOS_RTO:[["st1","มี Stop Hunt / Liquidity Sweep","กวาด High/Low ก่อน"],["st2","ตามด้วย BOS","ยืนยันเปลี่ยนฝั่ง"],["st3","RTO กลับ OB","รอกลับมาแตะโซนเข้า"]],
+ M15_SCALP:[["st1","H4 Bias ถูกทาง","ไม่สวน TF ใหญ่มั่ว"],["st2","ราคาอยู่โซน H4","ไม่ scalping กลางทาง"],["st3","M15 RR คุ้ม","SL สั้น TP ชัด"]],
+ COUNTER_TREND:[["st1","อยู่โซนใหญ่จริง","Support/Resistance ใหญ่เท่านั้น"],["st2","มี Sweep แล้ว Reclaim","ไม่เด้งนิดเดียวแล้วเข้า"],["st3","ลด Risk ครึ่งหนึ่ง","สวนเทรนด์ต้องเล็ก"]],
+ WAIT_ONLY:[["st1","ยอมรับว่ายังไม่ชัด","ไม่ฝืนหาไม้"],["st2","กำหนดจุดรอแล้ว","รู้ว่ารอราคาไหน"],["st3","บันทึกเหตุผล NO_TRADE","ฝึกวินัย"]]
 };
+const scalpChecks=[["m1","M15 ไม่สวน EMA200","เข้าเฉพาะฝั่งที่ได้เปรียบ"],["m2","มี BOS/CHOCH M15","โครงสร้างย่อยยืนยัน"],["m3","มี Candle Trigger","Outside/Engulf/Pin Reject"],["m4","Entry หลัง Retest","ไม่ไล่แท่งยาว"],["m5","SL สั้นหลัง Swing M15","ยอมแพ้เร็ว"],["m6","TP อยู่ที่ Liquidity ถัดไป","ไม่โลภไร้เป้า"]];
 
-function esc(s){return String(s??"").replace(/[&<>'"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[m]));}
-function val(id){return $(id)?.value ?? "";}
-function num(id){const v=parseFloat(val(id));return Number.isFinite(v)?v:null;}
-function nowDate(){const d=new Date();return d.toISOString().slice(0,10);}
-function nowTime(){const d=new Date();return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");}
-function uuid(){return (crypto.randomUUID?crypto.randomUUID():"id_"+Date.now()+"_"+Math.random().toString(16).slice(2));}
-function fmt(n,d=2){return Number.isFinite(Number(n))?Number(n).toFixed(d):"-";}
-function parseTime(t){const d=Date.parse(t||"");return Number.isFinite(d)?d:0;}
-function sortTrades(rows){return [...rows].sort((a,b)=>parseTime(b.updatedAt||b.createdAt)-parseTime(a.updatedAt||a.createdAt));}
-function canonicalKey(t){return t.id || `${t.tradeDate||""}|${t.tradeTime||""}|${t.symbol||""}|${t.direction||""}|${t.entry||""}|${t.sl||""}`;}
-
-function isGoodImageSrc(src){
-  return typeof src === "string" && src.trim().length > 20;
-}
-
-function isDriveImageSrc(src){
-  const s = String(src || "");
-  return s.includes("drive.google.com") || s.includes("googleusercontent.com") || s.includes("drive.usercontent.google.com");
-}
-
-function pickBetterImage(a,b){
-  if(isDriveImageSrc(a)) return a;
-  if(isDriveImageSrc(b)) return b;
-  if(isGoodImageSrc(a)) return a;
-  if(isGoodImageSrc(b)) return b;
-  return a || b || "";
-}
-
-function mergeResultImagesKeep(oldImgs,newImgs){
-  const a = Array.isArray(oldImgs) ? oldImgs : [];
-  const b = Array.isArray(newImgs) ? newImgs : [];
-  const out = [];
-
-  [...a,...b].forEach(src=>{
-    if(!isGoodImageSrc(src)) return;
-    if(!out.includes(src)) out.push(src);
-  });
-
-  return out;
-}
-
-function mergeTradeKeepImages(oldTrade,newTrade){
-  const oldT = oldTrade || {};
-  const newT = newTrade || {};
-
-  const oldTime = parseTime(oldT.updatedAt || oldT.createdAt);
-  const newTime = parseTime(newT.updatedAt || newT.createdAt);
-
-  // ข้อมูลหลักใช้ตัวที่ใหม่กว่า
-  const base = newTime >= oldTime ? {...oldT,...newT} : {...newT,...oldT};
-
-  // แต่รูปห้ามหาย ถ้าฝั่งใหม่ไม่มีรูป ให้เก็บรูปจากฝั่งเก่าไว้
-  base.chartW1  = pickBetterImage(newT.chartW1,  oldT.chartW1);
-  base.chartD1  = pickBetterImage(newT.chartD1,  oldT.chartD1);
-  base.chartH4  = pickBetterImage(newT.chartH4,  oldT.chartH4);
-  base.chartM15 = pickBetterImage(newT.chartM15, oldT.chartM15);
-
-  base.resultImages = mergeResultImagesKeep(oldT.resultImages, newT.resultImages);
-
-  return base;
-}
-
-function dedupeTrades(rows){
-  const map = new Map();
-
-  (rows || []).filter(Boolean).forEach(t=>{
-    const copy = {...t, id:t.id || uuid()};
-    const key = canonicalKey(copy);
-    const old = map.get(key);
-
-    if(!old){
-      map.set(key, copy);
-    }else{
-      map.set(key, mergeTradeKeepImages(old, copy));
-    }
-  });
-
-  return sortTrades([...map.values()]);
-}
-
-function load(){try{return dedupeTrades(JSON.parse(localStorage.getItem(storeKey)||"[]"));}catch(e){return [];}}
-function save(rows){localStorage.setItem(storeKey,JSON.stringify(dedupeTrades(rows))); queueCloudSync();}
-function migrateOldLocal(){
- const current=load(); if(current.length) return;
- const keys=["paJournalV3","paCoachTradesV2","paCoachTradesV1","paJournalV2"];
- for(const k of keys){
-   try{const arr=JSON.parse(localStorage.getItem(k)||"[]"); if(Array.isArray(arr)&&arr.length){localStorage.setItem(storeKey,JSON.stringify(dedupeTrades(arr))); break;}}catch(e){}
- }
-}
-function renderTodayWatchlist(){
-  const box = $("todayWatchlistCards");
-  if (!box) return;
-
-  box.innerHTML = todayWatchlistItems.map(item => `
-    <div class="c6">
-      <div class="card">
-        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
-          <div>
-            <h3 style="color:#facc15">${esc(item.symbol)} — ${esc(item.mainPlan)}</h3>
-            <p>${esc(item.market)} | Bias: ${esc(item.bias)}</p>
-          </div>
-          <div>
-            <span class="pill ${esc(item.statusClass)}">${esc(item.status)}</span>
-          </div>
-        </div>
-
-        <div class="note" style="margin-top:10px">
-          <b>Action:</b><br>
-          ${esc(item.action)}
-        </div>
-
-        <div class="grid" style="margin-top:12px">
-          <div class="c6">
-            <div class="note">
-              <b>Watch Zone</b><br>
-              ${esc(item.watchZone)}
-            </div>
-          </div>
-          <div class="c6">
-            <div class="note">
-              <b>Danger / Support / Breakdown</b><br>
-              ${esc(item.dangerZone)}
-            </div>
-          </div>
-        </div>
-
-        <div class="btns" style="margin-top:14px">
-          <button class="primary" onclick="loadCoachPlanToPlanner('${esc(item.planId)}')">โหลดแผนเข้า Planner</button>
-          <button class="ghost" onclick="sendWatchlistTelegram('${esc(item.symbol)}')">ส่ง Alert สรุป</button>
-        </div>
-      </div>
-    </div>
-  `).join("");
-}
-
-function sendWatchlistTelegram(symbol){
-  const item = todayWatchlistItems.find(x => x.symbol === symbol);
-  if (!item) return;
-
-  const text = [
-    "📌 <b>PA Coach Today Watchlist</b>",
-    "",
-    "<b>Symbol:</b> " + htmlSafeForTelegram(item.symbol),
-    "<b>Market:</b> " + htmlSafeForTelegram(item.market),
-    "<b>Status:</b> " + htmlSafeForTelegram(item.status),
-    "<b>Bias:</b> " + htmlSafeForTelegram(item.bias),
-    "",
-    "<b>Watch Zone:</b>",
-    htmlSafeForTelegram(item.watchZone),
-    "",
-    "<b>Danger / Support / Breakdown:</b>",
-    htmlSafeForTelegram(item.dangerZone),
-    "",
-    "<b>Coach PA Action:</b>",
-    htmlSafeForTelegram(item.action),
-    "",
-    "⚠️ ไม่ใช่สัญญาณเข้าออเดอร์ทันที",
-    "กฎใหม่: ห้าม READY SELL ถ้ายังไม่มี H4 ปิดหลุด Swing Low + Retest + M15 ต่ำกว่า EMA200 + Trigger",
-    "ถ้าแค่เข้า Sell Zone หรือ H4 Reject ให้เรียก WATCH เท่านั้น"
-  ].join("\n");
-
-  if (!confirm(`ส่ง Watchlist Alert ของ ${item.symbol} เข้า Telegram ใช่ไหม?`)) return;
-
-  cloudApi("telegramAlert", { text })
-    .then(() => alert("ส่ง Watchlist Alert แล้วครับ"))
-    .catch(e => alert("ส่ง Telegram ไม่สำเร็จ: " + e.message));
-}
-
-function renderCoachTradePlans(){
- const box=$("coachPlanCards");
- if(!box) return;
-
- box.innerHTML=coachTradePlans.map(p=>`
-   <div class="c6">
-     <div class="card">
-       <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
-         <div>
-           <h3 style="color:#facc15">${esc(p.title)}</h3>
-           <p>${esc(p.timeframes)} | ${esc(p.strategyName)}</p>
-         </div>
-         <div>
-           <span class="pill redp">${esc(p.direction)}</span>
-           <span class="pill orangep">${esc(p.status)}</span>
-         </div>
-       </div>
-
-       <div class="note" style="margin-top:10px">
-         ${esc(p.summary)}
-       </div>
-
-       <div class="grid" style="margin-top:12px">
-         <div class="c6">
-           <div class="note">
-             <b>Sell Zone</b><br>
-             ${esc(p.resistanceZone)}
-           </div>
-         </div>
-         <div class="c6">
-           <div class="note">
-             <b>Support / Break Zone</b><br>
-             ${esc(p.supportZone)}
-           </div>
-         </div>
-         <div class="c4">
-           <span class="badge b-bad">SL: ${esc(p.sl)}</span>
-         </div>
-         <div class="c8">
-           <span class="badge b-ok">TP1 ${esc(p.tp1)}</span>
-           <span class="badge b-ok">TP2 ${esc(p.tp2)}</span>
-           <span class="badge b-ok">TP3 ${esc(p.tp3)}</span>
-         </div>
-       </div>
-
-       <h3 style="margin-top:14px">Checklist สำคัญ</h3>
-       <div class="small">
-         ${(p.checklist||[]).map(x=>`• ${esc(x)}`).join("<br>")}
-       </div>
-
-       <div class="btns" style="margin-top:14px">
-         <button class="primary" onclick="loadCoachPlanToPlanner('${esc(p.id)}')">โหลดเข้า Planner</button>
-         <button class="ghost" onclick="copyCoachPlan('${esc(p.id)}')">Copy แผน</button>
-       </div>
-     </div>
-   </div>
- `).join("");
-}
-
-function loadCoachPlanToPlanner(id){
- const p=coachTradePlans.find(x=>x.id===id);
- if(!p) return;
-
- $("symbol").value=p.symbol;
- $("market").value=p.market;
- $("strategy").value=p.strategy;
- $("direction").value=p.direction;
- $("entryTf").value=p.entryTf;
- $("orderType").value=p.orderType;
- $("tradeMode").value=p.tradeMode;
- $("d1Trend").value=p.d1Trend;
- $("h4Position").value=p.h4Position;
- $("bias").value=p.bias;
- $("structure").value=p.structure;
- $("supportZone").value=p.supportZone;
- $("resistanceZone").value=p.resistanceZone;
- $("tfPlan").value=p.tfPlan;
- $("entry").value=p.entry;
- $("sl").value=p.sl;
- $("tp1").value=p.tp1;
- $("tp2").value=p.tp2;
- $("tp3").value=p.tp3;
- $("minRR").value=p.minRR;
- $("riskNote").value=p.riskNote;
- $("m15Plan").value=p.m15Plan;
- $("entryReason").value=p.entryReason;
- $("exitPlan").value=p.exitPlan;
-
- renderStrategyChecklist();
- evalAll();
- autoSaveDraft();
- showSec("planner");
- showStep("s1");
-
- alert(`โหลดแผน ${p.symbol} เข้า Planner แล้วครับ ให้พี่ไล่ Step แล้วค่อยบันทึกเข้า Journal`);
-}
-
-function copyCoachPlan(id){
- const p=coachTradePlans.find(x=>x.id===id);
- if(!p) return;
-
- const txt=`${p.title}
-Status: ${p.status}
-Direction: ${p.direction}
-Timeframes: ${p.timeframes}
-
-Summary:
-${p.summary}
-
-Sell Zone:
-${p.resistanceZone}
-
-Support / Break Zone:
-${p.supportZone}
-
-SL: ${p.sl}
-TP1: ${p.tp1}
-TP2: ${p.tp2}
-TP3: ${p.tp3}
-
-Plan:
-${p.tfPlan}
-
-M15 Trigger:
-${p.m15Plan}
-
-Risk Note:
-${p.riskNote}`;
-
- navigator.clipboard.writeText(txt).then(()=>alert("Copy แผนโค้ช PA แล้วครับ"));
-}
-function showSec(id){document.querySelectorAll(".section").forEach(x=>x.classList.toggle("active",x.id===id));document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.sec===id)); if(id==="todayWatchlist") renderTodayWatchlist(); if(id==="journal") renderJournal(); if(id==="stats") renderStats();}
-function showStep(id){stepIndex=Math.max(0,stepList.indexOf(id));document.querySelectorAll(".panel").forEach(x=>x.classList.toggle("active",x.id===id));document.querySelectorAll(".step").forEach(x=>x.classList.toggle("active",x.dataset.step===id)); evalAll(); autoSaveDraft();}
-function nextStep(){showStep(stepList[Math.min(stepIndex+1,stepList.length-1)]);} function prevStep(){showStep(stepList[Math.max(stepIndex-1,0)]);}
-
-function makeCheckHtml(item){return `<label class="check"><input type="checkbox" id="${esc(item[0])}"><span><b>${esc(item[1])}</b><small>${esc(item[2]||"")}</small></span></label>`;}
-function renderChecks(){
- $("checklist").innerHTML=checks.map(makeCheckHtml).join("");
- $("scalpChecklist").innerHTML=scalpChecks.map(makeCheckHtml).join("");
- renderStrategyChecklist();
-}
-function renderStrategyChecklist(){
- const key=val("strategy")||"BOS_OB_RETEST";
- const rows=strategyChecks[key]||[];
- $("strategyChecklist").innerHTML=rows.map(x=>makeCheckHtml([x[0],x[1],""])).join("") || `<div class="note">ยังไม่มี Checklist สำหรับกลยุทธ์นี้</div>`;
-}
-function checkedCount(ids){return ids.filter(id=>$(id)?.checked).length;}
-function checkedTexts(list){return list.filter(c=>$(c[0])?.checked).map(c=>c[1]);}
-function strategyList(){return strategyChecks[val("strategy")]||[];}
-function strategyCheckedTexts(){return strategyList().filter(c=>$(c[0])?.checked).map(c=>c[1]);}
-function strategyMissingTexts(){return strategyList().filter(c=>!$(c[0])?.checked).map(c=>c[1]);}
-function missingTexts(){return checks.filter(c=>!$(c[0])?.checked).map(c=>c[1]);}
-function scalpMissingTexts(){return scalpChecks.filter(c=>!$(c[0])?.checked).map(c=>c[1]);}
-
-function addNewsRow(row={}){
- const tr=document.createElement("tr");
- tr.innerHTML=`<td><input class="n-date" type="date" value="${esc(row.date||val("tradeDate")||nowDate())}"></td><td><input class="n-time" type="time" value="${esc(row.time||"")}"></td><td><input class="n-cur" value="${esc(row.cur||"USD")}"></td><td><select class="n-impact"><option value="yellow">yellow</option><option value="orange">orange</option><option value="red">red</option></select></td><td><input class="n-event" value="${esc(row.event||"")}"></td><td><input class="n-rel" type="checkbox" ${row.rel===false?"":"checked"}></td><td><button class="danger" onclick="this.closest('tr').remove();evalAll();autoSaveDraft()">ลบ</button></td>`;
- $("newsBody").appendChild(tr);
- tr.querySelector(".n-impact").value=row.impact||"red";
- tr.querySelectorAll("input,select").forEach(el=>el.addEventListener("change",()=>{evalAll();autoSaveDraft();}));
- evalAll();
-}
-function clearNews(){ $("newsBody").innerHTML=""; evalAll(); autoSaveDraft(); }
-function newsRows(){return [...$("newsBody").querySelectorAll("tr")].map(tr=>({date:tr.querySelector(".n-date").value,time:tr.querySelector(".n-time").value,cur:tr.querySelector(".n-cur").value.trim().toUpperCase(),impact:tr.querySelector(".n-impact").value,event:tr.querySelector(".n-event").value,rel:tr.querySelector(".n-rel").checked}));}
-function fillNfpExample(){clearNews();[{time:"19:30",event:"Average Hourly Earnings m/m",impact:"red"},{time:"19:30",event:"Non-Farm Employment Change",impact:"red"},{time:"19:30",event:"Unemployment Rate",impact:"red"}].forEach(addNewsRow);}
-function parsePastedNews(){
- const text=val("pasteNews").trim(); if(!text){alert("ยังไม่ได้วางข่าว");return;}
- const lines=text.split(/\n+/).map(x=>x.trim()).filter(Boolean);
- lines.forEach(line=>{
-   const cur=(line.match(/\b[A-Z]{3}\b/)||["USD"])[0];
-   const impact=(line.match(/\b(red|orange|yellow|high|medium|low)\b/i)||["red"])[0].toLowerCase();
-   const time=(line.match(/\b\d{1,2}:\d{2}\b/)||[""])[0];
-   const event=line.replace(/\b[A-Z]{3}\b/g,"").replace(/\b(red|orange|yellow|high|medium|low)\b/ig,"").replace(/\b\d{1,2}:\d{2}\b/g,"").trim();
-   addNewsRow({date:val("tradeDate")||nowDate(),time,cur,impact:impact==="high"?"red":impact==="medium"?"orange":impact,event,rel:true});
- });
- $("pasteNews").value=""; evalAll(); autoSaveDraft();
-}
-function newsStatus(){
- const manual=val("manualNewsMode");
- if(["red","orange"].includes(manual)) return {blocked:true,title:"NO_TRADE: ข่าวแรง",detail:`Manual News Mode = ${manual}`,cls:"no"};
- if(manual==="yellow") return {blocked:false,title:"WAIT: ข่าวเหลือง",detail:"ลด lot หรือรอให้ชัด",cls:"wait"};
- if(manual==="none") return {blocked:false,title:"ข่าวผ่าน",detail:"Manual = ไม่มีข่าวสำคัญ",cls:"go"};
- const rel=val("relevantCurrencies").split(/[,.\s]+/).map(x=>x.trim().toUpperCase()).filter(Boolean);
- const rows=newsRows().filter(r=>r.rel && (!rel.length || rel.includes(String(r.cur).toUpperCase())));
- const bad=rows.filter(r=>["red","orange"].includes(r.impact));
- if(bad.length) return {blocked:true,title:"NO_TRADE: ชนข่าวแดง/ส้ม",detail:bad.map(r=>`${r.time||"--:--"} ${r.cur} ${r.impact}: ${r.event}`).join("<br>"),cls:"no"};
- if(rows.some(r=>r.impact==="yellow")) return {blocked:false,title:"WAIT: มีข่าวเหลือง",detail:"รอแท่งปิด / ลดความเสี่ยง",cls:"wait"};
- return {blocked:false,title:"ข่าวผ่าน",detail:"ไม่พบข่าวแดง/ส้มที่เกี่ยวข้อง",cls:"go"};
-}
-function calcRR(){
- const e=num("entry"), sl=num("sl"), t1=num("tp1"), t2=num("tp2"), t3=num("tp3");
- const risk=(e!==null&&sl!==null)?Math.abs(e-sl):null;
- const side=val("direction");
- const rr=t=>risk&&t!==null?Math.abs(t-e)/risk:null;
- return {risk,rr1:rr(t1),rr2:rr(t2),rr3:rr(t3),max:Math.max(rr(t1)||0,rr(t2)||0,rr(t3)||0),validRisk:risk&&risk>0,side};
-}
-function evaluation(){
- const news=newsStatus(), rr=calcRR();
- const paScore=checkedCount(checks.map(c=>c[0]));
- const paTotal=checks.length;
- const stList=strategyList(), stScore=checkedCount(stList.map(c=>c[0]));
- const mScore=checkedCount(scalpChecks.map(c=>c[0]));
- const mTotal=scalpChecks.length;
- const minRR=Number(val("minRR")||2);
- const blocks=[];
- if(news.blocked) blocks.push("ชนข่าวแดง/ส้ม");
- if(val("bias")==="wait" || val("direction")==="WAIT") blocks.push("Bias/Direction ยังเป็น WAIT");
- if(val("h4Position")==="middle") blocks.push("ราคาอยู่กลางกรอบ");
- if(rr.validRisk && rr.max < minRR) blocks.push(`RR ต่ำกว่า ${minRR}`);
- if(!rr.validRisk) blocks.push("ยังไม่ได้กรอก Entry/SL");
- if(paScore < Math.ceil(paTotal*.80)) blocks.push(`PA Checklist ยังไม่ครบ ${Math.ceil(paTotal*.80)}/${paTotal}`);
- if(stList.length && stScore < Math.ceil(stList.length*.75)) blocks.push("Strategy Checklist ยังไม่ผ่าน 75%");
- if(val("direction")!=="WAIT" && val("m15EntryType")==="ยังไม่เข้า") blocks.push("ยังไม่มี M15 Entry Type / ยังไม่ควรเข้า");
- if(val("strategy")==="H4_SWING_BREAK_RETEST"){
-   const must=["s_sbr_1","s_sbr_2","s_sbr_3","s_sbr_4","s_sbr_5","s_sbr_7","s_sbr_8","s_sbr_10","s_sbr_13"];
-   const missingMust=must.filter(id=>!$(id)?.checked);
-   if(missingMust.length) blocks.push("Strict Swing Gate ยังไม่ผ่าน: ต้องมี Swing → Break ปิดแท่ง → Retest → M15 EMA200 → Trigger");
- }
- if(val("strategy")==="H4_SIGNAL_M15_SNIPER"){
-   const must=["s_sniper_0","s_sniper_4","s_sniper_5","s_sniper_6","s_sniper_7","s_sniper_9"];
-   const missingMust=must.filter(id=>!$(id)?.checked);
-   if(missingMust.length) blocks.push("Sniper Gate ยังไม่ผ่าน: H4 เป็นแค่สัญญาณ ต้องรอ M15 EMA200 + Trigger");
- }
- let cls="go", title="PLAN พร้อมรอ Trigger";
- if(blocks.length){cls="wait";title="WAIT: ยังไม่เข้า";}
- if(news.blocked || val("direction")==="WAIT" || val("h4Position")==="middle") {cls="no"; title="NO_TRADE / WAIT";}
- return {news,rr,paScore,paTotal,stScore,stTotal:stList.length,mScore,mTotal,blocks,cls,title};
-}
-function evalAll(){
- renderStrategyChecklist();
- const ev=evaluation();
- const newsBox=$("newsDecision");
- if(newsBox){newsBox.className="decision "+ev.news.cls; newsBox.innerHTML=`<div class="big">${ev.news.title}</div><div>${ev.news.detail}</div>`;}
- const rr=$("rrBox");
- if(rr){rr.innerHTML=`Risk ระยะ SL: <b>${fmt(ev.rr.risk,3)}</b> | RR1: <b>${fmt(ev.rr.rr1)}</b> | RR2: <b>${fmt(ev.rr.rr2)}</b> | RR3: <b>${fmt(ev.rr.rr3)}</b> | Max RR: <b>${fmt(ev.rr.max)}</b>`;}
- const html=`<div class="big">${ev.title}</div><div>PA ${ev.paScore}/${ev.paTotal||0} | Strategy ${ev.stScore}/${ev.stTotal||0} | M15 ${ev.mScore}/${ev.mTotal||0} | Max RR ${fmt(ev.rr.max)}</div>${ev.blocks.length?`<div style="margin-top:8px"><b>เหตุผลที่ยังไม่เข้า:</b><br>${ev.blocks.map(x=>"• "+esc(x)).join("<br>")}</div>`:`<div class="muted">ครบเงื่อนไขหลักแล้ว แต่ยังต้องรอแท่งปิด/Trigger จริงก่อนส่ง order</div>`}`;
- ["topDecision","finalDecision"].forEach(id=>{const box=$(id); if(box){box.className="decision "+ev.cls; box.innerHTML=html;}});
- return ev;
-}
-
-function dataObj(forceStatus){
- const ev=evalAll(); const status=forceStatus || (ev.cls==="no"?"NO_TRADE":"PLAN");
- return {id:editingPlanId||uuid(), appVersion:APP_VERSION, createdAt:new Date().toISOString(), updatedAt:new Date().toISOString(), tradeDate:val("tradeDate"), tradeTime:val("tradeTime"), symbol:val("symbol").trim().toUpperCase()||"XAUUSD", market:val("market"), strategy:val("strategy"), strategyName:$("strategy").selectedOptions[0]?.text||val("strategy"), direction:val("direction"), entryTf:val("entryTf"), orderType:val("orderType"), tradeMode:val("tradeMode"), newsWindow:val("newsWindow"), relevantCurrencies:val("relevantCurrencies"), manualNewsMode:val("manualNewsMode"), newsRows:newsRows(), d1Trend:val("d1Trend"), h4Position:val("h4Position"), bias:val("bias"), structure:val("structure"), supportZone:val("supportZone"), resistanceZone:val("resistanceZone"), tfPlan:val("tfPlan"), entry:num("entry"), sl:num("sl"), tp1:num("tp1"), tp2:num("tp2"), tp3:num("tp3"), balance:num("balance"), riskPercent:num("riskPercent"), minRR:num("minRR"), riskNote:val("riskNote"), m15EntryType:val("m15EntryType"), m15ExpireBars:val("m15ExpireBars"), m15Plan:val("m15Plan"), entryReason:val("entryReason"), exitPlan:val("exitPlan"), chartW1:charts.w1, chartD1:charts.d1, chartH4:charts.h4, chartM15:charts.m15, paPassed:checkedTexts(checks), paMissing:missingTexts(), strategyPassed:strategyCheckedTexts(), strategyMissing:strategyMissingTexts(), strategyScore:ev.stScore, strategyTotal:ev.stTotal, score:ev.paScore, paTotal:ev.paTotal, scalpScore:ev.mScore, scalpTotal:ev.mTotal, scalpPassed:checkedTexts(scalpChecks), scalpMissing:scalpMissingTexts(), rr1:ev.rr.rr1, rr2:ev.rr.rr2, rr3:ev.rr.rr3, maxRR:ev.rr.max, decision:ev.title, decisionClass:ev.cls, blocks:ev.blocks, status, resultR:null, exitPrice:null, emotion:"", lesson:"", resultImages:[]};
-}
-function savePlan(){
- let d=dataObj(); if(!d.symbol){alert("กรอก Symbol ก่อน");return;}
- let rows=load();
- if(editingPlanId){
-   const old=rows.find(x=>x.id===editingPlanId)||{};
-   d={...old,...d,id:editingPlanId,createdAt:old.createdAt||d.createdAt,updatedAt:new Date().toISOString(),status:old.status&&old.status!=="PLAN"?old.status:d.status,resultImages:old.resultImages||d.resultImages,resultR:old.resultR??d.resultR,exitPrice:old.exitPrice??d.exitPrice,emotion:old.emotion||d.emotion,lesson:old.lesson||d.lesson};
-   rows=rows.map(x=>x.id===editingPlanId?d:x); editingPlanId=null; updateEditingUI(false);
- }else rows.unshift(d);
- save(rows); localStorage.removeItem(draftKey); renderJournal(); renderStats(); showSec("journal"); alert("บันทึก Journal v3.5 แล้วครับ");
-}
-function markNoTrade(){let d=dataObj("NO_TRADE"); d.resultR=0; d.lesson=(d.lesson||"")+"\nไม่เข้า เพราะ: "+(d.blocks||[]).join(", "); let rows=load(); rows.unshift(d); save(rows); renderJournal(); renderStats(); showSec("journal"); alert("บันทึกเป็น NO_TRADE แล้วครับ ดีมากที่ไม่ฝืนเข้า");}
-function editPlan(id){const t=load().find(x=>x.id===id); if(!t)return; applyTradeToForm(t); editingPlanId=id; updateEditingUI(true); showSec("planner"); showStep("s1");}
-function updateEditingUI(on){$("plannerCard").classList.toggle("editmode",!!on); $("plannerTitle").textContent=on?"กำลังแก้ไขแผนเดิม":"Step by Step ก่อนเข้าออเดอร์";}
-function applyTradeToForm(t){
- const fields=["tradeDate","tradeTime","symbol","market","strategy","direction","entryTf","orderType","tradeMode","newsWindow","relevantCurrencies","manualNewsMode","d1Trend","h4Position","bias","structure","supportZone","resistanceZone","tfPlan","entry","sl","tp1","tp2","tp3","balance","riskPercent","minRR","riskNote","m15EntryType","m15ExpireBars","m15Plan","entryReason","exitPlan"];
- fields.forEach(id=>{if($(id)&&t[id]!==undefined&&t[id]!==null) $(id).value=t[id];});
- clearNews(); (t.newsRows||[]).forEach(addNewsRow);
- renderStrategyChecklist();
- [...checks,...scalpChecks,...strategyList()].forEach(c=>{if($(c[0])) $(c[0]).checked=false;});
- (t.paPassed||[]).forEach(txt=>{const c=checks.find(x=>x[1]===txt); if(c&&$(c[0])) $(c[0]).checked=true;});
- (t.scalpPassed||[]).forEach(txt=>{const c=scalpChecks.find(x=>x[1]===txt); if(c&&$(c[0])) $(c[0]).checked=true;});
- (t.strategyPassed||[]).forEach(txt=>{const c=strategyList().find(x=>x[1]===txt); if(c&&$(c[0])) $(c[0]).checked=true;});
- charts={w1:t.chartW1||"",d1:t.chartD1||"",h4:t.chartH4||"",m15:t.chartM15||""}; renderChartPreviews(); evalAll();
-}
-function copyPlanText(){
- const t=dataObj();
- const txt=`PA Coach Trade Plan ${APP_VERSION}\nSymbol: ${t.symbol} ${t.direction}\nStrategy: ${t.strategyName}\nTF: ${t.entryTf} / Mode: ${t.tradeMode}\nDecision: ${t.decision}\n\nEntry: ${t.entry??"-"}\nSL: ${t.sl??"-"}\nTP1: ${t.tp1??"-"}\nTP2: ${t.tp2??"-"}\nTP3: ${t.tp3??"-"}\nMax RR: ${fmt(t.maxRR)}\n\nD1/H4 Plan:\n${t.tfPlan}\n\nEntry Reason:\n${t.entryReason}\n\nBlocks:\n${(t.blocks||[]).map(x=>"- "+x).join("\n")||"-"}`;
- navigator.clipboard.writeText(txt).then(()=>alert("Copy แผนแล้วครับ"));
-}
-
-
-function htmlSafeForTelegram(value) {
-  return String(value ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
-}
-
-function buildTelegramTextFromPlanner(t) {
-  const symbol = htmlSafeForTelegram(t.symbol || "-");
-  const direction = htmlSafeForTelegram(t.direction || "WAIT");
-  const status = htmlSafeForTelegram(t.status || "PLAN");
-  const strategy = htmlSafeForTelegram(t.strategyName || t.strategy || "-");
-  const decision = htmlSafeForTelegram(t.decision || "-");
-
-  const entry = htmlSafeForTelegram(t.entry ?? "-");
-  const sl = htmlSafeForTelegram(t.sl ?? "-");
-  const tp1 = htmlSafeForTelegram(t.tp1 ?? "-");
-  const tp2 = htmlSafeForTelegram(t.tp2 ?? "-");
-  const tp3 = htmlSafeForTelegram(t.tp3 ?? "-");
-  const rr = htmlSafeForTelegram(fmt(t.maxRR));
-
-  const reason = htmlSafeForTelegram(t.entryReason || "-");
-  const risk = htmlSafeForTelegram(t.riskNote || "-");
-  const blocks = (t.blocks || []).length
-    ? (t.blocks || []).map(x => "• " + htmlSafeForTelegram(x)).join("\n")
-    : "-";
-
-  return [
-    "🚨 <b>PA Coach Alert</b>",
-    "",
-    "<b>Symbol:</b> " + symbol,
-    "<b>Direction:</b> " + direction,
-    "<b>Status:</b> " + status,
-    "<b>Strategy:</b> " + strategy,
-    "",
-    "<b>Decision:</b> " + decision,
-    "",
-    "<b>Entry:</b> " + entry,
-    "<b>SL:</b> " + sl,
-    "<b>TP1:</b> " + tp1,
-    "<b>TP2:</b> " + tp2,
-    "<b>TP3:</b> " + tp3,
-    "<b>Max RR:</b> " + rr,
-    "",
-    "<b>เหตุผลเข้า / ไม่เข้า:</b>",
-    reason,
-    "",
-    "<b>สิ่งที่ยังบล็อกอยู่:</b>",
-    blocks,
-    "",
-    "<b>Risk Note:</b>",
-    risk,
-    "",
-    "⚠️ เช็กแท่งปิด, ข่าว, SL, RR ก่อนเข้าออเดอร์",
-    "กฎกันกราฟหลอก: H4 Reject = แค่เตือน / ต้องรอ Swing Break + Retest + M15 EMA200 + Trigger"
-  ].join("\n");
-}
-
-async function sendTelegramAlert() {
-  const t = dataObj();
-  const text = buildTelegramTextFromPlanner(t);
-
-  if (!confirm(`ส่ง Telegram Alert สำหรับ ${t.symbol} ${t.direction} ใช่ไหม?`)) {
-    return;
-  }
-
-  try {
-    await cloudApi("telegramAlert", {
-      text: text,
-      trade: t
-    });
-
-    alert("ส่ง Telegram Alert แล้วครับ");
-  } catch (e) {
-    alert("ส่ง Telegram ไม่สำเร็จ: " + e.message);
-  }
-}
-
-async function imageFileToDataUrl(file,max=1500,quality=.82){
- const raw=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file);});
- return await new Promise(resolve=>{const img=new Image();img.onload=()=>{let w=img.width,h=img.height,ratio=Math.min(1,max/Math.max(w,h));let c=document.createElement("canvas");c.width=Math.round(w*ratio);c.height=Math.round(h*ratio);let ctx=c.getContext("2d");ctx.drawImage(img,0,0,c.width,c.height);resolve(c.toDataURL("image/jpeg",quality));};img.onerror=()=>resolve(raw);img.src=raw;});
-}
-function bindChartInput(id,key,previewId){$(id).addEventListener("change",async e=>{const file=e.target.files[0]; if(!file)return; charts[key]=await imageFileToDataUrl(file); renderChartPreviews(); autoSaveDraft();});}
-function renderChartPreviews(){
- [["w1","previewW1","Week"],["d1","previewD1","D1"],["h4","previewH4","H4"],["m15","previewM15","M15"]].forEach(([k,id,label])=>{$(id).innerHTML=charts[k]?`<img src="${charts[k]}" onclick="showImg('${k}','${label}')">`:`ยังไม่มีรูป ${label}`;});
-}
-function showImg(key,title){const src=charts[key] || key; $("modalTitle").textContent=title||"รูปกราฟ"; $("modalImg").src=src; $("modal").classList.add("active");}
-function showResultImg(id,i){const t=load().find(x=>x.id===id); const src=t?.resultImages?.[i]; if(src) {$("modalTitle").textContent="รูปผลลัพธ์"; $("modalImg").src=src; $("modal").classList.add("active");}}
-function closeImg(){ $("modal").classList.remove("active"); }
-function toggleBrowserFullscreen(){ if(!document.fullscreenElement) document.documentElement.requestFullscreen?.(); else document.exitFullscreen?.(); }
-
-function statusPill(s){const cls=s==="CLOSED"?"bluep":s==="ACTIVE"?"greenp":s==="NO_TRADE"?"orangep":s==="CANCELLED"?"redp":"bluep"; return `<span class="pill ${cls}">${esc(s||"PLAN")}</span>`;}
-function dirPill(d){return `<span class="pill ${d==="BUY"?"greenp":d==="SELL"?"redp":"orangep"}">${esc(d||"WAIT")}</span>`;}
-function renderJournal(){
- const q=val("searchJournal").toLowerCase(), f=val("filterStatus"), sym=val("filterSymbol").trim().toUpperCase();
- const rows=load().filter(t=>(f==="all"||!f||t.status===f)&&(!sym||String(t.symbol||"").includes(sym))&&(`${t.symbol} ${t.entryReason} ${t.tfPlan} ${t.lesson} ${t.strategyName}`.toLowerCase().includes(q)));
- if(!rows.length){$("journalBody").innerHTML='<tr><td colspan="8">ยังไม่มีบันทึกตามตัวกรองนี้</td></tr>';return;}
- $("journalBody").innerHTML=rows.map(t=>{
-   const badNews=(t.newsRows||[]).filter(r=>r.rel&&["red","orange"].includes(r.impact));
-   const thumbs=[t.chartW1,t.chartD1,t.chartH4,t.chartM15].filter(Boolean).slice(0,2).map(src=>`<img class="thumb" src="${src}" onclick="showImg('${src}','รูปกราฟ')">`).join(" ");
-   const resThumbs=(t.resultImages||[]).slice(0,2).map((src,i)=>`<img class="thumb" src="${src}" onclick="showResultImg('${t.id}',${i})">`).join(" ");
-   return `<tr><td>${esc(t.tradeDate||"")}<br><span class="muted">${esc(t.tradeTime||"")}</span><br><span class="small">${esc((t.updatedAt||t.createdAt||"").slice(0,10))}</span></td><td><b>${esc(t.symbol)}</b><br>${esc(t.market||"")} / ${esc(t.entryTf||"")}<br><span class="muted">${esc(t.strategyName||t.strategy||"")}</span></td><td>${dirPill(t.direction)} ${statusPill(t.status)}<br><span class="muted">${esc(t.decision||"")}</span></td><td>E: ${esc(t.entry??"-")}<br>SL: ${esc(t.sl??"-")}<br>TP1: ${esc(t.tp1??"-")} / TP2: ${esc(t.tp2??"-")} / TP3: ${esc(t.tp3??"-")}</td><td>Max RR: <b>${fmt(t.maxRR)}</b><br>PA ${esc(t.score??0)}/${esc(t.paTotal??10)}<br>Strategy ${esc(t.strategyScore??0)}/${esc(t.strategyTotal??0)}</td><td>${badNews.length?`<span class="pill redp">ชนข่าว ${badNews.length}</span>`:`<span class="pill greenp">ข่าวผ่าน</span>`}<br>${thumbs}<br>${resThumbs}</td><td>R: <b>${esc(t.resultR??"-")}</b><br>Exit: ${esc(t.exitPrice??"-")}<br><span class="muted">${esc(t.emotion||"")}</span></td><td><button class="ghost" onclick="editPlan('${t.id}')">แก้</button> <button class="okbtn" onclick="selectReview('${t.id}')">รีวิว</button> <button class="danger" onclick="deleteTrade('${t.id}')">ลบ</button></td></tr>`;
- }).join("");
-}
-function selectReview(id){
- const t=load().find(x=>x.id===id); if(!t)return; reviewingId=id; reviewImagesBuffer=[];
- $("reviewBox").innerHTML=`กำลังรีวิว: <b>${esc(t.symbol)}</b> ${esc(t.direction)} | ${statusPill(t.status)} | Entry ${esc(t.entry??"-")}`;
- $("reviewForm").classList.remove("hidden"); $("reviewStatus").value=t.status||"PLAN"; $("reviewExitPrice").value=t.exitPrice??""; $("reviewResultR").value=t.resultR??""; $("reviewEmotion").value=t.emotion||""; $("reviewLesson").value=t.lesson||""; renderResultPreview(t.resultImages||[]); showSec("journal");
-}
-function clearReviewSelection(){reviewingId=null; reviewImagesBuffer=[]; $("reviewForm").classList.add("hidden"); $("reviewBox").textContent="กด “รีวิว” ในตารางก่อน"; $("resultPreview").innerHTML="";}
-function renderResultPreview(existing=[]){const imgs=[...existing,...reviewImagesBuffer]; $("resultPreview").innerHTML=imgs.map((src,i)=>`<div class="result-img-card"><img src="${src}" onclick="showImg('${src}','รูปผลลัพธ์')"><span class="small">#${i+1}</span></div>`).join("")||'<span class="small">ยังไม่มีรูปผลลัพธ์</span>';}
-async function bindResultImages(){
- $("resultImages").addEventListener("change",async e=>{for(const file of e.target.files){reviewImagesBuffer.push(await imageFileToDataUrl(file));} const t=load().find(x=>x.id===reviewingId); renderResultPreview(t?.resultImages||[]); e.target.value="";});
-}
-function saveReview(){
- if(!reviewingId){alert("ยังไม่ได้เลือกไม้");return;}
- const rows=load().map(t=>t.id===reviewingId?{...t,status:val("reviewStatus"),exitPrice:num("reviewExitPrice"),resultR:num("reviewResultR"),emotion:val("reviewEmotion"),lesson:val("reviewLesson"),resultImages:[...(t.resultImages||[]),...reviewImagesBuffer],updatedAt:new Date().toISOString()}:t);
- save(rows); clearReviewSelection(); renderJournal(); renderStats(); alert("บันทึกรีวิวแล้วครับ");
-}
-function deleteTrade(id){if(!confirm("ลบรายการนี้ใช่ไหม?"))return; save(load().filter(t=>t.id!==id)); cloudDelete(id); renderJournal(); renderStats();}
-function dedupeLocalNow(){const before=JSON.parse(localStorage.getItem(storeKey)||"[]").length; const rows=dedupeTrades(load()); localStorage.setItem(storeKey,JSON.stringify(rows)); renderJournal(); renderStats(); alert(`ล้างข้อมูลซ้ำแล้ว: จาก ${before} เหลือ ${rows.length} รายการ`);}
-
-function renderStats(){
- const rows=load(); const closed=rows.filter(t=>t.status==="CLOSED" || Number.isFinite(Number(t.resultR))); const wins=closed.filter(t=>Number(t.resultR)>0); const loss=closed.filter(t=>Number(t.resultR)<0); const sum=closed.reduce((s,t)=>s+(Number(t.resultR)||0),0); const win=closed.length?wins.length/closed.length*100:0;
- $("kpiBox").innerHTML=`<div class="box"><div class="num">${rows.length}</div><div class="lab">บันทึกทั้งหมด</div></div><div class="box"><div class="num">${closed.length}</div><div class="lab">ปิด/มีผลแล้ว</div></div><div class="box"><div class="num">${fmt(win,1)}%</div><div class="lab">Win Rate</div></div><div class="box"><div class="num">${fmt(sum)}R</div><div class="lab">รวม R</div></div><div class="box"><div class="num">${rows.filter(t=>t.status==="NO_TRADE").length}</div><div class="lab">ไม่เข้า</div></div><div class="box"><div class="num">${rows.filter(t=>t.status==="ACTIVE").length}</div><div class="lab">Active</div></div><div class="box"><div class="num">${wins.length}</div><div class="lab">ชนะ</div></div><div class="box"><div class="num">${loss.length}</div><div class="lab">แพ้</div></div>`;
- const lessons=rows.filter(t=>t.lesson).slice(0,8); $("lessonList").innerHTML=lessons.map(t=>`<div class="c6"><div class="note"><b>${esc(t.symbol)} ${esc(t.direction)} ${esc(t.resultR??"")}R</b><br>${esc(t.lesson)}</div></div>`).join("")||'<div class="note">ยังไม่มีบทเรียน</div>';
-}
-function exportJson(){download("pa-coach-trades-v3-4.json",JSON.stringify({appVersion:APP_VERSION,exportedAt:new Date().toISOString(),trades:load()},null,2),"application/json");}
-function exportCsv(){const h=["date","time","symbol","direction","status","strategy","entry","sl","tp1","tp2","tp3","maxRR","resultR","lesson"], csv=[h.join(",")].concat(load().map(t=>[t.tradeDate,t.tradeTime,t.symbol,t.direction,t.status,t.strategyName||t.strategy,t.entry,t.sl,t.tp1,t.tp2,t.tp3,t.maxRR,t.resultR,t.lesson].map(x=>`"${String(x??"").replaceAll('"','""')}"`).join(","))).join("\n"); download("pa-coach-trades-v3-4.csv","\ufeff"+csv,"text/csv;charset=utf-8");}
-function download(name,content,type){const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([content],{type})); a.download=name; a.click(); URL.revokeObjectURL(a.href);}
-function bindImport(){ $("importFile").addEventListener("change",e=>{const file=e.target.files[0]; if(!file)return; const r=new FileReader(); r.onload=()=>{try{const parsed=JSON.parse(r.result); const imported=Array.isArray(parsed)?parsed:parsed.trades; if(!Array.isArray(imported)) throw new Error("JSON ไม่ใช่รูปแบบ PA Coach"); const merged=dedupeTrades([...imported,...load()]); save(merged); renderJournal(); renderStats(); alert(`Import สำเร็จ ${imported.length} รายการ / รวมเหลือ ${merged.length}`);}catch(err){alert("Import ไม่สำเร็จ: "+err.message);} e.target.value="";}; r.readAsText(file);});}
-
-function collectDraft(){const ids=["tradeDate","tradeTime","symbol","market","strategy","direction","entryTf","orderType","tradeMode","newsWindow","relevantCurrencies","manualNewsMode","d1Trend","h4Position","bias","structure","supportZone","resistanceZone","tfPlan","entry","sl","tp1","tp2","tp3","balance","riskPercent","minRR","riskNote","m15EntryType","m15ExpireBars","m15Plan","entryReason","exitPlan"]; const form={}; ids.forEach(id=>{if($(id))form[id]=$(id).value;}); const checked={}; [...checks,...scalpChecks,...strategyList()].forEach(c=>{if($(c[0])) checked[c[0]]=$(c[0]).checked;}); return {form,checked,newsRows:newsRows(),charts,stepId:stepList[stepIndex]||"s1",savedAt:new Date().toISOString()};}
-function autoSaveDraft(){try{localStorage.setItem(draftKey,JSON.stringify(collectDraft()));}catch(e){}}
-function restoreDraft(){const raw=localStorage.getItem(draftKey); if(!raw){alert("ยังไม่มี Draft");return;} try{const d=JSON.parse(raw); Object.entries(d.form||{}).forEach(([id,v])=>{if($(id))$(id).value=v;}); clearNews(); (d.newsRows||[]).forEach(addNewsRow); renderStrategyChecklist(); Object.entries(d.checked||{}).forEach(([id,v])=>{if($(id))$(id).checked=!!v;}); charts=d.charts||charts; renderChartPreviews(); showStep(d.stepId||"s1"); evalAll(); alert("กู้คืน Draft แล้ว");}catch(e){alert("กู้ Draft ไม่สำเร็จ: "+e.message);}}
-function tryRestoreDraftOnLoad(){const raw=localStorage.getItem(draftKey); if(!raw)return; try{const d=JSON.parse(raw); if(d.savedAt&&confirm("พบ Draft ที่บันทึกอัตโนมัติ ต้องการกู้คืนไหม?")) restoreDraft();}catch(e){}}
-function clearDraftAndReload(){if(confirm("ล้าง Draft แล้วเริ่มใหม่ใช่ไหม?")){localStorage.removeItem(draftKey); location.reload();}}
-
-function getSyncSetting(){try{return JSON.parse(localStorage.getItem(syncSettingKey)||"{}");}catch(e){return {};}}
-function saveSyncSetting(){const cfg={url:val("syncApiUrl").trim(),secret:val("syncSecret").trim(),autoSave:val("syncAutoSave")||"off"}; localStorage.setItem(syncSettingKey,JSON.stringify(cfg)); updateSyncStatus("บันทึกค่า Sync แล้ว"); alert("บันทึกค่า Google Sync แล้ว");}
-function loadSyncSetting(){const cfg=getSyncSetting(); if($("syncApiUrl"))$("syncApiUrl").value=cfg.url||""; if($("syncSecret"))$("syncSecret").value=cfg.secret||""; if($("syncAutoSave"))$("syncAutoSave").value=cfg.autoSave||"off"; updateSyncStatus(cfg.url?"พร้อม Sync กับ Google Sheet":"ยังไม่ได้ตั้งค่า Sync");}
-function updateSyncStatus(msg){const cfg=getSyncSetting(); $("syncStatus").innerHTML=`<b>${esc(msg)}</b><br><span class="small">URL: ${cfg.url?"ตั้งค่าแล้ว":"ยังไม่มี"} | Auto Sync: ${esc(cfg.autoSave||"off")}</span>`;}
-function requireSyncConfig(){const cfg=getSyncSetting(); if(!cfg.url)throw new Error("ยังไม่ได้ใส่ Apps Script Web App URL"); if(!cfg.secret)throw new Error("ยังไม่ได้ใส่ API Secret"); return cfg;}
-async function cloudApi(action,payload={}){const cfg=requireSyncConfig(); const res=await fetch(cfg.url,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action,secret:cfg.secret,...payload})}); const txt=await res.text(); let json; try{json=JSON.parse(txt);}catch(e){throw new Error("Apps Script ไม่ได้ตอบ JSON: "+txt.slice(0,200));} if(!json.ok)throw new Error(json.error||"Google Sync error"); return json;}
-async function testCloudSync(){try{updateSyncStatus("กำลังทดสอบเชื่อมต่อ..."); const r=await cloudApi("ping",{}); updateSyncStatus(`เชื่อมต่อสำเร็จ ${r.version||""}`); alert("เชื่อมต่อ Google Sheet สำเร็จ");}catch(e){updateSyncStatus("เชื่อมต่อไม่สำเร็จ: "+e.message); alert("เชื่อมต่อไม่สำเร็จ: "+e.message);}}
-async function syncLocalToCloud(mode="upsert",silent=false){try{const rows=load(); updateSyncStatus(`กำลังส่ง ${rows.length} รายการขึ้น Google Sheet...`); const r=await cloudApi("upsertTrades",{trades:rows,mode}); const saved=Array.isArray(r.trades)?r.trades:rows; localStorage.setItem(storeKey,JSON.stringify(dedupeTrades(saved))); renderJournal(); renderStats(); updateSyncStatus(`ส่งขึ้น Google Sheet สำเร็จ ${saved.length} รายการ`); if(!silent)alert(`ส่งขึ้น Google Sheet สำเร็จ ${saved.length} รายการ`);}catch(e){updateSyncStatus("ส่งขึ้น Google Sheet ไม่สำเร็จ: "+e.message); if(!silent)alert("ส่งขึ้น Google Sheet ไม่สำเร็จ: "+e.message);}}
-function paHasImage_(src){
-  return typeof src === "string" && src.trim().length > 20;
-}
-
-function paPreferImage_(cloudSrc, localSrc){
-  const c = cloudSrc || "";
-  const l = localSrc || "";
-
-  // ถ้า local ยังเป็นรูป base64 ที่เพิ่งอัปโหลด ให้รักษาไว้ก่อน
-  if(paHasImage_(l) && String(l).startsWith("data:image/")) return l;
-
-  // ถ้า cloud ไม่มีรูป แต่ local มีรูป ให้ใช้ local
-  if(!paHasImage_(c) && paHasImage_(l)) return l;
-
-  // ถ้า cloud มีรูป ใช้ cloud
-  if(paHasImage_(c)) return c;
-
-  return l || c || "";
-}
-
-function paMergeResultImages_(cloudImgs, localImgs){
-  const c = Array.isArray(cloudImgs) ? cloudImgs : [];
-  const l = Array.isArray(localImgs) ? localImgs : [];
-  const out = [];
-
-  [...l, ...c].forEach(src=>{
-    if(!paHasImage_(src)) return;
-    if(!out.includes(src)) out.push(src);
-  });
-
-  return out;
-}
-
-function paMergeCloudWithLocalImages_(cloudTrade, localTrade){
-  const c = cloudTrade || {};
-  const l = localTrade || {};
-  const merged = {...l, ...c};
-
-  merged.chartW1  = paPreferImage_(c.chartW1,  l.chartW1);
-  merged.chartD1  = paPreferImage_(c.chartD1,  l.chartD1);
-  merged.chartH4  = paPreferImage_(c.chartH4,  l.chartH4);
-  merged.chartM15 = paPreferImage_(c.chartM15, l.chartM15);
-
-  merged.resultImages = paMergeResultImages_(c.resultImages, l.resultImages);
-
-  return merged;
-}
-
-
-async function syncCloudToLocal(mode="MERGE"){
-  try{
-    updateSyncStatus("กำลังโหลดจาก Google Sheet...");
-
-    const r = await cloudApi("listTrades",{});
-    const cloud = Array.isArray(r.trades) ? r.trades : [];
-    const local = load();
-
-    let merged = [];
-
-    if(mode === "REPLACE"){
-      merged = dedupeTrades(cloud);
-    }else{
-      const localMap = new Map();
-
-      local.forEach(t=>{
-        const key = t.id || canonicalKey(t);
-        localMap.set(key, t);
-      });
-
-      const cloudKeys = new Set();
-
-      const cloudMerged = cloud.map(c=>{
-        const key = c.id || canonicalKey(c);
-        cloudKeys.add(key);
-        const localSame = localMap.get(key);
-        return paMergeCloudWithLocalImages_(c, localSame);
-      });
-
-      const localOnly = local.filter(l=>{
-        const key = l.id || canonicalKey(l);
-        return !cloudKeys.has(key);
-      });
-
-      merged = dedupeTrades([...cloudMerged, ...localOnly]);
-    }
-
-    localStorage.setItem(storeKey, JSON.stringify(merged));
-    renderJournal();
-    renderStats();
-    updateSyncStatus(`โหลดจาก Google Sheet สำเร็จ cloud ${cloud.length} / local now ${merged.length}`);
-    showSec("journal");
-    alert(`โหลดจาก Google Sheet สำเร็จ ${cloud.length} รายการ / รวมเหลือ ${merged.length}`);
-  }catch(e){
-    updateSyncStatus("โหลดจาก Google Sheet ไม่สำเร็จ: " + e.message);
-    alert("โหลดจาก Google Sheet ไม่สำเร็จ: " + e.message);
-  }
-}
-async function cloudDelete(id){try{const cfg=getSyncSetting(); if(!cfg.url||!cfg.secret)return; await cloudApi("deleteTrade",{id}); updateSyncStatus("ลบใน Google Sheet แล้ว");}catch(e){console.warn(e);}}
-function queueCloudSync(){const cfg=getSyncSetting(); if(cfg.autoSave!=="on"||!cfg.url||!cfg.secret)return; clearTimeout(syncTimer); syncTimer=setTimeout(()=>syncLocalToCloud("upsert",true),1600);}
-
-function bindEvents(){
- document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>showSec(b.dataset.sec)));
- document.querySelectorAll(".step").forEach(b=>b.addEventListener("click",()=>showStep(b.dataset.step)));
- ["strategy","direction","bias","h4Position","manualNewsMode","entry","sl","tp1","tp2","tp3","minRR"].forEach(id=>$(id)?.addEventListener("change",()=>{if(id==="strategy")renderStrategyChecklist(); evalAll(); autoSaveDraft();}));
- document.addEventListener("input",e=>{if(e.target.closest("#planner")){evalAll(); autoSaveDraft();}},true);
- document.addEventListener("change",e=>{if(e.target.closest("#planner")){evalAll(); autoSaveDraft();}},true);
- bindChartInput("chartW1","w1","previewW1"); bindChartInput("chartD1","d1","previewD1"); bindChartInput("chartH4","h4","previewH4"); bindChartInput("chartM15","m15","previewM15");
- bindImport(); bindResultImages();
- ["searchJournal","filterStatus","filterSymbol"].forEach(id=>$(id)?.addEventListener("input",renderJournal));
- window.addEventListener("beforeunload",autoSaveDraft);
- setInterval(autoSaveDraft,4000);
-}
 function init(){
- migrateOldLocal();
- $("tradeDate").value=$("tradeDate").value||nowDate(); $("tradeTime").value=$("tradeTime").value||nowTime();
- renderChecks(); addNewsRow({date:nowDate(),time:"",cur:"USD",impact:"red",event:"",rel:true}); clearNews();
- bindEvents(); loadSyncSetting(); renderJournal(); renderStats(); renderTodayWatchlist(); renderCoachTradePlans(); evalAll(); setTimeout(tryRestoreDraftOnLoad,250);
+ setToday(); renderChecks(); renderStrategyChecks(); renderNews(); loadSyncSetting(); renderAll(); bindEvents(); evaluateAll();
 }
-init();
+function bindEvents(){
+ document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>showSection(b.dataset.sec));
+ document.querySelectorAll('.step').forEach(b=>b.onclick=()=>showStep(b.dataset.step));
+ ['entry','sl','tp1','tp2','tp3','minRR','manualNewsMode','direction','strategy','bias','h4Position','structure'].forEach(id=>$(id).addEventListener('input',()=>{ if(id==='strategy')renderStrategyChecks(); evaluateAll(); }));
+}
+function setToday(){
+ const d=new Date(); const pad=n=>String(n).padStart(2,'0');
+ if(!$('tradeDate').value) $('tradeDate').value=d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+ if(!$('tradeTime').value) $('tradeTime').value=pad(d.getHours())+':'+pad(d.getMinutes());
+}
+function showSection(id){document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.sec===id));renderAll();}
+function showStep(id){stepIndex=stepList.indexOf(id);document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.step').forEach(x=>x.classList.toggle('active',x.dataset.step===id));evaluateAll();}
+function nextStep(){showStep(stepList[Math.min(stepIndex+1,stepList.length-1)]);}function prevStep(){showStep(stepList[Math.max(stepIndex-1,0)]);}
+function renderChecks(){
+ $('checklist').innerHTML=checks.map(c=>checkHtml(c)).join('');
+ $('scalpChecklist').innerHTML=scalpChecks.map(c=>checkHtml(c)).join('');
+ document.querySelectorAll('input[type=checkbox]').forEach(x=>x.addEventListener('change',evaluateAll));
+}
+function renderStrategyChecks(){
+ const arr=strategyChecks[$('strategy').value]||strategyChecks.WAIT_ONLY;
+ $('strategyChecklist').innerHTML=arr.map(c=>checkHtml(c)).join('');
+ document.querySelectorAll('#strategyChecklist input[type=checkbox]').forEach(x=>x.addEventListener('change',evaluateAll));
+}
+function checkHtml(c){return `<label class="check"><input id="${c[0]}" type="checkbox"><span><b>${c[1]}</b><small>${c[2]}</small></span></label>`;}
+function checked(id){return !!($(id)&&$(id).checked);} function val(id){return ($(id)?.value||'').trim();}
+function num(id){const n=Number(val(id));return isFinite(n)?n:NaN;}
+
+function addNewsRow(n={}){const id='n'+Date.now()+Math.random().toString(16).slice(2); const rows=getNews(); rows.push({id,date:n.date||val('tradeDate'),time:n.time||'',currency:n.currency||'USD',impact:n.impact||'red',title:n.title||'',related:n.related!==false}); localStorage.setItem('paNewsRows',JSON.stringify(rows));renderNews();evaluateAll();}
+function getNews(){try{return JSON.parse(localStorage.getItem('paNewsRows')||'[]')}catch(e){return[]}}
+function renderNews(){const rows=getNews(); $('newsBody').innerHTML=rows.map(r=>`<tr><td><input value="${escAttr(r.date||'')}" onchange="updateNews('${r.id}','date',this.value)"></td><td><input value="${escAttr(r.time||'')}" onchange="updateNews('${r.id}','time',this.value)"></td><td><input value="${escAttr(r.currency||'USD')}" onchange="updateNews('${r.id}','currency',this.value)"></td><td><select onchange="updateNews('${r.id}','impact',this.value)"><option ${r.impact==='yellow'?'selected':''}>yellow</option><option ${r.impact==='orange'?'selected':''}>orange</option><option ${r.impact==='red'?'selected':''}>red</option></select></td><td><input value="${escAttr(r.title||'')}" onchange="updateNews('${r.id}','title',this.value)"></td><td><select onchange="updateNews('${r.id}','related',this.value==='true')"><option value="true" ${r.related?'selected':''}>ใช่</option><option value="false" ${!r.related?'selected':''}>ไม่</option></select></td><td><button class="danger" onclick="deleteNews('${r.id}')">ลบ</button></td></tr>`).join('');}
+function updateNews(id,k,v){const rows=getNews().map(r=>r.id===id?{...r,[k]:v}:r);localStorage.setItem('paNewsRows',JSON.stringify(rows));renderNews();evaluateAll();}
+function deleteNews(id){localStorage.setItem('paNewsRows',JSON.stringify(getNews().filter(r=>r.id!==id)));renderNews();evaluateAll();}
+function clearNews(){localStorage.removeItem('paNewsRows');renderNews();evaluateAll();}
+function fillNfpExample(){addNewsRow({time:'19:30',currency:'USD',impact:'red',title:'NFP / Unemployment / Average Hourly Earnings',related:true});}
+function parsePastedNews(){const txt=val('pasteNews'); if(!txt)return; txt.split('\n').filter(Boolean).forEach(line=>{const m=line.match(/(\d{1,2}:\d{2}).*?\b(USD|EUR|GBP|JPY|AUD|CAD|CHF|NZD)\b.*?\b(red|orange|yellow|high|medium|low)\b/i); addNewsRow({time:m?m[1]:'',currency:m?m[2].toUpperCase():'USD',impact:m?(m[3].toLowerCase()==='high'?'red':m[3].toLowerCase()==='medium'?'orange':m[3].toLowerCase()):'yellow',title:line,related:true});}); $('pasteNews').value='';}
+function newsLevel(){const manual=val('manualNewsMode'); if(manual!=='auto') return manual; const rows=getNews().filter(r=>r.related); if(rows.some(r=>r.impact==='red'))return 'red'; if(rows.some(r=>r.impact==='orange'))return 'orange'; if(rows.some(r=>r.impact==='yellow'))return 'yellow'; return 'none';}
+
+function calcRR(){
+ const entry=num('entry'), sl=num('sl'); const tps=[num('tp1'),num('tp2'),num('tp3')].filter(n=>isFinite(n));
+ if(!isFinite(entry)||!isFinite(sl)||entry===sl||!tps.length)return {ok:false,maxRR:0,msg:'กรอก Entry / SL / TP ให้ครบ'};
+ const risk=Math.abs(entry-sl); const rrs=tps.map(tp=>Math.abs(tp-entry)/risk); const maxRR=Math.max(...rrs); return {ok:true,maxRR,rrs,risk};
+}
+function evaluateAll(){
+ const rr=calcRR(); const minRR=Number(val('minRR')||2); const nlevel=newsLevel();
+ let blocks=[];
+ if(nlevel==='red'||nlevel==='orange') blocks.push('ชนข่าว '+nlevel+' ให้รอ');
+ if(!checked('c0')) blocks.push('H4 ยังไม่ยืนยันว่าปิดแท่ง');
+ if(!checked('c3')) blocks.push('ยังไม่มี H4 Swing Break จริง');
+ if(!checked('c4')) blocks.push('ยังไม่ Retest หลัง Break');
+ if(!checked('c5')) blocks.push('ยังไม่ยืนยันฝั่ง EMA200 บน M15');
+ if(!checked('c6')) blocks.push('ยังไม่มี Trigger');
+ if(!rr.ok || rr.maxRR<minRR) blocks.push('RR ยังไม่ถึง '+minRR);
+ const totalChecks=document.querySelectorAll('#checklist input:checked,#strategyChecklist input:checked,#scalpChecklist input:checked').length;
+ const allow=blocks.length===0 && totalChecks>=12;
+ const soft=blocks.length<=2 && totalChecks>=9;
+ const rrText=rr.ok?`RR สูงสุด ${rr.maxRR.toFixed(2)}R | Risk ${rr.risk.toFixed(3)} | TP RR: ${rr.rrs.map(x=>x.toFixed(2)).join(', ')}`:'RR ยังไม่ครบ';
+ $('rrBox').className='decision '+(rr.ok&&rr.maxRR>=minRR?'go':'wait'); $('rrBox').innerHTML=`<div class="big">${rrText}</div>`;
+ $('newsDecision').className='decision '+(nlevel==='red'||nlevel==='orange'?'no':nlevel==='yellow'?'wait':'go'); $('newsDecision').innerHTML=`<div class="big">${nlevel==='none'?'ไม่มีข่าวสำคัญ':nlevel.toUpperCase()}</div><div class="muted">News Guard</div>`;
+ const status=allow?'READY':soft?'WATCH':'WAIT'; const cls=allow?'go':soft?'wait':'no'; const text=allow?'เข้าได้เฉพาะตามแผน ห้ามไล่ราคา':blocks.length?blocks.join('<br>'):'รอเงื่อนไขให้ครบ';
+ ['topDecision','finalDecision'].forEach(id=>{$(id).className='decision '+cls;$(id).innerHTML=`<div class="big">${status}</div><div class="muted">${text}</div><hr style="border-color:rgba(255,255,255,.12)"><div>${rrText}</div>`;});
+ return {status,blocks,rr,nlevel,totalChecks};
+}
+
+function makeTrade(status){
+ const ev=evaluateAll(); const now=new Date().toISOString(); const direction=val('direction');
+ const reason=[`Decision: ${ev.status}`,`News: ${ev.nlevel}`,`Checklist: ${ev.totalChecks}`,`Blocks: ${ev.blocks.join(' | ')||'none'}`,`TF Plan: ${val('tfPlan')}`].join('\n');
+ return {id:editingPlanId||cryptoId(),appVersion:APP_VERSION,createdAt:editingPlanId?(getTrades().find(t=>t.id===editingPlanId)?.createdAt||now):now,updatedAt:now,tradeDate:val('tradeDate'),tradeTime:val('tradeTime'),symbol:val('symbol'),market:val('market'),direction,status,orderType:val('orderType'),tradeMode:val('tradeMode'),entryTf:val('entryTf'),strategyName:val('strategy'),entry:val('entry'),sl:val('sl'),tp1:val('tp1'),tp2:val('tp2'),tp3:val('tp3'),maxRR:ev.rr.ok?Number(ev.rr.maxRR.toFixed(2)):'',resultR:'',decision:ev.status,bias:val('bias'),d1Trend:val('d1Trend'),h4Position:val('h4Position'),structure:val('structure'),supportZone:val('supportZone'),resistanceZone:val('resistanceZone'),m15EntryType:val('m15EntryType'),newsLevel:ev.nlevel,reason,note:val('note'),charts:{...charts},checks:collectChecks()};
+}
+function cryptoId(){return 'pa_'+Date.now()+'_'+Math.random().toString(16).slice(2)}
+function collectChecks(){const o={};document.querySelectorAll('input[type=checkbox]').forEach(x=>o[x.id]=x.checked);return o;}
+function applyChecks(o){document.querySelectorAll('input[type=checkbox]').forEach(x=>x.checked=!!(o&&o[x.id]));}
+function parseEmbeddedTrade(t){
+  if(!t || typeof t!=='object') return t;
+  const vals=Object.values(t);
+  for(const v of vals){
+    if(typeof v!=='string') continue;
+    const raw=v.trim();
+    if(!raw.startsWith('{') || raw.length<20) continue;
+    try{
+      const obj=JSON.parse(raw);
+      if(obj && typeof obj==='object' && (obj.id || obj.symbol || obj.tradeDate)){
+        return {...obj, id: obj.id || t.id || cryptoId(), updatedAt: obj.updatedAt || t.updatedAt || new Date().toISOString()};
+      }
+    }catch(e){}
+  }
+  return t;
+}
+function cleanSheetDate(v){
+  const s=String(v??'');
+  if(/^1899-12-30T/.test(s)) return '';
+  return s;
+}
+function normalizeTradeClient(t){
+  t=parseEmbeddedTrade(t);
+  if(!t || typeof t!=='object') return null;
+  const c={...t};
+  c.id=c.id || cryptoId();
+  c.tradeDate=cleanSheetDate(c.tradeDate);
+  c.tradeTime=cleanSheetDate(c.tradeTime);
+  if(c.symbol && String(c.symbol).startsWith('1899-12-30T')) c.symbol='';
+  if(c.decision && String(c.decision).trim().startsWith('{')) c.decision='WAIT';
+  c.status=c.status || 'PLAN';
+  c.market=c.market || '';
+  c.direction=c.direction || 'WAIT';
+  return c;
+}
+function getTrades(){try{return (JSON.parse(localStorage.getItem(storeKey)||'[]')||[]).map(normalizeTradeClient).filter(Boolean)}catch(e){return[]}}
+function setTrades(arr){const map={};(arr||[]).map(normalizeTradeClient).filter(Boolean).forEach(t=>{if(t&&t.id)map[t.id]=t});localStorage.setItem(storeKey,JSON.stringify(Object.values(map).sort((a,b)=>String((b.tradeDate||'')+(b.tradeTime||'')).localeCompare(String((a.tradeDate||'')+(a.tradeTime||''))))));}
+function repairLocalData(){setTrades(getTrades());renderAll();alert('ซ่อมข้อมูลในเครื่องแล้ว');}
+function savePlan(status){const trade=makeTrade(status); const arr=getTrades().filter(t=>t.id!==trade.id); arr.push(trade); setTrades(arr); localStorage.removeItem(draftKey); const auto=loadSyncSetting().autoSave; renderAll(); if(auto==='on') syncLocalToCloud('upsert'); alert('บันทึกแล้ว: '+status); cancelEdit(false); showSection('journal');}
+function editTrade(id){const t=getTrades().find(x=>x.id===id); if(!t)return; editingPlanId=id; $('plannerCard').classList.add('editmode'); $('plannerTitle').textContent='แก้ไขแผน: '+(t.symbol||''); $('cancelEditBtn').classList.remove('hidden'); ['tradeDate','tradeTime','symbol','market','direction','orderType','tradeMode','entryTf','entry','sl','tp1','tp2','tp3','bias','d1Trend','h4Position','structure','supportZone','resistanceZone','m15EntryType','note'].forEach(id=>{if($(id))$(id).value=t[id]||''}); if(t.strategyName)$('strategy').value=t.strategyName; if(t.charts){charts={w1:t.charts.w1||'',d1:t.charts.d1||'',h4:t.charts.h4||'',m15:t.charts.m15||''}; renderPreviews();} applyChecks(t.checks); renderStrategyChecks(); applyChecks(t.checks); showSection('planner');showStep('s1');evaluateAll();}
+function cancelEdit(go=true){editingPlanId=null;$('plannerCard').classList.remove('editmode');$('plannerTitle').textContent='Step by Step ก่อนเข้าออเดอร์';$('cancelEditBtn').classList.add('hidden'); if(go)showSection('journal');}
+function deleteTrade(id){if(!confirm('ลบรายการนี้?'))return; setTrades(getTrades().filter(t=>t.id!==id)); renderAll(); const s=loadSyncSetting(); if(s.url&&s.secret) cloudApi('deleteTrade',{id}).then(()=>{});}
+function updateStatus(id,status){const arr=getTrades().map(t=>t.id===id?{...t,status,updatedAt:new Date().toISOString()}:t);setTrades(arr);renderAll();}
+function closeTrade(id){const r=prompt('ผลลัพธ์กี่ R? เช่น 1.5 หรือ -1'); if(r===null)return; const lesson=prompt('บทเรียนจากไม้นี้',''); const arr=getTrades().map(t=>t.id===id?{...t,status:'CLOSED',resultR:r,lesson:lesson||'',updatedAt:new Date().toISOString()}:t); setTrades(arr); renderAll();}
+
+function renderAll(){renderJournal();renderStats();renderPlans();renderWatchlist();}
+function badgeStatus(s){const c=s==='CLOSED'?'greenp':s==='NO_TRADE'?'yellowp':s==='ACTIVE'?'bluep':s==='PENDING'?'orangep':'pill';return `<span class="pill ${c}">${esc(s||'PLAN')}</span>`;}
+function renderJournal(){const arr=getTrades(); $('journalBody').innerHTML=arr.map(t=>`<tr><td>${esc(t.tradeDate||'')}<br><span class="small">${esc(t.tradeTime||'')}</span></td><td><b>${esc(t.symbol||'')}</b><br><span class="small">${esc(t.market||'')}</span></td><td>${esc(t.direction||'')}</td><td>${badgeStatus(t.status)}</td><td>${esc(t.decision||'')}<br><span class="small">${esc((t.reason||'').slice(0,120))}</span></td><td>${esc(t.maxRR||'')}<br><span class="small">ผล ${esc(t.resultR||'')}</span></td><td>${thumbs(t)}</td><td><div class="btns"><button class="ghost" onclick="editTrade('${t.id}')">แก้</button><button class="okbtn" onclick="updateStatus('${t.id}','ACTIVE')">Active</button><button class="ghost" onclick="closeTrade('${t.id}')">ปิดไม้</button><button class="ghost" onclick="sendTelegram('${t.id}')">Telegram</button><button class="danger" onclick="deleteTrade('${t.id}')">ลบ</button></div></td></tr>`).join('')||'<tr><td colspan="8" class="muted">ยังไม่มีข้อมูล</td></tr>';}
+function tradeImages(t){
+  const out={};
+  if(t&&t.charts&&typeof t.charts==='object') Object.keys(t.charts).forEach(k=>{ if(t.charts[k]) out[k]=t.charts[k]; });
+  if(t&&Array.isArray(t.images)) t.images.forEach((v,i)=>{ if(v) out['img'+(i+1)]=v; });
+  if(t&&Array.isArray(t.reviewImages)) t.reviewImages.forEach((v,i)=>{ if(v) out['review'+(i+1)]=v; });
+  return out;
+}
+function driveFileIdFromUrl(url){
+  const s=String(url||'');
+  let m=s.match(/\/d\/([a-zA-Z0-9_-]{10,})/);
+  if(m) return m[1];
+  m=s.match(/[?&]id=([a-zA-Z0-9_-]{10,})/);
+  if(m) return m[1];
+  m=s.match(/open\?id=([a-zA-Z0-9_-]{10,})/);
+  if(m) return m[1];
+  return '';
+}
+function imageSrc(value){
+  if(!value) return '';
+  if(typeof value==='object') return imageSrc(value.thumbnailUrl||value.url||value.dataUrl||value.src||'');
+  const s=String(value||'').trim();
+  if(!s) return '';
+  if(s.startsWith('data:image/')) return s;
+  const id=driveFileIdFromUrl(s);
+  if(id) return 'https://drive.google.com/thumbnail?id='+encodeURIComponent(id)+'&sz=w1600';
+  return s;
+}
+async function imgError(el){
+  const raw=el.dataset.raw||el.dataset.src||el.src||'';
+  if(raw && !el.dataset.proxyTried){
+    el.dataset.proxyTried='1';
+    try{
+      const r=await cloudApiNoSave('getImageData',{url:raw});
+      if(r&&r.ok&&r.dataUrl){
+        el.src=r.dataUrl;
+        el.dataset.src=r.dataUrl;
+        return;
+      }
+    }catch(e){}
+  }
+  const span=document.createElement('span');
+  span.className='small';
+  span.textContent='รูปเปิดไม่ได้';
+  if(raw && /^https?:/.test(raw)){
+    const a=document.createElement('a');
+    a.href=raw; a.target='_blank'; a.rel='noopener';
+    a.textContent='เปิดรูป'; a.className='small';
+    const wrap=document.createElement('div');
+    wrap.appendChild(span); wrap.appendChild(document.createElement('br')); wrap.appendChild(a);
+    el.replaceWith(wrap);
+  }else{
+    el.replaceWith(span);
+  }
+}
+function thumbs(t){
+  const imgs=tradeImages(t);
+  return Object.keys(imgs).map(k=>[k,imgs[k],imageSrc(imgs[k])]).filter(x=>x[2]).map(x=>`<img class="thumb" src="${escAttr(x[2])}" data-raw="${escAttr(typeof x[1]==='object'?JSON.stringify(x[1]):x[1])}" data-src="${escAttr(x[2])}" data-title="${escAttr(x[0])}" onclick="openImg(this.dataset.raw||this.dataset.src,this.dataset.title)" onerror="imgError(this)">`).join('');
+}
+function renderStats(){const arr=getTrades(); const closed=arr.filter(t=>t.status==='CLOSED'); const sum=closed.reduce((a,t)=>a+(Number(t.resultR)||0),0); const wins=closed.filter(t=>Number(t.resultR)>0).length; const no=arr.filter(t=>t.status==='NO_TRADE').length; $('kpiBox').innerHTML=[['แผนทั้งหมด',arr.length],['ปิดไม้แล้ว',closed.length],['Win Rate',closed.length?Math.round(wins/closed.length*100)+'%':'-'],['รวม R',sum.toFixed(2)],['NO_TRADE',no],['PLAN/PENDING',arr.filter(t=>['PLAN','PENDING'].includes(t.status)).length],['ACTIVE',arr.filter(t=>t.status==='ACTIVE').length],['Version',APP_VERSION]].map(x=>`<div class="box"><div class="num">${x[1]}</div><div class="lab">${x[0]}</div></div>`).join(''); $('lessonList').innerHTML=closed.filter(t=>t.lesson).slice(0,6).map(t=>`<div class="card c4"><b>${esc(t.symbol)}</b><p>${esc(t.lesson)}</p></div>`).join('')||'<p class="muted">ยังไม่มีบทเรียน</p>';}
+function renderPlans(){const data=[['Strict Swing SELL','H4 ปิดหลุด Swing Low → Retest → M15 ต่ำกว่า EMA200 → Trigger → RR ≥ 1:2'],['Strict Swing BUY','H4 ปิดทะลุ Swing High → Retest → M15 เหนือ EMA200 → Trigger → RR ≥ 1:2'],['Real Small Mode','วันละ 1 ไม้ Risk 0.25%-0.5% แพ้ 1 ไม้หยุด ห้ามแก้มือ'],['NO_TRADE Mode','กลางทาง / ข่าวแดง / RR ไม่ถึง / H4 ยังไม่ปิด = บันทึกเพื่อชนะวินัย']]; $('planCards').innerHTML=data.map(x=>`<div class="card c6"><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join('');}
+function renderWatchlist(){const arr=getTrades().filter(t=>['PLAN','PENDING','ACTIVE'].includes(t.status)).slice(0,6); const base=arr.length?arr:[{symbol:'XAUUSD',direction:'WAIT',decision:'WAIT',reason:'รอ H4 Break + Retest + M15 EMA200'}]; $('todayWatchlistCards').innerHTML=base.map(t=>`<div class="card c4"><h3>${esc(t.symbol)}</h3><span class="badge b-info">${esc(t.direction||'WAIT')}</span><span class="badge b-warn">${esc(t.decision||'WATCH')}</span><p>${esc(t.reason||'รอเงื่อนไข')}</p></div>`).join('');}
+
+function loadChart(ev,key){const file=ev.target.files[0]; if(!file)return; const reader=new FileReader(); reader.onload=()=>{charts[key]=reader.result; renderPreviews();}; reader.readAsDataURL(file);}
+function renderPreviews(){['w1','d1','h4','m15'].forEach(k=>{const src=imageSrc(charts[k]);$('preview_'+k).innerHTML=src?`<img src="${escAttr(src)}" data-raw="${escAttr(typeof charts[k]==='object'?JSON.stringify(charts[k]):charts[k])}" data-src="${escAttr(src)}" data-title="${escAttr(k)}" onclick="openImg(this.dataset.raw||this.dataset.src,this.dataset.title)" onerror="imgError(this)">`:'';});}
+async function openImg(src,title='รูปกราฟ'){const real=imageSrc(src);$('modalTitle').textContent=title;$('modalImg').dataset.raw=src;$('modalImg').dataset.proxyTried='';$('modalImg').src=real;$('modal').classList.add('active'); if(!real && src){try{const r=await cloudApiNoSave('getImageData',{url:src}); if(r.ok&&r.dataUrl)$('modalImg').src=r.dataUrl;}catch(e){}}} function closeImg(){$('modal').classList.remove('active');}
+function toggleBrowserFullscreen(){const el=$('modalImg'); if(!document.fullscreenElement)el.requestFullscreen?.(); else document.exitFullscreen?.();}
+
+function saveSyncSetting(){const o={url:val('syncApiUrl'),secret:val('syncSecret'),autoSave:val('syncAutoSave')};localStorage.setItem(syncSettingKey,JSON.stringify(o));setSyncStatus('บันทึกค่า Sync แล้ว',true);return o;}
+function loadSyncSetting(){try{const o=JSON.parse(localStorage.getItem(syncSettingKey)||'{}'); if($('syncApiUrl')){$('syncApiUrl').value=o.url||'';$('syncSecret').value=o.secret||'';$('syncAutoSave').value=o.autoSave||'off';} return {...o,autoSave:o.autoSave||'off'};}catch(e){return{autoSave:'off'}}}
+function setSyncStatus(msg,ok){$('syncStatus').className='note '+(ok?'decision go':'decision no');$('syncStatus').innerHTML=msg;}
+function loadSyncOnly(){try{return JSON.parse(localStorage.getItem(syncSettingKey)||'{}');}catch(e){return{};}}
+async function cloudApiNoSave(action,payload={}){const s=loadSyncOnly(); if(!s.url||!s.secret) throw new Error('ยังไม่ได้กรอก Apps Script URL / Secret'); const res=await fetch(s.url,{method:'POST',body:JSON.stringify({action,secret:s.secret,...payload})}); return await res.json();}
+async function cloudApi(action,payload={}){const s=saveSyncSetting(); if(!s.url||!s.secret) throw new Error('ยังไม่ได้กรอก Apps Script URL / Secret'); const res=await fetch(s.url,{method:'POST',body:JSON.stringify({action,secret:s.secret,...payload})}); return await res.json();}
+async function fixDriveImageSharing(){try{setSyncStatus('กำลัง Fix รูป Drive...',true); const r=await cloudApi('fixImageSharing',{}); setSyncStatus(r.ok?'Fix รูป Drive แล้ว: '+(r.fixed||0)+' รูป':r.error, r.ok); renderAll();}catch(e){setSyncStatus(e.message,false);}}
+async function testCloudSync(){try{const r=await cloudApi('ping',{});setSyncStatus(r.ok?'เชื่อมต่อสำเร็จ: '+r.version:r.error,r.ok);}catch(e){setSyncStatus(e.message,false);}}
+async function syncLocalToCloud(mode='upsert'){try{setSyncStatus('กำลังส่งข้อมูล...',true); const r=await cloudApi('upsertTrades',{mode,trades:getTrades()}); if(r.ok){setTrades(r.trades||getTrades());renderAll();setSyncStatus('ส่งขึ้น Google Sheet แล้ว '+(r.count||0)+' รายการ',true);}else setSyncStatus(r.error,false);}catch(e){setSyncStatus(e.message,false);}}
+async function syncCloudToLocal(mode='MERGE'){try{setSyncStatus('กำลังโหลดจาก Google Sheet...',true); const r=await cloudApi('listTrades',{}); if(!r.ok)return setSyncStatus(r.error,false); const cloud=r.trades||[]; if(mode==='REPLACE')setTrades(cloud); else setTrades([...getTrades(),...cloud]); renderAll(); setSyncStatus('โหลดสำเร็จ '+cloud.length+' รายการ',true);}catch(e){setSyncStatus(e.message,false);}}
+async function sendTelegram(id){const t=getTrades().find(x=>x.id===id); if(!t)return; try{const text=telegramText(t); const r=await cloudApi('telegramAlert',{text,trade:t}); alert(r.ok?'ส่ง Telegram แล้ว':r.error);}catch(e){alert(e.message);}}
+function telegramText(t){return `📌 PA Coach Alert\nSymbol: ${t.symbol}\nDirection: ${t.direction}\nStatus: ${t.status}\nStrategy: ${t.strategyName}\nDecision: ${t.decision}\nEntry/SL/TP: ${t.entry||'-'} / ${t.sl||'-'} / ${t.tp1||'-'}, ${t.tp2||'-'}, ${t.tp3||'-'}\nMax RR: ${t.maxRR||'-'}\n\nWHY:\n${t.reason||''}\n\n⚠️ ใช้เพื่อคุมวินัย ไม่ใช่การันตีกำไร`;}
+
+function exportJson(){download('pa-coach-export.json',JSON.stringify(getTrades(),null,2),'application/json');}
+function exportCsv(){const arr=getTrades(); const heads=['tradeDate','tradeTime','symbol','market','direction','status','strategyName','entry','sl','tp1','tp2','tp3','maxRR','resultR','decision','note']; const csv=[heads.join(',')].concat(arr.map(t=>heads.map(h=>`"${String(t[h]??'').replace(/"/g,'""')}"`).join(','))).join('\n'); download('pa-coach-export.csv',csv,'text/csv');}
+function download(name,text,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();URL.revokeObjectURL(a.href);}
+function esc(s){return String(s??'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+function escAttr(s){return esc(s).replace(/"/g,'&quot;');}
+
+window.addEventListener('load',init);
+window.addEventListener('beforeunload',()=>{localStorage.setItem(draftKey,JSON.stringify({savedAt:new Date().toISOString()}));});
 </script>
 </body>
 </html>
