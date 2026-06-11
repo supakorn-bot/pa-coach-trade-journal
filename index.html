@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PA Coach Web App v3.9.2 - Impact Color Bar</title>
+<title>PA Coach Web App v3.9.3 - News No-Trade Time Range</title>
 <style>
 :root{--bg:#07101f;--panel:#111c31;--panel2:#17243e;--line:#2b3b5f;--text:#eef6ff;--muted:#9fb2cf;--blue:#38bdf8;--violet:#a78bfa;--ok:#22c55e;--warn:#f59e0b;--bad:#ef4444;--info:#60a5fa}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 8% 0%,rgba(56,189,248,.18),transparent 34%),radial-gradient(circle at 88% 0%,rgba(167,139,250,.16),transparent 34%),var(--bg);color:var(--text);font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif}.wrap{max-width:1280px;margin:auto;padding:18px}.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;margin-bottom:14px}.card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:17px;box-shadow:0 14px 45px rgba(0,0,0,.28)}h1,h2,h3{margin:0 0 10px}h1{font-size:28px}h2{font-size:20px}h3{font-size:16px}p{margin:0 0 10px;color:var(--muted);line-height:1.65}.small{font-size:12px;color:var(--muted);line-height:1.5}.tabs,.steps,.btns{display:flex;gap:9px;flex-wrap:wrap}.tabs{margin:14px 0}.steps{margin:10px 0 14px}.tab,.step,button{font-family:inherit;font-weight:800;border:0;border-radius:13px;padding:10px 13px;cursor:pointer}.tab,.step,.ghost{background:rgba(255,255,255,.07);color:var(--text);border:1px solid rgba(255,255,255,.13)}.tab.active,.step.active{background:linear-gradient(90deg,rgba(56,189,248,.26),rgba(167,139,250,.24));border-color:rgba(56,189,248,.45)}.primary{background:linear-gradient(90deg,#38bdf8,#a78bfa);color:#06111e}.okbtn{background:rgba(34,197,94,.18);color:#bbf7d0;border:1px solid rgba(34,197,94,.38)}.danger{background:rgba(239,68,68,.18);color:#fecaca;border:1px solid rgba(239,68,68,.38)}.warnbtn{background:rgba(245,158,11,.17);color:#fed7aa;border:1px solid rgba(245,158,11,.38)}
@@ -12,6 +12,31 @@
 .note,.decision{background:rgba(56,189,248,.09);border:1px solid rgba(56,189,248,.22);border-radius:15px;padding:13px;line-height:1.55}.decision.go{border-color:rgba(34,197,94,.55);background:rgba(34,197,94,.13)}.decision.wait{border-color:rgba(245,158,11,.55);background:rgba(245,158,11,.13)}.decision.no{border-color:rgba(239,68,68,.55);background:rgba(239,68,68,.13)}.big{font-size:24px;font-weight:900}.muted{color:var(--muted)}.editmode{border-color:rgba(34,197,94,.42);background:rgba(34,197,94,.08)}
 table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255,255,255,.08);padding:9px;text-align:left;vertical-align:top;font-size:13px}th{background:rgba(255,255,255,.055);font-size:12px;color:#d5e3f6}.tablewrap{overflow:auto;margin-top:10px;max-height:560px;border:1px solid rgba(255,255,255,.08);border-radius:14px}.pill{display:inline-block;border-radius:999px;padding:4px 8px;font-size:12px;border:1px solid rgba(255,255,255,.13);white-space:nowrap}.redp{color:#fecaca;background:rgba(239,68,68,.16);border-color:rgba(239,68,68,.36)}.orangep{color:#fed7aa;background:rgba(245,158,11,.16);border-color:rgba(245,158,11,.36)}.yellowp{color:#fef08a;background:rgba(234,179,8,.12);border-color:rgba(234,179,8,.30)}.greenp{color:#bbf7d0;background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.32)}.bluep{color:#bae6fd;background:rgba(56,189,248,.12);border-color:rgba(56,189,248,.32)}
 .check{display:flex;gap:9px;align-items:flex-start;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);border-radius:13px;padding:10px;min-height:62px}.check input{width:auto;margin-top:4px;accent-color:#38bdf8}.check span{min-width:0}.check b{display:block;font-size:14px;line-height:1.28}.check small{display:block;color:var(--muted);line-height:1.45;font-size:12px;margin-top:3px}#checklist .check,#strategyChecklist .check,#scalpChecklist .check{grid-column:span 4;min-height:96px}.preview{border:1px dashed rgba(255,255,255,.20);border-radius:14px;min-height:112px;padding:8px;background:#0c1629}.preview img{width:100%;max-height:230px;object-fit:contain;border-radius:10px}.thumb{width:94px;max-height:58px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,.16);cursor:pointer}.result-img-grid{display:flex;gap:10px;flex-wrap:wrap}.result-img-card{position:relative;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);border-radius:12px;padding:7px}.result-img-card img{width:130px;height:82px;object-fit:cover;border-radius:9px;cursor:pointer}.result-img-card button{position:absolute;top:4px;right:4px;padding:4px 7px;border-radius:999px;font-size:11px}.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.kpi .box{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px}.kpi .num{font-size:24px;font-weight:900}.kpi .lab{font-size:12px;color:var(--muted)}.modal{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:10px;z-index:99}.modal.active{display:flex}.modal .card{max-width:98vw;width:98vw;max-height:96vh;overflow:auto}.modal img{width:100%;max-height:84vh;object-fit:contain;border-radius:12px;background:#000}.modalTop{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.footer{text-align:center;color:var(--muted);font-size:12px;padding:18px 0}.hidden{display:none!important}
+
+.no-trade-range{
+  min-width: 168px;
+  border-radius: 14px;
+  padding: 9px 10px;
+  line-height: 1.35;
+  text-align: center;
+  font-weight: 800;
+  border: 1px solid rgba(248,113,113,.35);
+  background: linear-gradient(180deg, rgba(239,68,68,.22), rgba(127,29,29,.16));
+  color: #fecaca;
+  white-space: nowrap;
+}
+.no-trade-range.safe{
+  border-color: rgba(34,197,94,.28);
+  background: rgba(34,197,94,.10);
+  color: #bbf7d0;
+}
+.no-trade-range .sub{
+  display:block;
+  font-size:11px;
+  font-weight:700;
+  opacity:.9;
+  margin-top:2px;
+}
 @media(max-width:1100px){#checklist .check,#strategyChecklist .check,#scalpChecklist .check{grid-column:span 6}}@media(max-width:900px){.hero{grid-template-columns:1fr}.c9,.c8,.c6,.c4,.c3,.c2{grid-column:span 12}.kpi{grid-template-columns:repeat(2,1fr)}}@media(max-width:680px){#checklist .check,#strategyChecklist .check,#scalpChecklist .check{grid-column:span 12;min-height:auto}}@media(max-width:560px){.wrap{padding:12px}h1{font-size:23px}.kpi{grid-template-columns:1fr}}
 </style>
 <style>
@@ -73,7 +98,7 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
 <div class="wrap">
   <div class="hero">
     <div class="card">
-      <h1>PA Coach Web App v3.9.2</h1>
+      <h1>PA Coach Web App v3.9.3</h1>
       <p>Real Small Mode + Strict Swing Gate สำหรับ XAUUSD / Forex / Crypto แบบ Price Action Swing Trade และ M15 Execution</p>
       <span class="badge b-ok">Google Sheet Sync</span><span class="badge b-ok">Drive Images</span><span class="badge b-info">Telegram Alert</span><span class="badge b-warn">Strict Swing Gate</span><span class="badge b-info">Auto News เวลาไทย</span><span class="badge b-bad">ข่าวแดง/ส้ม = ยังไม่เข้า</span><span class="badge b-ok">key เดิม paJournalV3</span>
     </div>
@@ -118,13 +143,13 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
 
       <div id="s2" class="panel">
         <h3>Step 2 — News Guard</h3>
-        <div class="note">สำหรับ XAUUSD ให้สนใจ USD เป็นหลัก เช่น NFP, CPI, FOMC ถ้ามีข่าวแดง/ส้มในช่วง ±120 นาที ให้ตัดสินใจเป็น <b>ยังไม่เข้า</b></div>
+        <div class="note">สำหรับ XAUUSD ให้สนใจ USD เป็นหลัก เช่น NFP, CPI, FOMC ระบบจะแสดง <b>ช่วงห้ามเข้า</b> ให้เลย เช่น ข่าว 23:30 และกันข่าว 120 นาที = ห้ามเข้า 21:30 → 01:30</div>
         <div class="grid" style="margin-top:12px">
-          <div class="c3"><label>News window ± นาที</label><input id="newsWindow" type="number" value="120"></div>
+          <div class="c3"><label>กันข่าวก่อน/หลัง (นาที)</label><input id="newsWindow" type="number" value="120"></div>
           <div class="c3"><label>Currency ที่เกี่ยวข้อง</label><input id="relevantCurrencies" value="USD"></div>
           <div class="c3"><label>Manual News Mode</label><select id="manualNewsMode"><option value="auto">Auto จากตารางข่าว</option><option value="none">ไม่มีข่าวสำคัญ</option><option value="yellow">ข่าวเหลือง</option><option value="orange">ข่าวส้ม</option><option value="red">ข่าวแดง</option></select></div>
           <div class="c3"><label>&nbsp;</label><button class="ghost" onclick="fillNfpExample()">ใส่ตัวอย่าง NFP</button></div>
-          <div class="c12"><div class="tablewrap"><table><thead><tr><th>วัน</th><th>เวลาไทย</th><th>Currency</th><th>Impact</th><th>ข่าว</th><th>เกี่ยวกับไม้?</th><th>ลบ</th></tr></thead><tbody id="newsBody"></tbody></table></div><div class="btns"><button class="primary" onclick="pullNews('today')">ดึงข่าววันนี้ เวลาไทย</button><button class="okbtn" onclick="pullNews('week')">ดึงข่าวสัปดาห์นี้</button><button class="ghost" onclick="addNewsRow()">+ เพิ่มข่าว</button><button class="ghost" onclick="clearNews()">ล้างข่าว</button></div><div id="newsFetchStatus" class="note" style="margin-top:10px">ข่าวจะถูกแปลงเป็นเวลาไทย Asia/Bangkok อัตโนมัติ ผ่าน Apps Script</div></div>
+          <div class="c12"><div class="tablewrap"><table><thead><tr><th>วัน</th><th>เวลาไทย</th><th>Currency</th><th>Impact</th><th>ช่วงห้ามเข้า</th><th>ข่าว</th><th>เกี่ยวกับไม้?</th><th>ลบ</th></tr></thead><tbody id="newsBody"></tbody></table></div><div class="btns"><button class="primary" onclick="pullNews('today')">ดึงข่าววันนี้ เวลาไทย</button><button class="okbtn" onclick="pullNews('week')">ดึงข่าวสัปดาห์นี้</button><button class="ghost" onclick="addNewsRow()">+ เพิ่มข่าว</button><button class="ghost" onclick="clearNews()">ล้างข่าว</button></div><div id="newsFetchStatus" class="note" style="margin-top:10px">ข่าวจะถูกแปลงเป็นเวลาไทย Asia/Bangkok อัตโนมัติ ผ่าน Apps Script</div></div>
           <div class="c12"><label>วางข่าวจาก ForexFactory / Text แล้วกด Parse</label><textarea id="pasteNews" placeholder="Fri Jun 5 19:30 USD red Non-Farm Employment Change"></textarea><div class="btns"><button class="ghost" onclick="parsePastedNews()">Parse ข่าวจากข้อความ</button></div></div>
           <div class="c12"><div id="newsDecision" class="decision wait"><div class="big">รอเช็กข่าว</div></div></div>
         </div>
@@ -221,14 +246,14 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
     <div class="card" style="margin-top:14px"><h2>วิธีติดตั้งสั้น ๆ</h2><ol class="small"><li>เอาไฟล์ <b>index.html</b> v3.9 ไปทับใน repo <b>pa-coach-trade-journal</b></li><li>เอาไฟล์ <b>Code.gs</b> v3.9 ไปทับใน Apps Script</li><li>ตั้ง Script Properties: <b>PA_COACH_SECRET</b>, <b>TELEGRAM_BOT_TOKEN</b>, <b>TELEGRAM_CHAT_ID</b> และถ้าต้องแก้ timezone ต้นทางข่าวให้ใส่ <b>PA_COACH_NEWS_SOURCE_TZ</b></li><li>Run <b>setupDatabase</b> ครั้งเดียว แล้ว Deploy → Manage deployments → Edit → New version</li><li>เปิดเว็บ GitHub Pages กด Settings → Test Sync → Load from Google Sheet</li></ol></div>
   </section>
 
-  <div class="footer">PA Coach Web App v3.9.2 — Impact Color Bar + News Cache + Drive Image Fix: วันละ 1 ไม้ / Risk ต่ำ / H4 Break + Retest + M15 EMA200</div>
+  <div class="footer">PA Coach Web App v3.9.3 — News No-Trade Time Range + Impact Color Bar: วันละ 1 ไม้ / Risk ต่ำ / H4 Break + Retest + M15 EMA200</div>
 </div>
 
 <div id="modal" class="modal"><div class="card"><div class="modalTop"><h2 id="modalTitle">รูปกราฟ</h2><div><button class="ghost" onclick="toggleBrowserFullscreen()">เต็มจอ</button> <button class="ghost" onclick="closeImg()">ปิด</button></div></div><img id="modalImg" onclick="toggleBrowserFullscreen()"></div></div>
 
 <script>
 const $=id=>document.getElementById(id);
-const APP_VERSION="v3.9.2";
+const APP_VERSION="v3.9.3";
 const storeKey="paJournalV3";
 const draftKey="paJournalDraftV34";
 const syncSettingKey="paSyncSettingV33";
@@ -312,6 +337,7 @@ function renderNews(){
       <option value="red" ${r.impact==='red'?'selected':''}>RED</option>
     </select>
   </td>
+  <td>${newsNoTradeRangeHtml(r)}</td>
   <td><input value="${escAttr(r.title||'')}" onchange="updateNews('${r.id}','title',this.value)"></td>
   <td><select onchange="updateNews('${r.id}','related',this.value==='true')"><option value="true" ${r.related?'selected':''}>ใช่</option><option value="false" ${!r.related?'selected':''}>ไม่</option></select></td>
   <td><button class="danger" onclick="deleteNews('${r.id}')">ลบ</button></td>
@@ -350,6 +376,42 @@ function localDateTimeFromThaiInput(date,time){
  if(p.length<3||!tm) return null;
  return new Date(p[0],p[1]-1,p[2],Number(tm[1]),Number(tm[2]),0,0);
 }
+
+function pad2(n){return String(n).padStart(2,'0');}
+function formatThaiDate(d){return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate());}
+function formatThaiTime(d){return pad2(d.getHours())+':'+pad2(d.getMinutes());}
+function newsNoTradeRange(r){
+ const ndt=localDateTimeFromThaiInput(r.date,r.time);
+ const win=Number(val('newsWindow')||120);
+ if(!ndt||!isFinite(win)) return null;
+ const start=new Date(ndt.getTime()-win*60000);
+ const end=new Date(ndt.getTime()+win*60000);
+ return {start,end,startDate:formatThaiDate(start),endDate:formatThaiDate(end),startTime:formatThaiTime(start),endTime:formatThaiTime(end)};
+}
+function newsNoTradeRangeText(r){
+ const rg=newsNoTradeRange(r);
+ if(!rg) return '-';
+ if(rg.startDate===rg.endDate) return `${rg.startTime} → ${rg.endTime}`;
+ return `${rg.startDate} ${rg.startTime} → ${rg.endDate} ${rg.endTime}`;
+}
+function newsNoTradeRangeHtml(r){
+ const rg=newsNoTradeRange(r);
+ if(!rg) return `<div class="no-trade-range safe">ไม่ทราบช่วง<span class="sub">กรอกวัน/เวลา</span></div>`;
+ const sameDay=rg.startDate===rg.endDate;
+ const main=sameDay?`${rg.startTime} → ${rg.endTime}`:`${rg.startTime} → ${rg.endTime}`;
+ const sub=sameDay?rg.startDate:`${rg.startDate} → ${rg.endDate}`;
+ return `<div class="no-trade-range">${main}<span class="sub">${sub}</span></div>`;
+}
+function blockedNewsRows(){
+ const manual=val('manualNewsMode');
+ if(manual!=='auto') return [];
+ return getNews().filter(r=>r.related && rowIsInNewsWindow(r));
+}
+function topBlockedNewsText(rows){
+ if(!rows||!rows.length) return '';
+ return rows.slice(0,3).map(r=>`${String(r.impact||'').toUpperCase()} ${r.currency||''} ${r.time||''} | ห้ามเข้า ${newsNoTradeRangeText(r)} | ${r.title||''}`).join('<br>');
+}
+
 function relatedCurrencySet(){return (val('relevantCurrencies')||'USD').toUpperCase().split(/[\s,;/]+/).filter(Boolean);}
 function rowIsInNewsWindow(r){
  const currencies=relatedCurrencySet();
@@ -362,7 +424,7 @@ function rowIsInNewsWindow(r){
 }
 function newsLevel(){
  const manual=val('manualNewsMode'); if(manual!=='auto') return manual;
- const rows=getNews().filter(r=>r.related && rowIsInNewsWindow(r));
+ const rows=blockedNewsRows();
  if(rows.some(r=>r.impact==='red'))return 'red';
  if(rows.some(r=>r.impact==='orange'))return 'orange';
  if(rows.some(r=>r.impact==='yellow'))return 'yellow';
@@ -375,9 +437,9 @@ function calcRR(){
  const risk=Math.abs(entry-sl); const rrs=tps.map(tp=>Math.abs(tp-entry)/risk); const maxRR=Math.max(...rrs); return {ok:true,maxRR,rrs,risk};
 }
 function evaluateAll(){
- const rr=calcRR(); const minRR=Number(val('minRR')||2); const nlevel=newsLevel();
+ const rr=calcRR(); const minRR=Number(val('minRR')||2); const nlevel=newsLevel(); const newsBlockedRows=blockedNewsRows();
  let blocks=[];
- if(nlevel==='red'||nlevel==='orange') blocks.push('ชนข่าว '+nlevel+' ให้รอ');
+ if(nlevel==='red'||nlevel==='orange') blocks.push('ชนข่าว '+nlevel+' ให้รอ: '+(topBlockedNewsText(newsBlockedRows)||'ดูช่วงห้ามเข้าในตารางข่าว'));
  if(!checked('c0')) blocks.push('H4 ยังไม่ยืนยันว่าปิดแท่ง');
  if(!checked('c3')) blocks.push('ยังไม่มี H4 Swing Break จริง');
  if(!checked('c4')) blocks.push('ยังไม่ Retest หลัง Break');
@@ -389,7 +451,9 @@ function evaluateAll(){
  const soft=blocks.length<=2 && totalChecks>=9;
  const rrText=rr.ok?`RR สูงสุด ${rr.maxRR.toFixed(2)}R | Risk ${rr.risk.toFixed(3)} | TP RR: ${rr.rrs.map(x=>x.toFixed(2)).join(', ')}`:'RR ยังไม่ครบ';
  $('rrBox').className='decision '+(rr.ok&&rr.maxRR>=minRR?'go':'wait'); $('rrBox').innerHTML=`<div class="big">${rrText}</div>`;
- $('newsDecision').className='decision '+(nlevel==='red'||nlevel==='orange'?'no':nlevel==='yellow'?'wait':'go'); $('newsDecision').innerHTML=`<div class="big">${nlevel==='none'?'ไม่มีข่าวสำคัญ':nlevel.toUpperCase()}</div><div class="muted">News Guard</div>`;
+ $('newsDecision').className='decision '+(nlevel==='red'||nlevel==='orange'?'no':nlevel==='yellow'?'wait':'go');
+ const newsDetail=topBlockedNewsText(newsBlockedRows);
+ $('newsDecision').innerHTML=`<div class="big">${nlevel==='none'?'ไม่มีข่าวสำคัญ':nlevel.toUpperCase()}</div><div class="muted">News Guard${newsDetail?'<br>'+newsDetail:''}</div>`;
  const status=allow?'READY':soft?'WATCH':'WAIT'; const cls=allow?'go':soft?'wait':'no'; const text=allow?'เข้าได้เฉพาะตามแผน ห้ามไล่ราคา':blocks.length?blocks.join('<br>'):'รอเงื่อนไขให้ครบ';
  ['topDecision','finalDecision'].forEach(id=>{$(id).className='decision '+cls;$(id).innerHTML=`<div class="big">${status}</div><div class="muted">${text}</div><hr style="border-color:rgba(255,255,255,.12)"><div>${rrText}</div>`;});
  return {status,blocks,rr,nlevel,totalChecks};
