@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PA Coach Web App v3.9.3 - News No-Trade Time Range</title>
+<title>PA Coach Web App v4.0 - Price Alert Telegram</title>
 <style>
 :root{--bg:#07101f;--panel:#111c31;--panel2:#17243e;--line:#2b3b5f;--text:#eef6ff;--muted:#9fb2cf;--blue:#38bdf8;--violet:#a78bfa;--ok:#22c55e;--warn:#f59e0b;--bad:#ef4444;--info:#60a5fa}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 8% 0%,rgba(56,189,248,.18),transparent 34%),radial-gradient(circle at 88% 0%,rgba(167,139,250,.16),transparent 34%),var(--bg);color:var(--text);font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif}.wrap{max-width:1280px;margin:auto;padding:18px}.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;margin-bottom:14px}.card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:17px;box-shadow:0 14px 45px rgba(0,0,0,.28)}h1,h2,h3{margin:0 0 10px}h1{font-size:28px}h2{font-size:20px}h3{font-size:16px}p{margin:0 0 10px;color:var(--muted);line-height:1.65}.small{font-size:12px;color:var(--muted);line-height:1.5}.tabs,.steps,.btns{display:flex;gap:9px;flex-wrap:wrap}.tabs{margin:14px 0}.steps{margin:10px 0 14px}.tab,.step,button{font-family:inherit;font-weight:800;border:0;border-radius:13px;padding:10px 13px;cursor:pointer}.tab,.step,.ghost{background:rgba(255,255,255,.07);color:var(--text);border:1px solid rgba(255,255,255,.13)}.tab.active,.step.active{background:linear-gradient(90deg,rgba(56,189,248,.26),rgba(167,139,250,.24));border-color:rgba(56,189,248,.45)}.primary{background:linear-gradient(90deg,#38bdf8,#a78bfa);color:#06111e}.okbtn{background:rgba(34,197,94,.18);color:#bbf7d0;border:1px solid rgba(34,197,94,.38)}.danger{background:rgba(239,68,68,.18);color:#fecaca;border:1px solid rgba(239,68,68,.38)}.warnbtn{background:rgba(245,158,11,.17);color:#fed7aa;border:1px solid rgba(245,158,11,.38)}
@@ -38,6 +38,8 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
   margin-top:2px;
 }
 @media(max-width:1100px){#checklist .check,#strategyChecklist .check,#scalpChecklist .check{grid-column:span 6}}@media(max-width:900px){.hero{grid-template-columns:1fr}.c9,.c8,.c6,.c4,.c3,.c2{grid-column:span 12}.kpi{grid-template-columns:repeat(2,1fr)}}@media(max-width:680px){#checklist .check,#strategyChecklist .check,#scalpChecklist .check{grid-column:span 12;min-height:auto}}@media(max-width:560px){.wrap{padding:12px}h1{font-size:23px}.kpi{grid-template-columns:1fr}}
+.alert-status{font-weight:900}.alert-active{color:#bbf7d0}.alert-triggered{color:#fed7aa}.alert-paused{color:#cbd5e1}.alert-grid{align-items:end}
+
 </style>
 <style>
 /* Impact color bar */
@@ -98,7 +100,7 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
 <div class="wrap">
   <div class="hero">
     <div class="card">
-      <h1>PA Coach Web App v3.9.3</h1>
+      <h1>PA Coach Web App v4.0</h1>
       <p>Real Small Mode + Strict Swing Gate สำหรับ XAUUSD / Forex / Crypto แบบ Price Action Swing Trade และ M15 Execution</p>
       <span class="badge b-ok">Google Sheet Sync</span><span class="badge b-ok">Drive Images</span><span class="badge b-info">Telegram Alert</span><span class="badge b-warn">Strict Swing Gate</span><span class="badge b-info">Auto News เวลาไทย</span><span class="badge b-bad">ข่าวแดง/ส้ม = ยังไม่เข้า</span><span class="badge b-ok">key เดิม paJournalV3</span>
     </div>
@@ -115,6 +117,7 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
     <button class="tab" data-sec="tradePlans">แผนโค้ช PA</button>
     <button class="tab" data-sec="journal">บันทึกการเทรด</button>
     <button class="tab" data-sec="stats">สถิติ</button>
+    <button class="tab" data-sec="alerts">Price Alerts</button>
     <button class="tab" data-sec="settings">ตั้งค่า / Sync</button>
   </div>
 
@@ -231,6 +234,35 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
     <div class="card"><h2>สถิติ</h2><div id="kpiBox" class="kpi"></div><h3 style="margin-top:16px">บทเรียนล่าสุด</h3><div id="lessonList" class="grid"></div></div>
   </section>
 
+
+  <section id="alerts" class="section">
+    <div class="card">
+      <h2>Price Alerts → Telegram</h2>
+      <p>ตั้งราคาเฝ้าดูได้หลายคู่ เมื่อราคาถึงเงื่อนไข ระบบ Apps Script จะส่ง Telegram แล้วเปลี่ยนสถานะเป็น TRIGGERED</p>
+      <div class="grid alert-grid">
+        <div class="c2"><label>Symbol</label><input id="alertSymbol" value="XAUUSD" placeholder="XAUUSD"></div>
+        <div class="c2"><label>API Symbol</label><input id="alertApiSymbol" value="XAU/USD" placeholder="XAU/USD"></div>
+        <div class="c2"><label>Market</label><select id="alertMarket"><option>Gold</option><option>Forex</option><option>Crypto</option></select></div>
+        <div class="c2"><label>TF</label><select id="alertTimeframe"><option>M15</option><option selected>H4</option><option>D1</option></select></div>
+        <div class="c2"><label>Condition</label><select id="alertCondition"><option value="gte">ราคา ≥ เป้า</option><option value="lte">ราคา ≤ เป้า</option></select></div>
+        <div class="c2"><label>Target Price</label><input id="alertTargetPrice" type="number" step="0.001" placeholder="4300"></div>
+        <div class="c12"><label>ข้อความ Telegram / Note</label><input id="alertMessage" placeholder="ทองถึงโซนรอ Sell Retest 4300 แล้ว อย่าเข้าไล่ราคา"></div>
+        <div class="c12 btns">
+          <button class="primary" onclick="addPriceAlert()">+ เพิ่ม Alert</button>
+          <button class="ghost" onclick="loadPriceAlertsFromCloud()">โหลด Alerts จาก Sheet</button>
+          <button class="okbtn" onclick="checkPriceAlertsNow()">เช็กราคาตอนนี้</button>
+          <button class="warnbtn" onclick="setupPriceAlertTrigger()">ตั้ง Trigger 5 นาที</button>
+          <button class="ghost" onclick="fillAlertExample('XAUUSD')">ตัวอย่างทอง</button>
+          <button class="ghost" onclick="fillAlertExample('GJ')">ตัวอย่าง GJ</button>
+          <button class="ghost" onclick="fillAlertExample('ETH')">ตัวอย่าง ETH</button>
+        </div>
+        <div class="c12"><div id="alertStatus" class="note">ยังไม่ได้โหลด Price Alerts</div></div>
+      </div>
+      <div class="tablewrap"><table><thead><tr><th>Symbol</th><th>Condition</th><th>Target</th><th>Current</th><th>Status</th><th>Message</th><th>Updated</th><th>จัดการ</th></tr></thead><tbody id="priceAlertBody"></tbody></table></div>
+      <p class="small" style="margin-top:10px">หมายเหตุ: ต้องตั้ง Script Properties: TWELVE_DATA_API_KEY, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID และ PA_COACH_SECRET ก่อนใช้งาน</p>
+    </div>
+  </section>
+
   <section id="settings" class="section">
     <div class="card">
       <h2>ตั้งค่า Google Sheet / Drive Sync</h2>
@@ -243,17 +275,18 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255
       <div class="btns"><button class="primary" onclick="saveSyncSetting()">บันทึกค่า Sync</button><button class="ghost" onclick="testCloudSync()">ทดสอบเชื่อมต่อ</button><button class="ghost" onclick="testTelegram()">ทดสอบ Telegram</button><button class="ghost" onclick="fixImageSharing()">ซ่อมสิทธิ์รูป Drive</button><button class="okbtn" onclick="syncLocalToCloud('upsert')">ส่งข้อมูลเครื่องนี้ขึ้น Google Sheet</button><button class="ghost" onclick="syncCloudToLocal('MERGE')">โหลดจาก Google Sheet แบบ MERGE</button><button class="warnbtn" onclick="syncCloudToLocal('REPLACE')">โหลดจาก Google Sheet แทนเครื่องนี้</button><button class="ghost" onclick="cloudApi('backupSnapshot',{}).then(r=>setSyncStatus(r.ok?'Backup: '+r.fileUrl:r.error, r.ok))">Backup Snapshot</button></div>
       <p class="small" style="margin-top:10px">อย่าใส่ Secret ลงในไฟล์ index.html เพราะ repo GitHub Pages เป็น public ได้ ค่า Sync จะเก็บใน localStorage ของ browser เครื่องนี้เท่านั้น</p>
     </div>
-    <div class="card" style="margin-top:14px"><h2>วิธีติดตั้งสั้น ๆ</h2><ol class="small"><li>เอาไฟล์ <b>index.html</b> v3.9 ไปทับใน repo <b>pa-coach-trade-journal</b></li><li>เอาไฟล์ <b>Code.gs</b> v3.9 ไปทับใน Apps Script</li><li>ตั้ง Script Properties: <b>PA_COACH_SECRET</b>, <b>TELEGRAM_BOT_TOKEN</b>, <b>TELEGRAM_CHAT_ID</b> และถ้าต้องแก้ timezone ต้นทางข่าวให้ใส่ <b>PA_COACH_NEWS_SOURCE_TZ</b></li><li>Run <b>setupDatabase</b> ครั้งเดียว แล้ว Deploy → Manage deployments → Edit → New version</li><li>เปิดเว็บ GitHub Pages กด Settings → Test Sync → Load from Google Sheet</li></ol></div>
+    <div class="card" style="margin-top:14px"><h2>วิธีติดตั้งสั้น ๆ</h2><ol class="small"><li>เอาไฟล์ <b>index.html</b> v3.9 ไปทับใน repo <b>pa-coach-trade-journal</b></li><li>เอาไฟล์ <b>Code.gs</b> v3.9 ไปทับใน Apps Script</li><li>ตั้ง Script Properties: <b>PA_COACH_SECRET</b>, <b>TELEGRAM_BOT_TOKEN</b>, <b>TELEGRAM_CHAT_ID</b> และถ้าต้องแก้ timezone ต้นทางข่าวให้ใส่ <b>PA_COACH_NEWS_SOURCE_TZ</b></li><li>เพิ่ม Script Property: <b>TWELVE_DATA_API_KEY</b> สำหรับดึงราคา Price Alert</li><li>Run <b>setupDatabase</b> ครั้งเดียว แล้ว Run <b>paAlert_setupTrigger</b> เพื่อเช็กราคาอัตโนมัติ</li><li>Deploy → Manage deployments → Edit → New version</li><li>เปิดเว็บ GitHub Pages กด Settings → Test Sync → Load from Google Sheet</li></ol></div>
   </section>
 
-  <div class="footer">PA Coach Web App v3.9.3 — News No-Trade Time Range + Impact Color Bar: วันละ 1 ไม้ / Risk ต่ำ / H4 Break + Retest + M15 EMA200</div>
+  <div class="footer">PA Coach Web App v4.0 — Price Alert Telegram + News No-Trade Time Range + Impact Color Bar</div>
 </div>
 
 <div id="modal" class="modal"><div class="card"><div class="modalTop"><h2 id="modalTitle">รูปกราฟ</h2><div><button class="ghost" onclick="toggleBrowserFullscreen()">เต็มจอ</button> <button class="ghost" onclick="closeImg()">ปิด</button></div></div><img id="modalImg" onclick="toggleBrowserFullscreen()"></div></div>
 
 <script>
 const $=id=>document.getElementById(id);
-const APP_VERSION="v3.9.3";
+const APP_VERSION="v4.0";
+const priceAlertStoreKey="paPriceAlertsV40";
 const storeKey="paJournalV3";
 const draftKey="paJournalDraftV34";
 const syncSettingKey="paSyncSettingV33";
@@ -476,7 +509,7 @@ function deleteTrade(id){if(!confirm('ลบรายการนี้?'))retur
 function updateStatus(id,status){const arr=getTrades().map(t=>t.id===id?{...t,status,updatedAt:new Date().toISOString()}:t);setTrades(arr);renderAll();}
 function closeTrade(id){const r=prompt('ผลลัพธ์กี่ R? เช่น 1.5 หรือ -1'); if(r===null)return; const lesson=prompt('บทเรียนจากไม้นี้',''); const arr=getTrades().map(t=>t.id===id?{...t,status:'CLOSED',resultR:r,lesson:lesson||'',updatedAt:new Date().toISOString()}:t); setTrades(arr); renderAll();}
 
-function renderAll(){renderJournal();renderStats();renderPlans();renderWatchlist();}
+function renderAll(){renderJournal();renderStats();renderPlans();renderWatchlist();renderAlerts();}
 function badgeStatus(s){const c=s==='CLOSED'?'greenp':s==='NO_TRADE'?'yellowp':s==='ACTIVE'?'bluep':s==='PENDING'?'orangep':'pill';return `<span class="pill ${c}">${esc(s||'PLAN')}</span>`;}
 function renderJournal(){const arr=getTrades(); $('journalBody').innerHTML=arr.map(t=>`<tr><td>${esc(t.tradeDate||'')}<br><span class="small">${esc(t.tradeTime||'')}</span></td><td><b>${esc(t.symbol||'')}</b><br><span class="small">${esc(t.market||'')}</span></td><td>${esc(t.direction||'')}</td><td>${badgeStatus(t.status)}</td><td>${esc(t.decision||'')}<br><span class="small">${esc((t.reason||'').slice(0,120))}</span></td><td>${esc(t.maxRR||'')}<br><span class="small">ผล ${esc(t.resultR||'')}</span></td><td>${thumbs(t)}</td><td><div class="btns"><button class="ghost" onclick="editTrade('${t.id}')">แก้</button><button class="okbtn" onclick="updateStatus('${t.id}','ACTIVE')">Active</button><button class="ghost" onclick="closeTrade('${t.id}')">ปิดไม้</button><button class="ghost" onclick="sendTelegram('${t.id}')">Telegram</button><button class="danger" onclick="deleteTrade('${t.id}')">ลบ</button></div></td></tr>`).join('')||'<tr><td colspan="8" class="muted">ยังไม่มีข้อมูล</td></tr>';}
 function imageValue(v){
@@ -551,6 +584,69 @@ async function sendTelegram(id){const t=getTrades().find(x=>x.id===id); if(!t)re
 async function testTelegram(){try{const r=await cloudApi('telegramTest',{});setSyncStatus(r.ok?'ส่งข้อความทดสอบ Telegram แล้ว':r.error,r.ok);}catch(e){setSyncStatus(e.message,false);}}
 async function fixImageSharing(){try{setSyncStatus('กำลังซ่อมสิทธิ์รูป Drive...',true);const r=await cloudApi('fixImageSharing',{});setSyncStatus(r.ok?'ซ่อมสิทธิ์รูป Drive แล้ว '+(r.fixed||0)+' ไฟล์':r.error,r.ok);renderAll();}catch(e){setSyncStatus(e.message,false);}}
 function telegramText(t){return `📌 PA Coach Alert\nSymbol: ${t.symbol}\nDirection: ${t.direction}\nStatus: ${t.status}\nStrategy: ${t.strategyName}\nDecision: ${t.decision}\nEntry/SL/TP: ${t.entry||'-'} / ${t.sl||'-'} / ${t.tp1||'-'}, ${t.tp2||'-'}, ${t.tp3||'-'}\nMax RR: ${t.maxRR||'-'}\n\nWHY:\n${t.reason||''}\n\n⚠️ ใช้เพื่อคุมวินัย ไม่ใช่การันตีกำไร`;}
+
+
+function getLocalAlerts(){try{return JSON.parse(localStorage.getItem(priceAlertStoreKey)||'[]')}catch(e){return[]}}
+function setLocalAlerts(arr){localStorage.setItem(priceAlertStoreKey,JSON.stringify(arr||[]));}
+function normalizeApiSymbol(sym){
+ const s=String(sym||'').toUpperCase().replace(/\s+/g,'');
+ if(s==='XAUUSD')return 'XAU/USD';
+ if(s==='GBPJPY')return 'GBP/JPY';
+ if(s==='ETHUSD')return 'ETH/USD';
+ if(s==='AUDUSD')return 'AUD/USD';
+ if(s==='AUDJPY')return 'AUD/JPY';
+ if(s.includes('/'))return s;
+ if(s.length===6)return s.slice(0,3)+'/'+s.slice(3);
+ return s;
+}
+function setAlertStatus(msg,ok=true){if($('alertStatus')){$('alertStatus').className='note '+(ok?'decision go':'decision no');$('alertStatus').innerHTML=msg;}}
+function fillAlertExample(type){
+ if(type==='GJ'){$('alertSymbol').value='GBPJPY';$('alertApiSymbol').value='GBP/JPY';$('alertMarket').value='Forex';$('alertTimeframe').value='H4';$('alertCondition').value='lte';$('alertTargetPrice').value='214.30';$('alertMessage').value='GJ ถึงโซน Sell Watch แล้ว รอ H4 ปิด + Retest ไม่ผ่านก่อน';return;}
+ if(type==='ETH'){$('alertSymbol').value='ETHUSD';$('alertApiSymbol').value='ETH/USD';$('alertMarket').value='Crypto';$('alertTimeframe').value='H4';$('alertCondition').value='lte';$('alertTargetPrice').value='1720';$('alertMessage').value='ETH ถึง Demand/โซนเฝ้าแล้ว รอ M15 BOS + Retest ก่อน';return;}
+ $('alertSymbol').value='XAUUSD';$('alertApiSymbol').value='XAU/USD';$('alertMarket').value='Gold';$('alertTimeframe').value='H4';$('alertCondition').value='lte';$('alertTargetPrice').value='4300';$('alertMessage').value='ทองถึงโซน 4300 แล้ว รอ Retest/PA Confirm ห้าม Sell ไล่';
+}
+function makePriceAlert(){
+ const symbol=val('alertSymbol').toUpperCase();
+ const apiSymbol=val('alertApiSymbol')||normalizeApiSymbol(symbol);
+ const target=Number(val('alertTargetPrice'));
+ if(!symbol) throw new Error('กรอก Symbol ก่อน');
+ if(!isFinite(target)||target<=0) throw new Error('กรอก Target Price ให้ถูกต้อง');
+ return {id:'al_'+Date.now()+'_'+Math.random().toString(16).slice(2),createdAt:new Date().toISOString(),updatedAt:new Date().toISOString(),symbol,apiSymbol,market:val('alertMarket'),timeframe:val('alertTimeframe'),condition:val('alertCondition'),targetPrice:target,currentPrice:'',status:'ACTIVE',triggeredAt:'',message:val('alertMessage')||('PA Coach Alert '+symbol+' '+val('alertCondition')+' '+target),note:''};
+}
+async function addPriceAlert(){
+ try{
+  const alert=makePriceAlert();
+  const arr=getLocalAlerts(); arr.unshift(alert); setLocalAlerts(arr); renderAlerts();
+  const s=loadSyncSetting();
+  if(s.url&&s.secret){const r=await cloudApi('upsertPriceAlert',{alert}); if(r.ok){setAlertStatus('เพิ่ม Alert และ Sync ขึ้น Sheet แล้ว',true); await loadPriceAlertsFromCloud(false);} else setAlertStatus(r.error,false);}
+  else setAlertStatus('เพิ่ม Alert ในเครื่องแล้ว แต่ยังไม่ได้ Sync เพราะยังไม่ได้ตั้ง Apps Script URL / Secret',true);
+ }catch(e){setAlertStatus(e.message,false);}
+}
+async function loadPriceAlertsFromCloud(showMsg=true){
+ try{const r=await cloudApi('listPriceAlerts',{}); if(!r.ok)return setAlertStatus(r.error,false); setLocalAlerts(r.alerts||[]); renderAlerts(); if(showMsg)setAlertStatus('โหลด Alerts จาก Sheet แล้ว '+(r.count||0)+' รายการ',true);}catch(e){setAlertStatus(e.message,false);}
+}
+async function deletePriceAlert(id){
+ if(!confirm('ลบ Alert นี้?'))return;
+ setLocalAlerts(getLocalAlerts().filter(a=>a.id!==id)); renderAlerts();
+ try{const s=loadSyncSetting(); if(s.url&&s.secret){const r=await cloudApi('deletePriceAlert',{id}); setAlertStatus(r.ok?'ลบ Alert แล้ว':r.error,r.ok);}}catch(e){setAlertStatus(e.message,false);}
+}
+async function pauseResumeAlert(id,status){
+ const arr=getLocalAlerts().map(a=>a.id===id?{...a,status,updatedAt:new Date().toISOString()}:a); setLocalAlerts(arr); renderAlerts();
+ const alert=arr.find(a=>a.id===id); try{const s=loadSyncSetting(); if(s.url&&s.secret){const r=await cloudApi('upsertPriceAlert',{alert}); setAlertStatus(r.ok?'อัปเดตสถานะ Alert แล้ว':r.error,r.ok);}}catch(e){setAlertStatus(e.message,false);}
+}
+async function checkPriceAlertsNow(){
+ try{setAlertStatus('กำลังเช็กราคาตอนนี้...',true); const r=await cloudApi('checkPriceAlerts',{}); if(r.ok){setAlertStatus(`เช็กแล้ว ${r.checked||0} รายการ | Triggered ${r.triggered||0} รายการ`,true); await loadPriceAlertsFromCloud(false);} else setAlertStatus(r.error,false);}catch(e){setAlertStatus(e.message,false);}
+}
+async function setupPriceAlertTrigger(){
+ try{const r=await cloudApi('setupPriceAlertTrigger',{}); setAlertStatus(r.ok?'ตั้ง Trigger เช็กราคาอัตโนมัติแล้ว: '+(r.message||'') : r.error,r.ok);}catch(e){setAlertStatus(e.message,false);}
+}
+function condText(c){return c==='lte'?'≤':'≥';}
+function statusClass(s){s=String(s||'').toUpperCase(); if(s==='ACTIVE')return 'alert-active'; if(s==='TRIGGERED')return 'alert-triggered'; return 'alert-paused';}
+function renderAlerts(){
+ const body=$('priceAlertBody'); if(!body)return;
+ const arr=getLocalAlerts();
+ body.innerHTML=arr.map(a=>`<tr><td><b>${esc(a.symbol||'')}</b><br><span class="small">${esc(a.apiSymbol||'')}</span></td><td>${condText(a.condition)}</td><td>${esc(a.targetPrice||'')}</td><td>${esc(a.currentPrice||'-')}</td><td class="alert-status ${statusClass(a.status)}">${esc(a.status||'ACTIVE')}<br><span class="small">${esc(a.triggeredAt||'')}</span></td><td>${esc(a.message||'')}</td><td>${esc((a.updatedAt||'').replace('T',' ').slice(0,19))}</td><td><div class="btns"><button class="ghost" onclick="pauseResumeAlert('${a.id}','${String(a.status||'ACTIVE').toUpperCase()==='ACTIVE'?'PAUSED':'ACTIVE'}')">${String(a.status||'ACTIVE').toUpperCase()==='ACTIVE'?'Pause':'Active'}</button><button class="danger" onclick="deletePriceAlert('${a.id}')">ลบ</button></div></td></tr>`).join('')||'<tr><td colspan="8" class="muted">ยังไม่มี Price Alert</td></tr>';
+}
 
 function exportJson(){download('pa-coach-export.json',JSON.stringify(getTrades(),null,2),'application/json');}
 function exportCsv(){const arr=getTrades(); const heads=['tradeDate','tradeTime','symbol','market','direction','status','strategyName','entry','sl','tp1','tp2','tp3','maxRR','resultR','decision','note']; const csv=[heads.join(',')].concat(arr.map(t=>heads.map(h=>`"${String(t[h]??'').replace(/"/g,'""')}"`).join(','))).join('\n'); download('pa-coach-export.csv',csv,'text/csv');}
