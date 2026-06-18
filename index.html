@@ -3,120 +3,110 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PA Coach Web App v4.1.1 Simple + News</title>
+<title>PA Coach v4.1.2 Simple + News + Sheet</title>
 <style>
-:root{--bg:#07101f;--panel:#111c31;--panel2:#17243e;--line:#2b3b5f;--text:#eef6ff;--muted:#9fb2cf;--blue:#38bdf8;--violet:#a78bfa;--ok:#22c55e;--warn:#f59e0b;--bad:#ef4444;--info:#60a5fa}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 8% 0%,rgba(56,189,248,.18),transparent 34%),radial-gradient(circle at 88% 0%,rgba(167,139,250,.16),transparent 34%),var(--bg);color:var(--text);font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif}.wrap{max-width:1180px;margin:auto;padding:16px}.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;margin-bottom:14px}.card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:16px;box-shadow:0 14px 45px rgba(0,0,0,.28);margin-bottom:14px}h1,h2,h3{margin:0 0 10px}h1{font-size:27px}h2{font-size:20px}p{margin:0 0 10px;color:var(--muted);line-height:1.65}.small{font-size:12px;color:var(--muted);line-height:1.5}.tabs,.btns{display:flex;gap:9px;flex-wrap:wrap}.tabs{margin:12px 0}.tab,button{font-family:inherit;font-weight:800;border:0;border-radius:13px;padding:10px 13px;cursor:pointer}.tab,.ghost{background:rgba(255,255,255,.07);color:var(--text);border:1px solid rgba(255,255,255,.13)}.tab.active{background:linear-gradient(90deg,rgba(56,189,248,.26),rgba(167,139,250,.24));border-color:rgba(56,189,248,.45)}.primary{background:linear-gradient(90deg,#38bdf8,#a78bfa);color:#06111e}.okbtn{background:rgba(34,197,94,.18);color:#bbf7d0;border:1px solid rgba(34,197,94,.38)}.danger{background:rgba(239,68,68,.18);color:#fecaca;border:1px solid rgba(239,68,68,.38)}.warnbtn{background:rgba(245,158,11,.17);color:#fed7aa;border:1px solid rgba(245,158,11,.38)}.badge{display:inline-flex;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.06);padding:7px 10px;border-radius:999px;font-size:13px;margin:4px 4px 4px 0}.b-ok{background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.34)}.b-warn{background:rgba(245,158,11,.13);border-color:rgba(245,158,11,.36)}.b-bad{background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.36)}.b-info{background:rgba(96,165,250,.12);border-color:rgba(96,165,250,.36)}.section{display:none}.section.active{display:block}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}.c12{grid-column:span 12}.c8{grid-column:span 8}.c6{grid-column:span 6}.c4{grid-column:span 4}.c3{grid-column:span 3}.c2{grid-column:span 2}label{display:block;font-size:13px;margin-bottom:6px;color:#d9e7fb}input,select,textarea{width:100%;background:#0c172a;color:var(--text);border:1px solid var(--line);border-radius:13px;padding:10px 11px;outline:none;font-family:inherit;font-size:14px}textarea{min-height:86px;resize:vertical}input[type=checkbox]{width:auto;accent-color:#38bdf8}.decision{background:rgba(56,189,248,.09);border:1px solid rgba(56,189,248,.22);border-radius:15px;padding:13px;line-height:1.55}.decision.go{border-color:rgba(34,197,94,.55);background:rgba(34,197,94,.13)}.decision.wait{border-color:rgba(245,158,11,.55);background:rgba(245,158,11,.13)}.decision.no{border-color:rgba(239,68,68,.55);background:rgba(239,68,68,.13)}.big{font-size:24px;font-weight:900}.muted{color:var(--muted)}.check{display:flex;gap:9px;align-items:flex-start;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);border-radius:13px;padding:10px;min-height:58px}.preview{border:1px dashed rgba(255,255,255,.20);border-radius:14px;min-height:110px;padding:8px;background:#0c1629}.preview img{width:100%;max-height:220px;object-fit:contain;border-radius:10px}table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255,255,255,.08);padding:9px;text-align:left;vertical-align:top;font-size:13px}th{background:rgba(255,255,255,.055);font-size:12px;color:#d5e3f6}.tablewrap{overflow:auto;margin-top:10px;max-height:520px;border:1px solid rgba(255,255,255,.08);border-radius:14px}.footer{text-align:center;color:var(--muted);font-size:12px;padding:18px 0}.hidden{display:none!important}.modal{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:10px;z-index:99}.modal.active{display:flex}.modal img{max-width:96vw;max-height:90vh;border-radius:12px;background:#000}.status-ready{color:#bbf7d0;font-weight:900}.status-wait{color:#fed7aa;font-weight:900}.status-no{color:#fecaca;font-weight:900}.impact-red{color:#fecaca;background:rgba(239,68,68,.16);border:1px solid rgba(239,68,68,.35);border-radius:999px;padding:4px 8px}.impact-orange{color:#fed7aa;background:rgba(245,158,11,.16);border:1px solid rgba(245,158,11,.35);border-radius:999px;padding:4px 8px}.impact-yellow{color:#fef08a;background:rgba(234,179,8,.13);border:1px solid rgba(234,179,8,.32);border-radius:999px;padding:4px 8px}.impact-none{color:#cbd5e1;background:rgba(148,163,184,.10);border:1px solid rgba(148,163,184,.24);border-radius:999px;padding:4px 8px}@media(max-width:900px){.hero{grid-template-columns:1fr}.c8,.c6,.c4,.c3,.c2{grid-column:span 12}.wrap{padding:12px}h1{font-size:23px}}
+:root{--bg:#07101f;--panel:#111c31;--panel2:#17243e;--line:#2b3b5f;--text:#eef6ff;--muted:#9fb2cf;--blue:#38bdf8;--violet:#a78bfa;--ok:#22c55e;--warn:#f59e0b;--bad:#ef4444}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 8% 0%,rgba(56,189,248,.18),transparent 34%),var(--bg);color:var(--text);font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif}.wrap{max-width:1180px;margin:auto;padding:16px}.card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);border:1px solid rgba(255,255,255,.10);border-radius:18px;padding:16px;margin-bottom:14px}h1,h2,h3{margin:0 0 10px}p{color:var(--muted);line-height:1.6}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:10px}.c12{grid-column:span 12}.c8{grid-column:span 8}.c6{grid-column:span 6}.c4{grid-column:span 4}.c3{grid-column:span 3}.c2{grid-column:span 2}label{display:block;font-size:13px;margin:8px 0 5px;color:#d9e7fb}input,select,textarea{width:100%;background:#0c172a;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:10px;font-family:inherit;font-size:14px}textarea{min-height:78px;resize:vertical}button{font-family:inherit;font-weight:800;border:0;border-radius:12px;padding:10px 13px;cursor:pointer;margin:4px}.primary{background:linear-gradient(90deg,#38bdf8,#a78bfa);color:#06111e}.ok{background:rgba(34,197,94,.18);color:#bbf7d0;border:1px solid rgba(34,197,94,.38)}.warn{background:rgba(245,158,11,.17);color:#fed7aa;border:1px solid rgba(245,158,11,.38)}.danger{background:rgba(239,68,68,.18);color:#fecaca;border:1px solid rgba(239,68,68,.38)}.ghost{background:rgba(255,255,255,.07);color:var(--text);border:1px solid rgba(255,255,255,.13)}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.tab.active{background:linear-gradient(90deg,rgba(56,189,248,.28),rgba(167,139,250,.24));border-color:rgba(56,189,248,.50)}.section{display:none}.section.active{display:block}.badge{display:inline-flex;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.06);padding:7px 10px;border-radius:999px;font-size:13px;margin:4px}.decision{border-radius:14px;padding:12px;border:1px solid rgba(245,158,11,.45);background:rgba(245,158,11,.12)}.decision.go{border-color:rgba(34,197,94,.55);background:rgba(34,197,94,.12)}.decision.no{border-color:rgba(239,68,68,.55);background:rgba(239,68,68,.12)}.big{font-size:24px;font-weight:900}.small{font-size:12px;color:var(--muted)}table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255,255,255,.08);padding:9px;text-align:left;font-size:13px}th{background:rgba(255,255,255,.055)}.tablewrap{overflow:auto;margin-top:10px;border:1px solid rgba(255,255,255,.08);border-radius:14px;max-height:440px}.checkline{display:flex;gap:10px;align-items:center;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);border-radius:12px;padding:10px}.checkline input{width:auto}.footer{text-align:center;color:var(--muted);font-size:12px;padding:18px}.pill{border-radius:999px;padding:4px 8px;border:1px solid rgba(255,255,255,.15);white-space:nowrap}.red{color:#fecaca;background:rgba(239,68,68,.15)}.orange{color:#fed7aa;background:rgba(245,158,11,.15)}.green{color:#bbf7d0;background:rgba(34,197,94,.12)}@media(max-width:800px){.c8,.c6,.c4,.c3,.c2{grid-column:span 12}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="hero">
-    <div class="card">
-      <h1>PA Coach Web App v4.1.1 Simple + News</h1>
-      <p>เวอร์ชันลด Checklist แต่เอา News Guard กลับมา: ข่าว → H4 Bias → Plan → M15 Trigger → Result</p>
-      <span class="badge b-ok">Google Sheet Sync</span><span class="badge b-info">Drive Images</span><span class="badge b-info">Telegram</span><span class="badge b-bad">News Guard USD</span><span class="badge b-warn">ใช้งานเร็ว 17:00</span>
-    </div>
-    <div class="card">
-      <h2>สถานะตอนนี้</h2>
-      <div id="topDecision" class="decision wait"><div class="big">WAIT</div><div class="muted">กรอก Bias / Zone / Trigger แล้วระบบจะสรุปให้</div></div>
-    </div>
+  <div class="card">
+    <h1>PA Coach Web App v4.1.2 Simple</h1>
+    <p>Simple Workflow + News Guard + Google Sheet Sync + Delete Sheet + Price Alerts</p>
+    <span class="badge">News Guard</span><span class="badge">Google Sheet Sync</span><span class="badge">Delete Sheet</span><span class="badge">Price Alerts</span>
   </div>
 
   <div class="tabs">
-    <button class="tab active" data-sec="planner">วางแผนง่าย</button>
-    <button class="tab" data-sec="journal">บันทึก</button>
-    <button class="tab" data-sec="alerts">Price Alerts</button>
-    <button class="tab" data-sec="settings">ตั้งค่า Sync</button>
+    <button class="tab active ghost" data-sec="planner">วางแผนง่าย</button>
+    <button class="tab ghost" data-sec="journal">บันทึก / Sheet</button>
+    <button class="tab ghost" data-sec="alerts">Price Alerts</button>
+    <button class="tab ghost" data-sec="settings">ตั้งค่า Sync</button>
   </div>
 
   <section id="planner" class="section active">
     <div class="card">
-      <h2>STEP 1: News Guard</h2>
-      <p>ทอง XAUUSD ต้องเช็กข่าว USD ก่อนเสมอ ถ้าอยู่ในช่วงข่าวแดง/ส้ม = NO TRADE</p>
+      <h2>1) News Guard</h2>
       <div class="grid">
-        <div class="c3"><label>News Mode</label><select id="newsMode"><option value="auto">Auto จาก Apps Script</option><option value="none">ไม่มีข่าวสำคัญ</option><option value="yellow">ข่าวเหลือง</option><option value="orange">ข่าวส้ม</option><option value="red">ข่าวแดง</option></select></div>
-        <div class="c3"><label>Currency</label><input id="newsCurrency" value="USD"></div>
-        <div class="c3"><label>กันข่าวก่อน/หลัง (นาที)</label><input id="newsWindow" type="number" value="120"></div>
-        <div class="c3"><label>สถานะข่าว</label><input id="newsSummary" readonly value="ยังไม่เช็กข่าว"></div>
-        <div class="c12 btns"><button class="primary" onclick="pullNews('today')">ดึงข่าววันนี้</button><button class="ghost" onclick="pullNews('week')">ดึงข่าวสัปดาห์นี้</button><button class="warnbtn" onclick="markNoNews()">ไม่มีข่าวสำคัญตอนนี้</button></div>
-        <div class="c12"><div id="newsDecision" class="decision wait"><div class="big">WAIT NEWS</div><div class="muted">กดดึงข่าวก่อนวางแผน หรือเลือกไม่มีข่าวสำคัญ</div></div></div>
-        <div class="c12"><div class="tablewrap"><table><thead><tr><th>วัน</th><th>เวลาไทย</th><th>Currency</th><th>Impact</th><th>ข่าว</th><th>ช่วงห้ามเข้า</th></tr></thead><tbody id="newsBody"><tr><td colspan="6">ยังไม่มีข่าว</td></tr></tbody></table></div></div>
+        <div class="c3"><label>Symbol</label><input id="symbol" value="XAUUSD"></div>
+        <div class="c3"><label>Currency ข่าว</label><input id="newsCurrency" value="USD"></div>
+        <div class="c3"><label>กันข่าว ก่อน/หลัง (นาที)</label><input id="newsWindow" type="number" value="120"></div>
+        <div class="c3"><label>Manual News</label><select id="manualNews"><option value="none">ไม่มีข่าวสำคัญ</option><option value="red">ข่าวแดง</option><option value="orange">ข่าวส้ม</option><option value="yellow">ข่าวเหลือง</option></select></div>
+        <div class="c12">
+          <button class="primary" onclick="pullNews('today')">ดึงข่าววันนี้</button>
+          <button class="ghost" onclick="pullNews('week')">ดึงข่าวสัปดาห์นี้</button>
+          <button class="ghost" onclick="addManualNews()">+ เพิ่มข่าวเอง</button>
+          <button class="danger" onclick="newsRows=[];renderNews();">ล้างข่าว</button>
+        </div>
+        <div class="c12"><div id="newsDecision" class="decision"><div class="big">รอเช็กข่าว</div></div></div>
+        <div class="c12 tablewrap"><table><thead><tr><th>วัน</th><th>เวลาไทย</th><th>Currency</th><th>Impact</th><th>ช่วงห้ามเข้า</th><th>ข่าว</th><th>ลบ</th></tr></thead><tbody id="newsBody"></tbody></table></div>
       </div>
     </div>
 
     <div class="card">
-      <h2>STEP 2: H4 Bias</h2>
+      <h2>2) H4 Bias + Zone</h2>
       <div class="grid">
         <div class="c3"><label>วันที่</label><input id="tradeDate" type="date"></div>
         <div class="c3"><label>เวลา</label><input id="tradeTime" type="time"></div>
-        <div class="c3"><label>Symbol</label><input id="symbol" value="XAUUSD"></div>
-        <div class="c3"><label>Market</label><select id="market"><option>Gold</option><option>Forex</option><option>Crypto</option></select></div>
-        <div class="c4"><label>H4 Bias</label><select id="bias"><option>WAIT</option><option>BUY ONLY</option><option>SELL ONLY</option><option>NO TRADE</option></select></div>
-        <div class="c4"><label>Direction</label><select id="direction"><option>WAIT</option><option>BUY</option><option>SELL</option></select></div>
-        <div class="c4"><label>Status</label><select id="status"><option>WAIT</option><option>READY</option><option>ACTIVE</option><option>CLOSED</option><option>NO_TRADE</option></select></div>
-        <div class="c12"><label>เหตุผล H4</label><textarea id="h4Reason" placeholder="เช่น H4 CCI เหนือ 0 / ราคาอยู่ Demand / รอ M15 CHOCH"></textarea></div>
+        <div class="c3"><label>Market</label><select id="market"><option>Gold</option><option>Crypto</option><option>Forex</option></select></div>
+        <div class="c3"><label>Direction</label><select id="direction"><option>WAIT</option><option>BUY</option><option>SELL</option></select></div>
+        <div class="c3"><label>Bias</label><select id="bias"><option>WAIT</option><option>BUY ONLY</option><option>SELL ONLY</option><option>NO TRADE</option></select></div>
+        <div class="c3"><label>Status</label><select id="status"><option>WAIT</option><option>READY</option><option>ACTIVE</option><option>CLOSED</option><option>NO_TRADE</option></select></div>
+        <div class="c6"><label>Zone</label><input id="zone" placeholder="เช่น 4220-4250"></div>
+        <div class="c12"><label>เหตุผล H4 / แผน</label><textarea id="h4Plan" placeholder="เช่น H4 ใกล้ Demand / รอ M15 CHOCH / ข่าวไม่ชน"></textarea></div>
       </div>
     </div>
 
     <div class="card">
-      <h2>STEP 3: Trade Plan</h2>
+      <h2>3) Entry / SL / TP</h2>
       <div class="grid">
-        <div class="c4"><label>Strategy</label><input id="strategyName" value="H4 Demand + M15 CHOCH"></div>
-        <div class="c4"><label>Zone</label><input id="zone" placeholder="4300-4305"></div>
-        <div class="c4"><label>Invalidation</label><input id="invalidation" placeholder="M15/H4 ปิดต่ำกว่า 4290"></div>
         <div class="c2"><label>Entry</label><input id="entry" type="number" step="0.001"></div>
         <div class="c2"><label>SL</label><input id="sl" type="number" step="0.001"></div>
         <div class="c2"><label>TP1</label><input id="tp1" type="number" step="0.001"></div>
         <div class="c2"><label>TP2</label><input id="tp2" type="number" step="0.001"></div>
         <div class="c2"><label>TP3</label><input id="tp3" type="number" step="0.001"></div>
         <div class="c2"><label>Max RR</label><input id="maxRR" readonly></div>
-        <div class="c4"><label>Alert 1</label><input id="alert1" placeholder="4305 Buy Zone"></div>
-        <div class="c4"><label>Alert 2</label><input id="alert2" placeholder="4290 Invalid"></div>
-        <div class="c4"><label>Alert 3</label><input id="alert3" placeholder="4325 Breakout"></div>
+        <div class="c12"><div id="rrBox" class="decision"><div class="big">RR ยังไม่ครบ</div></div></div>
       </div>
     </div>
 
     <div class="card">
-      <h2>STEP 4: M15 Trigger</h2>
+      <h2>4) M15 Trigger</h2>
       <div class="grid">
-        <div class="c4"><label class="check"><input type="checkbox" id="trigChoch"><span><b>CHOCH M15</b><small>Higher Low + Break High สำหรับ Buy / Lower High + Break Low สำหรับ Sell</small></span></label></div>
-        <div class="c4"><label class="check"><input type="checkbox" id="trigPin"><span><b>Pin Bar</b><small>เกิดที่ Zone เท่านั้น</small></span></label></div>
-        <div class="c4"><label class="check"><input type="checkbox" id="trigEngulf"><span><b>Engulf</b><small>กลืนแท่งก่อนหน้าและปิดยืนยัน</small></span></label></div>
-        <div class="c12"><div class="decision wait"><b>กฎ:</b> ถ้ายังไม่มี CHOCH / Pin Bar / Engulf อย่างน้อย 1 ข้อ = ห้ามเข้า</div></div>
+        <div class="c4 checkline"><input type="checkbox" id="choch"><b>CHOCH M15</b></div>
+        <div class="c4 checkline"><input type="checkbox" id="pin"><b>Pin Bar</b></div>
+        <div class="c4 checkline"><input type="checkbox" id="engulf"><b>Engulf</b></div>
+        <div class="c12"><div id="finalDecision" class="decision"><div class="big">WAIT</div></div></div>
       </div>
     </div>
 
     <div class="card">
-      <h2>STEP 5: รูปกราฟ + สรุปก่อนส่ง</h2>
+      <h2>5) บันทึก / ส่ง Sheet</h2>
       <div class="grid">
-        <div class="c4"><label>D1 Image</label><input type="file" accept="image/*" onchange="loadChart(event,'d1')"><div id="preview_d1" class="preview"></div></div>
-        <div class="c4"><label>H4 Image</label><input type="file" accept="image/*" onchange="loadChart(event,'h4')"><div id="preview_h4" class="preview"></div></div>
-        <div class="c4"><label>M15 Image</label><input type="file" accept="image/*" onchange="loadChart(event,'m15')"><div id="preview_m15" class="preview"></div></div>
-        <div class="c12"><label>Decision / Note</label><textarea id="decision" placeholder="รอราคาเข้า Zone และเกิด M15 CHOCH ก่อนเข้า"></textarea></div>
-        <div class="c12"><div id="finalDecision" class="decision wait"><div class="big">WAIT</div><div class="muted">ยังไม่ครบเงื่อนไข</div></div></div>
-      </div>
-      <div class="btns" style="margin-top:12px">
-        <button class="primary" onclick="savePlanLocal()">บันทึกในเครื่อง</button>
-        <button class="okbtn" onclick="savePlanCloud()">บันทึกขึ้น Google Sheet</button>
-        <button class="ghost" onclick="copyTelegram()">Copy ส่ง Telegram</button>
-        <button class="ghost" onclick="sendTelegram()">ส่ง Telegram</button>
-        <button class="warnbtn" onclick="clearForm()">ล้างฟอร์ม</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>STEP 6: หลังปิดไม้</h2>
-      <div class="grid">
-        <div class="c3"><label>Result</label><select id="result"><option>ยังไม่ปิด</option><option>WIN</option><option>LOSS</option><option>BE</option></select></div>
-        <div class="c3"><label>Result R</label><input id="resultR" placeholder="+1R / -1R / BE"></div>
-        <div class="c6"><label>Lesson</label><input id="lesson" placeholder="เข้าแผน / นอกแผน / ใจร้อน / ข่าว"></div>
-        <div class="c12"><button class="okbtn" onclick="savePlanCloud()">Update ผลลัพธ์ขึ้น Sheet</button></div>
+        <div class="c4"><label>Result</label><select id="result"><option>ยังไม่ปิด</option><option>WIN</option><option>LOSS</option><option>BE</option></select></div>
+        <div class="c4"><label>Result R</label><input id="resultR" placeholder="+1R / -1R"></div>
+        <div class="c4"><label>Trade ID</label><input id="tradeId" readonly></div>
+        <div class="c12"><label>Lesson</label><textarea id="lesson"></textarea></div>
+        <div class="c12">
+          <button class="primary" onclick="saveLocal()">บันทึกในเครื่อง</button>
+          <button class="ok" onclick="saveAndUpload()">บันทึก + ส่งขึ้น Sheet</button>
+          <button class="ghost" onclick="copyTelegram()">Copy ส่ง Telegram</button>
+          <button class="warn" onclick="newPlan()">เริ่มแผนใหม่</button>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="journal" class="section">
-    <div class="card"><h2>บันทึกการเทรด</h2><div class="btns"><button class="ghost" onclick="renderJournal()">Refresh</button><button class="ghost" onclick="loadCloudTrades('MERGE')">Load MERGE จาก Sheet</button><button class="warnbtn" onclick="loadCloudTrades('REPLACE')">Load REPLACE จาก Sheet</button><button class="ghost" onclick="exportJson()">Export JSON</button></div><div class="tablewrap"><table><thead><tr><th>วันที่</th><th>Symbol</th><th>Direction</th><th>Status</th><th>Entry</th><th>SL</th><th>TP</th><th>Decision</th><th>จัดการ</th></tr></thead><tbody id="journalBody"></tbody></table></div></div>
+    <div class="card">
+      <h2>บันทึก / Google Sheet</h2>
+      <button class="ghost" onclick="loadFromSheet()">โหลดจาก Sheet</button>
+      <button class="ok" onclick="uploadAllToSheet()">ส่งข้อมูลทั้งหมดขึ้น Sheet</button>
+      <button class="danger" onclick="deleteSelectedFromSheet()">ลบแผนที่เปิดอยู่จาก Sheet</button>
+      <button class="ghost" onclick="renderJournal()">Refresh</button>
+      <div id="syncStatus" class="decision" style="margin-top:10px">ยังไม่ได้ Sync</div>
+      <div class="tablewrap"><table><thead><tr><th>วันที่</th><th>Symbol</th><th>Direction</th><th>Status</th><th>Entry</th><th>SL</th><th>TP</th><th>Decision</th><th>จัดการ</th></tr></thead><tbody id="journalBody"></tbody></table></div>
+    </div>
   </section>
 
   <section id="alerts" class="section">
@@ -125,15 +115,20 @@
       <div class="grid">
         <div class="c2"><label>Symbol</label><input id="alertSymbol" value="XAUUSD"></div>
         <div class="c2"><label>API Symbol</label><input id="alertApiSymbol" value="XAU/USD"></div>
-        <div class="c2"><label>Market</label><select id="alertMarket"><option>Gold</option><option>Forex</option><option>Crypto</option></select></div>
+        <div class="c2"><label>Market</label><select id="alertMarket"><option>Gold</option><option>Crypto</option><option>Forex</option></select></div>
         <div class="c2"><label>TF</label><select id="alertTimeframe"><option>M15</option><option selected>H4</option><option>D1</option></select></div>
         <div class="c2"><label>Condition</label><select id="alertCondition"><option value="gte">ราคา ≥ เป้า</option><option value="lte">ราคา ≤ เป้า</option></select></div>
         <div class="c2"><label>Target</label><input id="alertTargetPrice" type="number" step="0.001"></div>
-        <div class="c12"><label>Message</label><input id="alertMessage" placeholder="ทองเข้า Buy Zone 4300-4305 รอ CHOCH M15 ห้ามกดทันที"></div>
-        <div class="c12 btns"><button class="primary" onclick="addPriceAlert()">+ เพิ่ม Alert</button><button class="ghost" onclick="loadPriceAlerts()">โหลด Alerts</button><button class="okbtn" onclick="checkPriceAlertsNow()">เช็กราคาตอนนี้</button><button class="warnbtn" onclick="setupPriceAlertTrigger()">ตั้ง Trigger 5 นาที</button></div>
-        <div class="c12"><div id="alertStatus" class="decision wait">ยังไม่ได้โหลด Price Alerts</div></div>
+        <div class="c12"><label>ข้อความ</label><input id="alertMessage" placeholder="เข้าโซนแล้ว รอสัญญาณก่อน"></div>
+        <div class="c12">
+          <button class="primary" onclick="addPriceAlert()">+ เพิ่ม Alert</button>
+          <button class="ghost" onclick="loadPriceAlerts()">โหลด Alerts จาก Sheet</button>
+          <button class="ok" onclick="checkPriceAlerts()">เช็กราคาตอนนี้</button>
+          <button class="warn" onclick="setupAlertTrigger()">ตั้ง Trigger 5 นาที</button>
+        </div>
+        <div class="c12"><div id="alertStatus" class="decision">ยังไม่ได้โหลด Alert</div></div>
       </div>
-      <div class="tablewrap"><table><thead><tr><th>Symbol</th><th>Condition</th><th>Target</th><th>Status</th><th>Message</th><th>จัดการ</th></tr></thead><tbody id="priceAlertBody"></tbody></table></div>
+      <div class="tablewrap"><table><thead><tr><th>Symbol</th><th>Condition</th><th>Target</th><th>Current</th><th>Status</th><th>Message</th><th>จัดการ</th></tr></thead><tbody id="priceAlertBody"></tbody></table></div>
     </div>
   </section>
 
@@ -143,83 +138,71 @@
       <div class="grid">
         <div class="c8"><label>Apps Script Web App URL /exec</label><input id="syncApiUrl" placeholder="https://script.google.com/macros/s/.../exec"></div>
         <div class="c4"><label>API Secret</label><input id="syncSecret" type="password" placeholder="PA_COACH_SECRET"></div>
-        <div class="c12"><div id="syncStatus" class="decision wait">ยังไม่ได้ตั้งค่า Sync</div></div>
+        <div class="c12">
+          <button class="primary" onclick="saveSyncSetting()">บันทึกค่า Sync</button>
+          <button class="ghost" onclick="testSync()">ทดสอบ Sync</button>
+          <button class="ghost" onclick="testTelegram()">ทดสอบ Telegram</button>
+        </div>
       </div>
-      <div class="btns"><button class="primary" onclick="saveSyncSetting()">บันทึกค่า Sync</button><button class="ghost" onclick="testCloudSync()">Test Sync</button><button class="ghost" onclick="testTelegram()">Test Telegram</button><button class="ghost" onclick="fixImageSharing()">ซ่อมสิทธิ์รูป Drive</button></div>
-      <p class="small" style="margin-top:10px">ค่า URL/Secret เก็บใน browser เครื่องนี้เท่านั้น ไม่ถูกบันทึกลง GitHub</p>
+      <p class="small">Code.gs ใช้ตัวเดิม v4.0.1 ได้ เพราะรองรับ listTrades / upsertTrades / deleteTrade / fetchNews / price alerts แล้ว</p>
     </div>
   </section>
-  <div class="footer">PA Coach Web App v4.1.1 Simple + News — ใช้ Code.gs v4.0.1 เดิมได้</div>
+
+  <div class="footer">PA Coach Web App v4.1.2</div>
 </div>
-<div id="modal" class="modal" onclick="this.classList.remove('active')"><img id="modalImg"></div>
+
 <script>
 const $=id=>document.getElementById(id);
-const APP_VERSION='v4.1.1-simple-news';
-const storeKey='paJournalV3';
-const draftKey='paCoachSimpleDraftV41';
-const syncSettingKey='paSyncSettingV33';
-let charts={d1:'',h4:'',m15:''};
-let newsItems=[];
-let editingId='';
-
-function todayStr(){const d=new Date();return d.toISOString().slice(0,10)}
-function timeStr(){const d=new Date();return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}
-function uuid(){return 'pa_'+Date.now()+'_'+Math.random().toString(16).slice(2)}
-function num(id){const v=Number($(id).value);return isFinite(v)?v:0}
-function rr(){const entry=num('entry'),sl=num('sl');const risk=Math.abs(entry-sl);if(!entry||!sl||!risk)return'';const tps=['tp1','tp2','tp3'].map(num).filter(Boolean);if(!tps.length)return'';return Math.round(Math.max(...tps.map(tp=>Math.abs(tp-entry)/risk))*100)/100}
-function hasTrigger(){return $('trigChoch').checked||$('trigPin').checked||$('trigEngulf').checked}
-function impactClass(impact){const x=String(impact||'').toLowerCase();if(x.includes('red')||x.includes('high'))return'impact-red';if(x.includes('orange')||x.includes('medium'))return'impact-orange';if(x.includes('yellow')||x.includes('low'))return'impact-yellow';return'impact-none'}
-function impactLevel(impact){const x=String(impact||'').toLowerCase();if(x.includes('red')||x.includes('high'))return'red';if(x.includes('orange')||x.includes('medium'))return'orange';if(x.includes('yellow')||x.includes('low'))return'yellow';return'none'}
-function eventDate(ev){return new Date(`${ev.date}T${ev.time}:00+07:00`)}
-function noTradeRange(ev){const w=Number($('newsWindow').value)||120;const d=eventDate(ev);const a=new Date(d.getTime()-w*60000);const b=new Date(d.getTime()+w*60000);const fmt=x=>String(x.getHours()).padStart(2,'0')+':'+String(x.getMinutes()).padStart(2,'0');return `${fmt(a)} → ${fmt(b)}`}
-function isNewsBlockingNow(){const mode=$('newsMode')?.value||'auto';if(mode==='red'||mode==='orange')return true;if(mode==='none'||mode==='yellow')return false;const now=new Date();const w=Number($('newsWindow').value)||120;return (newsItems||[]).some(ev=>{const lv=impactLevel(ev.impact);if(lv!=='red'&&lv!=='orange')return false;const d=eventDate(ev);return Math.abs(now-d)<=w*60000})}
-function renderNews(){const rows=(newsItems||[]).map(ev=>`<tr><td>${ev.date||''}</td><td>${ev.time||''}</td><td>${ev.currency||''}</td><td><span class="${impactClass(ev.impact)}">${ev.impact||''}</span></td><td>${ev.title||''}</td><td>${noTradeRange(ev)}</td></tr>`).join('');$('newsBody').innerHTML=rows||'<tr><td colspan="6">ไม่มีข่าวที่เกี่ยวข้อง</td></tr>';updateNewsDecision()}
-function updateNewsDecision(){const mode=$('newsMode')?.value||'auto';let cls='wait',title='WAIT NEWS',msg='กดดึงข่าวก่อนวางแผน';if(mode==='none'){cls='go';title='NEWS OK';msg='ไม่มีข่าวสำคัญตอนนี้'}else if(mode==='red'||mode==='orange'){cls='no';title='NO TRADE';msg='Manual news เป็นแดง/ส้ม ห้ามเข้า'}else if(mode==='yellow'){cls='wait';title='CAUTION';msg='ข่าวเหลือง ลดความเสี่ยงและรอ PA ชัด'}else if(isNewsBlockingNow()){cls='no';title='NO TRADE';msg='อยู่ในช่วงห้ามเข้าข่าวแดง/ส้ม'}else if(newsItems.length){cls='go';title='NEWS OK';msg='ตอนนี้ไม่อยู่ในช่วงห้ามเข้า'}$('newsDecision').className='decision '+cls;$('newsDecision').innerHTML=`<div class="big">${title}</div><div class="muted">${msg}</div>`;$('newsSummary').value=title+' - '+msg}
-async function pullNews(period){$('newsSummary').value='กำลังดึงข่าว...';const r=await cloudApi('fetchNews',{period:period||'today',symbol:$('symbol').value||'XAUUSD',currency:$('newsCurrency').value||'USD'});if(!r.ok){$('newsDecision').className='decision no';$('newsDecision').innerHTML=`<div class="big">NEWS ERROR</div><div class="muted">${r.error||'ดึงข่าวไม่สำเร็จ'}</div>`;$('newsSummary').value='ดึงข่าวไม่สำเร็จ';return}newsItems=r.news||[];$('newsMode').value='auto';renderNews();saveDraft()}
-function markNoNews(){$('newsMode').value='none';newsItems=[];renderNews();saveDraft()}
-function evaluate(){updateNewsDecision();const bias=$('bias').value,dir=$('direction').value;const r=rr();$('maxRR').value=r||'';let status='WAIT',cls='wait',msg='รอเงื่อนไข';if(isNewsBlockingNow()){status='NO TRADE';cls='no';msg='ข่าวแดง/ส้มอยู่ในช่วงห้ามเข้า ห้ามเปิดไม้ใหม่'} else if(bias==='NO TRADE'||dir==='WAIT') {status='WAIT';msg='ยังไม่เลือก Direction หรือ Bias เป็น NO TRADE'} else if(!hasTrigger()){status='WAIT';msg='รอ M15 Trigger ก่อน ห้ามเข้า'} else if(!num('entry')||!num('sl')){status='WAIT';msg='ใส่ Entry / SL ก่อน'} else if(r && r<2){status='WAIT';msg='RR ต่ำกว่า 1:2 ยังไม่ควรเข้า'} else {status='READY';cls='go';msg='ครบเงื่อนไขเบื้องต้น ตรวจข่าวและเข้าได้ตามแผน'}
- $('finalDecision').className='decision '+cls;$('finalDecision').innerHTML=`<div class="big">${status}</div><div class="muted">${msg}</div>`;$('topDecision').className='decision '+cls;$('topDecision').innerHTML=$('finalDecision').innerHTML;if($('status').value==='WAIT'&&status==='READY')$('status').value='READY'}
-function bindEvaluate(){document.querySelectorAll('input,select,textarea').forEach(el=>el.addEventListener('input',()=>{evaluate();saveDraft()}));}
-function switchTab(sec){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.sec===sec));document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id===sec));if(sec==='journal')renderJournal();if(sec==='alerts')loadPriceAlerts(false)}
-document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>switchTab(b.dataset.sec));
-function getForm(){const now=new Date().toISOString();const id=editingId||uuid();return {id,updatedAt:now,createdAt:editingId?undefined:now,tradeDate:$('tradeDate').value,tradeTime:$('tradeTime').value,symbol:$('symbol').value||'XAUUSD',market:$('market').value,direction:$('direction').value,status:$('status').value,strategyName:$('strategyName').value,entry:$('entry').value,sl:$('sl').value,tp1:$('tp1').value,tp2:$('tp2').value,tp3:$('tp3').value,maxRR:$('maxRR').value,resultR:$('resultR').value,decision:$('decision').value,json:'',bias:$('bias').value,h4Reason:$('h4Reason').value,zone:$('zone').value,invalidation:$('invalidation').value,alerts:[$('alert1').value,$('alert2').value,$('alert3').value].filter(Boolean),m15Trigger:{choch:$('trigChoch').checked,pin:$('trigPin').checked,engulf:$('trigEngulf').checked},result:$('result').value,lesson:$('lesson').value,newsMode:$('newsMode').value,newsWindow:$('newsWindow').value,newsCurrency:$('newsCurrency').value,newsSummary:$('newsSummary').value,newsItems:newsItems,charts}}
-function setForm(t){editingId=t.id||'';$('tradeDate').value=t.tradeDate||todayStr();$('tradeTime').value=t.tradeTime||timeStr();$('symbol').value=t.symbol||'XAUUSD';$('market').value=t.market||'Gold';$('direction').value=t.direction||'WAIT';$('status').value=t.status||'WAIT';$('strategyName').value=t.strategyName||'H4 Demand + M15 CHOCH';$('entry').value=t.entry||'';$('sl').value=t.sl||'';$('tp1').value=t.tp1||'';$('tp2').value=t.tp2||'';$('tp3').value=t.tp3||'';$('maxRR').value=t.maxRR||'';$('resultR').value=t.resultR||'';$('decision').value=t.decision||'';$('bias').value=t.bias||'WAIT';$('h4Reason').value=t.h4Reason||'';$('zone').value=t.zone||'';$('invalidation').value=t.invalidation||'';const a=t.alerts||[];$('alert1').value=a[0]||'';$('alert2').value=a[1]||'';$('alert3').value=a[2]||'';$('trigChoch').checked=!!(t.m15Trigger&&t.m15Trigger.choch);$('trigPin').checked=!!(t.m15Trigger&&t.m15Trigger.pin);$('trigEngulf').checked=!!(t.m15Trigger&&t.m15Trigger.engulf);$('result').value=t.result||'ยังไม่ปิด';$('lesson').value=t.lesson||'';$('newsMode').value=t.newsMode||'auto';$('newsWindow').value=t.newsWindow||120;$('newsCurrency').value=t.newsCurrency||'USD';$('newsSummary').value=t.newsSummary||'ยังไม่เช็กข่าว';newsItems=t.newsItems||[];renderNews();charts=t.charts||{d1:'',h4:'',m15:''};renderPreviews();evaluate()}
-function getTrades(){try{return JSON.parse(localStorage.getItem(storeKey)||'[]')}catch(e){return[]}}
-function setTrades(trades){localStorage.setItem(storeKey,JSON.stringify(dedupe(trades)))}
-function dedupe(trades){const m={};(trades||[]).forEach(t=>{if(!t||!t.id)return;const old=m[t.id];if(!old||String(t.updatedAt||'')>=String(old.updatedAt||''))m[t.id]=t});return Object.values(m).sort((a,b)=>String((b.tradeDate||'')+' '+(b.tradeTime||'')).localeCompare(String((a.tradeDate||'')+' '+(a.tradeTime||''))))}
-function saveDraft(){localStorage.setItem(draftKey,JSON.stringify(getForm()))}
-function loadDraft(){const d=localStorage.getItem(draftKey);if(d){try{setForm(JSON.parse(d));return}catch(e){}}setForm({})}
-function savePlanLocal(){evaluate();const t=getForm();const trades=getTrades().filter(x=>x.id!==t.id);trades.push(t);setTrades(trades);editingId=t.id;alert('บันทึกในเครื่องแล้ว');renderJournal()}
-async function savePlanCloud(){savePlanLocal();const t=getForm();const res=await cloudApi('upsertTrades',{trades:[t],mode:'upsert'});setSyncStatus(res.ok?'บันทึกขึ้น Google Sheet แล้ว':'Sync ไม่สำเร็จ: '+res.error,res.ok);if(res.ok)alert('บันทึกขึ้น Google Sheet แล้ว')}
-function clearForm(){if(!confirm('ล้างฟอร์มนี้?'))return;editingId='';charts={d1:'',h4:'',m15:''};localStorage.removeItem(draftKey);setForm({})}
-function renderJournal(){const rows=getTrades().map(t=>`<tr><td>${t.tradeDate||''} ${t.tradeTime||''}</td><td>${t.symbol||''}</td><td>${t.direction||''}</td><td>${t.status||''}</td><td>${t.entry||''}</td><td>${t.sl||''}</td><td>${[t.tp1,t.tp2,t.tp3].filter(Boolean).join(' / ')}</td><td>${(t.decision||'').slice(0,120)}</td><td><button class="ghost" onclick="editTrade('${t.id}')">แก้</button> <button class="danger" onclick="deleteTradeLocal('${t.id}')">ลบ</button></td></tr>`).join('');$('journalBody').innerHTML=rows||'<tr><td colspan="9">ยังไม่มีบันทึก</td></tr>'}
-function editTrade(id){const t=getTrades().find(x=>x.id===id);if(!t)return;setForm(t);switchTab('planner')}
-function deleteTradeLocal(id){if(!confirm('ลบรายการนี้ในเครื่อง?'))return;setTrades(getTrades().filter(t=>t.id!==id));renderJournal()}
-function exportJson(){const blob=new Blob([JSON.stringify(getTrades(),null,2)],{type:'application/json'});downloadBlob(blob,'pa_coach_trades.json')}
-function downloadBlob(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();URL.revokeObjectURL(a.href)}
-function loadChart(e,key){const f=e.target.files&&e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{charts[key]=r.result;renderPreviews();saveDraft()};r.readAsDataURL(f)}
-function renderPreviews(){['d1','h4','m15'].forEach(k=>{const box=$('preview_'+k);box.innerHTML=charts[k]?`<img src="${charts[k]}" onclick="openImg('${k}')">`:''})}
-function openImg(k){$('modalImg').src=charts[k];$('modal').classList.add('active')}
-function telegramText(){const t=getForm();return `📌 PA Coach Plan\n\nSymbol: ${t.symbol}\nBias H4: ${t.bias}\nDirection: ${t.direction}\nStatus: ${t.status}\nNews: ${t.newsSummary||'-'}\n\nเหตุผล H4:\n${t.h4Reason||'-'}\n\nZone: ${t.zone||'-'}\nEntry: ${t.entry||'-'}\nSL: ${t.sl||'-'}\nTP1: ${t.tp1||'-'}\nTP2: ${t.tp2||'-'}\nTP3: ${t.tp3||'-'}\nRR: ${t.maxRR||'-'}\n\nM15 Trigger:\n${t.m15Trigger.choch?'✅':'❌'} CHOCH\n${t.m15Trigger.pin?'✅':'❌'} Pin Bar\n${t.m15Trigger.engulf?'✅':'❌'} Engulf\n\nInvalidation: ${t.invalidation||'-'}\nAlert: ${t.alerts.join(' / ')||'-'}\n\nDecision:\n${t.decision||'-'}`}
-async function copyTelegram(){const text=telegramText();await navigator.clipboard.writeText(text);alert('Copy ข้อความแล้ว')}
-async function sendTelegram(){const res=await cloudApi('telegramAlert',{text:telegramText()});setSyncStatus(res.ok?'ส่ง Telegram แล้ว':'ส่ง Telegram ไม่สำเร็จ: '+res.error,res.ok);if(res.ok)alert('ส่ง Telegram แล้ว')}
-function getSyncSetting(){try{return JSON.parse(localStorage.getItem(syncSettingKey)||'{}')}catch(e){return{}}}
-function saveSyncSetting(){localStorage.setItem(syncSettingKey,JSON.stringify({url:$('syncApiUrl').value.trim(),secret:$('syncSecret').value}));setSyncStatus('บันทึกค่า Sync แล้ว',true)}
-function loadSyncSetting(){const s=getSyncSetting();$('syncApiUrl').value=s.url||'';$('syncSecret').value=s.secret||''}
-function setSyncStatus(msg,ok){$('syncStatus').className='decision '+(ok?'go':'wait');$('syncStatus').textContent=msg}
-async function cloudApi(action,payload={}){const s=getSyncSetting();if(!s.url||!s.secret)return{ok:false,error:'ยังไม่ได้ตั้งค่า Apps Script URL หรือ API Secret'};try{const res=await fetch(s.url,{method:'POST',body:JSON.stringify(Object.assign({action,secret:s.secret},payload))});return await res.json()}catch(e){return{ok:false,error:e.message||String(e)}}}
-async function testCloudSync(){const r=await cloudApi('ping',{});setSyncStatus(r.ok?'เชื่อมต่อสำเร็จ: '+(r.version||''):r.error,r.ok)}
-async function testTelegram(){const r=await cloudApi('telegramTest',{});setSyncStatus(r.ok?'Telegram Test สำเร็จ':r.error,r.ok)}
-async function fixImageSharing(){const r=await cloudApi('fixImageSharing',{});setSyncStatus(r.ok?'ซ่อมสิทธิ์รูปแล้ว: '+(r.fixed||0):r.error,r.ok)}
-async function loadCloudTrades(mode){const r=await cloudApi('listTrades',{});if(!r.ok){setSyncStatus(r.error,false);return}const cloud=r.trades||[];setTrades(mode==='REPLACE'?cloud:dedupe(getTrades().concat(cloud)));setSyncStatus('โหลดจาก Sheet แล้ว '+cloud.length+' รายการ',true);renderJournal()}
+const storeKey='paJournalV412';
+const syncKey='paSyncSettingV33';
+let newsRows=[];
+let trades=[];
 let priceAlerts=[];
-async function loadPriceAlerts(show=true){const r=await cloudApi('listPriceAlerts',{});if(!r.ok){if(show)$('alertStatus').textContent=r.error;renderPriceAlerts();return}priceAlerts=r.alerts||[];$('alertStatus').className='decision go';$('alertStatus').textContent='โหลด Alerts แล้ว '+priceAlerts.length+' รายการ';renderPriceAlerts()}
-function renderPriceAlerts(){const rows=(priceAlerts||[]).map(a=>`<tr><td>${a.symbol||''}</td><td>${a.condition==='lte'?'≤':'≥'}</td><td>${a.targetPrice||''}</td><td>${a.status||''}</td><td>${a.message||''}</td><td><button class="danger" onclick="deletePriceAlert('${a.id}')">ลบ</button></td></tr>`).join('');$('priceAlertBody').innerHTML=rows||'<tr><td colspan="6">ยังไม่มี Alert</td></tr>'}
-async function addPriceAlert(){const alert={symbol:$('alertSymbol').value,apiSymbol:$('alertApiSymbol').value,market:$('alertMarket').value,timeframe:$('alertTimeframe').value,condition:$('alertCondition').value,targetPrice:$('alertTargetPrice').value,message:$('alertMessage').value,status:'ACTIVE'};const r=await cloudApi('upsertPriceAlert',{alert});$('alertStatus').className='decision '+(r.ok?'go':'wait');$('alertStatus').textContent=r.ok?'เพิ่ม Alert แล้ว':r.error;if(r.ok)loadPriceAlerts(false)}
-async function deletePriceAlert(id){if(!confirm('ลบ Alert?'))return;const r=await cloudApi('deletePriceAlert',{id});$('alertStatus').textContent=r.ok?'ลบแล้ว':r.error;loadPriceAlerts(false)}
-async function checkPriceAlertsNow(){const r=await cloudApi('checkPriceAlerts',{});$('alertStatus').className='decision '+(r.ok?'go':'wait');$('alertStatus').textContent=r.ok?'เช็กราคาแล้ว Triggered: '+(r.triggered||0):r.error;loadPriceAlerts(false)}
-async function setupPriceAlertTrigger(){const r=await cloudApi('setupPriceAlertTrigger',{});$('alertStatus').className='decision '+(r.ok?'go':'wait');$('alertStatus').textContent=r.ok?'ตั้ง Trigger แล้ว':r.error}
-window.addEventListener('DOMContentLoaded',()=>{loadSyncSetting();loadDraft();bindEvaluate();evaluate();renderJournal();});
+
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));$(b.dataset.sec).classList.add('active');});
+function nowDate(){const d=new Date();return d.toISOString().slice(0,10)}
+function nowTime(){const d=new Date();return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}
+function uid(){return 'pa_'+Date.now()+'_'+Math.random().toString(16).slice(2)}
+function init(){trades=JSON.parse(localStorage.getItem(storeKey)||'[]');const s=JSON.parse(localStorage.getItem(syncKey)||'{}');$('syncApiUrl').value=s.url||'';$('syncSecret').value=s.secret||'';$('tradeDate').value=nowDate();$('tradeTime').value=nowTime();$('tradeId').value=uid();bindCalc();renderJournal();}
+function bindCalc(){['entry','sl','tp1','tp2','tp3','direction','bias','status','manualNews','choch','pin','engulf'].forEach(id=>$(id).addEventListener('input',evaluate));['choch','pin','engulf'].forEach(id=>$(id).addEventListener('change',evaluate));}
+function getSync(){return JSON.parse(localStorage.getItem(syncKey)||'{}')}
+function saveSyncSetting(){localStorage.setItem(syncKey,JSON.stringify({url:$('syncApiUrl').value.trim(),secret:$('syncSecret').value.trim()}));setSync('บันทึก Sync แล้ว',true)}
+async function cloudApi(action,payload={}){const s=getSync();if(!s.url||!s.secret)throw new Error('ยังไม่ได้ตั้งค่า Apps Script URL / Secret');const res=await fetch(s.url,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(Object.assign({action,secret:s.secret},payload))});return await res.json();}
+function setSync(msg,ok){$('syncStatus').className='decision '+(ok?'go':'no');$('syncStatus').innerHTML=msg}
+function setAlertStatus(msg,ok){$('alertStatus').className='decision '+(ok?'go':'no');$('alertStatus').innerHTML=msg}
+
+function impactClass(x){x=String(x||'').toLowerCase();if(x.includes('red')||x==='high')return 'red';if(x.includes('orange')||x==='medium')return 'orange';return 'green'}
+function noTradeRange(date,time){const win=Number($('newsWindow').value||120);const dt=new Date(date+'T'+time+':00+07:00');if(isNaN(dt))return '';const a=new Date(dt.getTime()-win*60000),b=new Date(dt.getTime()+win*60000);return a.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'})+' → '+b.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'})}
+function renderNews(){const body=$('newsBody');body.innerHTML='';newsRows.forEach((n,i)=>{body.innerHTML+=`<tr><td>${n.date||''}</td><td>${n.time||''}</td><td>${n.currency||''}</td><td><span class="pill ${impactClass(n.impact)}">${n.impact||''}</span></td><td>${noTradeRange(n.date,n.time)}</td><td>${n.title||''}</td><td><button class="danger" onclick="newsRows.splice(${i},1);renderNews()">ลบ</button></td></tr>`});evaluateNews();}
+function evaluateNews(){const manual=$('manualNews').value;const bad=manual==='red'||manual==='orange'||newsRows.some(n=>['red','orange','high','medium'].includes(String(n.impact||'').toLowerCase()));$('newsDecision').className='decision '+(bad?'no':'go');$('newsDecision').innerHTML=bad?'<div class="big">NO TRADE ใกล้ข่าวแดง/ส้ม</div>ถ้าจะเทรด ต้องรอข่าวผ่านและตลาดนิ่งก่อน':'<div class="big">ข่าวผ่าน</div>ไม่มีข่าวแดง/ส้มในรายการที่ดึงมา';evaluate();}
+async function pullNews(period){try{$('newsDecision').innerHTML='กำลังดึงข่าว...';const r=await cloudApi('fetchNews',{period,symbol:$('symbol').value,currency:$('newsCurrency').value});if(!r.ok)throw new Error(r.error||'fetchNews failed');newsRows=r.news||[];renderNews();}catch(e){$('newsDecision').className='decision no';$('newsDecision').innerHTML='ดึงข่าวไม่ได้: '+e.message}}
+function addManualNews(){newsRows.push({date:nowDate(),time:nowTime(),currency:$('newsCurrency').value,impact:$('manualNews').value==='none'?'yellow':$('manualNews').value,title:'Manual News'});renderNews();}
+
+function calcRR(){const entry=Number($('entry').value),sl=Number($('sl').value),dir=$('direction').value;const tps=['tp1','tp2','tp3'].map(id=>Number($(id).value)).filter(x=>isFinite(x));if(!isFinite(entry)||!isFinite(sl)||entry===sl||!tps.length){$('maxRR').value='';return 0}const risk=Math.abs(entry-sl);const rr=Math.max(...tps.map(tp=>Math.abs(tp-entry)/risk));$('maxRR').value=(Math.round(rr*100)/100);return rr}
+function evaluate(){const rr=calcRR();const newsBad=$('newsDecision').className.includes('no');const trigger=$('choch').checked||$('pin').checked||$('engulf').checked;let msg='WAIT',cls='decision';if(newsBad){msg='NO TRADE: ชนข่าว';cls='decision no'}else if(rr<2){msg='WAIT: RR ยังไม่ถึง 1:2';cls='decision'}else if(!trigger){msg='WAIT: รอ M15 Trigger';cls='decision'}else{msg='READY: เข้าได้ตามแผน';cls='decision go'}$('rrBox').className=rr>=2?'decision go':'decision';$('rrBox').innerHTML=`<div class="big">RR ${rr?rr.toFixed(2):'ยังไม่ครบ'}</div>`;$('finalDecision').className=cls;$('finalDecision').innerHTML='<div class="big">'+msg+'</div>'}
+
+function collectTrade(){const t={id:$('tradeId').value||uid(),updatedAt:new Date().toISOString(),createdAt:new Date().toISOString(),tradeDate:$('tradeDate').value,tradeTime:$('tradeTime').value,symbol:$('symbol').value||'XAUUSD',market:$('market').value,direction:$('direction').value,status:$('status').value,strategyName:'Simple H4 Bias + News Guard + M15 Trigger',entry:$('entry').value,sl:$('sl').value,tp1:$('tp1').value,tp2:$('tp2').value,tp3:$('tp3').value,maxRR:$('maxRR').value,resultR:$('resultR').value,decision:$('finalDecision').innerText,json:''};
+t.simple={bias:$('bias').value,zone:$('zone').value,h4Plan:$('h4Plan').value,choch:$('choch').checked,pin:$('pin').checked,engulf:$('engulf').checked,result:$('result').value,lesson:$('lesson').value,news:newsRows};return t}
+function loadTrade(t){$('tradeId').value=t.id;$('tradeDate').value=t.tradeDate||nowDate();$('tradeTime').value=t.tradeTime||nowTime();$('symbol').value=t.symbol||'XAUUSD';$('market').value=t.market||'Gold';$('direction').value=t.direction||'WAIT';$('status').value=t.status||'WAIT';$('entry').value=t.entry||'';$('sl').value=t.sl||'';$('tp1').value=t.tp1||'';$('tp2').value=t.tp2||'';$('tp3').value=t.tp3||'';$('resultR').value=t.resultR||'';const s=t.simple||{};$('bias').value=s.bias||'WAIT';$('zone').value=s.zone||'';$('h4Plan').value=s.h4Plan||'';$('choch').checked=!!s.choch;$('pin').checked=!!s.pin;$('engulf').checked=!!s.engulf;$('result').value=s.result||'ยังไม่ปิด';$('lesson').value=s.lesson||'';newsRows=s.news||[];renderNews();evaluate();}
+function saveLocal(){const t=collectTrade();const idx=trades.findIndex(x=>x.id===t.id);if(idx>=0)trades[idx]=t;else trades.unshift(t);localStorage.setItem(storeKey,JSON.stringify(trades));renderJournal();alert('บันทึกในเครื่องแล้ว')}
+async function saveAndUpload(){try{saveLocal();const t=collectTrade();const r=await cloudApi('upsertTrades',{trades:[t],mode:'upsert'});if(!r.ok)throw new Error(r.error);setSync('ส่งขึ้น Sheet แล้ว: '+(r.count||1)+' รายการ',true)}catch(e){setSync('ส่งขึ้น Sheet ไม่ได้: '+e.message,false)}}
+async function uploadAllToSheet(){try{const r=await cloudApi('upsertTrades',{trades,mode:'upsert'});if(!r.ok)throw new Error(r.error);setSync('ส่งข้อมูลทั้งหมดขึ้น Sheet แล้ว: '+r.count+' รายการ',true)}catch(e){setSync('ส่งขึ้น Sheet ไม่ได้: '+e.message,false)}}
+async function loadFromSheet(){try{const r=await cloudApi('listTrades',{});if(!r.ok)throw new Error(r.error);trades=r.trades||[];localStorage.setItem(storeKey,JSON.stringify(trades));renderJournal();setSync('โหลดจาก Sheet แล้ว '+trades.length+' รายการ',true)}catch(e){setSync('โหลดไม่ได้: '+e.message,false)}}
+async function deleteSelectedFromSheet(){const id=$('tradeId').value;if(!id)return alert('ไม่มี Trade ID');if(!confirm('ลบแผนนี้จาก Sheet และในเครื่อง?'))return;try{await cloudApi('deleteTrade',{id});trades=trades.filter(t=>t.id!==id);localStorage.setItem(storeKey,JSON.stringify(trades));renderJournal();newPlan();setSync('ลบจาก Sheet แล้ว',true)}catch(e){setSync('ลบไม่ได้: '+e.message,false)}}
+function renderJournal(){const body=$('journalBody');body.innerHTML='';trades.forEach((t,i)=>{body.innerHTML+=`<tr><td>${t.tradeDate||''} ${t.tradeTime||''}</td><td>${t.symbol||''}</td><td>${t.direction||''}</td><td>${t.status||''}</td><td>${t.entry||''}</td><td>${t.sl||''}</td><td>${t.tp1||''}/${t.tp2||''}/${t.tp3||''}</td><td>${t.decision||''}</td><td><button class="ghost" onclick='loadTrade(trades[${i}])'>เปิด</button><button class="danger" onclick='deleteLocal("${t.id}")'>ลบในเครื่อง</button></td></tr>`})}
+function deleteLocal(id){if(confirm('ลบในเครื่องเท่านั้น?')){trades=trades.filter(t=>t.id!==id);localStorage.setItem(storeKey,JSON.stringify(trades));renderJournal()}}
+function newPlan(){['entry','sl','tp1','tp2','tp3','zone','h4Plan','resultR','lesson'].forEach(id=>$(id).value='');$('tradeDate').value=nowDate();$('tradeTime').value=nowTime();$('tradeId').value=uid();$('status').value='WAIT';$('direction').value='WAIT';$('bias').value='WAIT';$('choch').checked=$('pin').checked=$('engulf').checked=false;newsRows=[];renderNews();evaluate();}
+function copyTelegram(){const t=collectTrade();const text=`📌 PA Coach Plan\n\nSymbol: ${t.symbol}\nBias: ${t.simple.bias}\nDirection: ${t.direction}\nStatus: ${t.status}\n\nZone: ${t.simple.zone}\nEntry: ${t.entry}\nSL: ${t.sl}\nTP1: ${t.tp1}\nTP2: ${t.tp2}\nTP3: ${t.tp3}\nRR: ${t.maxRR}\n\nM15 Trigger:\n${t.simple.choch?'✅':'❌'} CHOCH\n${t.simple.pin?'✅':'❌'} Pin Bar\n${t.simple.engulf?'✅':'❌'} Engulf\n\nDecision:\n${t.decision}\n\nPlan:\n${t.simple.h4Plan}`;navigator.clipboard.writeText(text);alert('Copy แล้ว')}
+
+async function testSync(){try{const r=await cloudApi('ping',{});setSync(r.ok?'เชื่อมต่อสำเร็จ '+r.version:r.error,!!r.ok)}catch(e){setSync(e.message,false)}}
+async function testTelegram(){try{const r=await cloudApi('telegramTest',{});setSync(r.ok?'ส่ง Telegram Test แล้ว':r.error,!!r.ok)}catch(e){setSync(e.message,false)}}
+async function addPriceAlert(){try{const alert={id:'alert_'+Date.now(),symbol:$('alertSymbol').value,apiSymbol:$('alertApiSymbol').value,market:$('alertMarket').value,timeframe:$('alertTimeframe').value,condition:$('alertCondition').value,targetPrice:$('alertTargetPrice').value,message:$('alertMessage').value,status:'ACTIVE'};const r=await cloudApi('upsertPriceAlert',{alert});if(!r.ok)throw new Error(r.error);setAlertStatus('เพิ่ม Alert แล้ว',true);loadPriceAlerts()}catch(e){setAlertStatus('เพิ่ม Alert ไม่ได้: '+e.message,false)}}
+async function loadPriceAlerts(){try{const r=await cloudApi('listPriceAlerts',{});if(!r.ok)throw new Error(r.error);priceAlerts=r.alerts||[];renderPriceAlerts();setAlertStatus('โหลด Alerts แล้ว '+priceAlerts.length+' รายการ',true)}catch(e){setAlertStatus('โหลด Alert ไม่ได้: '+e.message,false)}}
+function renderPriceAlerts(){const body=$('priceAlertBody');body.innerHTML='';priceAlerts.forEach(a=>{body.innerHTML+=`<tr><td>${a.symbol||''}</td><td>${a.condition==='lte'?'≤':'≥'}</td><td>${a.targetPrice||''}</td><td>${a.currentPrice||''}</td><td>${a.status||''}</td><td>${a.message||''}</td><td><button class="danger" onclick='deletePriceAlert("${a.id}")'>ลบ</button></td></tr>`})}
+async function deletePriceAlert(id){try{const r=await cloudApi('deletePriceAlert',{id});if(!r.ok)throw new Error(r.error);loadPriceAlerts()}catch(e){setAlertStatus('ลบ Alert ไม่ได้: '+e.message,false)}}
+async function checkPriceAlerts(){try{const r=await cloudApi('checkPriceAlerts',{});if(!r.ok)throw new Error(r.error);setAlertStatus('เช็กราคาแล้ว',true);loadPriceAlerts()}catch(e){setAlertStatus('เช็กราคาไม่ได้: '+e.message,false)}}
+async function setupAlertTrigger(){try{const r=await cloudApi('setupPriceAlertTrigger',{});setAlertStatus(r.ok?'ตั้ง Trigger แล้ว':r.error,!!r.ok)}catch(e){setAlertStatus(e.message,false)}}
+init();
 </script>
 </body>
 </html>
