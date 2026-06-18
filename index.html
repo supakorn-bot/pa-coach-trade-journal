@@ -3,16 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PA Coach v4.1.4 Simple + News + Sheet + Images</title>
+<title>PA Coach v4.1.6 Simple + News + Sheet + Images</title>
 <style>
 :root{--bg:#07101f;--panel:#111c31;--panel2:#17243e;--line:#2b3b5f;--text:#eef6ff;--muted:#9fb2cf;--blue:#38bdf8;--violet:#a78bfa;--ok:#22c55e;--warn:#f59e0b;--bad:#ef4444}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 8% 0%,rgba(56,189,248,.18),transparent 34%),var(--bg);color:var(--text);font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif}.wrap{max-width:1180px;margin:auto;padding:16px}.card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);border:1px solid rgba(255,255,255,.10);border-radius:18px;padding:16px;margin-bottom:14px}h1,h2,h3{margin:0 0 10px}p{color:var(--muted);line-height:1.6}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:10px}.c12{grid-column:span 12}.c8{grid-column:span 8}.c6{grid-column:span 6}.c4{grid-column:span 4}.c3{grid-column:span 3}.c2{grid-column:span 2}label{display:block;font-size:13px;margin:8px 0 5px;color:#d9e7fb}input,select,textarea{width:100%;background:#0c172a;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:10px;font-family:inherit;font-size:14px}textarea{min-height:78px;resize:vertical}button{font-family:inherit;font-weight:800;border:0;border-radius:12px;padding:10px 13px;cursor:pointer;margin:4px}.primary{background:linear-gradient(90deg,#38bdf8,#a78bfa);color:#06111e}.ok{background:rgba(34,197,94,.18);color:#bbf7d0;border:1px solid rgba(34,197,94,.38)}.warn{background:rgba(245,158,11,.17);color:#fed7aa;border:1px solid rgba(245,158,11,.38)}.danger{background:rgba(239,68,68,.18);color:#fecaca;border:1px solid rgba(239,68,68,.38)}.ghost{background:rgba(255,255,255,.07);color:var(--text);border:1px solid rgba(255,255,255,.13)}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.tab.active{background:linear-gradient(90deg,rgba(56,189,248,.28),rgba(167,139,250,.24));border-color:rgba(56,189,248,.50)}.section{display:none}.section.active{display:block}.badge{display:inline-flex;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.06);padding:7px 10px;border-radius:999px;font-size:13px;margin:4px}.decision{border-radius:14px;padding:12px;border:1px solid rgba(245,158,11,.45);background:rgba(245,158,11,.12)}.decision.go{border-color:rgba(34,197,94,.55);background:rgba(34,197,94,.12)}.decision.no{border-color:rgba(239,68,68,.55);background:rgba(239,68,68,.12)}.big{font-size:24px;font-weight:900}.small{font-size:12px;color:var(--muted)}table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255,255,255,.08);padding:9px;text-align:left;font-size:13px}th{background:rgba(255,255,255,.055)}.tablewrap{overflow:auto;margin-top:10px;border:1px solid rgba(255,255,255,.08);border-radius:14px;max-height:440px}.checkline{display:flex;gap:10px;align-items:center;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);border-radius:12px;padding:10px}.checkline input{width:auto}.footer{text-align:center;color:var(--muted);font-size:12px;padding:18px}.pill{border-radius:999px;padding:4px 8px;border:1px solid rgba(255,255,255,.15);white-space:nowrap}.preview{border:1px dashed rgba(255,255,255,.22);border-radius:14px;min-height:120px;padding:8px;background:#0c1629}.preview img{width:100%;max-height:180px;object-fit:contain;border-radius:10px}.thumb{width:72px;max-height:48px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,.16);margin:2px;cursor:pointer}.red{color:#fecaca;background:rgba(239,68,68,.15)}.orange{color:#fed7aa;background:rgba(245,158,11,.15)}.green{color:#bbf7d0;background:rgba(34,197,94,.12)}@media(max-width:800px){.c8,.c6,.c4,.c3,.c2{grid-column:span 12}}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:99;padding:14px}.modal.active{display:flex}.modal img{max-width:96vw;max-height:88vh;object-fit:contain;border-radius:12px;background:#000}.modal .close{position:fixed;right:18px;top:18px}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="card">
-    <h1>PA Coach Web App v4.1.4 Simple</h1>
+    <h1>PA Coach Web App v4.1.6 Simple</h1>
     <p>Simple Workflow + News Guard + Google Sheet Sync + Delete Sheet + Price Alerts + Chart Images</p>
     <span class="badge">News Guard</span><span class="badge">Google Sheet Sync</span><span class="badge">Delete Sheet</span><span class="badge">Price Alerts</span><span class="badge">Chart Images</span>
   </div>
@@ -153,15 +154,17 @@
         <div class="c12">
           <button class="primary" onclick="saveSyncSetting()">บันทึกค่า Sync</button>
           <button class="ghost" onclick="testSync()">ทดสอบ Sync</button>
-          <button class="ghost" onclick="testTelegram()">ทดสอบ Telegram</button>
+          <button class="ghost" onclick="testTelegram()">ทดสอบ Telegram</button><button class="ghost" onclick="fixImageSharing()">ซ่อมสิทธิ์รูป Drive</button>
         </div>
       </div>
       <p class="small">Code.gs ใช้ตัวเดิม v4.0.1 ได้ เพราะรองรับ listTrades / upsertTrades / deleteTrade / fetchNews / price alerts แล้ว</p>
     </div>
   </section>
 
-  <div class="footer">PA Coach Web App v4.1.4</div>
+  <div class="footer">PA Coach Web App v4.1.6</div>
 </div>
+
+<div id="imgModal" class="modal" onclick="closeImageModal()"><button class="ghost close" onclick="closeImageModal()">ปิด</button><img id="imgModalPic"></div>
 
 <script>
 const $=id=>document.getElementById(id);
@@ -195,18 +198,73 @@ function addManualNews(){newsRows.push({date:nowDate(),time:nowTime(),currency:$
 function calcRR(){const entry=Number($('entry').value),sl=Number($('sl').value),dir=$('direction').value;const tps=['tp1','tp2','tp3'].map(id=>Number($(id).value)).filter(x=>isFinite(x));if(!isFinite(entry)||!isFinite(sl)||entry===sl||!tps.length){$('maxRR').value='';return 0}const risk=Math.abs(entry-sl);const rr=Math.max(...tps.map(tp=>Math.abs(tp-entry)/risk));$('maxRR').value=(Math.round(rr*100)/100);return rr}
 function evaluate(){const rr=calcRR();const newsBad=$('newsDecision').className.includes('no');const trigger=$('choch').checked||$('pin').checked||$('engulf').checked;let msg='WAIT',cls='decision';if(newsBad){msg='NO TRADE: ชนข่าว';cls='decision no'}else if(rr<2){msg='WAIT: RR ยังไม่ถึง 1:2';cls='decision'}else if(!trigger){msg='WAIT: รอ M15 Trigger';cls='decision'}else{msg='READY: เข้าได้ตามแผน';cls='decision go'}$('rrBox').className=rr>=2?'decision go':'decision';$('rrBox').innerHTML=`<div class="big">RR ${rr?rr.toFixed(2):'ยังไม่ครบ'}</div>`;$('finalDecision').className=cls;$('finalDecision').innerHTML='<div class="big">'+msg+'</div>'}
 
-function loadChart(ev,key){const f=ev.target.files&&ev.target.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{charts[key]=e.target.result;renderChartPreviews();};r.readAsDataURL(f)}
-function renderChartPreviews(){["w1","d1","h4","m15"].forEach(k=>{const el=$("preview_"+k);if(!el)return;el.innerHTML=charts[k]?`<img src="${charts[k]}" onclick="window.open(this.src,'_blank')">`:""})}
-function imageCount(t){const c=t&&t.charts?t.charts:{};return [c.w1,c.d1,c.h4,c.m15].filter(Boolean).length}
-function imageThumbs(t){const c=t&&t.charts?t.charts:{};return ["w1","d1","h4","m15"].map(k=>c[k]?`<img class="thumb" title="${k.toUpperCase()}" src="${c[k]}" onclick="window.open(this.src,'_blank')">`:"").join("")}
-function collectTrade(){const t={id:$('tradeId').value||uid(),updatedAt:new Date().toISOString(),createdAt:new Date().toISOString(),tradeDate:$('tradeDate').value,tradeTime:$('tradeTime').value,symbol:$('symbol').value||'XAUUSD',market:$('market').value,direction:$('direction').value,status:$('status').value,strategyName:'Simple H4 Bias + News Guard + M15 Trigger',entry:$('entry').value,sl:$('sl').value,tp1:$('tp1').value,tp2:$('tp2').value,tp3:$('tp3').value,maxRR:$('maxRR').value,resultR:$('resultR').value,decision:$('finalDecision').innerText,json:''};
+function fileToCompressedDataUrl(file,maxW=1600,quality=.82){
+ return new Promise((resolve,reject)=>{
+  const reader=new FileReader();
+  reader.onerror=()=>reject(new Error('อ่านไฟล์รูปไม่ได้'));
+  reader.onload=()=>{
+   const img=new Image();
+   img.onerror=()=>resolve(reader.result); // fallback ใช้ original ถ้า browser resize ไม่ได้
+   img.onload=()=>{
+    const scale=Math.min(1,maxW/img.width);
+    const w=Math.round(img.width*scale), h=Math.round(img.height*scale);
+    const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
+    const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,w,h);
+    resolve(canvas.toDataURL('image/jpeg',quality));
+   };
+   img.src=reader.result;
+  };
+  reader.readAsDataURL(file);
+ });
+}
+async function loadChart(ev,key){
+ const f=ev.target.files&&ev.target.files[0];if(!f)return;
+ try{
+  $("preview_"+key).innerHTML='กำลังโหลดรูป...';
+  charts[key]=await fileToCompressedDataUrl(f,1600,.82);
+  renderChartPreviews();
+ }catch(e){alert('โหลดรูปไม่ได้: '+e.message)}
+}
+function imgSrc(v){return (typeof v==='object'?(v.thumbnailUrl||v.url||v.src||v.fileUrl||v.webViewLink||''):String(v||''));}
+function escapeAttr(s){return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')}
+function renderChartPreviews(){["w1","d1","h4","m15"].forEach(k=>{const el=$("preview_"+k);if(!el)return;const src=imgSrc(charts[k]);el.innerHTML=src?`<img src="${escapeAttr(src)}" data-src="${escapeAttr(src)}" referrerpolicy="no-referrer" onclick="openImageModal(this.src)" onerror="handleImgError(this)">`:""})}
+async function handleImgError(img){
+ const src=img.dataset.src||img.src;
+ if(img.dataset.retry==='1'){img.parentNode.innerHTML='รูปไม่แสดง — กด “ซ่อมสิทธิ์รูป Drive” หรือแนบรูปใหม่';return}
+ img.dataset.retry='1';
+ if(src.indexOf('drive.google.com')>-1){
+  try{
+   const r=await cloudApi('getImageData',{url:src});
+   if(r.ok&&r.dataUrl){img.src=r.dataUrl;return}
+  }catch(e){}
+ }
+ img.parentNode.innerHTML='รูปไม่แสดง — กด “ซ่อมสิทธิ์รูป Drive” หรือแนบรูปใหม่';
+}
+function openImageModal(src){$("imgModalPic").src=src;$("imgModal").classList.add('active')}
+function closeImageModal(){$("imgModal").classList.remove('active');$("imgModalPic").src=''}
+function imageCount(t){const c=t&&t.charts?t.charts:{};return [c.w1,c.d1,c.h4,c.m15].map(imgSrc).filter(Boolean).length}
+function imageThumbs(t){const c=t&&t.charts?t.charts:{};return ["w1","d1","h4","m15"].map(k=>{const src=imgSrc(c[k]);return src?`<img class="thumb" title="${k.toUpperCase()}" src="${escapeAttr(src)}" data-src="${escapeAttr(src)}" referrerpolicy="no-referrer" onclick="openImageModal(this.src)" onerror="handleThumbError(this)">`:""}).join("")}
+async function handleThumbError(img){
+ const src=img.dataset.src||img.src;
+ if(img.dataset.retry==='1'){img.style.display='none';return}
+ img.dataset.retry='1';
+ if(src.indexOf('drive.google.com')>-1){
+  try{
+   const r=await cloudApi('getImageData',{url:src});
+   if(r.ok&&r.dataUrl){img.src=r.dataUrl;return}
+  }catch(e){}
+ }
+ img.style.display='none';
+}
+function replaceLocalTrade(t){const idx=trades.findIndex(x=>x.id===t.id);if(idx>=0)trades[idx]=t;else trades.unshift(t);localStorage.setItem(storeKey,JSON.stringify(trades));renderJournal();}
+function collectTrade(){const existing=trades.find(x=>x.id===$('tradeId').value);const t={id:$('tradeId').value||uid(),updatedAt:new Date().toISOString(),createdAt:(existing&&existing.createdAt)||new Date().toISOString(),tradeDate:$('tradeDate').value,tradeTime:$('tradeTime').value,symbol:$('symbol').value||'XAUUSD',market:$('market').value,direction:$('direction').value,status:$('status').value,strategyName:'Simple H4 Bias + News Guard + M15 Trigger',entry:$('entry').value,sl:$('sl').value,tp1:$('tp1').value,tp2:$('tp2').value,tp3:$('tp3').value,maxRR:$('maxRR').value,resultR:$('resultR').value,decision:$('finalDecision').innerText,json:''};
 t.charts=charts;
 t.simple={bias:$('bias').value,zone:$('zone').value,h4Plan:$('h4Plan').value,choch:$('choch').checked,pin:$('pin').checked,engulf:$('engulf').checked,result:$('result').value,lesson:$('lesson').value,news:newsRows};return t}
 function loadTrade(t){switchTab('planner');$('tradeId').value=t.id;$('tradeDate').value=t.tradeDate||nowDate();$('tradeTime').value=t.tradeTime||nowTime();$('symbol').value=t.symbol||'XAUUSD';$('market').value=t.market||'Gold';$('direction').value=t.direction||'WAIT';$('status').value=t.status||'WAIT';$('entry').value=t.entry||'';$('sl').value=t.sl||'';$('tp1').value=t.tp1||'';$('tp2').value=t.tp2||'';$('tp3').value=t.tp3||'';$('resultR').value=t.resultR||'';const s=t.simple||{};$('bias').value=s.bias||'WAIT';$('zone').value=s.zone||'';$('h4Plan').value=s.h4Plan||'';$('choch').checked=!!s.choch;$('pin').checked=!!s.pin;$('engulf').checked=!!s.engulf;$('result').value=s.result||'ยังไม่ปิด';$('lesson').value=s.lesson||'';newsRows=s.news||[];charts=t.charts||{w1:"",d1:"",h4:"",m15:""};renderChartPreviews();renderNews();evaluate();setSync('เปิดแผนเพื่อแก้ไขแล้ว: '+(t.symbol||''),true);}
 function saveLocal(){const t=collectTrade();const idx=trades.findIndex(x=>x.id===t.id);if(idx>=0)trades[idx]=t;else trades.unshift(t);localStorage.setItem(storeKey,JSON.stringify(trades));renderJournal();alert('บันทึกในเครื่องแล้ว')}
-async function saveAndUpload(){try{saveLocal();const t=collectTrade();const r=await cloudApi('upsertTrades',{trades:[t],mode:'upsert'});if(!r.ok)throw new Error(r.error);setSync('ส่งขึ้น Sheet แล้ว: '+(r.count||1)+' รายการ',true)}catch(e){setSync('ส่งขึ้น Sheet ไม่ได้: '+e.message,false)}}
-async function uploadAllToSheet(){try{const r=await cloudApi('upsertTrades',{trades,mode:'upsert'});if(!r.ok)throw new Error(r.error);setSync('ส่งข้อมูลทั้งหมดขึ้น Sheet แล้ว: '+r.count+' รายการ',true)}catch(e){setSync('ส่งขึ้น Sheet ไม่ได้: '+e.message,false)}}
-async function loadFromSheet(){try{const r=await cloudApi('listTrades',{});if(!r.ok)throw new Error(r.error);trades=r.trades||[];localStorage.setItem(storeKey,JSON.stringify(trades));renderJournal();setSync('โหลดจาก Sheet แล้ว '+trades.length+' รายการ',true)}catch(e){setSync('โหลดไม่ได้: '+e.message,false)}}
+async function saveAndUpload(){try{const t=collectTrade();replaceLocalTrade(t);const r=await cloudApi('upsertTrades',{trades:[t],mode:'upsert'});if(!r.ok)throw new Error(r.error);if(r.trades&&r.trades[0]){replaceLocalTrade(r.trades[0]);charts=r.trades[0].charts||charts;renderChartPreviews();}setSync('ส่งขึ้น Sheet แล้ว: '+(r.count||1)+' รายการ และอัปเดตรูปจาก Drive แล้ว',true)}catch(e){setSync('ส่งขึ้น Sheet ไม่ได้: '+e.message,false)}}
+async function uploadAllToSheet(){try{const r=await cloudApi('upsertTrades',{trades,mode:'upsert'});if(!r.ok)throw new Error(r.error);if(r.trades){trades=r.trades;localStorage.setItem(storeKey,JSON.stringify(trades));renderJournal();}setSync('ส่งข้อมูลทั้งหมดขึ้น Sheet แล้ว: '+r.count+' รายการ',true)}catch(e){setSync('ส่งขึ้น Sheet ไม่ได้: '+e.message,false)}}
+async function loadFromSheet(){try{const r=await cloudApi('listTrades',{});if(!r.ok)throw new Error(r.error);trades=(r.trades||[]).map(t=>Object.assign({charts:{}},t));localStorage.setItem(storeKey,JSON.stringify(trades));renderJournal();setSync('โหลดจาก Sheet แล้ว '+trades.length+' รายการ',true)}catch(e){setSync('โหลดไม่ได้: '+e.message,false)}}
 async function deleteSelectedFromSheet(){const id=$('tradeId').value;if(!id)return alert('ไม่มี Trade ID');if(!confirm('ลบแผนนี้จาก Sheet และในเครื่อง?'))return;try{await cloudApi('deleteTrade',{id});trades=trades.filter(t=>t.id!==id);localStorage.setItem(storeKey,JSON.stringify(trades));renderJournal();newPlan();setSync('ลบจาก Sheet แล้ว',true)}catch(e){setSync('ลบไม่ได้: '+e.message,false)}}
 function renderJournal(){const body=$('journalBody');body.innerHTML='';trades.forEach((t,i)=>{body.innerHTML+=`<tr><td>${t.tradeDate||''} ${t.tradeTime||''}</td><td>${t.symbol||''}</td><td>${t.direction||''}</td><td>${t.status||''}</td><td>${t.entry||''}</td><td>${t.sl||''}</td><td>${t.tp1||''}/${t.tp2||''}/${t.tp3||''}</td><td>${t.decision||''}</td><td>${imageThumbs(t)||imageCount(t)}</td><td><button class="ghost" onclick='loadTrade(trades[${i}])'>เปิดแก้ไข</button><button class="danger" onclick='deleteLocal("${t.id}")'>ลบในเครื่อง</button></td></tr>`})}
 function deleteLocal(id){if(confirm('ลบในเครื่องเท่านั้น?')){trades=trades.filter(t=>t.id!==id);localStorage.setItem(storeKey,JSON.stringify(trades));renderJournal()}}
@@ -215,6 +273,7 @@ function copyTelegram(){const t=collectTrade();const text=`📌 PA Coach Plan\n\
 
 async function testSync(){try{const r=await cloudApi('ping',{});setSync(r.ok?'เชื่อมต่อสำเร็จ '+r.version:r.error,!!r.ok)}catch(e){setSync(e.message,false)}}
 async function testTelegram(){try{const r=await cloudApi('telegramTest',{});setSync(r.ok?'ส่ง Telegram Test แล้ว':r.error,!!r.ok)}catch(e){setSync(e.message,false)}}
+async function fixImageSharing(){try{const r=await cloudApi('fixImageSharing',{});setSync(r.ok?'ซ่อมสิทธิ์รูป Drive แล้ว: '+(r.fixed||0)+' ไฟล์':r.error,!!r.ok)}catch(e){setSync('ซ่อมรูปไม่ได้: '+e.message,false)}}
 async function addPriceAlert(){try{const alert={id:'alert_'+Date.now(),symbol:$('alertSymbol').value,apiSymbol:$('alertApiSymbol').value,market:$('alertMarket').value,timeframe:$('alertTimeframe').value,condition:$('alertCondition').value,targetPrice:$('alertTargetPrice').value,message:$('alertMessage').value,status:'ACTIVE'};const r=await cloudApi('upsertPriceAlert',{alert});if(!r.ok)throw new Error(r.error);setAlertStatus('เพิ่ม Alert แล้ว',true);loadPriceAlerts()}catch(e){setAlertStatus('เพิ่ม Alert ไม่ได้: '+e.message,false)}}
 async function loadPriceAlerts(){try{const r=await cloudApi('listPriceAlerts',{});if(!r.ok)throw new Error(r.error);priceAlerts=r.alerts||[];renderPriceAlerts();setAlertStatus('โหลด Alerts แล้ว '+priceAlerts.length+' รายการ',true)}catch(e){setAlertStatus('โหลด Alert ไม่ได้: '+e.message,false)}}
 function renderPriceAlerts(){const body=$('priceAlertBody');body.innerHTML='';priceAlerts.forEach(a=>{body.innerHTML+=`<tr><td>${a.symbol||''}</td><td>${a.condition==='lte'?'≤':'≥'}</td><td>${a.targetPrice||''}</td><td>${a.currentPrice||''}</td><td>${a.status||''}</td><td>${a.message||''}</td><td><button class="danger" onclick='deletePriceAlert("${a.id}")'>ลบ</button></td></tr>`})}
