@@ -3,18 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PA Coach v4.1.3 Simple + News + Sheet</title>
+<title>PA Coach v4.1.4 Simple + News + Sheet + Images</title>
 <style>
 :root{--bg:#07101f;--panel:#111c31;--panel2:#17243e;--line:#2b3b5f;--text:#eef6ff;--muted:#9fb2cf;--blue:#38bdf8;--violet:#a78bfa;--ok:#22c55e;--warn:#f59e0b;--bad:#ef4444}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 8% 0%,rgba(56,189,248,.18),transparent 34%),var(--bg);color:var(--text);font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif}.wrap{max-width:1180px;margin:auto;padding:16px}.card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);border:1px solid rgba(255,255,255,.10);border-radius:18px;padding:16px;margin-bottom:14px}h1,h2,h3{margin:0 0 10px}p{color:var(--muted);line-height:1.6}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:10px}.c12{grid-column:span 12}.c8{grid-column:span 8}.c6{grid-column:span 6}.c4{grid-column:span 4}.c3{grid-column:span 3}.c2{grid-column:span 2}label{display:block;font-size:13px;margin:8px 0 5px;color:#d9e7fb}input,select,textarea{width:100%;background:#0c172a;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:10px;font-family:inherit;font-size:14px}textarea{min-height:78px;resize:vertical}button{font-family:inherit;font-weight:800;border:0;border-radius:12px;padding:10px 13px;cursor:pointer;margin:4px}.primary{background:linear-gradient(90deg,#38bdf8,#a78bfa);color:#06111e}.ok{background:rgba(34,197,94,.18);color:#bbf7d0;border:1px solid rgba(34,197,94,.38)}.warn{background:rgba(245,158,11,.17);color:#fed7aa;border:1px solid rgba(245,158,11,.38)}.danger{background:rgba(239,68,68,.18);color:#fecaca;border:1px solid rgba(239,68,68,.38)}.ghost{background:rgba(255,255,255,.07);color:var(--text);border:1px solid rgba(255,255,255,.13)}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.tab.active{background:linear-gradient(90deg,rgba(56,189,248,.28),rgba(167,139,250,.24));border-color:rgba(56,189,248,.50)}.section{display:none}.section.active{display:block}.badge{display:inline-flex;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.06);padding:7px 10px;border-radius:999px;font-size:13px;margin:4px}.decision{border-radius:14px;padding:12px;border:1px solid rgba(245,158,11,.45);background:rgba(245,158,11,.12)}.decision.go{border-color:rgba(34,197,94,.55);background:rgba(34,197,94,.12)}.decision.no{border-color:rgba(239,68,68,.55);background:rgba(239,68,68,.12)}.big{font-size:24px;font-weight:900}.small{font-size:12px;color:var(--muted)}table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255,255,255,.08);padding:9px;text-align:left;font-size:13px}th{background:rgba(255,255,255,.055)}.tablewrap{overflow:auto;margin-top:10px;border:1px solid rgba(255,255,255,.08);border-radius:14px;max-height:440px}.checkline{display:flex;gap:10px;align-items:center;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);border-radius:12px;padding:10px}.checkline input{width:auto}.footer{text-align:center;color:var(--muted);font-size:12px;padding:18px}.pill{border-radius:999px;padding:4px 8px;border:1px solid rgba(255,255,255,.15);white-space:nowrap}.red{color:#fecaca;background:rgba(239,68,68,.15)}.orange{color:#fed7aa;background:rgba(245,158,11,.15)}.green{color:#bbf7d0;background:rgba(34,197,94,.12)}@media(max-width:800px){.c8,.c6,.c4,.c3,.c2{grid-column:span 12}}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 8% 0%,rgba(56,189,248,.18),transparent 34%),var(--bg);color:var(--text);font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif}.wrap{max-width:1180px;margin:auto;padding:16px}.card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),var(--panel);border:1px solid rgba(255,255,255,.10);border-radius:18px;padding:16px;margin-bottom:14px}h1,h2,h3{margin:0 0 10px}p{color:var(--muted);line-height:1.6}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:10px}.c12{grid-column:span 12}.c8{grid-column:span 8}.c6{grid-column:span 6}.c4{grid-column:span 4}.c3{grid-column:span 3}.c2{grid-column:span 2}label{display:block;font-size:13px;margin:8px 0 5px;color:#d9e7fb}input,select,textarea{width:100%;background:#0c172a;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:10px;font-family:inherit;font-size:14px}textarea{min-height:78px;resize:vertical}button{font-family:inherit;font-weight:800;border:0;border-radius:12px;padding:10px 13px;cursor:pointer;margin:4px}.primary{background:linear-gradient(90deg,#38bdf8,#a78bfa);color:#06111e}.ok{background:rgba(34,197,94,.18);color:#bbf7d0;border:1px solid rgba(34,197,94,.38)}.warn{background:rgba(245,158,11,.17);color:#fed7aa;border:1px solid rgba(245,158,11,.38)}.danger{background:rgba(239,68,68,.18);color:#fecaca;border:1px solid rgba(239,68,68,.38)}.ghost{background:rgba(255,255,255,.07);color:var(--text);border:1px solid rgba(255,255,255,.13)}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.tab.active{background:linear-gradient(90deg,rgba(56,189,248,.28),rgba(167,139,250,.24));border-color:rgba(56,189,248,.50)}.section{display:none}.section.active{display:block}.badge{display:inline-flex;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.06);padding:7px 10px;border-radius:999px;font-size:13px;margin:4px}.decision{border-radius:14px;padding:12px;border:1px solid rgba(245,158,11,.45);background:rgba(245,158,11,.12)}.decision.go{border-color:rgba(34,197,94,.55);background:rgba(34,197,94,.12)}.decision.no{border-color:rgba(239,68,68,.55);background:rgba(239,68,68,.12)}.big{font-size:24px;font-weight:900}.small{font-size:12px;color:var(--muted)}table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255,255,255,.08);padding:9px;text-align:left;font-size:13px}th{background:rgba(255,255,255,.055)}.tablewrap{overflow:auto;margin-top:10px;border:1px solid rgba(255,255,255,.08);border-radius:14px;max-height:440px}.checkline{display:flex;gap:10px;align-items:center;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);border-radius:12px;padding:10px}.checkline input{width:auto}.footer{text-align:center;color:var(--muted);font-size:12px;padding:18px}.pill{border-radius:999px;padding:4px 8px;border:1px solid rgba(255,255,255,.15);white-space:nowrap}.preview{border:1px dashed rgba(255,255,255,.22);border-radius:14px;min-height:120px;padding:8px;background:#0c1629}.preview img{width:100%;max-height:180px;object-fit:contain;border-radius:10px}.thumb{width:72px;max-height:48px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,.16);margin:2px;cursor:pointer}.red{color:#fecaca;background:rgba(239,68,68,.15)}.orange{color:#fed7aa;background:rgba(245,158,11,.15)}.green{color:#bbf7d0;background:rgba(34,197,94,.12)}@media(max-width:800px){.c8,.c6,.c4,.c3,.c2{grid-column:span 12}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="card">
-    <h1>PA Coach Web App v4.1.3 Simple</h1>
-    <p>Simple Workflow + News Guard + Google Sheet Sync + Delete Sheet + Price Alerts</p>
-    <span class="badge">News Guard</span><span class="badge">Google Sheet Sync</span><span class="badge">Delete Sheet</span><span class="badge">Price Alerts</span>
+    <h1>PA Coach Web App v4.1.4 Simple</h1>
+    <p>Simple Workflow + News Guard + Google Sheet Sync + Delete Sheet + Price Alerts + Chart Images</p>
+    <span class="badge">News Guard</span><span class="badge">Google Sheet Sync</span><span class="badge">Delete Sheet</span><span class="badge">Price Alerts</span><span class="badge">Chart Images</span>
   </div>
 
   <div class="tabs">
@@ -80,8 +80,20 @@
       </div>
     </div>
 
+
     <div class="card">
-      <h2>5) บันทึก / ส่ง Sheet</h2>
+      <h2>5) แนบรูปกราฟ</h2>
+      <p class="small">ใส่รูป W1 / D1 / H4 / M15 ได้ รูปจะถูกส่งขึ้น Drive ผ่าน Code.gs ตอนกด “บันทึก + ส่งขึ้น Sheet”</p>
+      <div class="grid">
+        <div class="c3"><label>W1</label><input type="file" accept="image/*" onchange="loadChart(event,'w1')"><div id="preview_w1" class="preview"></div></div>
+        <div class="c3"><label>D1</label><input type="file" accept="image/*" onchange="loadChart(event,'d1')"><div id="preview_d1" class="preview"></div></div>
+        <div class="c3"><label>H4</label><input type="file" accept="image/*" onchange="loadChart(event,'h4')"><div id="preview_h4" class="preview"></div></div>
+        <div class="c3"><label>M15</label><input type="file" accept="image/*" onchange="loadChart(event,'m15')"><div id="preview_m15" class="preview"></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>6) บันทึก / ส่ง Sheet</h2>
       <div class="grid">
         <div class="c4"><label>Result</label><select id="result"><option>ยังไม่ปิด</option><option>WIN</option><option>LOSS</option><option>BE</option></select></div>
         <div class="c4"><label>Result R</label><input id="resultR" placeholder="+1R / -1R"></div>
@@ -105,7 +117,7 @@
       <button class="danger" onclick="deleteSelectedFromSheet()">ลบแผนที่เปิดอยู่จาก Sheet</button>
       <button class="ghost" onclick="renderJournal()">Refresh</button>
       <div id="syncStatus" class="decision" style="margin-top:10px">ยังไม่ได้ Sync</div>
-      <div class="tablewrap"><table><thead><tr><th>วันที่</th><th>Symbol</th><th>Direction</th><th>Status</th><th>Entry</th><th>SL</th><th>TP</th><th>Decision</th><th>จัดการ</th></tr></thead><tbody id="journalBody"></tbody></table></div>
+      <div class="tablewrap"><table><thead><tr><th>วันที่</th><th>Symbol</th><th>Direction</th><th>Status</th><th>Entry</th><th>SL</th><th>TP</th><th>Decision</th><th>รูป</th><th>จัดการ</th></tr></thead><tbody id="journalBody"></tbody></table></div>
     </div>
   </section>
 
@@ -148,7 +160,7 @@
     </div>
   </section>
 
-  <div class="footer">PA Coach Web App v4.1.3</div>
+  <div class="footer">PA Coach Web App v4.1.4</div>
 </div>
 
 <script>
@@ -158,13 +170,14 @@ const syncKey='paSyncSettingV33';
 let newsRows=[];
 let trades=[];
 let priceAlerts=[];
+let charts={w1:"",d1:"",h4:"",m15:""};
 
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));$(b.dataset.sec).classList.add('active');});
 function switchTab(sec){document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.sec===sec));document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id===sec));window.scrollTo({top:0,behavior:'smooth'});}
 function nowDate(){const d=new Date();return d.toISOString().slice(0,10)}
 function nowTime(){const d=new Date();return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}
 function uid(){return 'pa_'+Date.now()+'_'+Math.random().toString(16).slice(2)}
-function init(){trades=JSON.parse(localStorage.getItem(storeKey)||'[]');const s=JSON.parse(localStorage.getItem(syncKey)||'{}');$('syncApiUrl').value=s.url||'';$('syncSecret').value=s.secret||'';$('tradeDate').value=nowDate();$('tradeTime').value=nowTime();$('tradeId').value=uid();bindCalc();renderJournal();}
+function init(){trades=JSON.parse(localStorage.getItem(storeKey)||'[]');const s=JSON.parse(localStorage.getItem(syncKey)||'{}');$('syncApiUrl').value=s.url||'';$('syncSecret').value=s.secret||'';$('tradeDate').value=nowDate();$('tradeTime').value=nowTime();$('tradeId').value=uid();bindCalc();renderChartPreviews();renderJournal();}
 function bindCalc(){['entry','sl','tp1','tp2','tp3','direction','bias','status','manualNews','choch','pin','engulf'].forEach(id=>$(id).addEventListener('input',evaluate));['choch','pin','engulf'].forEach(id=>$(id).addEventListener('change',evaluate));}
 function getSync(){return JSON.parse(localStorage.getItem(syncKey)||'{}')}
 function saveSyncSetting(){localStorage.setItem(syncKey,JSON.stringify({url:$('syncApiUrl').value.trim(),secret:$('syncSecret').value.trim()}));setSync('บันทึก Sync แล้ว',true)}
@@ -182,17 +195,22 @@ function addManualNews(){newsRows.push({date:nowDate(),time:nowTime(),currency:$
 function calcRR(){const entry=Number($('entry').value),sl=Number($('sl').value),dir=$('direction').value;const tps=['tp1','tp2','tp3'].map(id=>Number($(id).value)).filter(x=>isFinite(x));if(!isFinite(entry)||!isFinite(sl)||entry===sl||!tps.length){$('maxRR').value='';return 0}const risk=Math.abs(entry-sl);const rr=Math.max(...tps.map(tp=>Math.abs(tp-entry)/risk));$('maxRR').value=(Math.round(rr*100)/100);return rr}
 function evaluate(){const rr=calcRR();const newsBad=$('newsDecision').className.includes('no');const trigger=$('choch').checked||$('pin').checked||$('engulf').checked;let msg='WAIT',cls='decision';if(newsBad){msg='NO TRADE: ชนข่าว';cls='decision no'}else if(rr<2){msg='WAIT: RR ยังไม่ถึง 1:2';cls='decision'}else if(!trigger){msg='WAIT: รอ M15 Trigger';cls='decision'}else{msg='READY: เข้าได้ตามแผน';cls='decision go'}$('rrBox').className=rr>=2?'decision go':'decision';$('rrBox').innerHTML=`<div class="big">RR ${rr?rr.toFixed(2):'ยังไม่ครบ'}</div>`;$('finalDecision').className=cls;$('finalDecision').innerHTML='<div class="big">'+msg+'</div>'}
 
+function loadChart(ev,key){const f=ev.target.files&&ev.target.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{charts[key]=e.target.result;renderChartPreviews();};r.readAsDataURL(f)}
+function renderChartPreviews(){["w1","d1","h4","m15"].forEach(k=>{const el=$("preview_"+k);if(!el)return;el.innerHTML=charts[k]?`<img src="${charts[k]}" onclick="window.open(this.src,'_blank')">`:""})}
+function imageCount(t){const c=t&&t.charts?t.charts:{};return [c.w1,c.d1,c.h4,c.m15].filter(Boolean).length}
+function imageThumbs(t){const c=t&&t.charts?t.charts:{};return ["w1","d1","h4","m15"].map(k=>c[k]?`<img class="thumb" title="${k.toUpperCase()}" src="${c[k]}" onclick="window.open(this.src,'_blank')">`:"").join("")}
 function collectTrade(){const t={id:$('tradeId').value||uid(),updatedAt:new Date().toISOString(),createdAt:new Date().toISOString(),tradeDate:$('tradeDate').value,tradeTime:$('tradeTime').value,symbol:$('symbol').value||'XAUUSD',market:$('market').value,direction:$('direction').value,status:$('status').value,strategyName:'Simple H4 Bias + News Guard + M15 Trigger',entry:$('entry').value,sl:$('sl').value,tp1:$('tp1').value,tp2:$('tp2').value,tp3:$('tp3').value,maxRR:$('maxRR').value,resultR:$('resultR').value,decision:$('finalDecision').innerText,json:''};
+t.charts=charts;
 t.simple={bias:$('bias').value,zone:$('zone').value,h4Plan:$('h4Plan').value,choch:$('choch').checked,pin:$('pin').checked,engulf:$('engulf').checked,result:$('result').value,lesson:$('lesson').value,news:newsRows};return t}
-function loadTrade(t){switchTab('planner');$('tradeId').value=t.id;$('tradeDate').value=t.tradeDate||nowDate();$('tradeTime').value=t.tradeTime||nowTime();$('symbol').value=t.symbol||'XAUUSD';$('market').value=t.market||'Gold';$('direction').value=t.direction||'WAIT';$('status').value=t.status||'WAIT';$('entry').value=t.entry||'';$('sl').value=t.sl||'';$('tp1').value=t.tp1||'';$('tp2').value=t.tp2||'';$('tp3').value=t.tp3||'';$('resultR').value=t.resultR||'';const s=t.simple||{};$('bias').value=s.bias||'WAIT';$('zone').value=s.zone||'';$('h4Plan').value=s.h4Plan||'';$('choch').checked=!!s.choch;$('pin').checked=!!s.pin;$('engulf').checked=!!s.engulf;$('result').value=s.result||'ยังไม่ปิด';$('lesson').value=s.lesson||'';newsRows=s.news||[];renderNews();evaluate();setSync('เปิดแผนเพื่อแก้ไขแล้ว: '+(t.symbol||''),true);}
+function loadTrade(t){switchTab('planner');$('tradeId').value=t.id;$('tradeDate').value=t.tradeDate||nowDate();$('tradeTime').value=t.tradeTime||nowTime();$('symbol').value=t.symbol||'XAUUSD';$('market').value=t.market||'Gold';$('direction').value=t.direction||'WAIT';$('status').value=t.status||'WAIT';$('entry').value=t.entry||'';$('sl').value=t.sl||'';$('tp1').value=t.tp1||'';$('tp2').value=t.tp2||'';$('tp3').value=t.tp3||'';$('resultR').value=t.resultR||'';const s=t.simple||{};$('bias').value=s.bias||'WAIT';$('zone').value=s.zone||'';$('h4Plan').value=s.h4Plan||'';$('choch').checked=!!s.choch;$('pin').checked=!!s.pin;$('engulf').checked=!!s.engulf;$('result').value=s.result||'ยังไม่ปิด';$('lesson').value=s.lesson||'';newsRows=s.news||[];charts=t.charts||{w1:"",d1:"",h4:"",m15:""};renderChartPreviews();renderNews();evaluate();setSync('เปิดแผนเพื่อแก้ไขแล้ว: '+(t.symbol||''),true);}
 function saveLocal(){const t=collectTrade();const idx=trades.findIndex(x=>x.id===t.id);if(idx>=0)trades[idx]=t;else trades.unshift(t);localStorage.setItem(storeKey,JSON.stringify(trades));renderJournal();alert('บันทึกในเครื่องแล้ว')}
 async function saveAndUpload(){try{saveLocal();const t=collectTrade();const r=await cloudApi('upsertTrades',{trades:[t],mode:'upsert'});if(!r.ok)throw new Error(r.error);setSync('ส่งขึ้น Sheet แล้ว: '+(r.count||1)+' รายการ',true)}catch(e){setSync('ส่งขึ้น Sheet ไม่ได้: '+e.message,false)}}
 async function uploadAllToSheet(){try{const r=await cloudApi('upsertTrades',{trades,mode:'upsert'});if(!r.ok)throw new Error(r.error);setSync('ส่งข้อมูลทั้งหมดขึ้น Sheet แล้ว: '+r.count+' รายการ',true)}catch(e){setSync('ส่งขึ้น Sheet ไม่ได้: '+e.message,false)}}
 async function loadFromSheet(){try{const r=await cloudApi('listTrades',{});if(!r.ok)throw new Error(r.error);trades=r.trades||[];localStorage.setItem(storeKey,JSON.stringify(trades));renderJournal();setSync('โหลดจาก Sheet แล้ว '+trades.length+' รายการ',true)}catch(e){setSync('โหลดไม่ได้: '+e.message,false)}}
 async function deleteSelectedFromSheet(){const id=$('tradeId').value;if(!id)return alert('ไม่มี Trade ID');if(!confirm('ลบแผนนี้จาก Sheet และในเครื่อง?'))return;try{await cloudApi('deleteTrade',{id});trades=trades.filter(t=>t.id!==id);localStorage.setItem(storeKey,JSON.stringify(trades));renderJournal();newPlan();setSync('ลบจาก Sheet แล้ว',true)}catch(e){setSync('ลบไม่ได้: '+e.message,false)}}
-function renderJournal(){const body=$('journalBody');body.innerHTML='';trades.forEach((t,i)=>{body.innerHTML+=`<tr><td>${t.tradeDate||''} ${t.tradeTime||''}</td><td>${t.symbol||''}</td><td>${t.direction||''}</td><td>${t.status||''}</td><td>${t.entry||''}</td><td>${t.sl||''}</td><td>${t.tp1||''}/${t.tp2||''}/${t.tp3||''}</td><td>${t.decision||''}</td><td><button class="ghost" onclick='loadTrade(trades[${i}])'>เปิดแก้ไข</button><button class="danger" onclick='deleteLocal("${t.id}")'>ลบในเครื่อง</button></td></tr>`})}
+function renderJournal(){const body=$('journalBody');body.innerHTML='';trades.forEach((t,i)=>{body.innerHTML+=`<tr><td>${t.tradeDate||''} ${t.tradeTime||''}</td><td>${t.symbol||''}</td><td>${t.direction||''}</td><td>${t.status||''}</td><td>${t.entry||''}</td><td>${t.sl||''}</td><td>${t.tp1||''}/${t.tp2||''}/${t.tp3||''}</td><td>${t.decision||''}</td><td>${imageThumbs(t)||imageCount(t)}</td><td><button class="ghost" onclick='loadTrade(trades[${i}])'>เปิดแก้ไข</button><button class="danger" onclick='deleteLocal("${t.id}")'>ลบในเครื่อง</button></td></tr>`})}
 function deleteLocal(id){if(confirm('ลบในเครื่องเท่านั้น?')){trades=trades.filter(t=>t.id!==id);localStorage.setItem(storeKey,JSON.stringify(trades));renderJournal()}}
-function newPlan(){['entry','sl','tp1','tp2','tp3','zone','h4Plan','resultR','lesson'].forEach(id=>$(id).value='');$('tradeDate').value=nowDate();$('tradeTime').value=nowTime();$('tradeId').value=uid();$('status').value='WAIT';$('direction').value='WAIT';$('bias').value='WAIT';$('choch').checked=$('pin').checked=$('engulf').checked=false;newsRows=[];renderNews();evaluate();}
+function newPlan(){['entry','sl','tp1','tp2','tp3','zone','h4Plan','resultR','lesson'].forEach(id=>$(id).value='');$('tradeDate').value=nowDate();$('tradeTime').value=nowTime();$('tradeId').value=uid();$('status').value='WAIT';$('direction').value='WAIT';$('bias').value='WAIT';$('choch').checked=$('pin').checked=$('engulf').checked=false;newsRows=[];charts={w1:"",d1:"",h4:"",m15:""};renderChartPreviews();renderNews();evaluate();}
 function copyTelegram(){const t=collectTrade();const text=`📌 PA Coach Plan\n\nSymbol: ${t.symbol}\nBias: ${t.simple.bias}\nDirection: ${t.direction}\nStatus: ${t.status}\n\nZone: ${t.simple.zone}\nEntry: ${t.entry}\nSL: ${t.sl}\nTP1: ${t.tp1}\nTP2: ${t.tp2}\nTP3: ${t.tp3}\nRR: ${t.maxRR}\n\nM15 Trigger:\n${t.simple.choch?'✅':'❌'} CHOCH\n${t.simple.pin?'✅':'❌'} Pin Bar\n${t.simple.engulf?'✅':'❌'} Engulf\n\nDecision:\n${t.decision}\n\nPlan:\n${t.simple.h4Plan}`;navigator.clipboard.writeText(text);alert('Copy แล้ว')}
 
 async function testSync(){try{const r=await cloudApi('ping',{});setSync(r.ok?'เชื่อมต่อสำเร็จ '+r.version:r.error,!!r.ok)}catch(e){setSync(e.message,false)}}
